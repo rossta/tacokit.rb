@@ -1,6 +1,12 @@
 # Tacoshell
 
-TODO: Write a gem description
+Ruby toolkit for the Trello API. Design and philosophy
+inspired by [ocktokit.rb](https://github.com/ocktokit/ocktokit.rb)
+
+This is Taco.
+
+![Taco][togo]
+[taco]: http://cl.ly/image/2p1x3K1X160b/taco.png
 
 ## Installation
 
@@ -17,6 +23,32 @@ And then execute:
 Or install it yourself as:
 
     $ gem install tacoshell
+
+### Making requests
+
+Generate a developer key and secret: https://trello.com/1/appKey/generate
+
+[API methods][] are available as module methods (consuming module-level
+configuration) or as client instance methods.
+
+```ruby
+# Provide authentication credentials
+Tacoshell.configure do |c|
+  c.login = 'rossta'
+  c.password = 'f1n3tun3ds0u1!'
+end
+
+# Fetch the current user
+Tacoshell.user
+```
+or
+
+```ruby
+# Provide authentication credentials
+client = Tacoshell::Client.new(:login => 'defunkt', :password => 'c0d3b4ssssss!')
+# Fetch the current user
+client.user
+```
 
 ## Usage
 

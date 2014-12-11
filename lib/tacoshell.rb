@@ -1,5 +1,8 @@
 require "tacoshell/version"
 
 module Tacoshell
-  # Your code goes here...
 end
+
+require "tacoshell/configuration"
+require "tacoshell/client"
+

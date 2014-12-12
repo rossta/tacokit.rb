@@ -3,7 +3,6 @@ Bundler.setup
 
 require 'tacokit'
 require 'dotenv'
-require 'pry'
 
 Dotenv.load(File.expand_path("../../.env",  __FILE__))
 

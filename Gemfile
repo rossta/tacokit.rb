@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in tacoshell.gemspec
+# Specify your gem's dependencies in Tacokit.gemspec
 gemspec
 
 gem 'dotenv'
@@ -10,6 +10,7 @@ gem 'pry-byebug'
 group :development do
   gem 'awesome_print', :require => 'ap'
   gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :test do

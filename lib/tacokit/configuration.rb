@@ -1,8 +1,12 @@
-module Tacoshell
-  Error = Class.new(StandardError)
-  ConfigurationError = Class.new(Error)
-
+module Tacokit
   class Configuration
+
+    API_URL = "https://api.trello.com"
+    WEB_URL = "https://trello.com"
+
+    API_VERSION  = "1"
+
+    APP_KEY_URL  = "https://trello.com/1/appKey/generate"
 
     def self.keys
       [
@@ -11,7 +15,9 @@ module Tacoshell
         :consumer_key,
         :consumer_secret,
         :oauth_token,
-        :oauth_token_secret
+        :oauth_token_secret,
+        :api_endpoint,
+        :web_endpoint
       ]
     end
 
@@ -63,7 +69,12 @@ module Tacoshell
     end
 
     def defaults
-      {}
+      {
+        api_endpoint: File.join(API_URL, API_VERSION),
+        web_endpoint: File.join(WEB_URL, API_VERSION),
+        app_key: ENV['TRELLO_APP_KEY'],
+        app_secret: ENV['TRELLO_APP_SECRET']
+      }
     end
 
   end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Tacoshell::Configuration do
-  let(:configuration) { Tacoshell::Configuration.new }
+describe Tacokit::Configuration do
+  let(:configuration) { Tacokit::Configuration.new }
 
   it 'has a consumer_key attribute' do
     configuration.consumer_key = 'consumer_key'
@@ -35,12 +35,12 @@ describe Tacoshell::Configuration do
 
   describe 'initialize' do
     it 'sets key attributes provided as a hash' do
-      configuration = Tacoshell::Configuration.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
-      )
+      configuration = Tacokit::Configuration.new \
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
+
       expect(configuration.consumer_key).to eq('consumer_key')
       expect(configuration.consumer_secret).to eq('consumer_secret')
       expect(configuration.oauth_token).to eq('oauth_token')
@@ -49,40 +49,34 @@ describe Tacoshell::Configuration do
   end
 
   describe '#credentials' do
-    let(:configuration) { Tacoshell::Configuration.new(attributes) }
+    let(:configuration) { Tacokit::Configuration.new(attributes) }
 
     it 'raises error no attributes specified' do
-      expect { Tacoshell::Configuration.new.credentials }.to raise_error
-    end
-
-    it 'raises error if credentials incomplete' do
-      expect { Tacoshell::Configuration.new(:consumer_key => 'consumer_key').credentials }.to raise_error
+      expect { Tacokit::Configuration.new(app_key: nil).credentials }.to raise_error
     end
 
     it 'returns a hash of oauth attributes' do
-      configuration = Tacoshell::Configuration.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
-      )
-      expect(configuration.credentials).to eq(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
-      )
+      configuration = Tacokit::Configuration.new \
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
+
+      expect(configuration.credentials).to eq \
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
     end
 
     it 'returns a hash of basic auth policy attributes' do
-      configuration = Tacoshell::Configuration.new(
-        :app_key => 'app_key',
-        :app_secret => 'app_secret'
-      )
-      expect(configuration.credentials).to eq(
-        :app_key => 'app_key',
-        :app_secret => 'app_secret'
-      )
+      configuration = Tacokit::Configuration.new \
+        app_key: 'app_key',
+        app_secret: 'app_secret'
+
+      expect(configuration.credentials).to eq \
+        app_key: 'app_key',
+        app_secret: 'app_secret'
     end
   end
 end

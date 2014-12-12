@@ -11,6 +11,9 @@ group :development do
   gem 'launchy'
   gem 'pry'
   gem 'pry-byebug', :platforms => :ruby_21
+
+  gem 'oauth'
+  gem 'sinatra'
 end
 
 group :test do

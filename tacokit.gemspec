@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'tacokit/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Tacokit"
+  spec.name          = "tacokit"
   spec.version       = Tacokit::VERSION
   spec.authors       = ["Ross Kaffenberger"]
   spec.email         = ["rosskaff@gmail.com"]

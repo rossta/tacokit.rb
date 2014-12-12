@@ -13,7 +13,7 @@ This is Taco.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'Tacokit'
+gem 'tacokit'
 ```
 
 And then execute:
@@ -22,32 +22,34 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install Tacokit
+    $ gem install tacokit
 
 ### Making requests
 
 Generate a developer key and secret: https://trello.com/1/appKey/generate
 
+```ruby
+Tacokit.generate_app_key
+
+Tacokit.configure do |c|
+  c.app_key = "4ppk3y"
+  c.app_secret = "4pps3cr3t"
+end
+```
+
 [API methods][] are available as module methods (consuming module-level
 configuration) or as client instance methods.
 
 ```ruby
-# Provide authentication credentials
-Tacokit.configure do |c|
-  c.login = 'rossta'
-  c.password = 'f1n3tun3ds0u1!'
-end
+# Fetch a user
+Tacokit.user('rossta')
 
-# Fetch the current user
-Tacokit.user
-```
-or
+# or
 
-```ruby
 # Provide authentication credentials
-client = Tacokit::Client.new(:login => 'defunkt', :password => 'c0d3b4ssssss!')
-# Fetch the current user
-client.user
+client = Tacokit::Client.new(app_key: '4ppk3y', app_secret: '4pps3cr3t!')
+# Fetch a user
+client.user('rossta')
 ```
 
 ## Usage

@@ -79,7 +79,8 @@ module Tacokit
         http.response :snakify
         http.response :json, content_type: /\bjson$/
         http.response :raise_error
-        http.response :logger
+        http.response :logger if ENV['DEBUG']
+
         http.adapter Faraday.default_adapter
       end
     end

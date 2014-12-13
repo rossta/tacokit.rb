@@ -16,7 +16,6 @@ describe Tacokit::Client do
       client = Tacokit::Client.new(test_client_credentials)
       boards = client.get("members/me/boards")
 
-      puts boards
       board = boards.first
       expect(board.name).to eq 'Test Board'
     end

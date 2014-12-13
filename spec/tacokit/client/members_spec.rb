@@ -15,6 +15,20 @@ describe Tacokit::Client::Members do
       expect(member.username).to eq("tacokit")
       expect(member.full_name).to eq("Taco Kit")
     end
+
+    it "supports query fields as string or array" do
+      member = Tacokit.client.member("tacokit",
+                                     boards: 'all',
+                                     board_fields: 'name,short_url',
+                                     fields: ['username', 'full_name'])
+
+      expect(member.username).to eq("tacokit")
+      expect(member.full_name).to eq("Taco Kit")
+
+      board = member.boards.first
+      expect(board.name).to eq("Test Board")
+      expect(board.short_url).to match(%r{^https://trello.com})
+    end
   end # .user
 
 end

@@ -39,8 +39,30 @@ module Tacokit
     end
 
     def request(method, url, options)
-      response = connection.send(method, url, options)
+      response = connection.send(method, url, options) do |conn|
+        conn.params = normalize_request_params(conn.params)
+      end
       response.body
+    end
+
+    # Prepare ruby-style params for trello request
+    def normalize_request_params(params)
+      {}.tap do |norm|
+        params.each do |key,value|
+          norm[key] = normalize_param_value(value)
+        end
+      end
+    end
+
+    def normalize_param_value(value)
+      case value
+      when Array
+        value.map { |v| v.camelize(:lower) }.join(',')
+      when /\,/
+        normalize_param_value(value.split(','))
+      else
+        value
+      end
     end
 
     def connection

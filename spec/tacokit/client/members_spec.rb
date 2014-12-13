@@ -48,4 +48,15 @@ describe Tacokit::Client::Members do
     end
   end
 
+  describe "member_actions", :vcr do
+    it "returns member actions" do
+      actions = app_client.member_actions('tacokit')
+
+      expect(actions).not_to be_empty
+
+      action = actions.first
+      expect(action.member_creator.full_name).to be_present
+    end
+  end
+
 end

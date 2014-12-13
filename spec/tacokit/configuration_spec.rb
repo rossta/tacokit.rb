@@ -24,13 +24,13 @@ describe Tacokit::Configuration do
   end
 
   it 'has a developer public key attribute' do
-    configuration.app_key = 'app_key'
-    expect(configuration.app_key).to eq('app_key')
+    configuration.consumer_key = 'consumer_key'
+    expect(configuration.consumer_key).to eq('consumer_key')
   end
 
   it 'has a member token attribute' do
-    configuration.app_secret = 'app_secret'
-    expect(configuration.app_secret).to eq('app_secret')
+    configuration.consumer_secret = 'consumer_secret'
+    expect(configuration.consumer_secret).to eq('consumer_secret')
   end
 
   describe 'initialize' do
@@ -48,35 +48,4 @@ describe Tacokit::Configuration do
     end
   end
 
-  describe '#credentials' do
-    let(:configuration) { Tacokit::Configuration.new(attributes) }
-
-    it 'raises error no attributes specified' do
-      expect { Tacokit::Configuration.new(app_key: nil).credentials }.to raise_error
-    end
-
-    it 'returns a hash of oauth attributes' do
-      configuration = Tacokit::Configuration.new \
-        consumer_key: 'consumer_key',
-        consumer_secret: 'consumer_secret',
-        oauth_token: 'oauth_token',
-        oauth_token_secret: 'oauth_token_secret'
-
-      expect(configuration.credentials).to eq \
-        consumer_key: 'consumer_key',
-        consumer_secret: 'consumer_secret',
-        oauth_token: 'oauth_token',
-        oauth_token_secret: 'oauth_token_secret'
-    end
-
-    it 'returns a hash of basic auth policy attributes' do
-      configuration = Tacokit::Configuration.new \
-        app_key: 'app_key',
-        app_secret: 'app_secret'
-
-      expect(configuration.credentials).to eq \
-        app_key: 'app_key',
-        app_secret: 'app_secret'
-    end
-  end
 end

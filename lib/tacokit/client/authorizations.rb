@@ -19,7 +19,7 @@ module Tacokit
       end
 
       def authorize_url(params = {})
-        key = params.delete(:key) || app_key
+        key = params.delete(:key) || consumer_key
         web_url "authorize?key=#{key}", params
       end
 

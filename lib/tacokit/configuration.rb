@@ -10,8 +10,6 @@ module Tacokit
 
     def self.keys
       [
-        :app_key,
-        :app_secret,
         :consumer_key,
         :consumer_secret,
         :oauth_token,
@@ -23,6 +21,11 @@ module Tacokit
 
     attr_accessor(*keys)
 
+    alias_method :app_key, :consumer_key
+    alias_method :app_key=, :consumer_key=
+    alias_method :app_secret, :consumer_secret
+    alias_method :app_secret=, :consumer_secret=
+
     def initialize(opts = {})
       self.options = defaults.merge(opts)
     end
@@ -31,49 +34,22 @@ module Tacokit
       opts.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    def credentials
-      case
-      when oauth?
-        oauth_credentials
-      when basic?
-        basic_credentials
-      else
-        raise ConfigurationError.new("Not configured")
-      end
-    end
-
     def oauth?
-      consumer_key && consumer_secret
+      !!(consumer_key && oauth_token)
     end
 
-    def basic?
-      app_key && app_secret
+    def simple_oauth_credentials
+      { :consumer_key => app_key, :token => oauth_token }.delete_if { |key, value| value.nil? }
     end
 
     private
-
-    def oauth_credentials
-      {
-        :consumer_key => consumer_key,
-        :consumer_secret => consumer_secret,
-        :oauth_token => oauth_token,
-        :oauth_token_secret => oauth_token_secret
-      }.delete_if { |key, value| value.nil? }
-    end
-
-    def basic_credentials
-      {
-        :app_key => app_key,
-        :app_secret => app_secret
-      }
-    end
 
     def defaults
       {
         api_endpoint: File.join(API_URL, API_VERSION),
         web_endpoint: File.join(WEB_URL, API_VERSION),
-        app_key: ENV['TRELLO_APP_KEY'],
-        app_secret: ENV['TRELLO_APP_SECRET']
+        consumer_key: ENV['TRELLO_APP_KEY'],
+        consumer_secret: ENV['TRELLO_APP_SECRET']
       }
     end
 

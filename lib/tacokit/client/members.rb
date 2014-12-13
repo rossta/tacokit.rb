@@ -2,8 +2,8 @@ module Tacokit
   class Client
     module Members
 
-      def member(username)
-        get "members/#{username}", { key: app_key }
+      def member(username = 'me')
+        get "members/#{username}"
       end
 
     end

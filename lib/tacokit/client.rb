@@ -42,11 +42,30 @@ module Tacokit
 
     def connection
       @connection = Faraday.new(url: api_endpoint) do |http|
+        http.headers[:user_agent] = 'TacoKit 0.0.1'
+
+        if configuration.oauth?
+          http.request :oauth, configuration.simple_oauth_credentials
+        end
+
         http.response :mashify
         http.response :snakify
-        http.response :json
+        http.response :json, content_type: /\bjson$/
+        # http.response :debug
+        http.response :raise_error
         http.response :logger
         http.adapter Faraday.default_adapter
+      end
+    end
+
+    class AppKey < Faraday::Middleware
+      def initialize(app, app_key)
+        @app_key = app_key
+        super(app)
+      end
+
+      def call(env)
+        @app.call(env)
       end
     end
 
@@ -64,7 +83,29 @@ module Tacokit
       end
     end
 
+     # Used for simple response middleware.
+    class Debug < Faraday::Response::Middleware
+      require 'pry'
+
+      def on_complete(env)
+        binding.pry
+        env
+      end
+
+      def parse(body)
+        binding.pry
+        body
+      end
+    end
+
+    Faraday::Request.register_middleware \
+      :app_key => lambda { AppKey }
+
     Faraday::Response.register_middleware \
       :snakify => lambda { Snakify }
+
+    Faraday::Response.register_middleware \
+      :debug => lambda { Debug }
+
   end
 end

@@ -1,10 +1,14 @@
 require 'bundler/setup'
 Bundler.setup
 
-require 'tacokit'
 require 'dotenv'
-
 Dotenv.load(File.expand_path("../../.env",  __FILE__))
+
+require 'tacokit'
+require 'rspec'
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.before(:suite) do
@@ -21,6 +25,41 @@ RSpec.configure do |config|
       c.oauth_token_secret = nil
     end
   end
+end
+
+require 'vcr'
+VCR.configure do |c|
+  c.configure_rspec_metadata!
+
+  c.filter_sensitive_data("<TRELLO_APP_KEY>") do
+    test_trello_app_key
+  end
+
+  c.filter_sensitive_data("<TRELLO_APP_SECRET>") do
+    test_trello_app_secret
+  end
+
+  c.filter_sensitive_data("<TRELLO_APP_TOKEN>") do
+    test_trello_app_token
+  end
+
+  c.filter_sensitive_data("<TRELLO_OAUTH_TOKEN>") do
+    test_trello_oauth_token
+  end
+
+  c.filter_sensitive_data("<TRELLO_OAUTH_SECRET>") do
+    test_trello_oauth_secret
+  end
+
+  c.default_cassette_options = {
+    :serialize_with             => :json,
+    :preserve_exact_body_bytes  => true,
+    :decode_compressed_response => true,
+    :record                     => :new_episodes
+  }
+
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock # or :fakeweb
 end
 
 def test_trello_username

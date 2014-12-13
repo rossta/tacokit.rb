@@ -25,11 +25,11 @@ RSpec.configure do |config|
     Tacokit.reset!
 
     Tacokit.configure do |c|
-      c.consumer_key    = test_trello_app_key
-      c.consumer_secret = test_trello_app_secret
-      c.app_token       = test_trello_app_token
+      c.app_key     = test_trello_app_key
+      c.app_secret  = test_trello_app_secret
+      c.app_token   = test_trello_app_token
       c.oauth_token        = nil
-      c.oauth_token_secret = nil
+      c.oauth_secret = nil
     end
   end
 end
@@ -95,17 +95,17 @@ end
 
 def test_client_credentials
   {
-    consumer_key: test_trello_app_key,
+    app_key: test_trello_app_key,
     app_token: test_trello_app_token
   }
 end
 
 def test_oauth_credentials
   {
-    consumer_key: test_trello_app_key,
-    consumer_secret: test_trello_app_secret,
+    app_key: test_trello_app_key,
+    app_secret: test_trello_app_secret,
     oauth_token: test_trello_oauth_token,
-    oauth_token_secret: test_trello_oauth_secret
+    oauth_secret: test_trello_oauth_secret
   }
 end
 

@@ -11,21 +11,14 @@ module Tacokit
         :app_key,
         :app_secret,
         :app_token,
-        :consumer_key,
-        :consumer_secret,
         :oauth_token,
-        :oauth_token_secret,
+        :oauth_secret,
         :api_endpoint,
         :web_endpoint
       ]
     end
 
     attr_accessor(*keys)
-
-    alias_method :app_key, :consumer_key
-    alias_method :app_key=, :consumer_key=
-    alias_method :app_secret, :consumer_secret
-    alias_method :app_secret=, :consumer_secret=
 
     def initialize(opts = {})
       self.options = defaults.merge(opts)
@@ -36,11 +29,11 @@ module Tacokit
     end
 
     def user_authenticated?
-      consumer_key && oauth_token
+      app_key && oauth_token
     end
 
     def user_credentials
-      { consumer_key: consumer_key, token: oauth_token }.delete_if { |k, v| v.nil? }
+      { consumer_key: app_key, token: oauth_token }.delete_if { |k, v| v.nil? }
     end
 
     def app_authenticated?
@@ -57,8 +50,8 @@ module Tacokit
       {
         api_endpoint: File.join(API_URL, API_VERSION),
         web_endpoint: File.join(WEB_URL, API_VERSION),
-        consumer_key: ENV['TRELLO_APP_KEY'],
-        consumer_secret: ENV['TRELLO_APP_SECRET']
+        app_key: ENV['TRELLO_APP_KEY'],
+        app_secret: ENV['TRELLO_APP_SECRET']
       }
     end
 

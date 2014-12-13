@@ -6,6 +6,10 @@ module Tacokit
         get "members/#{username}", options
       end
 
+      def member_field(username, field, options = nil)
+        (get "members/#{username}/#{field.camelize(:lower)}", options)['_value']
+      end
+
     end
   end
 end

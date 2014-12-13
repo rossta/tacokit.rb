@@ -12,7 +12,7 @@ WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.before(:suite) do
-    warn "test_oauth_credentials #{ test_oauth_credentials }"
+    warn "Using test_oauth_credentials #{ test_oauth_credentials }"
   end
 
   config.before do
@@ -21,6 +21,7 @@ RSpec.configure do |config|
     Tacokit.configure do |c|
       c.consumer_key    = test_trello_app_key
       c.consumer_secret = test_trello_app_secret
+      c.app_token       = test_trello_app_token
       c.oauth_token = nil
       c.oauth_token_secret = nil
     end
@@ -55,7 +56,7 @@ VCR.configure do |c|
     :serialize_with             => :json,
     :preserve_exact_body_bytes  => true,
     :decode_compressed_response => true,
-    :record                     => :new_episodes
+    :record                     => :once
   }
 
   c.cassette_library_dir = 'spec/cassettes'
@@ -100,4 +101,12 @@ def test_oauth_credentials
     oauth_token: test_trello_oauth_token,
     oauth_token_secret: test_trello_oauth_secret
   }
+end
+
+def app_client
+  Tacokit.client
+end
+
+def oauth_client
+  @oauth_client ||= Tacokit::Client.new(test_oauth_credentials)
 end

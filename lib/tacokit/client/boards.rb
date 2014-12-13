@@ -2,6 +2,11 @@ module Tacokit
   class Client
     module Boards
       # GET /1/boards/[board_id]
+      #
+      def board(board_id, options = nil)
+        get "board/#{board_id}", options
+      end
+
       # GET /1/boards/[board_id]/[field]
       # GET /1/boards/[board_id]/actions
       # GET /1/boards/[board_id]/boardStars

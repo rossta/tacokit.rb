@@ -6,6 +6,7 @@ require 'hashie/mash'
 require 'tacokit/configuration'
 require 'tacokit/client/authorizations'
 require 'tacokit/client/members'
+require 'tacokit/client/boards'
 
 module Tacokit
   class Client
@@ -13,6 +14,7 @@ module Tacokit
 
     include Tacokit::Client::Authorizations
     include Tacokit::Client::Members
+    include Tacokit::Client::Boards
 
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials

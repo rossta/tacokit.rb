@@ -15,6 +15,5 @@ module Tacokit
   end
 end
 
-require "tacokit/configuration"
 require "tacokit/client"
 require "tacokit/error"

@@ -3,7 +3,7 @@ module Tacokit
     module Authorizations
 
       def generate_app_key
-        open_url web_url("appKey/generate")
+        open_url web_url("app-key")
       end
 
       # Params
@@ -19,8 +19,10 @@ module Tacokit
       end
 
       def authorize_url(params = {})
-        key = params.delete(:key) || consumer_key
-        web_url "authorize?key=#{key}", params
+        params[:key] ||= app_key
+        params[:name] ||= 'Tacokit'
+        params[:response_type] ||= 'token'
+        web_url "authorize", params
       end
 
       private

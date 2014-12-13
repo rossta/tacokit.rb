@@ -47,10 +47,17 @@ def test_trello_oauth_secret
   ENV.fetch 'TRELLO_TEST_OAUTH_SECRET'
 end
 
+def test_client_credentials
+  {
+    consumer_key: test_trello_app_key,
+    app_token: test_trello_app_token
+  }
+end
+
 def test_oauth_credentials
   {
-    app_key: test_trello_app_key,
-    app_secret: test_trello_app_secret,
+    consumer_key: test_trello_app_key,
+    consumer_secret: test_trello_app_secret,
     oauth_token: test_trello_oauth_token,
     oauth_token_secret: test_trello_oauth_secret
   }

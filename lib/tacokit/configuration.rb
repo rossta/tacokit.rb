@@ -6,10 +6,11 @@ module Tacokit
 
     API_VERSION  = "1"
 
-    APP_KEY_URL  = "https://trello.com/1/appKey/generate"
-
     def self.keys
       [
+        :app_key,
+        :app_secret,
+        :app_token,
         :consumer_key,
         :consumer_secret,
         :oauth_token,
@@ -34,12 +35,20 @@ module Tacokit
       opts.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    def oauth?
-      !!(consumer_key && oauth_token)
+    def user_authenticated?
+      consumer_key && oauth_token
     end
 
-    def simple_oauth_credentials
-      { :consumer_key => app_key, :token => oauth_token }.delete_if { |key, value| value.nil? }
+    def user_credentials
+      { consumer_key: consumer_key, token: oauth_token }.delete_if { |k, v| v.nil? }
+    end
+
+    def app_authenticated?
+      app_key && app_token
+    end
+
+    def app_credentials
+      { key: app_key, token: app_token }.delete_if { |k,v| v.nil? }
     end
 
     private

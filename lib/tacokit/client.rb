@@ -3,6 +3,7 @@ require 'faraday'
 require 'faraday_middleware'
 require 'hashie/mash'
 
+require 'tacokit/configuration'
 require 'tacokit/client/authorizations'
 require 'tacokit/client/members'
 
@@ -14,6 +15,8 @@ module Tacokit
     include Tacokit::Client::Members
 
     def_delegators :configuration, *Configuration.keys
+    def_delegators :configuration, :user_authenticated?, :user_credentials
+    def_delegators :configuration, :app_authenticated?, :app_credentials
 
     def initialize(options = {})
       self.configuration.options = options
@@ -44,14 +47,15 @@ module Tacokit
       @connection = Faraday.new(url: api_endpoint) do |http|
         http.headers[:user_agent] = 'TacoKit 0.0.1'
 
-        if configuration.oauth?
-          http.request :oauth, configuration.simple_oauth_credentials
+        if user_authenticated?
+          http.request :oauth, user_credentials
+        else app_authenticated?
+          http.params.merge! app_credentials
         end
 
         http.response :mashify
         http.response :snakify
         http.response :json, content_type: /\bjson$/
-        # http.response :debug
         http.response :raise_error
         http.response :logger
         http.adapter Faraday.default_adapter

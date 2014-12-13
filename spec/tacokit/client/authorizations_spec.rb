@@ -8,14 +8,14 @@ describe Tacokit::Client::Authorizations do
 
   describe "#generate_app_key" do
     it "launches app key endpoint" do
-      expect(Launchy).to receive(:open).with("https://trello.com/1/appKey/generate")
+      expect(Launchy).to receive(:open).with("https://trello.com/1/app-key")
       Tacokit.client.generate_app_key
     end
   end
 
   describe "#authorize" do
     it "launches authorize endpoint" do
-      authorize_url = "https://trello.com/1/authorize?key=#{test_trello_app_key}"
+      authorize_url = "https://trello.com/1/authorize?key=#{test_trello_app_key}&name=Tacokit&response_type=token"
       expect(Launchy).to receive(:open).with(authorize_url)
       Tacokit.client.authorize
     end
@@ -23,15 +23,17 @@ describe Tacokit::Client::Authorizations do
 
   describe "#authorize_url" do
     it "returns the url to authorize user via web flow" do
-      uri = Addressable::URI.parse Tacokit.authorize_url(app_name: "Tacokit", key: test_trello_app_key)
+      uri = Addressable::URI.parse Tacokit.authorize_url(
+        app_name: "Tacokit", key: test_trello_app_key, scope: "read")
       expect(uri.scheme).to eq 'https'
       expect(uri.host).to eq 'trello.com'
 
       params = uri.query_values
       expect(params['key']).to eq test_trello_app_key
       expect(params['app_name']).to eq 'Tacokit'
+      expect(params['response_type']).to eq 'token'
+      expect(params['scope']).to eq 'read'
     end
-
   end
 
 end

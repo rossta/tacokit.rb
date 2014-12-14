@@ -2,6 +2,9 @@ module Tacokit
   class Client
     module Checklists
       # GET /1/checklists/[idChecklist]
+      def checklist(checklist_id, options = nil)
+        get "checklists/#{checklist_id}", options
+      end
       # GET /1/checklists/[idChecklist]/[field]
       # GET /1/checklists/[idChecklist]/board
       # GET /1/checklists/[idChecklist]/board/[field]

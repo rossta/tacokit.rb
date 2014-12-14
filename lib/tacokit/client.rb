@@ -4,10 +4,12 @@ require 'faraday_middleware'
 require 'hashie/mash'
 
 require 'tacokit/configuration'
+
 require 'tacokit/client/authorizations'
-require 'tacokit/client/members'
 require 'tacokit/client/boards'
 require 'tacokit/client/cards'
+require 'tacokit/client/checklists'
+require 'tacokit/client/members'
 
 module Tacokit
   class Client
@@ -17,6 +19,7 @@ module Tacokit
     include Tacokit::Client::Members
     include Tacokit::Client::Boards
     include Tacokit::Client::Cards
+    include Tacokit::Client::Checklists
 
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials

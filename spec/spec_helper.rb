@@ -62,7 +62,7 @@ VCR.configure do |c|
     :serialize_with             => :json,
     :preserve_exact_body_bytes  => true,
     :decode_compressed_response => true,
-    :record                     => :new_episodes
+    :record                     => :once
   }
 
   c.cassette_library_dir = 'spec/cassettes'
@@ -115,4 +115,17 @@ end
 
 def oauth_client
   @oauth_client ||= Tacokit::Client.new(test_oauth_credentials)
+end
+
+def trello_url(url)
+  return url if url =~ /^http/
+
+  url = File.join(Tacokit.api_endpoint, url)
+  uri = Addressable::URI.parse(url)
+
+  uri.to_s
+end
+
+def trello_url_template(url)
+  Addressable::Template.new(trello_url(url))
 end

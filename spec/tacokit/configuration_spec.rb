@@ -33,7 +33,7 @@ describe Tacokit::Configuration do
     expect(configuration.app_secret).to eq('app_secret')
   end
 
-  describe 'initialize' do
+  describe '#initialize' do
     it 'sets key attributes provided as a hash' do
       configuration = Tacokit::Configuration.new \
         app_key: 'app_key',

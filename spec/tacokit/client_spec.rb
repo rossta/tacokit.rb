@@ -12,12 +12,13 @@ describe Tacokit::Client do
 
   describe "#connection", :vcr do
     it "authorized GET request with app key and token params" do
-      # https://api.trello.com/1/members/me/boards?key=3dca2797d175d70a1252cb502a5e49b9&token=TOKEN
       client = Tacokit::Client.new(test_client_credentials)
       boards = client.get("members/me/boards")
 
       board = boards.first
+
       expect(board.name).to eq 'Test Board'
+      assert_requested :get, trello_url_template('members/me/boards{?key,token}')
     end
   end
 end

@@ -9,6 +9,7 @@ require 'tacokit/client/authorizations'
 require 'tacokit/client/boards'
 require 'tacokit/client/cards'
 require 'tacokit/client/checklists'
+require 'tacokit/client/labels'
 require 'tacokit/client/members'
 
 module Tacokit
@@ -16,10 +17,11 @@ module Tacokit
     extend Forwardable
 
     include Tacokit::Client::Authorizations
-    include Tacokit::Client::Members
     include Tacokit::Client::Boards
     include Tacokit::Client::Cards
     include Tacokit::Client::Checklists
+    include Tacokit::Client::Labels
+    include Tacokit::Client::Members
 
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials

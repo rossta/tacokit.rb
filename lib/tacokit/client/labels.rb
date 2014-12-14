@@ -1,7 +1,11 @@
 module Tacokit
-  class Clients
+  class Client
     module Labels
       # GET /1/labels/[idLabel]
+      def label(label_id, options = nil)
+        get "labels/#{label_id}", options
+      end
+
       # GET /1/labels/[idLabel]/board
       # GET /1/labels/[idLabel]/board/[field]
       # PUT /1/labels/[idLabel]

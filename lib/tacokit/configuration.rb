@@ -51,7 +51,8 @@ module Tacokit
         api_endpoint: File.join(API_URL, API_VERSION),
         web_endpoint: File.join(WEB_URL, API_VERSION),
         app_key: ENV['TRELLO_APP_KEY'],
-        app_secret: ENV['TRELLO_APP_SECRET']
+        app_secret: ENV['TRELLO_APP_SECRET'],
+        app_token: ENV['TRELLO_APP_TOKEN']
       }
     end
 

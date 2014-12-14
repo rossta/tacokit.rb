@@ -10,4 +10,3 @@ describe Tacokit::Client::Checklists do
   end
 
 end
-

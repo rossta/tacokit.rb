@@ -5,7 +5,7 @@ inspired by [ocktokit.rb](https://github.com/ocktokit/ocktokit.rb)
 
 This is Taco.
 
-![Taco][togo]
+![Taco][taco]
 [taco]: http://cl.ly/image/2p1x3K1X160b/taco.png
 
 ## Installation

@@ -7,6 +7,7 @@ require 'tacokit/configuration'
 require 'tacokit/client/authorizations'
 require 'tacokit/client/members'
 require 'tacokit/client/boards'
+require 'tacokit/client/cards'
 
 module Tacokit
   class Client
@@ -15,6 +16,7 @@ module Tacokit
     include Tacokit::Client::Authorizations
     include Tacokit::Client::Members
     include Tacokit::Client::Boards
+    include Tacokit::Client::Cards
 
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials

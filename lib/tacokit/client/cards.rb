@@ -2,6 +2,9 @@ module Tacokit
   class Client
     module Cards
       # GET /1/cards/[card id or shortlink]
+      def card(card_id, options = nil)
+        get "cards/#{card_id}", options
+      end
       # GET /1/cards/[card id or shortlink]/[field]
       # GET /1/cards/[card id or shortlink]/actions
       # GET /1/cards/[card id or shortlink]/attachments

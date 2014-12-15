@@ -46,6 +46,11 @@ class TrelloOauth < Sinatra::Base
     redirect to("/")
   end
 
+  post "/webhook" do
+    logger.info "webhook received"
+    status 200
+  end
+
   private
 
   def callback_url

@@ -98,13 +98,13 @@ module Tacokit
           http.params.merge! app_credentials
         end
 
-        http.request :camelize
+        http.request :serialize
         http.request :multipart
         http.request :url_encoded
         http.request :json
 
         http.response :mashify
-        http.response :snakify
+        http.response :deserialize
         http.response :json, content_type: /\bjson$/
         http.response :boom
         http.response :logger if ENV['DEBUG']
@@ -113,7 +113,7 @@ module Tacokit
       end
     end
 
-    class Camelize < Faraday::Middleware
+    class Serialize < Faraday::Middleware
 
       def call(env)
         # transform body keys
@@ -130,7 +130,7 @@ module Tacokit
     end
 
     # Used for simple response middleware.
-    class Snakify < Faraday::Response::Middleware
+    class Deserialize < Faraday::Response::Middleware
       require 'active_support/core_ext/hash'
       require 'active_support/core_ext/string'
 
@@ -198,10 +198,10 @@ module Tacokit
     end
 
     Faraday::Request.register_middleware \
-      :camelize => lambda { Camelize }
+      :serialize => lambda { Serialize }
 
     Faraday::Response.register_middleware \
-      :snakify => lambda { Snakify },
+      :deserialize => lambda { Deserialize },
       :debug => lambda { Debug },
       :boom => lambda { Boom }
 

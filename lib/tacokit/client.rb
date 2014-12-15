@@ -57,6 +57,10 @@ module Tacokit
       request :get, url, options
     end
 
+    def post(url, options = {})
+      request :post, url, options
+    end
+
     def request(method, url, options)
       response = connection.send(method, url, options) do |conn|
         conn.params = normalize_request_params(conn.params)
@@ -94,28 +98,38 @@ module Tacokit
           http.params.merge! app_credentials
         end
 
+        http.request :camelize
+        http.request :multipart
+        http.request :url_encoded
+        http.request :json
+
         http.response :mashify
         http.response :snakify
         http.response :json, content_type: /\bjson$/
-        http.response :raise_error
+        http.response :boom
         http.response :logger if ENV['DEBUG']
 
         http.adapter Faraday.default_adapter
       end
     end
 
-    class AppKey < Faraday::Middleware
-      def initialize(app, app_key)
-        @app_key = app_key
-        super(app)
-      end
+    class Camelize < Faraday::Middleware
 
       def call(env)
+        # transform body keys
+        env.body = transform_body_keys(env.body) if env.body.is_a?(Hash)
         @app.call(env)
+      end
+
+      def transform_body_keys(body)
+        body.deep_transform_keys do |key|
+          key.to_s.camelize(:lower)
+        end
+
       end
     end
 
-     # Used for simple response middleware.
+    # Used for simple response middleware.
     class Snakify < Faraday::Response::Middleware
       require 'active_support/core_ext/hash'
       require 'active_support/core_ext/string'
@@ -148,7 +162,7 @@ module Tacokit
       end
     end
 
-     # Used for simple response middleware.
+    # Used for simple response middleware.
     class Debug < Faraday::Response::Middleware
       require 'pry'
 
@@ -163,14 +177,33 @@ module Tacokit
       end
     end
 
+    class Boom < Faraday::Response::Middleware
+      ClientErrorStatuses = 400...600
+
+      def on_complete(env)
+        case env[:status]
+        when 404
+          raise Faraday::Error::ResourceNotFound, response_values(env)
+        when 407
+          # mimic the behavior that we get with proxy requests with HTTPS
+          raise Faraday::Error::ConnectionFailed, %{407 "Proxy Authentication Required "}
+        when ClientErrorStatuses
+          raise Faraday::Error.new("server return #{env[:status]}: #{env.body}")
+        end
+      end
+
+      def response_values(env)
+        {:status => env.status, :headers => env.response_headers, :body => env.body}
+      end
+    end
+
     Faraday::Request.register_middleware \
-      :app_key => lambda { AppKey }
+      :camelize => lambda { Camelize }
 
     Faraday::Response.register_middleware \
-      :snakify => lambda { Snakify }
-
-    Faraday::Response.register_middleware \
-      :debug => lambda { Debug }
+      :snakify => lambda { Snakify },
+      :debug => lambda { Debug },
+      :boom => lambda { Boom }
 
   end
 end

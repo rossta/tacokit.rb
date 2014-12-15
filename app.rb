@@ -51,6 +51,10 @@ class TrelloOauth < Sinatra::Base
     status 200
   end
 
+  head "/webhook" do
+    status 200
+  end
+
   private
 
   def callback_url

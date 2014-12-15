@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -e
-
-echo "===> Launching..."
-bundle exec pry --gem

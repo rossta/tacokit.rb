@@ -8,6 +8,7 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
+    rake (10.4.2)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -24,5 +25,6 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   oauth
+  rake
   sinatra
   thin

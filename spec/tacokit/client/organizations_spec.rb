@@ -4,7 +4,7 @@ describe Tacokit::Client::Organizations do
 
   describe "#organization", :vcr do
     it "returns an organization by id" do
-      org = app_client.organization('548e30e9683e1923f676ba20')
+      org = app_client.organization(test_organization_id)
       expect(org.name).to eq 'teamtacokit'
     end
   end

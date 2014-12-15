@@ -2,6 +2,10 @@ module Tacokit
   class Client
     module Tokens
       # GET /1/tokens/[token]
+      def token(token)
+        get "token/#{token}"
+      end
+
       # GET /1/tokens/[token]/[field]
       # GET /1/tokens/[token]/member
       # GET /1/tokens/[token]/member/[field]

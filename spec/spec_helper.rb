@@ -107,6 +107,10 @@ def app_client
   Tacokit.client
 end
 
+def tacokit_web_endpoint
+  ENV['TACOKIT_WEB_ENDPOINT']
+end
+
 def oauth_client
   @oauth_client ||= Tacokit::Client.new(test_oauth_credentials)
 end

@@ -1,7 +1,12 @@
 module Tacokit
   class Client
     module Notifications
+
       # GET /1/notifications/[idNotification]
+      def notification(notification_id, options = nil)
+        raise "notification endpoint"
+      end
+
       # GET /1/notifications/[idNotification]/[field]
       # GET /1/notifications/[idNotification]/board
       # GET /1/notifications/[idNotification]/board/[field]

@@ -1,7 +1,12 @@
 module Tacokit
   class Client
     module Organizations
+
       # GET /1/organizations/[idOrg or name]
+      def organization(org_id, options = nil)
+        get "organizations/#{org_id}", options
+      end
+
       # GET /1/organizations/[idOrg or name]/[field]
       # GET /1/organizations/[idOrg or name]/actions
       # GET /1/organizations/[idOrg or name]/boards

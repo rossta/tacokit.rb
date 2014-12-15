@@ -12,6 +12,7 @@ require 'tacokit/client/checklists'
 require 'tacokit/client/labels'
 require 'tacokit/client/lists'
 require 'tacokit/client/members'
+require 'tacokit/client/organizations'
 
 module Tacokit
   class Client
@@ -24,6 +25,7 @@ module Tacokit
     include Tacokit::Client::Labels
     include Tacokit::Client::Lists
     include Tacokit::Client::Members
+    include Tacokit::Client::Organizations
 
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials

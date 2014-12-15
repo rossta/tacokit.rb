@@ -10,6 +10,7 @@ require 'tacokit/client/boards'
 require 'tacokit/client/cards'
 require 'tacokit/client/checklists'
 require 'tacokit/client/labels'
+require 'tacokit/client/lists'
 require 'tacokit/client/members'
 
 module Tacokit
@@ -21,6 +22,7 @@ module Tacokit
     include Tacokit::Client::Cards
     include Tacokit::Client::Checklists
     include Tacokit::Client::Labels
+    include Tacokit::Client::Lists
     include Tacokit::Client::Members
 
     def_delegators :configuration, *Configuration.keys

@@ -15,12 +15,6 @@ RSpec.configure do |config|
     warn "Using test_oauth_credentials #{ test_oauth_credentials }"
   end
 
-  config.around(:each, :http) do |example|
-    WebMock.allow_net_connect!
-    example.run
-    WebMock.disable_net_connect!
-  end
-
   config.before do
     Tacokit.reset!
 
@@ -28,7 +22,7 @@ RSpec.configure do |config|
       c.app_key     = test_trello_app_key
       c.app_secret  = test_trello_app_secret
       c.app_token   = test_trello_app_token
-      c.oauth_token        = nil
+      c.oauth_token  = nil
       c.oauth_secret = nil
     end
   end

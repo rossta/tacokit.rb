@@ -2,6 +2,10 @@ module Tacokit
   class Client
     module Lists
       # GET /1/lists/[idList]
+      def list(list_id, options = nil)
+        get "lists/#{list_id}", options
+      end
+
       # GET /1/lists/[idList]/[field]
       # GET /1/lists/[idList]/actions
       # GET /1/lists/[idList]/board

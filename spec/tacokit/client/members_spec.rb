@@ -58,19 +58,36 @@ describe Tacokit::Client::Members do
 
     it "returns a hash" do
       field = app_client.member_field('tacokit', :prefs)
-      puts field
       expect(field).to include("color_blind" => false)
     end
   end
 
-  describe "#member_actions", :vcr do
+  describe "#member_resource", :vcr do
     it "returns member actions" do
-      actions = app_client.member_actions('tacokit')
+      actions = app_client.member_resource('tacokit', :actions)
 
       expect(actions).not_to be_empty
 
       action = actions.first
       expect(action.member_creator.full_name).to be_present
+    end
+
+    it "returns member boards" do
+      boards = app_client.member_resource('tacokit', :boards)
+
+      expect(boards).not_to be_empty
+
+      board = boards.first
+      expect(board.name).to be_present
+    end
+
+    it "returns member board stars" do
+      stars = app_client.member_resource('tacokit', :board_stars)
+
+      expect(stars).not_to be_empty
+
+      star = stars.first
+      expect(star.pos).to be_present
     end
   end
 

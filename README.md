@@ -24,24 +24,24 @@ Or install it yourself as:
 
     $ gem install tacokit
 
-### Making requests
+### Quick Start
 
-Generate your TRELLO_APP_KEY and TRELLO_APP_SECRET [here][appkey].
+[Generate][appkey] your TRELLO_APP_KEY and TRELLO_APP_SECRET].
 [appkey]: https://tacokit.herokuapp.com
 
-You can also access your app key and secret from the command line (with
-`launchy` installed):
+You can also access your app key and secret from the command line with
+`launchy` installed: `Tacokit.generate_app_key`
+
+Use these credentials to configure your app client:
 
 ```ruby
-Tacokit.generate_app_key
-
 Tacokit.configure do |c|
   c.app_key    = "4ppk3y"
   c.app_secret = "4pps3cr3t"
 end
 ```
 
-[API methods][] are available as module methods (consuming module-level
+API methods are available as module methods (consuming module-level
 configuration) or as client instance methods.
 
 ```ruby
@@ -65,7 +65,7 @@ The Trello API provides OAuth 1.0 credentials through the typical OAuth web
 flow.
 
 To expedite use of OAuth tokens for development, try out the [Tacokit
-Sandbox](sandbox). With a valid credentials, both the `TRELLO_APP_KEY` and
+Sandbox](sandbox). With valid credentials, both the `TRELLO_APP_KEY` and
 `TRELLO_APP_SECRET` acquired via Trello
 
 [sandbox](https://tacokit.herokuapp.com)

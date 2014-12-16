@@ -64,11 +64,11 @@ client.member('tacokit')
 The Trello API provides OAuth 1.0 credentials through the typical OAuth web
 flow.
 
-To expedite use of OAuth tokens for development, try out the [Tacokit
-Sandbox](sandbox). With valid credentials, both the `TRELLO_APP_KEY` and
-`TRELLO_APP_SECRET` acquired via Trello
+To acquire OAuth tokens for development, visit the [Tacokit
+Sandbox](sandbox) and enter your `TRELLO_APP_KEY` and `TRELLO_APP_SECRET`,
 
-[sandbox](https://tacokit.herokuapp.com)
+[sandbox]: https://tacokit.herokuapp.com
+
 ## Usage
 
 TODO: Write usage instructions here

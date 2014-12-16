@@ -87,6 +87,14 @@ def test_trello_oauth_secret
   ENV.fetch 'TRELLO_TEST_OAUTH_SECRET'
 end
 
+def test_org_name
+  ENV.fetch 'TRELLO_TEST_ORGANIZATION', 'teamtacokit'
+end
+
+def test_org_id
+  ENV.fetch 'TRELLO_TEST_ORGANIZATION_ID', '548e30e9683e1923f676ba20'
+end
+
 def test_client_credentials
   {
     app_key: test_trello_app_key,
@@ -103,24 +111,16 @@ def test_oauth_credentials
   }
 end
 
-def test_org_name
-  ENV.fetch 'TRELLO_TEST_ORGANIZATION', 'teamtacokit'
-end
-
-def test_org_id
-  ENV.fetch 'TRELLO_TEST_ORGANIZATION_ID', '548e30e9683e1923f676ba20'
-end
-
 def app_client
   Tacokit.client
 end
 
-def tacokit_web_endpoint(*segments)
-  File.join(ENV.fetch('TACOKIT_WEB_CLIENT', 'https://tacokit.herokuapp.com'), *segments)
-end
-
 def oauth_client
   @oauth_client ||= Tacokit::Client.new(test_oauth_credentials)
+end
+
+def tacokit_web_endpoint(*segments)
+  File.join(ENV.fetch('TACOKIT_WEB_CLIENT', 'https://tacokit.herokuapp.com'), *segments)
 end
 
 def trello_url(url)

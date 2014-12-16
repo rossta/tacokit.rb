@@ -17,7 +17,7 @@ module Tacokit
       # GET /1/members/[idMember or username]/[field]
       #
       def member_field(username, field, options = nil)
-        to_value(get "members/#{username}/#{field.camelize(:lower)}", options)
+        get "members/#{username}/#{field.to_s.camelize(:lower)}", options
       end
 
       # GET /1/members/[idMember or username]/actions
@@ -87,12 +87,6 @@ module Tacokit
       # PUT /1/members/[idMember or username]/prefs/minutesBetweenSummaries
 
       # POST /1/members/[idMember or username]/oneTimeMessagesDismissed
-
-      private
-
-      def to_value(response_json)
-        response_json['_value']
-      end
 
     end
   end

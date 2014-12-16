@@ -8,6 +8,10 @@ module Tacokit
       end
 
       # GET /1/boards/[board_id]/[field]
+      def board_field(board_id, field, options = nil)
+        get "board/#{board_id}/#{field.to_s.camelize(:lower)}", options
+      end
+
       # GET /1/boards/[board_id]/actions
       # GET /1/boards/[board_id]/boardStars
       # GET /1/boards/[board_id]/cards

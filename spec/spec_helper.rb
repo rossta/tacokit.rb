@@ -103,8 +103,12 @@ def test_oauth_credentials
   }
 end
 
-def test_trello_org
+def test_org_name
   ENV.fetch 'TRELLO_TEST_ORGANIZATION', 'teamtacokit'
+end
+
+def test_org_id
+  ENV.fetch 'TRELLO_TEST_ORGANIZATION_ID', '548e30e9683e1923f676ba20'
 end
 
 def app_client

@@ -6,14 +6,12 @@ describe Tacokit::Client::Members do
     it "returns a member" do
       member = app_client.member("rossta")
       expect(member.username).to eq("rossta")
-      expect(member.full_name).to eq("Ross Kaffenberger")
 
       assert_requested :get, trello_url_template("members/rossta{?key,token}")
     end
 
     it "returns self" do
       member = app_client.member
-      expect(member.username).to eq("tacokit")
       expect(member.full_name).to eq("Taco Kit")
     end
 
@@ -48,9 +46,20 @@ describe Tacokit::Client::Members do
   end
 
   describe "#member_field", :vcr do
-    it "returns a member field" do
+    it "returns a value" do
       field = app_client.member_field('tacokit', 'full_name')
-      expect(field).to eq('Taco Kit')
+      expect(field['_value']).to eq('Taco Kit')
+    end
+
+    it "returns an array" do
+      field = app_client.member_field('tacokit', :id_organizations)
+      expect(field).to include(test_org_id)
+    end
+
+    it "returns a hash" do
+      field = app_client.member_field('tacokit', :prefs)
+      puts field
+      expect(field).to include("color_blind" => false)
     end
   end
 

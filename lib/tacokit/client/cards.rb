@@ -5,7 +5,12 @@ module Tacokit
       def card(card_id, options = nil)
         get "cards/#{card_id}", options
       end
+
       # GET /1/cards/[card id or shortlink]/[field]
+      def card_field(card_id, field, options = nil)
+        get "cards/#{card_id}/#{field.to_s.camelize(:lower)}", options
+      end
+
       # GET /1/cards/[card id or shortlink]/actions
       # GET /1/cards/[card id or shortlink]/attachments
       # GET /1/cards/[card id or shortlink]/attachments/[idAttachment]
@@ -19,6 +24,10 @@ module Tacokit
       # GET /1/cards/[card id or shortlink]/membersVoted
       # GET /1/cards/[card id or shortlink]/stickers
       # GET /1/cards/[card id or shortlink]/stickers/[idSticker]
+      def card_resource(card_id, resource, options = nil)
+        get "cards/#{card_id}/#{resource.to_s.camelize(:lower)}", options
+      end
+
       # PUT /1/cards/[card id or shortlink]
       # PUT /1/cards/[card id or shortlink]/actions/[idAction]/comments
       # PUT /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem/[idCheckItem]/name

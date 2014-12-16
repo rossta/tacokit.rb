@@ -5,6 +5,7 @@ require 'hashie/mash'
 
 require 'tacokit/configuration'
 
+require 'tacokit/client/actions'
 require 'tacokit/client/authorizations'
 require 'tacokit/client/boards'
 require 'tacokit/client/cards'
@@ -21,6 +22,7 @@ module Tacokit
   class Client
     extend Forwardable
 
+    include Tacokit::Client::Actions
     include Tacokit::Client::Authorizations
     include Tacokit::Client::Boards
     include Tacokit::Client::Cards

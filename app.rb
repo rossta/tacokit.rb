@@ -1,10 +1,9 @@
-require 'oauth'
 require 'sinatra/base'
+require 'oauth'
 
 class TrelloOauth < Sinatra::Base
-  use Rack::Logger
-
   enable :sessions
+  enable :protection
 
   set :app_name   , ENV.fetch('TRELLO_APP_NAME', 'Tacokit')
   set :app_key    , ENV.fetch('TRELLO_APP_KEY')
@@ -15,14 +14,25 @@ class TrelloOauth < Sinatra::Base
   set :authorize_path     , "/1/OAuthAuthorizeToken"
   set :access_token_path  , "/1/OAuthGetAccessToken"
 
+  set :force_ssl, false
+
+  configure :production do
+    set :force_ssl, true
+  end
+
   before do
+    session[:_init] = '1'
     log_request
+
+    if settings.force_ssl && !request.secure?
+      halt 400, "Please use SSL: <a href='#{ssl_url("/")}'>#{ssl_url("/")}</a>"
+    end
   end
 
   get "/" do
     <<-HTML
     <html>
-      #{welcome_message}
+    #{welcome_message}
       <p><a href="/clear">Clear session</a></p>
     </html>
     HTML
@@ -145,5 +155,23 @@ class TrelloOauth < Sinatra::Base
       <p>secret: #{settings.app_secret}</p>
     HTML
   end
+
+  def ssl_uri(addr = nil, absolute = true, add_script_name = true)
+    return addr if addr =~ /\A[A-z][A-z0-9\+\.\-]*:/
+    uri = [host = ""]
+    if absolute
+      host << "https://"
+      if request.forwarded? or request.port != (request.secure? ? 443 : 80)
+        host << request.host_with_port
+      else
+        host << request.host
+      end
+    end
+    uri << request.script_name.to_s if add_script_name
+    uri << (addr ? addr : request.path_info).to_s
+    File.join uri
+  end
+
+  alias ssl_url ssl_uri
 
 end

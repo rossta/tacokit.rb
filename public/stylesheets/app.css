@@ -438,7 +438,15 @@ body {
   margin: 0 auto;
 }
 
-input {
+fieldset {
+  padding: 1em;
+}
+
+fieldset label {
+  width: 30%;
+}
+
+input[type=text] {
   padding: 0.5em;
   width: 65%;
   font-family: Monaco, Courier, monospace;

@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'oauth'
 require 'rack/csrf'
 require 'securerandom'
+require 'active_support/core_ext/string'
 
 class TrelloOauth < Sinatra::Base
   use Rack::Logger
@@ -22,6 +23,7 @@ class TrelloOauth < Sinatra::Base
 
   set :force_ssl, false
   set :debug, false
+  # set :show_exceptions, false
 
   configure :production do
     set :force_ssl, true
@@ -66,6 +68,12 @@ class TrelloOauth < Sinatra::Base
     end
   end
 
+  IncompleteCredentials = Class.new(RuntimeError)
+
+  error IncompleteCredentials do
+    "Please provide both your TRELLO_APP_KEY and your TRELLO_APP_SECRET. <a href='/'>Back</a>"
+  end
+
   get "/" do
     erb :index
   end
@@ -86,6 +94,13 @@ class TrelloOauth < Sinatra::Base
   get "/clear" do
     session.clear
     redirect to("/")
+  end
+
+  post "/connect" do
+    raise IncompleteCredentials unless params[:app_key].present? && params[:app_secret].present?
+    session[:app_key] = params[:app_key]
+    session[:app_secret] = params[:app_secret]
+    redirect request_token.authorize_url(oauth_callback: callback_url, name: app_name)
   end
 
   post "/webhook" do

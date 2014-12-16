@@ -17,8 +17,19 @@
 <% if oauth_verified? %>
   <p>App credentials</p>
   <fieldset>
-    <p>TRELLO_APP_NAME: <input name="app_name" value="<%= settings.app_name %>" disabled /></p>
-    <p>TRELLO_APP_KEY: <input name="app_key" value="<%= settings.app_key %>" disabled /></p>
-    <p>TRELLO_APP_SECRET: <input name="app_secret" value="<%= settings.app_secret %>" disabled /></p>
+    <p><label>TRELLO_APP_NAME</label>: <input type="text" name="app_name" value="<%= settings.app_name %>" disabled /></p>
+    <p><label>TRELLO_APP_KEY</label>: <input type="text" name="app_key" value="<%= settings.app_key %>" disabled /></p>
+    <p><label>TRELLO_APP_SECRET</label>: <input type="text" name="app_secret" value="<%= settings.app_secret %>" disabled /></p>
   </fieldset>
+<% else %>
+  <p>Enter your app credentials</p>
+  <form method="post" action="/connect">
+    <%= csrf_tag %>
+    <fieldset>
+      <p><label>TRELLO_APP_NAME</label>: <input type="text" name="app_name" value="<%= app_name %>" /></p>
+      <p><label>TRELLO_APP_KEY</label>: <input type="text" name="app_key" value="<%= app_key %>" /></p>
+      <p><label>TRELLO_APP_SECRET</label>: <input type="text" name="app_secret" value="<%= app_secret %>" /></p>
+      <p><input value="Connect to Trello" type="submit" class="button" /></p>
+    </fieldset>
+  </form>
 <% end %>

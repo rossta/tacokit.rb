@@ -4,12 +4,12 @@ module Tacokit
       # GET /1/boards/[board_id]
       #
       def board(board_id, options = nil)
-        get "board/#{board_id}", options
+        get "boards/#{board_id}", options
       end
 
       # GET /1/boards/[board_id]/[field]
       def board_field(board_id, field, options = nil)
-        get "board/#{board_id}/#{field.to_s.camelize(:lower)}", options
+        get "boards/#{board_id}/#{field.to_s.camelize(:lower)}", options
       end
 
       # GET /1/boards/[board_id]/actions
@@ -33,6 +33,10 @@ module Tacokit
       # GET /1/boards/[board_id]/myPrefs
       # GET /1/boards/[board_id]/organization
       # GET /1/boards/[board_id]/organization/[field]
+      def board_resource(board_id, resource, options = nil)
+        get "boards/#{board_id}/#{resource.to_s.camelize(:lower)}", options
+      end
+
       # PUT /1/boards/[board_id]
       # PUT /1/boards/[board_id]/closed
       # PUT /1/boards/[board_id]/desc

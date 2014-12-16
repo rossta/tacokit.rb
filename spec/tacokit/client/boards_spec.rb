@@ -39,4 +39,33 @@ describe Tacokit::Client::Boards do
     end
   end
 
+  describe "#board_resource", :vcr do
+    it "returns board actions" do
+      actions = app_client.board_resource(test_board_link, :actions)
+
+      expect(actions).not_to be_empty
+
+      action = actions.first
+      expect(action.member_creator.full_name).to be_present
+    end
+
+    it "returns board members" do
+      members = app_client.board_resource(test_board_link, :members)
+
+      expect(members).not_to be_empty
+
+      member = members.first
+      expect(member.username).to be_present
+    end
+
+    it "returns board cards" do
+      cards = app_client.board_resource(test_board_link, :cards)
+
+      expect(cards).not_to be_empty
+
+      card = cards.first
+      expect(card.pos).to be_present
+    end
+  end
+
 end

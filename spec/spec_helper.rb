@@ -116,7 +116,7 @@ def app_client
 end
 
 def tacokit_web_endpoint(*segments)
-  File.join(ENV['TACOKIT_WEB_CLIENT'], *segments)
+  File.join(ENV.fetch('TACOKIT_WEB_CLIENT', 'https://tacokit.herokuapp.com'), *segments)
 end
 
 def oauth_client

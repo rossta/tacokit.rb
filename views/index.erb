@@ -1,0 +1,24 @@
+<% if oauth_verified? %>
+  <h2><%= %w[ Boom Sweet Success Goal Score ].sample %>!</h2>
+<% else %>
+  <h2>Get your Trello OAuth Credentials</h2>
+<% end %>
+
+<% if oauth_verified? %>
+<p>OAuth credentials. Keep them safe!</p>
+<fieldset>
+  <p>TRELLO_OAUTH_TOKEN: <input name="oauth_token" value="<%= session[:oauth_token] %>" disabled /></p>
+  <p>TRELLO_OAUTH_SECRET: <input name="oauth_secret" value="<%= session[:oauth_secret] %>" disabled /></p>
+</fieldset>
+<% elsif settings.debug %>
+  <p><a href="/authorize">Connect to Trello</a> to get your OAuth access token and secret.</p>
+<% end %>
+
+<% if oauth_verified? %>
+  <p>App credentials</p>
+  <fieldset>
+    <p>TRELLO_APP_NAME: <input name="app_name" value="<%= settings.app_name %>" disabled /></p>
+    <p>TRELLO_APP_KEY: <input name="app_key" value="<%= settings.app_key %>" disabled /></p>
+    <p>TRELLO_APP_SECRET: <input name="app_secret" value="<%= settings.app_secret %>" disabled /></p>
+  </fieldset>
+<% end %>

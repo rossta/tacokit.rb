@@ -1,8 +1,14 @@
 require 'sinatra/base'
 require 'oauth'
+require 'rack/csrf'
+require 'securerandom'
 
 class TrelloOauth < Sinatra::Base
-  enable :sessions
+  use Rack::Logger
+
+  use Rack::Session::Cookie, secret: ENV.fetch('SESSION_SECRET', SecureRandom.hex(32))
+  use Rack::Csrf, raise: true
+
   enable :protection
 
   set :app_name   , ENV.fetch('TRELLO_APP_NAME', 'Tacokit')
@@ -15,9 +21,40 @@ class TrelloOauth < Sinatra::Base
   set :access_token_path  , "/1/OAuthGetAccessToken"
 
   set :force_ssl, false
+  set :debug, false
 
   configure :production do
     set :force_ssl, true
+  end
+
+  helpers do
+    def csrf_token
+      Rack::Csrf.csrf_token(env)
+    end
+
+    def csrf_tag
+      Rack::Csrf.csrf_tag(env)
+    end
+
+    def app_name
+      params[:app_name] || session[:app_name] || settings.app_name
+    end
+
+    def app_key
+      if settings.debug
+        settings.app_key
+      else
+        params[:app_key] || session[:app_key]
+      end
+    end
+
+    def app_secret
+      if settings.debug
+        settings.app_secret
+      else
+        params[:app_secret] || session[:app_secret]
+      end
+    end
   end
 
   before do
@@ -30,12 +67,7 @@ class TrelloOauth < Sinatra::Base
   end
 
   get "/" do
-    <<-HTML
-    <html>
-    #{welcome_message}
-      <p><a href="/clear">Clear session</a></p>
-    </html>
-    HTML
+    erb :index
   end
 
   get "/authorize" do
@@ -77,16 +109,16 @@ class TrelloOauth < Sinatra::Base
                            ::OAuth::RequestToken.new(consumer, session.delete(:request_token),
                                                      session.delete(:request_token_secret))
                          else
-                           rtoken = consumer.get_request_token(oauth_callback: callback_url)
-                           session[:request_token] = rtoken.token
-                           session[:request_token_secret] = rtoken.secret
-                           rtoken
+                           consumer.get_request_token(oauth_callback: callback_url).tap do |rtoken|
+                             session[:request_token] = rtoken.token
+                             session[:request_token_secret] = rtoken.secret
+                           end
                          end
                        end
   end
 
   def consumer
-    @consumer ||= ::OAuth::Consumer.new(settings.app_key, settings.app_secret,
+    @consumer ||= ::OAuth::Consumer.new(app_key, app_secret,
                                         site:                settings.site,
                                         request_token_path:  settings.request_token_path,
                                         authorize_path:      settings.authorize_path,
@@ -126,34 +158,6 @@ class TrelloOauth < Sinatra::Base
   def log_request
     logger.info "params  : #{params.inspect}"
     logger.info "session : #{session.inspect}"
-  end
-
-  def welcome_message
-    if oauth_verified?
-      verified_message
-    else
-      unverified_message
-    end
-  end
-
-  def verified_message
-    <<-HTML
-      <h1>#{%w[ Boom Sweet Success Goal Score ].sample}!</h1>
-      <p>Here are your OAuth credentials. Keep them safe!</p>
-      <p>token: #{session[:oauth_token]}</p>
-      <p>secret: #{session[:oauth_secret]}</p>
-    HTML
-  end
-
-  def unverified_message
-    <<-HTML
-      <h1>Welcome</h1>
-      <p><a href="/authorize">Connect to Trello</a> to get your OAuth access token and secret.</p>
-      <p>App credentials</p>
-      <p>name: #{settings.app_name}</p>
-      <p>key: #{settings.app_key}</p>
-      <p>secret: #{settings.app_secret}</p>
-    HTML
   end
 
   def ssl_uri(addr = nil, absolute = true, add_script_name = true)

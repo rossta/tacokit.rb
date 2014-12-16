@@ -8,6 +8,8 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
+    rack_csrf (2.5.0)
+      rack (>= 1.1.0)
     rake (10.4.2)
     sinatra (1.4.5)
       rack (~> 1.4)
@@ -25,6 +27,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   oauth
+  rack_csrf
   rake
   sinatra
   thin

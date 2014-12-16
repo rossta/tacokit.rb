@@ -3,7 +3,7 @@ module Tacokit
     module Tokens
       # GET /1/tokens/[token]
       def token(token)
-        get "token/#{token}"
+        get "tokens/#{token}"
       end
 
       # GET /1/tokens/[token]/[field]

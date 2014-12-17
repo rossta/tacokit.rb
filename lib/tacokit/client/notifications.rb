@@ -4,7 +4,7 @@ module Tacokit
 
       # GET /1/notifications/[idNotification]
       def notification(notification_id, options = nil)
-        raise "notification endpoint"
+        get "notifications/#{notification_id}", options
       end
 
       # GET /1/notifications/[idNotification]/[field]

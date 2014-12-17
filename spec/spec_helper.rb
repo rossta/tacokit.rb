@@ -12,7 +12,7 @@ WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.before(:suite) do
-    warn "Using test_oauth_credentials #{ test_oauth_credentials }"
+    warn "Using test_oauth_credentials #{ test_oauth_credentials }" if ENV['DEBUG']
   end
 
   config.before do

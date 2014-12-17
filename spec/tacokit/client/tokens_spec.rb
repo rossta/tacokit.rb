@@ -48,6 +48,5 @@ describe Tacokit::Client::Tokens do
 
       expect(webhooks).to be_any
     end
-
   end
 end

@@ -47,7 +47,17 @@ describe Tacokit::Client::Actions do
 
       expect(board.name).to be_present
     end
-
   end
 
+  describe "#update_action", :vcr do
+    def test_editable_action_id
+      '549102431b607566bafc93a9'
+    end
+
+    it "updates a action" do
+      action = app_client.update_action(test_editable_action_id, text: "@tacokit Thanks for the invite, bud")
+
+      expect(action.data.text).to eq "@tacokit Thanks for the invite, bud"
+    end
+  end
 end

@@ -151,6 +151,7 @@ module Tacokit
         options = {}
         body.each do |key, value|
           if value.is_a?(Hash)
+            value = flatten_nested_keys(value.dup)
             value.each do |nested_key, nested_value|
               options["#{key}/#{nested_key}"] = nested_value
             end
@@ -159,7 +160,6 @@ module Tacokit
         end
         body.merge(options)
       end
-
     end
 
     # Used for simple response middleware.

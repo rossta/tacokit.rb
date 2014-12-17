@@ -44,6 +44,10 @@ module Tacokit
       # PUT /1/organizations/[idOrg or name]/prefs/orgInviteRestrict
       # PUT /1/organizations/[idOrg or name]/prefs/permissionLevel
       # PUT /1/organizations/[idOrg or name]/website
+      def update_organization(org_id, options = {})
+        put "organizations/#{org_id}", options
+      end
+
       # POST /1/organizations
       # POST /1/organizations/[idOrg or name]/logo
       # DELETE /1/organizations/[idOrg or name]

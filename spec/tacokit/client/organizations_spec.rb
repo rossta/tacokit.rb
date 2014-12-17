@@ -52,4 +52,12 @@ describe Tacokit::Client::Organizations do
     end
   end
 
+  describe "#update_organization", :vcr do
+    it "updates a organization" do
+      organization = oauth_client.update_organization(test_org_name, desc: 'This organization is for Tacokit collaboration')
+
+      expect(organization.desc).to eq 'This organization is for Tacokit collaboration'
+      assert_requested :put, trello_url_template("organizations/#{test_org_name}")
+    end
+  end
 end

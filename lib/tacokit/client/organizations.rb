@@ -8,6 +8,10 @@ module Tacokit
       end
 
       # GET /1/organizations/[idOrg or name]/[field]
+      def organization_field(org_id, field, options = nil)
+        get "organizations/#{org_id}/#{field.to_s.camelize(:lower)}", options
+      end
+
       # GET /1/organizations/[idOrg or name]/actions
       # GET /1/organizations/[idOrg or name]/boards
       # GET /1/organizations/[idOrg or name]/boards/[filter]
@@ -19,6 +23,10 @@ module Tacokit
       # GET /1/organizations/[idOrg or name]/membersInvited/[field]
       # GET /1/organizations/[idOrg or name]/memberships
       # GET /1/organizations/[idOrg or name]/memberships/[idMembership]
+      def organization_resource(org_id, resource, options = nil)
+        get "organizations/#{org_id}/#{resource.to_s.camelize(:lower)}", options
+      end
+
       # PUT /1/organizations/[idOrg or name]
       # PUT /1/organizations/[idOrg or name]/desc
       # PUT /1/organizations/[idOrg or name]/displayName

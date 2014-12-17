@@ -1,12 +1,17 @@
 module Tacokit
   class Client
     module Webhooks
+
       # GET /1/webhooks/[idWebhook]
       def webhook(webhook_id)
         get "webhooks/#{webhook_id}"
       end
 
       # GET /1/webhooks/[idWebhook]/[field]
+      def webhook_field(webhook_id, field, options = nil)
+        get "webhooks/#{webhook_id}/#{field.to_s.camelize(:lower)}", options
+      end
+
       # PUT /1/webhooks/[idWebhook]
       # PUT /1/webhooks/
       # PUT /1/webhooks/[idWebhook]/active

@@ -13,4 +13,12 @@ describe Tacokit::Client::Webhooks do
 
   end
 
+  describe "#webhook_field", :vcr do
+    it "returns a value" do
+      field = app_client.webhook_field(test_webhook_id, :callback_url)
+
+      expect(field['_value']).to be_present
+    end
+  end
+
 end

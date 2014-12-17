@@ -34,4 +34,15 @@ describe Tacokit::Client::Checklists do
     end
 
   end
+
+  describe "#update_checklist", :vcr do
+    it "updates a checklist" do
+      checklist = app_client.update_checklist test_checklist_id,
+        name: 'Test Checklist 1'
+
+      expect(checklist.name).to eq 'Test Checklist 1'
+      assert_requested :put, trello_url_template("checklists/#{test_checklist_id}{?key,token}")
+    end
+
+  end
 end

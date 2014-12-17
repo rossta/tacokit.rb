@@ -25,6 +25,10 @@ module Tacokit
       # PUT /1/checklists/[idChecklist]/idCard
       # PUT /1/checklists/[idChecklist]/name
       # PUT /1/checklists/[idChecklist]/pos
+      def update_checklist(checklist_id, options = {})
+        put "checklists/#{checklist_id}", options
+      end
+
       # POST /1/checklists
       # POST /1/checklists/[idChecklist]/checkItems
       # DELETE /1/checklists/[idChecklist]

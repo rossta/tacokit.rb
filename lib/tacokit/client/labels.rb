@@ -8,6 +8,10 @@ module Tacokit
 
       # GET /1/labels/[idLabel]/board
       # GET /1/labels/[idLabel]/board/[field]
+      def label_resource(label_id, resource, options = nil)
+        get "labels/#{label_id}/#{resource}", options
+      end
+
       # PUT /1/labels/[idLabel]
       # PUT /1/labels/[idLabel]/color
       # PUT /1/labels/[idLabel]/name

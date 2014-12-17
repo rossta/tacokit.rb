@@ -52,6 +52,5 @@ describe Tacokit::Client::Lists do
       expect(list.name).to eq 'Test List 1'
       assert_requested :put, trello_url_template("lists/#{test_list_id}{?key,token}")
     end
-
   end
 end

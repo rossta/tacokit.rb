@@ -19,4 +19,13 @@ describe Tacokit::Client::Labels do
       expect(board.name).to be_present
     end
   end
+
+  describe "#update_label", :vcr do
+    it "updates a label" do
+      label = app_client.update_label test_label_id, name: 'Test Label 1'
+
+      expect(label.name).to eq 'Test Label 1'
+      assert_requested :put, trello_url_template("labels/#{test_label_id}{?key,token}")
+    end
+  end
 end

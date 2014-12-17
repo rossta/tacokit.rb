@@ -15,6 +15,10 @@ module Tacokit
       # PUT /1/labels/[idLabel]
       # PUT /1/labels/[idLabel]/color
       # PUT /1/labels/[idLabel]/name
+      def update_label(label_id, options = {})
+        put "labels/#{label_id}", options
+      end
+
       # POST /1/labels
       # DELETE /1/labels/[idLabel]
     end

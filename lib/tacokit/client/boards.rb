@@ -68,6 +68,10 @@ module Tacokit
       # PUT /1/boards/[board_id]/prefs/selfJoin
       # PUT /1/boards/[board_id]/prefs/voting
       # PUT /1/boards/[board_id]/subscribed
+      def update_board(board_id, options = {})
+        put "boards/#{board_id}", options
+      end
+
       # POST /1/boards
       # POST /1/boards/[board_id]/calendarKey/generate
       # POST /1/boards/[board_id]/checklists

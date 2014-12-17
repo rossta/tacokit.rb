@@ -5,10 +5,11 @@ describe Tacokit::Client::Boards do
     'swezQ9XS'
   end
 
-  describe "#board", :vcr do
-    # board id: '548a675581d1d669c9e8184e'
-    # board shortLink: 'swezQ9XS'
+  def test_board_id
+    '548a675581d1d669c9e8184e'
+  end
 
+  describe "#board", :vcr do
     it "returns a token authorized board" do
       board = app_client.board(test_board_link)
 
@@ -65,6 +66,15 @@ describe Tacokit::Client::Boards do
 
       card = cards.first
       expect(card.pos).to be_present
+    end
+  end
+
+  describe "#update_board", :vcr do
+    it "updates a board" do
+      board = app_client.update_board(test_board_id, desc: 'This board is for Tacokit testing')
+
+      expect(board.desc).to eq 'This board is for Tacokit testing'
+      assert_requested :put, trello_url_template("boards/#{test_board_id}{?key,token}")
     end
   end
 

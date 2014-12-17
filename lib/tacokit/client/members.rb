@@ -70,6 +70,9 @@ module Tacokit
       # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/name
       # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/pos
       # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/queryg
+      def update_member(username, options = {})
+        put "members/#{username}", options
+      end
 
       # DELETE /1/members/[idMember or username]/boardBackgrounds/[idBoardBackground]
       # DELETE /1/members/[idMember or username]/boardStars/[idBoardStar]

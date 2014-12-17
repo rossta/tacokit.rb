@@ -91,4 +91,18 @@ describe Tacokit::Client::Members do
     end
   end
 
+  describe "#update_member", :vcr do
+    it "updates a member" do
+      member = oauth_client.update_member('tacokit', bio: 'Tacokit puts the Trello API on Ruby')
+
+      expect(member.bio).to eq 'Tacokit puts the Trello API on Ruby'
+      assert_requested :put, trello_url_template("members/tacokit{?key,token}")
+    end
+
+    it "updates nested resource" do
+      member = oauth_client.update_member('tacokit', prefs: { color_blind: true })
+
+      expect(member.prefs.color_blind).to eq true
+    end
+  end
 end

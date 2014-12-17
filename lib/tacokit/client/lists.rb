@@ -26,6 +26,10 @@ module Tacokit
       # PUT /1/lists/[idList]/name
       # PUT /1/lists/[idList]/pos
       # PUT /1/lists/[idList]/subscribed
+      def update_list(list_id, options = {})
+        put "lists/#{list_id}", options
+      end
+
       # POST /1/lists
       # POST /1/lists/[idList]/archiveAllCards
       # POST /1/lists/[idList]/cards

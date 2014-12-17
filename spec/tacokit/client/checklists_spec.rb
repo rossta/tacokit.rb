@@ -8,6 +8,7 @@ describe Tacokit::Client::Checklists do
   describe "#checklist", :vcr do
     it "returns a checklist by id" do
       checklist = app_client.checklist(test_checklist_id)
+
       expect(checklist.name).to eq 'Checklist 1'
     end
   end
@@ -15,6 +16,7 @@ describe Tacokit::Client::Checklists do
   describe "#checklist_field", :vcr do
     it "returns a value" do
       field = app_client.checklist_field(test_checklist_id, :pos)
+
       expect(field['_value']).to be_present
     end
   end
@@ -43,6 +45,5 @@ describe Tacokit::Client::Checklists do
       expect(checklist.name).to eq 'Test Checklist 1'
       assert_requested :put, trello_url_template("checklists/#{test_checklist_id}{?key,token}")
     end
-
   end
 end

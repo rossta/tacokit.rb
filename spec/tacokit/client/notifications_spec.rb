@@ -8,22 +8,23 @@ describe Tacokit::Client::Notifications do
   describe "#notification", :vcr do
     it "returns a notification by id" do
       notification = app_client.notification(test_notification_id)
+
       expect(notification.data).to include("text")
     end
-
   end
 
   describe "#notification_field", :vcr do
     it "returns a value" do
       field = app_client.notification_field(test_notification_id, :type)
+
       expect(field['_value']).to be_present
     end
 
     it "returns a hash" do
       field = app_client.notification_field(test_notification_id, :data)
+
       expect(field).to be_a(Hash)
     end
-
   end
 
   describe "#notification_resource", :vcr do
@@ -47,6 +48,5 @@ describe Tacokit::Client::Notifications do
       expect(notification.unread).to be false
       assert_requested :put, trello_url_template("notifications/#{test_notification_id}{?key,token}")
     end
-
   end
 end

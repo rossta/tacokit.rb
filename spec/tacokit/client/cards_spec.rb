@@ -12,11 +12,13 @@ describe Tacokit::Client::Cards do
   describe "#card", :vcr do
     it "returns a card by short link" do
       card = app_client.card(test_card_link)
+
       expect(card.name).to eq 'Card 1'
     end
 
     it "returns a card by id" do
       card = app_client.card(test_card_id)
+
       expect(card.name).to eq 'Card 1'
     end
   end
@@ -24,11 +26,13 @@ describe Tacokit::Client::Cards do
   describe "#card_field", :vcr do
     it "returns a value" do
       field = app_client.card_field(test_card_link, :email)
+
       expect(field['_value']).to be_present
     end
 
     it "returns an array" do
       field = app_client.card_field(test_card_link, :labels)
+
       expect(field).to be_any
 
       label = field.first
@@ -37,6 +41,7 @@ describe Tacokit::Client::Cards do
 
     it "returns a hash" do
       field = app_client.card_field(test_card_link, :labels)
+
       expect(field.first).to include("color" => "green")
     end
   end
@@ -58,6 +63,7 @@ describe Tacokit::Client::Cards do
       states = app_client.card_resource(test_card_link, :check_item_states)
 
       expect(states).to be_any
+
       state = states.first
       expect(state.state).to be_present
     end
@@ -73,7 +79,5 @@ describe Tacokit::Client::Cards do
       expect(card.labels.size).to eq(2)
       assert_requested :put, trello_url_template("cards/#{test_card_link}{?key,token}")
     end
-
   end
-
 end

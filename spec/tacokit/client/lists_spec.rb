@@ -8,6 +8,7 @@ describe Tacokit::Client::Lists do
   describe "#list", :vcr do
     it "returns a list by id" do
       list = app_client.list(test_list_id)
+
       expect(list.name).to eq 'List 1'
     end
   end
@@ -15,6 +16,7 @@ describe Tacokit::Client::Lists do
   describe "#list_field", :vcr do
     it "returns a value" do
       field = app_client.list_field(test_list_id, :pos)
+
       expect(field['_value']).to be_present
     end
   end
@@ -36,6 +38,7 @@ describe Tacokit::Client::Lists do
       cards = app_client.list_resource(test_list_id, :cards)
 
       expect(cards).to be_any
+
       card = cards.first
       expect(card.name).to be_present
     end

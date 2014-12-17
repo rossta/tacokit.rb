@@ -5,6 +5,7 @@ describe Tacokit::Client::Tokens do
   describe "#token", :vcr do
     it "returns a token for token string" do
       token = app_client.token(test_trello_app_token)
+
       expect(token.identifier).to be_present
     end
   end
@@ -23,11 +24,13 @@ describe Tacokit::Client::Tokens do
   describe "#token_field", :vcr do
     it "returns a value" do
       field = app_client.token_field(test_trello_app_token, :date_created)
+
       expect(field['_value']).to be_present
     end
 
     it "returns an array" do
       field = app_client.token_field(test_trello_app_token, :permissions)
+
       expect(field).to be_any
       expect(field.first.read).to be_present
     end

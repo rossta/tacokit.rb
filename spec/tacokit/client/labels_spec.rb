@@ -18,7 +18,5 @@ describe Tacokit::Client::Labels do
 
       expect(board.name).to be_present
     end
-
   end
-
 end

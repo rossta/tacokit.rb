@@ -26,16 +26,19 @@ describe Tacokit::Client::Boards do
   describe "#board_field", :vcr do
     it "returns a value" do
       name = app_client.board_field(test_board_link, :name)
+
       expect(name['_value']).to eq('Test Board')
     end
 
     it "returns an array" do
       power_ups = app_client.board_field(test_board_link, :power_ups)
+
       expect(power_ups).to eq([])
     end
 
     it "returns a hash" do
       label_names = app_client.board_field(test_board_link, :label_names)
+
       expect(label_names).to include("green", "yellow", "orange")
     end
   end
@@ -83,5 +86,4 @@ describe Tacokit::Client::Boards do
       expect(board.label_names).to include 'blue' => 'Blue Label'
     end
   end
-
 end

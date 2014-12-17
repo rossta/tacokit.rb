@@ -5,6 +5,7 @@ describe Tacokit::Client::Organizations do
   describe "#organization", :vcr do
     it "returns an organization by id" do
       org = app_client.organization(test_org_name)
+
       expect(org.name).to eq 'teamtacokit'
     end
   end
@@ -12,16 +13,19 @@ describe Tacokit::Client::Organizations do
   describe "#organization_field", :vcr do
     it "returns a value" do
       field = app_client.organization_field(test_org_name, :desc)
+
       expect(field['_value']).to eq('Tacokit the organization')
     end
 
     it "returns an array" do
       field = app_client.organization_field(test_org_name, :premium_features)
+
       expect(field).to be_empty
     end
 
     it "returns a hash" do
       field = app_client.organization_field(test_org_name, :prefs)
+
       expect(field).to include("permission_level" => "public")
     end
   end

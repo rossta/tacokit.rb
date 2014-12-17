@@ -13,7 +13,7 @@ describe Tacokit::Client::Tokens do
     it "creates a webhook" do
       webhook = app_client.create_token_webhook \
         test_trello_app_token,
-        test_trello_org_id,
+        test_org_id,
         tacokit_web_endpoint("webhook")
 
       expect(webhook.callback_url).to match(%r{https://[^/]*/webhook})

@@ -2,6 +2,10 @@ module Tacokit
   class Client
     module Webhooks
       # GET /1/webhooks/[idWebhook]
+      def webhook(webhook_id)
+        get "webhooks/#{webhook_id}"
+      end
+
       # GET /1/webhooks/[idWebhook]/[field]
       # PUT /1/webhooks/[idWebhook]
       # PUT /1/webhooks/

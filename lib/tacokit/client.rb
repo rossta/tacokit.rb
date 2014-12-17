@@ -17,6 +17,7 @@ require 'tacokit/client/organizations'
 require 'tacokit/client/searches'
 require 'tacokit/client/tokens'
 require 'tacokit/client/types'
+require 'tacokit/client/webhooks'
 
 module Tacokit
   class Client
@@ -34,6 +35,7 @@ module Tacokit
     include Tacokit::Client::Searches
     include Tacokit::Client::Tokens
     include Tacokit::Client::Types
+    include Tacokit::Client::Webhooks
 
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials

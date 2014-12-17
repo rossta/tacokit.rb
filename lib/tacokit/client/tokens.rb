@@ -1,6 +1,7 @@
 module Tacokit
   class Client
     module Tokens
+
       # GET /1/tokens/[token]
       def token(token)
         get "tokens/#{token}"

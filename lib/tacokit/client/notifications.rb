@@ -31,6 +31,10 @@ module Tacokit
 
       # PUT /1/notifications/[idNotification]
       # PUT /1/notifications/[idNotification]/unread
+      def update_notification(notification_id, options = {})
+        put "notifications/#{notification_id}", options
+      end
+
       # POST /1/notifications/all/read
     end
   end

@@ -40,4 +40,13 @@ describe Tacokit::Client::Notifications do
     end
   end
 
+  describe "#update_notification", :vcr do
+    it "updates a notification" do
+      notification = oauth_client.update_notification(test_notification_id, unread: false)
+
+      expect(notification.unread).to be false
+      assert_requested :put, trello_url_template("notifications/#{test_notification_id}{?key,token}")
+    end
+
+  end
 end

@@ -18,6 +18,10 @@ module Tacokit
       # PUT /1/webhooks/[idWebhook]/callbackURL
       # PUT /1/webhooks/[idWebhook]/description
       # PUT /1/webhooks/[idWebhook]/idModel
+      def update_webhook(webhook_id, options = {})
+        put "webhooks/#{webhook_id}", options
+      end
+
       # POST /1/webhooks
       # DELETE /1/webhooks/[idWebhook]
     end

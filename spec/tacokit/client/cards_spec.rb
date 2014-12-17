@@ -63,4 +63,17 @@ describe Tacokit::Client::Cards do
     end
   end
 
+  describe "#update_card", :vcr do
+    it "updates a card" do
+      card = app_client.update_card test_card_link,
+                                    desc: 'This card is for Tacokit testing',
+                                    labels: ['blue', 'green']
+
+      expect(card.desc).to eq 'This card is for Tacokit testing'
+      expect(card.labels.size).to eq(2)
+      assert_requested :put, trello_url_template("cards/#{test_card_link}{?key,token}")
+    end
+
+  end
+
 end

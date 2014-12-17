@@ -46,6 +46,10 @@ module Tacokit
       # PUT /1/cards/[card id or shortlink]/pos
       # PUT /1/cards/[card id or shortlink]/stickers/[idSticker]
       # PUT /1/cards/[card id or shortlink]/subscribed
+      def update_card(card_id, options = {})
+        put "cards/#{card_id}", options
+      end
+
       # POST /1/cards
       # POST /1/cards/[card id or shortlink]/actions/comments
       # POST /1/cards/[card id or shortlink]/attachments

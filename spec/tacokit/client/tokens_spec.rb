@@ -11,13 +11,40 @@ describe Tacokit::Client::Tokens do
 
   describe "#create_token_webhook", :vcr do
     it "creates a webhook" do
-      webhook = app_client.create_token_webhook(
+      webhook = app_client.create_token_webhook \
         test_trello_app_token,
-        '548e30e9683e1923f676ba20', # tacokit org id
+        test_trello_org_id,
         tacokit_web_endpoint("webhook")
-      )
 
       expect(webhook.callback_url).to match(%r{https://[^/]*/webhook})
     end
+  end
+
+  describe "#token_field", :vcr do
+    it "returns a value" do
+      field = app_client.token_field(test_trello_app_token, :date_created)
+      expect(field['_value']).to be_present
+    end
+
+    it "returns an array" do
+      field = app_client.token_field(test_trello_app_token, :permissions)
+      expect(field).to be_any
+      expect(field.first.read).to be_present
+    end
+  end
+
+  describe "#token_resource", :vcr do
+    it "returns token member" do
+      member = app_client.token_resource(test_trello_app_token, :member)
+
+      expect(member).to be_present
+    end
+
+    it "returns token webhooks" do
+      webhooks = app_client.token_resource(test_trello_app_token, :webhooks)
+
+      expect(webhooks).to be_any
+    end
+
   end
 end

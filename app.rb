@@ -120,7 +120,7 @@ class TrelloOauth < Sinatra::Base
 
   def authorize_url
     request_token.authorize_url \
-      name: params.fetch(:app_name, settings.app_name),
+      name: app_name,
       scope: 'read,write,account',
       oauth_callback: callback_url
   end

@@ -82,10 +82,7 @@ class TrelloOauth < Sinatra::Base
     if oauth_verified?
       redirect to("/")
     else
-      redirect request_token.authorize_url \
-        name: settings.app_name,
-        oauth_callback: callback_url,
-        scope: 'read,write,account'
+      redirect_to authorize_url
     end
   end
 
@@ -103,7 +100,7 @@ class TrelloOauth < Sinatra::Base
     raise IncompleteCredentials unless params[:app_key].present? && params[:app_secret].present?
     session[:app_key] = params[:app_key]
     session[:app_secret] = params[:app_secret]
-    redirect request_token.authorize_url(oauth_callback: callback_url, name: app_name)
+    redirect authorize_url
   end
 
   post "/webhook" do
@@ -119,6 +116,13 @@ class TrelloOauth < Sinatra::Base
 
   def callback_url
     url("/callback")
+  end
+
+  def authorize_url
+    request_token.authorize_url \
+      name: settings.app_name,
+      scope: 'read,write,account',
+      oauth_callback: callback_url
   end
 
   def request_token
@@ -142,6 +146,7 @@ class TrelloOauth < Sinatra::Base
       request_token_path:  settings.request_token_path,
       authorize_path:      settings.authorize_path,
       access_token_path:   settings.access_token_path,
+      scope:               'read,write,account',
       http_method:         :get
   end
 

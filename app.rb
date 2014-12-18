@@ -82,7 +82,10 @@ class TrelloOauth < Sinatra::Base
     if oauth_verified?
       redirect to("/")
     else
-      redirect request_token.authorize_url(oauth_callback: callback_url, name: settings.app_name)
+      redirect request_token.authorize_url \
+        name: settings.app_name,
+        oauth_callback: callback_url,
+        scope: 'read,write,account'
     end
   end
 
@@ -121,8 +124,9 @@ class TrelloOauth < Sinatra::Base
   def request_token
     @request_token ||= begin
                          if session[:request_token] && session[:request_token_secret]
-                           ::OAuth::RequestToken.new(consumer, session.delete(:request_token),
-                                                     session.delete(:request_token_secret))
+                           ::OAuth::RequestToken.new \
+                             consumer, session.delete(:request_token),
+                             session.delete(:request_token_secret)
                          else
                            consumer.get_request_token(oauth_callback: callback_url).tap do |rtoken|
                              session[:request_token] = rtoken.token
@@ -133,12 +137,12 @@ class TrelloOauth < Sinatra::Base
   end
 
   def consumer
-    @consumer ||= ::OAuth::Consumer.new(app_key, app_secret,
-                                        site:                settings.site,
-                                        request_token_path:  settings.request_token_path,
-                                        authorize_path:      settings.authorize_path,
-                                        access_token_path:   settings.access_token_path,
-                                        http_method:         :get)
+    @consumer ||= ::OAuth::Consumer.new app_key, app_secret,
+      site:                settings.site,
+      request_token_path:  settings.request_token_path,
+      authorize_path:      settings.authorize_path,
+      access_token_path:   settings.access_token_path,
+      http_method:         :get
   end
 
   def expire_request_token!

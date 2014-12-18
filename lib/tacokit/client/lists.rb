@@ -34,6 +34,10 @@ module Tacokit
       # POST /1/lists/[idList]/archiveAllCards
       # POST /1/lists/[idList]/cards
       # POST /1/lists/[idList]/moveAllCards
+      def create_list(board_id, name, options = {})
+        post "lists", options.merge(name: name, 'idBoard' => board_id)
+      end
+
     end
   end
 end

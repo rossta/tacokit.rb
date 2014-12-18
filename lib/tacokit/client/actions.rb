@@ -35,6 +35,9 @@ module Tacokit
       end
 
       # DELETE /1/actions/[idAction]
+      def delete_action(action_id)
+        delete "actions/#{action_id}"
+      end
     end
   end
 end

@@ -5,6 +5,10 @@ describe Tacokit::Client::Actions do
     '548e3153ea7ca8f9cd3cb77b'
   end
 
+  def test_card_id
+    '548dd95c8ca25ac9d0d9ce71'
+  end
+
   describe "#action", :vcr do
     it "returns a token authorized action" do
       action = app_client.action(test_action_id)
@@ -50,14 +54,30 @@ describe Tacokit::Client::Actions do
   end
 
   describe "#update_action", :vcr do
-    def test_editable_action_id
-      '549102431b607566bafc93a9'
+    before do
+      @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Update action test. Booya!"
     end
 
-    it "updates a action" do
-      action = app_client.update_action(test_editable_action_id, text: "@tacokit Thanks for the invite, bud")
+    it "updates an action" do
+      action = app_client.update_action(@action.id, text: "@tacokit Thanks for the invite, bud")
 
       expect(action.data.text).to eq "@tacokit Thanks for the invite, bud"
+    end
+
+    after do
+      app_client.delete_action(@action.id)
+    end
+  end
+
+  describe "#delete_action", :vcr do
+    before do
+      @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Delete action test. Booya!"
+    end
+
+    it "deletes an action" do
+      app_client.delete_action(@action.id)
+
+      expect { app_client.action(@action.id) }.to raise_error(Faraday::ResourceNotFound)
     end
   end
 end

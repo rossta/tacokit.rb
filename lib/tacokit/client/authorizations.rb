@@ -3,7 +3,7 @@ module Tacokit
     module Authorizations
 
       def generate_app_key
-        open_url web_url("app-key")
+        open_url web_url("appKey/generate")
       end
 
       # Params

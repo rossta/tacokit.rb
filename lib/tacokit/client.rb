@@ -71,6 +71,10 @@ module Tacokit
       request :put, url, options
     end
 
+    def delete(url, options = {})
+      request :delete, url, options
+    end
+
     def request(method, url, options)
       response = connection.send(method, url, options) do |conn|
         conn.params = normalize_request_params(conn.params)

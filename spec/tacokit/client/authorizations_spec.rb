@@ -8,7 +8,7 @@ describe Tacokit::Client::Authorizations do
 
   describe "#generate_app_key" do
     it "launches app key endpoint" do
-      expect(Launchy).to receive(:open).with("https://trello.com/1/app-key")
+      expect(Launchy).to receive(:open).with("https://trello.com/1/appKey/generate")
 
       Tacokit.client.generate_app_key
     end

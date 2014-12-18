@@ -3,20 +3,24 @@ module Tacokit
     class Serialize < Faraday::Middleware
 
       def call(env)
-        env.body = transform_body_keys(env.body.dup) if env.body.is_a?(Hash)
+        env.body = serialize(env.body.dup) if env.body.is_a?(Hash)
         @app.call(env)
       end
 
       private
 
-      def transform_body_keys(body)
+      def serialize(body)
         flatten_nested_keys(camelize_keys(body))
       end
 
       def camelize_keys(body)
-        body.deep_transform_keys do |key|
-          key.to_s.camelize(:lower)
-        end
+        body.deep_transform_keys { |key| camelize_key(key) }
+      end
+
+      def camelize_key(key)
+        k = key.to_s
+        k = k.gsub(%r{(.*)_id(s)?$}, "id_\\1\\2")
+        k.camelize(:lower)
       end
 
       # Converts

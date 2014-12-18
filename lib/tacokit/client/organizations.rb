@@ -50,12 +50,19 @@ module Tacokit
 
       # POST /1/organizations
       # POST /1/organizations/[idOrg or name]/logo
+      def create_organization(display_name, options = {})
+        post "organizations", options.merge(display_name: display_name)
+      end
+
       # DELETE /1/organizations/[idOrg or name]
       # DELETE /1/organizations/[idOrg or name]/logo
       # DELETE /1/organizations/[idOrg or name]/members/[idMember]
       # DELETE /1/organizations/[idOrg or name]/members/[idMember]/all
       # DELETE /1/organizations/[idOrg or name]/prefs/associatedDomain
       # DELETE /1/organizations/[idOrg or name]/prefs/orgInviteRestrict
+      def delete_organization(organization_id)
+        delete "organizations/#{organization_id}"
+      end
     end
   end
 end

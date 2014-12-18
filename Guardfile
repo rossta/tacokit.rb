@@ -1,7 +1,6 @@
 guard :rspec, cmd: "bundle exec rspec" do
   require "ostruct"
 
-  # Generic Ruby apps
   rspec = OpenStruct.new
   rspec.spec = ->(m) { "spec/#{m}_spec.rb" }
   rspec.spec_dir = "spec"

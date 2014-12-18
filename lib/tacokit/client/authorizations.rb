@@ -31,7 +31,7 @@ module Tacokit
         require 'launchy'
         Launchy.open(url)
       rescue LoadError
-        warn "Visit #{app_key_url} to generate an app key"
+        warn "Visit #{app_key_url}"
         warn "Please install the launchy gem to open the url automatically."
       end
 

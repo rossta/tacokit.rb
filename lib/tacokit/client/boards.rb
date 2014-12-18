@@ -80,6 +80,10 @@ module Tacokit
       # POST /1/boards/[board_id]/lists
       # POST /1/boards/[board_id]/markAsViewed
       # POST /1/boards/[board_id]/powerUps
+      def create_board(name, options = {})
+        post "boards", options.merge(name: name)
+      end
+
       # DELETE /1/boards/[board_id]/members/[idMember]
       # DELETE /1/boards/[board_id]/powerUps/[powerUp]
 

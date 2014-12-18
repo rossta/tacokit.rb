@@ -5,6 +5,14 @@ describe Tacokit::Client::Checklists do
     '548ddd3f5402eb674035334f'
   end
 
+  def test_board_id
+    '548a675581d1d669c9e8184e'
+  end
+
+  def test_card_id
+    '548dd95c8ca25ac9d0d9ce71'
+  end
+
   describe "#checklist", :vcr do
     it "returns a checklist by id" do
       checklist = app_client.checklist(test_checklist_id)
@@ -44,6 +52,33 @@ describe Tacokit::Client::Checklists do
 
       expect(checklist.name).to eq 'Test Checklist 1'
       assert_requested :put, trello_url_template("checklists/#{test_checklist_id}{?key,token}")
+    end
+  end
+
+  describe "#create_checklist", :vcr do
+    before do
+      @checklist = app_client.create_checklist test_card_id, "Autochecklist", pos: "top"
+    end
+
+    it "creates a checklist" do
+      expect(@checklist.name).to eq "Autochecklist"
+      expect(@checklist.pos).to be >= 1
+    end
+
+    after do
+      app_client.delete_checklist(@checklist.id)
+    end
+  end
+
+  describe "#delete_checklist", :vcr do
+    before do
+      @checklist = app_client.create_checklist test_card_id, "Autochecklist"
+    end
+
+    it "deletes a checklist" do
+      app_client.delete_checklist(@checklist.id)
+
+      expect { app_client.checklist(@checklist.id) }.to raise_error(Faraday::ResourceNotFound)
     end
   end
 end

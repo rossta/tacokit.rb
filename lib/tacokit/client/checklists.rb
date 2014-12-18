@@ -31,8 +31,18 @@ module Tacokit
 
       # POST /1/checklists
       # POST /1/checklists/[idChecklist]/checkItems
+      def create_checklist(test_card_id, name, options = {})
+        options.merge! \
+          'idCard' => test_card_id,
+          'name' => name
+        post "checklists", options
+      end
+
       # DELETE /1/checklists/[idChecklist]
       # DELETE /1/checklists/[idChecklist]/checkItems/[idCheckItem]
+      def delete_checklist(checklist_id)
+        delete "checklists/#{checklist_id}"
+      end
     end
   end
 end

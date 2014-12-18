@@ -7,8 +7,8 @@
 <% if oauth_verified? %>
 <p>OAuth credentials. Keep them safe!</p>
 <fieldset>
-  <p>TRELLO_OAUTH_TOKEN: <input name="oauth_token" value="<%= session[:oauth_token] %>" disabled /></p>
-  <p>TRELLO_OAUTH_SECRET: <input name="oauth_secret" value="<%= session[:oauth_secret] %>" disabled /></p>
+  <p>TRELLO_OAUTH_TOKEN: <input name="oauth_token" type="text" value="<%= session[:oauth_token] %>" disabled /></p>
+  <p>TRELLO_OAUTH_SECRET: <input name="oauth_secret" type="text" value="<%= session[:oauth_secret] %>" disabled /></p>
 </fieldset>
 <% elsif settings.debug %>
   <p><a href="/authorize">Connect to Trello</a> to get your OAuth access token and secret.</p>

@@ -20,7 +20,14 @@ module Tacokit
       end
 
       # POST /1/labels
+      def create_label(board_id, name, color)
+        post "labels", 'idBoard' => board_id, name: name, color: color
+      end
+
       # DELETE /1/labels/[idLabel]
+      def delete_label(label_id)
+        delete "labels/#{label_id}"
+      end
     end
   end
 end

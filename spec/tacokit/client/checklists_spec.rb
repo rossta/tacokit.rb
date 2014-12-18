@@ -5,10 +5,6 @@ describe Tacokit::Client::Checklists do
     '548ddd3f5402eb674035334f'
   end
 
-  def test_board_id
-    '548a675581d1d669c9e8184e'
-  end
-
   def test_card_id
     '548dd95c8ca25ac9d0d9ce71'
   end

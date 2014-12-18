@@ -1,6 +1,7 @@
 module Tacokit
   class Client
     module Actions
+
       # GET /1/actions/[idAction]
       def action(action_id, options = nil)
         get "actions/#{action_id}", options

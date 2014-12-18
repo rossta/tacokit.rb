@@ -1,6 +1,7 @@
 module Tacokit
   class Client
     module Labels
+
       # GET /1/labels/[idLabel]
       def label(label_id, options = nil)
         get "labels/#{label_id}", options

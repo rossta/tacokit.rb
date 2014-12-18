@@ -69,7 +69,7 @@ module Tacokit
       # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]
       # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/name
       # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/pos
-      # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/queryg
+      # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/query
       def update_member(username, options = {})
         put "members/#{username}", options
       end

@@ -31,6 +31,9 @@ module Tacokit
 
       # DELETE /1/tokens/[token]
       # DELETE /1/tokens/[token]/webhooks/[idWebhook]
+      def delete_token_webhook(token, webhook_id)
+        delete "tokens/#{token}/webhooks/#{webhook_id}"
+      end
     end
   end
 end

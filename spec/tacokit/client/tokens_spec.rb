@@ -10,17 +10,6 @@ describe Tacokit::Client::Tokens do
     end
   end
 
-  describe "#create_token_webhook", :vcr do
-    it "creates a webhook" do
-      webhook = app_client.create_token_webhook \
-        test_trello_app_token,
-        test_org_id,
-        tacokit_web_endpoint("webhook")
-
-      expect(webhook.callback_url).to match(%r{https://[^/]*/webhook})
-    end
-  end
-
   describe "#token_field", :vcr do
     it "returns a value" do
       field = app_client.token_field(test_trello_app_token, :date_created)
@@ -47,6 +36,40 @@ describe Tacokit::Client::Tokens do
       webhooks = app_client.token_resource(test_trello_app_token, :webhooks)
 
       expect(webhooks).to be_any
+    end
+  end
+
+  describe "#create_token_webhook", :vcr do
+    before do
+      @webhook = app_client.create_token_webhook \
+        test_trello_app_token,
+        test_org_id,
+        tacokit_web_endpoint("webhook")
+    end
+
+    it "creates a webhook" do
+      expect(@webhook.callback_url).to match(%r{https://[^/]*/webhook})
+      assert_requested :post, trello_url_template("tokens/#{test_trello_app_token}/webhooks{?key,token}")
+    end
+
+    after do
+      app_client.delete_token_webhook(test_trello_app_token, @webhook.id)
+    end
+  end
+
+  describe "#delete_token_webhook", :vcr do
+    before do
+      @webhook = app_client.create_token_webhook \
+        test_trello_app_token,
+        test_org_id,
+        tacokit_web_endpoint("webhook")
+    end
+
+    it "deletes a webhook" do
+      app_client.delete_token_webhook(test_trello_app_token, @webhook.id)
+
+      expect { app_client.webhook(@webhook.id) }.to raise_error(Faraday::ResourceNotFound)
+      assert_requested :delete, trello_url_template("tokens/#{test_trello_app_token}/webhooks/#{@webhook.id}{?key,token}")
     end
   end
 end

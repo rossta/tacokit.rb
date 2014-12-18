@@ -1,4 +1,5 @@
-require "tacokit/version"
+require 'active_support/core_ext/hash'
+require 'active_support/core_ext/string'
 
 module Tacokit
 
@@ -17,3 +18,4 @@ end
 
 require "tacokit/client"
 require "tacokit/error"
+require "tacokit/version"

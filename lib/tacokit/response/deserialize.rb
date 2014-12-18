@@ -1,8 +1,6 @@
 module Tacokit
   module Response
     class Deserialize < Faraday::Response::Middleware
-      require 'active_support/core_ext/hash'
-      require 'active_support/core_ext/string'
 
       def parse(body)
         snakify_keys(body)

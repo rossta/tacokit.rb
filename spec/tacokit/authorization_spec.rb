@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'launchy'
 
-describe Tacokit::Client::Authorizations do
+describe Tacokit::Authorization do
   before do
     allow(Launchy).to receive(:open)
   end
@@ -38,5 +38,4 @@ describe Tacokit::Client::Authorizations do
       expect(params['scope']).to eq 'read'
     end
   end
-
 end

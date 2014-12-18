@@ -4,9 +4,10 @@ require 'faraday_middleware'
 require 'hashie/mash'
 
 require 'tacokit/configuration'
+require 'tacokit/middleware'
+require 'tacokit/authorization'
 
 require 'tacokit/client/actions'
-require 'tacokit/client/authorizations'
 require 'tacokit/client/boards'
 require 'tacokit/client/cards'
 require 'tacokit/client/checklists'
@@ -24,8 +25,9 @@ module Tacokit
   class Client
     extend Forwardable
 
+    include Tacokit::Authorization
+
     include Tacokit::Client::Actions
-    include Tacokit::Client::Authorizations
     include Tacokit::Client::Boards
     include Tacokit::Client::Cards
     include Tacokit::Client::Checklists
@@ -113,9 +115,9 @@ module Tacokit
         end
 
         http.request :serialize
+        http.request :json
         http.request :multipart
         http.request :url_encoded
-        http.request :json
 
         http.response :mashify
         http.response :deserialize
@@ -124,78 +126,6 @@ module Tacokit
         http.response :logger if ENV['DEBUG']
 
         http.adapter Faraday.default_adapter
-      end
-    end
-
-    class Serialize < Faraday::Middleware
-
-      def call(env)
-        env.body = transform_body_keys(env.body.dup) if env.body.is_a?(Hash)
-        @app.call(env)
-      end
-
-      private
-
-      def transform_body_keys(body)
-        flatten_nested_keys(camelize_keys(body))
-      end
-
-      def camelize_keys(body)
-        body.deep_transform_keys do |key|
-          key.to_s.camelize(:lower)
-        end
-      end
-
-      # Converts
-      # 'prefs' => { 'voting' => 'members' }
-      # to
-      # 'prefs/voting' => 'members
-      #
-      def flatten_nested_keys(body)
-        options = {}
-        body.each do |key, value|
-          if value.is_a?(Hash)
-            value = flatten_nested_keys(value.dup)
-            value.each do |nested_key, nested_value|
-              options["#{key}/#{nested_key}"] = nested_value
-            end
-            body.delete(key)
-          end
-        end
-        body.merge(options)
-      end
-    end
-
-    # Used for simple response middleware.
-    class Deserialize < Faraday::Response::Middleware
-      require 'active_support/core_ext/hash'
-      require 'active_support/core_ext/string'
-
-      def parse(body)
-        snakify_keys(body)
-      end
-
-      private
-
-      def snakify_keys(body)
-        case body
-        when Hash
-          transform_hash(body)
-        when Array
-          transform_array(body)
-        else
-          body
-        end
-      end
-
-      def transform_array(body)
-        body.map { |data| snakify_keys(data) }
-      end
-
-      def transform_hash(body)
-        body.deep_transform_keys do |key|
-          key.underscore
-        end
       end
     end
 
@@ -214,33 +144,7 @@ module Tacokit
       end
     end
 
-    class Boom < Faraday::Response::Middleware
-      ClientErrorStatuses = 400...600
-
-      def on_complete(env)
-        case env[:status]
-        when 404
-          raise Faraday::Error::ResourceNotFound, response_values(env)
-        when 407
-          # mimic the behavior that we get with proxy requests with HTTPS
-          raise Faraday::Error::ConnectionFailed, %{407 "Proxy Authentication Required "}
-        when ClientErrorStatuses
-          raise Faraday::Error.new("server return #{env[:status]}: #{env.body}")
-        end
-      end
-
-      def response_values(env)
-        {:status => env.status, :headers => env.response_headers, :body => env.body}
-      end
-    end
-
-    Faraday::Request.register_middleware \
-      :serialize => lambda { Serialize }
-
-    Faraday::Response.register_middleware \
-      :deserialize => lambda { Deserialize },
-      :debug => lambda { Debug },
-      :boom => lambda { Boom }
+    Faraday::Response.register_middleware :debug => lambda { Debug }
 
   end
 end

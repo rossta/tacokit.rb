@@ -1,10 +1,10 @@
 module Tacokit
   class Configuration
 
-    API_URL = "https://api.trello.com"
-    WEB_URL = "https://trello.com"
+    API_URL = "https://api.trello.com".freeze
+    WEB_URL = "https://trello.com".freeze
 
-    API_VERSION  = "1"
+    API_VERSION  = "1".freeze
 
     def self.keys
       [

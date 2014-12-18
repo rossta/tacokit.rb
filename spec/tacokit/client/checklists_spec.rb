@@ -59,6 +59,7 @@ describe Tacokit::Client::Checklists do
     it "creates a checklist" do
       expect(@checklist.name).to eq "Autochecklist"
       expect(@checklist.pos).to be >= 1
+      assert_requested :post, trello_url_template("checklists{?key,token}")
     end
 
     after do
@@ -75,6 +76,7 @@ describe Tacokit::Client::Checklists do
       app_client.delete_checklist(@checklist.id)
 
       expect { app_client.checklist(@checklist.id) }.to raise_error(Faraday::ResourceNotFound)
+      assert_requested :delete, trello_url_template("checklists/#{@checklist.id}{?key,token}")
     end
   end
 end

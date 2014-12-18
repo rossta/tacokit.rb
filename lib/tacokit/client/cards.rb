@@ -61,6 +61,10 @@ module Tacokit
       # POST /1/cards/[card id or shortlink]/markAssociatedNotificationsRead
       # POST /1/cards/[card id or shortlink]/membersVoted
       # POST /1/cards/[card id or shortlink]/stickers
+      def create_card(list_id, name = nil, options = {})
+        post "cards", options.merge(name: name, 'idList' => list_id)
+      end
+
       # DELETE /1/cards/[card id or shortlink]
       # DELETE /1/cards/[card id or shortlink]/actions/[idAction]/comments
       # DELETE /1/cards/[card id or shortlink]/attachments/[idAttachment]
@@ -70,6 +74,10 @@ module Tacokit
       # DELETE /1/cards/[card id or shortlink]/labels/[color]
       # DELETE /1/cards/[card id or shortlink]/membersVoted/[idMember]
       # DELETE /1/cards/[card id or shortlink]/stickers/[idSticker]
+      def delete_card(card_id)
+        delete "cards/#{card_id}"
+      end
+
     end
   end
 end

@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/webhooks/[idWebhook]/[field]
       def webhook_field(webhook_id, field, options = nil)
-        get "webhooks/#{webhook_id}/#{field.to_s.camelize(:lower)}", options
+        get "webhooks/#{webhook_id}/#{to_path(field)}", options
       end
 
       # PUT /1/webhooks/[idWebhook]

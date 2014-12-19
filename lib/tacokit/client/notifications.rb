@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/notifications/[idNotification]/[field]
       def notification_field(notification_id, field)
-        get "notifications/#{notification_id}/#{field.to_s.camelize(:lower)}"
+        get "notifications/#{notification_id}/#{to_path(field)}"
       end
 
       # GET /1/notifications/[idNotification]/board
@@ -26,7 +26,7 @@ module Tacokit
       # GET /1/notifications/[idNotification]/organization
       # GET /1/notifications/[idNotification]/organization/[field]
       def notification_resource(notification_id, resource, options = nil)
-        get "notifications/#{notification_id}/#{resource.to_s.camelize(:lower)}", options
+        get "notifications/#{notification_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/notifications/[idNotification]

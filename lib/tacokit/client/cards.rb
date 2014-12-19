@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/cards/[card id or shortlink]/[field]
       def card_field(card_id, field, options = nil)
-        get "cards/#{card_id}/#{field.to_s.camelize(:lower)}", options
+        get "cards/#{card_id}/#{to_path(field)}", options
       end
 
       # GET /1/cards/[card id or shortlink]/actions
@@ -26,7 +26,7 @@ module Tacokit
       # GET /1/cards/[card id or shortlink]/stickers
       # GET /1/cards/[card id or shortlink]/stickers/[idSticker]
       def card_resource(card_id, resource, options = nil)
-        get "cards/#{card_id}/#{resource.to_s.camelize(:lower)}", options
+        get "cards/#{card_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/cards/[card id or shortlink]

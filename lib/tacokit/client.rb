@@ -26,6 +26,7 @@ module Tacokit
     extend Forwardable
 
     include Tacokit::Authorization
+    include Tacokit::Utils
 
     include Tacokit::Client::Actions
     include Tacokit::Client::Boards
@@ -96,12 +97,16 @@ module Tacokit
     def normalize_param_value(value)
       case value
       when Array
-        value.map { |v| v.camelize(:lower) }.join(',')
+        value.map { |v| to_path(v) }.join(',')
       when /\,/
         normalize_param_value(value.split(','))
       else
         value
       end
+    end
+
+    def to_path(path)
+      camelize(path.to_s, :lower)
     end
 
     def connection

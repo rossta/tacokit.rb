@@ -1,6 +1,3 @@
-require 'active_support/core_ext/hash'
-require 'active_support/core_ext/string'
-
 module Tacokit
 
   class << self
@@ -16,6 +13,7 @@ module Tacokit
   end
 end
 
+require "tacokit/utils"
 require "tacokit/client"
 require "tacokit/error"
 require "tacokit/version"

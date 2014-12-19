@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/checklists/[idChecklist]/[field]
       def checklist_field(checklist_id, field)
-        get "checklists/#{checklist_id}/#{field.to_s.camelize(:lower)}"
+        get "checklists/#{checklist_id}/#{to_path(field)}"
       end
 
       # GET /1/checklists/[idChecklist]/board
@@ -19,7 +19,7 @@ module Tacokit
       # GET /1/checklists/[idChecklist]/checkItems
       # GET /1/checklists/[idChecklist]/checkItems/[idCheckItem]
       def checklist_resource(checklist_id, resource, options = nil)
-        get "checklists/#{checklist_id}/#{resource.to_s.camelize(:lower)}", options
+        get "checklists/#{checklist_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/checklists/[idChecklist]

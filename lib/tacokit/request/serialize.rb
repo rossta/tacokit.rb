@@ -1,6 +1,7 @@
 module Tacokit
   module Request
     class Serialize < Faraday::Middleware
+      include Tacokit::Utils
 
       def call(env)
         env.body = serialize(env.body.dup) if env.body.is_a?(Hash)
@@ -14,13 +15,13 @@ module Tacokit
       end
 
       def camelize_keys(body)
-        body.deep_transform_keys { |key| camelize_key(key) }
+        deep_transform_keys(body) { |key| camelize_key(key) }
       end
 
       def camelize_key(key)
         k = key.to_s
         k = k.gsub(%r{(.*)_id(s)?$}, "id_\\1\\2")
-        k.camelize(:lower)
+        camelize(k, :lower)
       end
 
       # Converts

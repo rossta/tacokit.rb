@@ -1,6 +1,7 @@
 module Tacokit
   module Response
     class Deserialize < Faraday::Response::Middleware
+      include Tacokit::Utils
 
       def parse(body)
         snakify_keys(body)
@@ -11,21 +12,21 @@ module Tacokit
       def snakify_keys(body)
         case body
         when Hash
-          transform_hash(body)
+          deserialize_hash(body)
         when Array
-          transform_array(body)
+          deserialize_array(body)
         else
           body
         end
       end
 
-      def transform_array(body)
+      def deserialize_array(body)
         body.map { |data| snakify_keys(data) }
       end
 
-      def transform_hash(body)
-        body.deep_transform_keys do |key|
-          key.underscore
+      def deserialize_hash(body)
+        deep_transform_keys(body) do |key|
+          underscore(key)
         end
       end
     end

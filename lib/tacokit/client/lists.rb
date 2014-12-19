@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/lists/[idList]/[field]
       def list_field(list_id, field, options = nil)
-        get "lists/#{list_id}/#{field.to_s.camelize(:lower)}", options
+        get "lists/#{list_id}/#{to_path(field)}", options
       end
 
       # GET /1/lists/[idList]/actions
@@ -18,7 +18,7 @@ module Tacokit
       # GET /1/lists/[idList]/lists
       # GET /1/lists/[idList]/lists/[filter]
       def list_resource(list_id, resource, options = nil)
-        get "lists/#{list_id}/#{resource.to_s.camelize(:lower)}", options
+        get "lists/#{list_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/lists/[idList]

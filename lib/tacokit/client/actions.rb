@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/actions/[idAction]/[field]
       def action_field(action_id, field)
-        get "actions/#{action_id}/#{field.to_s.camelize(:lower)}"
+        get "actions/#{action_id}/#{to_path(field)}"
       end
 
       # GET /1/actions/[idAction]/board
@@ -26,7 +26,7 @@ module Tacokit
       # GET /1/actions/[idAction]/organization
       # GET /1/actions/[idAction]/organization/[field]
       def action_resource(action_id, resource, options = nil)
-        get "actions/#{action_id}/#{resource.to_s.camelize(:lower)}", options
+        get "actions/#{action_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/actions/[idAction]

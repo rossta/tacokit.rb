@@ -135,3 +135,17 @@ end
 def trello_url_template(url)
   Addressable::Template.new(trello_url(url))
 end
+
+def blank?(object)
+  object.respond_to?(:empty?) ? !!object.empty? : !object
+end
+
+def present?(object)
+  !blank?(object)
+end
+
+RSpec::Matchers.define :be_present do |expected|
+  match do |actual|
+    present?(actual)
+  end
+end

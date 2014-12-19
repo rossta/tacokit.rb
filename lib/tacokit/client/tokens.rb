@@ -9,7 +9,7 @@ module Tacokit
 
       # GET /1/tokens/[token]/[field]
       def token_field(token, field, options = nil)
-        get "tokens/#{token}/#{field.to_s.camelize(:lower)}", options
+        get "tokens/#{token}/#{to_path(field)}", options
       end
 
       # GET /1/tokens/[token]/member
@@ -17,7 +17,7 @@ module Tacokit
       # GET /1/tokens/[token]/member/[field]
       # GET /1/tokens/[token]/webhooks/[idWebhook]
       def token_resource(token, resource, options = nil)
-        get "tokens/#{token}/#{resource.to_s.camelize(:lower)}", options
+        get "tokens/#{token}/#{to_path(resource)}", options
       end
 
       # POST /1/tokens/[token]/webhooks

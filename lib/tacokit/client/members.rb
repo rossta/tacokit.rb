@@ -17,7 +17,7 @@ module Tacokit
       # GET /1/members/[idMember or username]/[field]
       #
       def member_field(username, field, options = nil)
-        get "members/#{username}/#{field.to_s.camelize(:lower)}", options
+        get "members/#{username}/#{to_path(field)}", options
       end
 
       # GET /1/members/[idMember or username]/actions
@@ -48,7 +48,7 @@ module Tacokit
       # GET /1/members/[idMember or username]/tokens
       #
       def member_resource(username, resource, options = nil)
-        get "members/#{username}/#{resource.to_s.camelize(:lower)}", options
+        get "members/#{username}/#{to_path(resource)}", options
       end
 
       # POST /1/members/[idMember or username]/boardBackgrounds

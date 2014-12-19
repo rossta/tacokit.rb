@@ -8,19 +8,8 @@
 <p>OAuth credentials. Keep them safe!</p>
 <fieldset>
   <p>TRELLO_OAUTH_TOKEN: <span name="oauth_token" class="text"><span><%= session[:oauth_token] %></span></p>
-    <p>TRELLO_OAUTH_SECRET: <span name="oauth_secret" class="text"><span><%= session[:oauth_secret] %></span></p>
+  <p>TRELLO_OAUTH_SECRET: <span name="oauth_secret" class="text"><span><%= session[:oauth_secret] %></span></p>
 </fieldset>
-<% elsif settings.debug %>
-  <p><a href="/authorize">Connect to Trello</a> to get your OAuth access token and secret.</p>
-<% end %>
-
-<% if oauth_verified? %>
-  <p>App credentials</p>
-  <fieldset>
-    <p><label>TRELLO_APP_NAME</label>: <span name="app_name" class="text"><%= app_name %></span></p>
-    <p><label>TRELLO_APP_KEY</label>: <span name="app_key" class="text"><%= app_key %></span></p>
-    <p><label>TRELLO_APP_SECRET</label>: <span name="app_secret" class="text"><span><%= app_secret %></span></p>
-  </fieldset>
 <% else %>
   <p>Enter your app credentials</p>
   <form method="post" action="/connect">
@@ -32,4 +21,8 @@
       <p><input value="Connect to Trello" type="submit" class="button" /></p>
     </fieldset>
   </form>
+<% end %>
+
+<% if settings.debug %>
+  <p><a href="/authorize">Connect to Trello</a> to get your OAuth access token and secret.</p>
 <% end %>

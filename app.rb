@@ -37,26 +37,6 @@ class TrelloOauth < Sinatra::Base
     def csrf_tag
       Rack::Csrf.csrf_tag(env)
     end
-
-    def app_name
-      params[:app_name] || session[:app_name] || settings.app_name
-    end
-
-    def app_key
-      if settings.debug
-        settings.app_key
-      else
-        params[:app_key] || session[:app_key]
-      end
-    end
-
-    def app_secret
-      if settings.debug
-        settings.app_secret
-      else
-        params[:app_secret] || session[:app_secret]
-      end
-    end
   end
 
   before do
@@ -98,10 +78,10 @@ class TrelloOauth < Sinatra::Base
 
   post "/connect" do
     raise IncompleteCredentials unless params[:app_key].present? && params[:app_secret].present?
-    session[:app_key] = params[:app_key]
-    session[:app_secret] = params[:app_secret]
     redirect authorize_url
   end
+
+  post
 
   post "/webhook" do
     logger.info "webhook received"
@@ -167,6 +147,26 @@ class TrelloOauth < Sinatra::Base
 
   def oauth_verified?
     !!session[:oauth_token] && !!session[:oauth_secret]
+  end
+
+  def app_name
+    params[:app_name] || session[:app_name] || settings.app_name
+  end
+
+  def app_key
+    if settings.debug
+      settings.app_key
+    else
+      params[:app_key] || session[:app_key]
+    end
+  end
+
+  def app_secret
+    if settings.debug
+      settings.app_secret
+    else
+      params[:app_secret] || session[:app_secret]
+    end
   end
 
   def store_access_token!(access_token)

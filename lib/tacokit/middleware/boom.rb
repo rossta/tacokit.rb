@@ -1,5 +1,5 @@
 module Tacokit
-  module Response
+  module Middleware
     class Boom < Faraday::Response::Middleware
       ClientErrorStatuses = 400...600
 

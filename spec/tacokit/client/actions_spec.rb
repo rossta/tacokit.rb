@@ -32,10 +32,10 @@ describe Tacokit::Client::Actions do
       expect(field['_value']).to be_present
     end
 
-    it "returns a hash" do
+    it "returns a resource" do
       field = app_client.action_field(test_action_id, :data)
 
-      expect(field).to be_a(Hash)
+      expect(field).to be_a(Tacokit::Resource)
     end
   end
 

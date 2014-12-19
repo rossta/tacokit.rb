@@ -20,10 +20,10 @@ describe Tacokit::Client::Notifications do
       expect(field['_value']).to be_present
     end
 
-    it "returns a hash" do
+    it "returns a resource" do
       field = app_client.notification_field(test_notification_id, :data)
 
-      expect(field).to be_a(Hash)
+      expect(field).to be_a(Tacokit::Resource)
     end
   end
 

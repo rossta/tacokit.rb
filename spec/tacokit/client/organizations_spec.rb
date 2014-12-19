@@ -23,10 +23,10 @@ describe Tacokit::Client::Organizations do
       expect(field).to be_empty
     end
 
-    it "returns a hash" do
+    it "returns a resource" do
       field = app_client.organization_field(test_org_name, :prefs)
 
-      expect(field).to include("permission_level" => "public")
+      expect(field.to_attrs).to include(permission_level: "public")
     end
   end
 

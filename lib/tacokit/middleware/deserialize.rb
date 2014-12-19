@@ -1,5 +1,5 @@
 module Tacokit
-  module Response
+  module Middleware
     class Deserialize < Faraday::Response::Middleware
       include Tacokit::Utils
 

@@ -14,6 +14,7 @@ module Tacokit
 end
 
 require "tacokit/utils"
+require "tacokit/resource"
 require "tacokit/client"
 require "tacokit/error"
 require "tacokit/version"

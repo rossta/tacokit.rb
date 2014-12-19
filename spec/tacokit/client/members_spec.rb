@@ -61,10 +61,10 @@ describe Tacokit::Client::Members do
       expect(field).to include(test_org_id)
     end
 
-    it "returns a hash" do
+    it "returns a resource" do
       field = app_client.member_field('tacokit', :prefs)
 
-      expect(field).to include("color_blind" => false)
+      expect(field.to_attrs).to include(color_blind: true)
     end
   end
 

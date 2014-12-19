@@ -1,5 +1,5 @@
 module Tacokit
-  module Request
+  module Middleware
     class Serialize < Faraday::Middleware
       include Tacokit::Utils
 

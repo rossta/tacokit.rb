@@ -1,7 +1,6 @@
 require 'forwardable'
 require 'faraday'
 require 'faraday_middleware'
-require 'hashie/mash'
 
 require 'tacokit/configuration'
 require 'tacokit/middleware'
@@ -109,6 +108,11 @@ module Tacokit
       camelize(path.to_s, :lower)
     end
 
+    def to_s
+      "<Tacokit::Client:#{object_id}>"
+    end
+    alias_method :inspect, :to_s
+
     def connection
       @connection = Faraday.new(url: api_endpoint) do |http|
         http.headers[:user_agent] = 'TacoKit 0.0.1'
@@ -124,7 +128,7 @@ module Tacokit
         http.request :multipart
         http.request :url_encoded
 
-        http.response :mashify
+        http.response :materialize, client: self
         http.response :deserialize
         http.response :json, content_type: /\bjson$/
         http.response :boom

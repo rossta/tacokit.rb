@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tacokit::Request::Serialize do
+describe Tacokit::Middleware::Serialize do
   let(:middleware) { described_class.new(lambda{|env| env}) }
 
   def process(body, content_type = nil)

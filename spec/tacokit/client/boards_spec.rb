@@ -39,7 +39,7 @@ describe Tacokit::Client::Boards do
     it "returns a hash" do
       label_names = app_client.board_field(test_board_link, :label_names)
 
-      expect(label_names).to include("green", "yellow", "orange")
+      expect(label_names.to_attrs).to include(:green, :yellow, :orange)
     end
   end
 
@@ -83,7 +83,7 @@ describe Tacokit::Client::Boards do
     it "updates nested resource" do
       board = app_client.update_board(test_board_id, label_names: { blue: 'Blue Label' })
 
-      expect(board.label_names).to include 'blue' => 'Blue Label'
+      expect(board.label_names.to_attrs).to include blue: 'Blue Label'
     end
   end
 

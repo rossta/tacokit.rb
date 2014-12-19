@@ -1,16 +1,18 @@
-require 'tacokit/request/serialize'
-require 'tacokit/response/boom'
-require 'tacokit/response/deserialize'
+require 'tacokit/middleware/serialize'
+require 'tacokit/middleware/boom'
+require 'tacokit/middleware/deserialize'
+require 'tacokit/middleware/materialize'
 
 module Tacokit
   module Middleware
 
     Faraday::Request.register_middleware \
-      :serialize => lambda { Tacokit::Request::Serialize }
+      :serialize => lambda { Tacokit::Middleware::Serialize }
 
     Faraday::Response.register_middleware \
-      :boom => lambda { Tacokit::Response::Boom },
-      :deserialize => lambda { Tacokit::Response::Deserialize }
+      :boom => lambda { Tacokit::Middleware::Boom },
+      :deserialize => lambda { Tacokit::Middleware::Deserialize },
+      :materialize => lambda { Tacokit::Middleware::Materialize }
 
   end
 end

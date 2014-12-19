@@ -40,13 +40,13 @@ describe Tacokit::Client::Cards do
       expect(field).to be_any
 
       label = field.first
-      expect(label).to include("color" => "green")
+      expect(label.to_attrs).to include(color: "green")
     end
 
     it "returns a hash" do
       field = app_client.card_field(test_card_link, :labels)
 
-      expect(field.first).to include("color" => "green")
+      expect(field.first.to_attrs).to include(color: "green")
     end
   end
 

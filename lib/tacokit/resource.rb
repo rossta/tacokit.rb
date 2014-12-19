@@ -11,7 +11,7 @@ module Tacokit
     include Enumerable
     extend Forwardable
 
-    def_delegators :@_fields, :fetch, :keys, :key?, :has_key?, :include?, :any?
+    def_delegators :@_fields, :fetch, :keys, :any?
 
     def initialize(client, data = {})
       @_client = client
@@ -48,6 +48,12 @@ module Tacokit
     rescue NoMethodError
       nil
     end
+
+    def key?(key)
+      @_fields.include?(key)
+    end
+    alias has_key? key?
+    alias include? key?
 
     def self.attr_accessor(*attrs)
       attrs.each do |attribute|

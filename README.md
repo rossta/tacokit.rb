@@ -1,6 +1,6 @@
 # Tacokit
 
-Ruby toolkit for the Trello API. Design and philosophy
+Ruby toolkit for the Trello API... a work-in-progress. Design and philosophy
 inspired by [ocktokit.rb](https://github.com/ocktokit/ocktokit.rb)
 
 This is Taco.
@@ -71,7 +71,7 @@ Sandbox](sandbox) and enter your `TRELLO_APP_KEY` and `TRELLO_APP_SECRET`,
 
 ## Usage
 
-TODO: Write usage instructions here
+Coming soon.
 
 ## Contributing
 

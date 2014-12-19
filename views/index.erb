@@ -7,8 +7,8 @@
 <% if oauth_verified? %>
 <p>OAuth credentials. Keep them safe!</p>
 <fieldset>
-  <p>TRELLO_OAUTH_TOKEN: <input name="oauth_token" type="text" value="<%= session[:oauth_token] %>" disabled /></p>
-  <p>TRELLO_OAUTH_SECRET: <input name="oauth_secret" type="text" value="<%= session[:oauth_secret] %>" disabled /></p>
+  <p>TRELLO_OAUTH_TOKEN: <span name="oauth_token" class="text"><span><%= session[:oauth_token] %></span></p>
+    <p>TRELLO_OAUTH_SECRET: <span name="oauth_secret" class="text"><span><%= session[:oauth_secret] %></span></p>
 </fieldset>
 <% elsif settings.debug %>
   <p><a href="/authorize">Connect to Trello</a> to get your OAuth access token and secret.</p>
@@ -17,16 +17,16 @@
 <% if oauth_verified? %>
   <p>App credentials</p>
   <fieldset>
-    <p><label>TRELLO_APP_NAME</label>: <input type="text" name="app_name" value="<%= settings.app_name %>" disabled /></p>
-    <p><label>TRELLO_APP_KEY</label>: <input type="text" name="app_key" value="<%= settings.app_key %>" disabled /></p>
-    <p><label>TRELLO_APP_SECRET</label>: <input type="text" name="app_secret" value="<%= settings.app_secret %>" disabled /></p>
+    <p><label>TRELLO_APP_NAME</label>: <span name="app_name" class="text"><%= app_name %></span></p>
+    <p><label>TRELLO_APP_KEY</label>: <span name="app_key" class="text"><%= app_key %></span></p>
+    <p><label>TRELLO_APP_SECRET</label>: <span name="app_secret" class="text"><span><%= app_secret %></span></p>
   </fieldset>
 <% else %>
   <p>Enter your app credentials</p>
   <form method="post" action="/connect">
     <%= csrf_tag %>
     <fieldset>
-      <p><label>TRELLO_APP_NAME</label>: <input type="text" name="app_name" value="<%= app_name %>" /></p>
+      <p><label>TRELLO_APP_NAME</label>: <input type="text" name="app_name" value="<%= app_name %>"></p>
       <p><label>TRELLO_APP_KEY</label>: <input type="text" name="app_key" value="<%= app_key %>" /></p>
       <p><label>TRELLO_APP_SECRET</label>: <input type="text" name="app_secret" value="<%= app_secret %>" /></p>
       <p><input value="Connect to Trello" type="submit" class="button" /></p>

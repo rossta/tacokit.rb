@@ -446,10 +446,13 @@ fieldset label {
   width: 30%;
 }
 
-input[type=text] {
+span.text, input[type=text] {
   padding: 0.5em;
   width: 65%;
   font-family: Monaco, Courier, monospace;
+  border: 1px solid #CCC;
+  display: inline-block;
+  text-align: left;
 }
 
 button, .button {

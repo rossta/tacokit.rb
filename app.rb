@@ -126,18 +126,7 @@ class TrelloOauth < Sinatra::Base
   end
 
   def request_token
-    @request_token ||= begin
-                         if session[:request_token] && session[:request_token_secret]
-                           ::OAuth::RequestToken.new \
-                             consumer, session.delete(:request_token),
-                             session.delete(:request_token_secret)
-                         else
-                           consumer.get_request_token(oauth_callback: callback_url).tap do |rtoken|
-                             session[:request_token] = rtoken.token
-                             session[:request_token_secret] = rtoken.secret
-                           end
-                         end
-                       end
+    @request_token ||= build_request_token
   end
 
   def consumer
@@ -161,6 +150,19 @@ class TrelloOauth < Sinatra::Base
     store_access_token! @access_token
 
     @access_token
+  end
+
+  def build_request_token
+    if session[:request_token] && session[:request_token_secret]
+      ::OAuth::RequestToken.new \
+        consumer, session.delete(:request_token),
+        session.delete(:request_token_secret)
+    else
+      consumer.get_request_token(oauth_callback: callback_url).tap do |rtoken|
+        session[:request_token] = rtoken.token
+        session[:request_token_secret] = rtoken.secret
+      end
+    end
   end
 
   def oauth_verified?

@@ -1,10 +1,13 @@
 require 'forwardable'
+
 require 'faraday'
 require 'faraday_middleware'
 
+require 'tacokit/authorization'
 require 'tacokit/configuration'
 require 'tacokit/middleware'
-require 'tacokit/authorization'
+require 'tacokit/response'
+require 'tacokit/transform'
 
 require 'tacokit/client/actions'
 require 'tacokit/client/boards'
@@ -44,6 +47,7 @@ module Tacokit
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials
     def_delegators :configuration, :app_authenticated?, :app_credentials
+    def_delegators :transform, :serialize, :deserialize
 
     def initialize(options = {})
       self.configuration.options = options
@@ -77,11 +81,23 @@ module Tacokit
       request :delete, url, options
     end
 
-    def request(method, url, options)
-      response = connection.send(method, url, options) do |conn|
-        conn.params = normalize_request_params(conn.params)
+    def request(method, url, data = nil, params = nil)
+      if [:get, :body].include?(method)
+        params ||= data
+        data      = nil
       end
-      response.body
+
+      params = normalize_request_params(params || {})
+      response = connection.send method, url do |req|
+        req.params.update params
+        req.body = serialize(data) if data
+      end
+
+      Response.new(self, response).data
+    end
+
+    def transform
+      @transform ||= Transform.new
     end
 
     # Prepare ruby-style params for trello request
@@ -120,16 +136,13 @@ module Tacokit
         if user_authenticated?
           http.request :oauth, user_credentials
         else app_authenticated?
-          http.params.merge! app_credentials
+          http.params.update app_credentials
         end
 
-        http.request :serialize
         http.request :json
         http.request :multipart
         http.request :url_encoded
 
-        http.response :materialize, client: self
-        http.response :deserialize
         http.response :json, content_type: /\bjson$/
         http.response :boom
         http.response :logger if ENV['DEBUG']
@@ -137,23 +150,6 @@ module Tacokit
         http.adapter Faraday.default_adapter
       end
     end
-
-    # Used for simple response middleware.
-    class Debug < Faraday::Response::Middleware
-      require 'pry'
-
-      def on_complete(env)
-        binding.pry
-        env
-      end
-
-      def parse(body)
-        binding.pry
-        body
-      end
-    end
-
-    Faraday::Response.register_middleware :debug => lambda { Debug }
 
   end
 end

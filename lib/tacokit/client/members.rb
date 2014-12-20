@@ -7,6 +7,7 @@ module Tacokit
       def member(username = 'me', options = nil)
         get "members/#{username}", options
       end
+
       # PUT /1/members/[idMember or username]
       # PUT /1/members/[idMember or username]/avatarSource
       # PUT /1/members/[idMember or username]/fullName

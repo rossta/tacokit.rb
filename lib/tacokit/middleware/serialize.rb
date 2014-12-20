@@ -20,7 +20,7 @@ module Tacokit
 
       def camelize_key(key)
         k = key.to_s
-        k = k.gsub(%r{(.*)_id(s)?$}, "id_\\1\\2")
+        k = k.gsub(%r{([a-zA-Z]+?)_id(s\b|\b)?$}, "id_\\1\\2")
         camelize(k, :lower)
       end
 

@@ -16,11 +16,7 @@ Add this line to your application's Gemfile:
 gem 'tacokit'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+... or install it yourself as:
 
     $ gem install tacokit
 

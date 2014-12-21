@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in Tacokit.gemspec
 gemspec
 
-gem 'dotenv'
-
 group :development do
+  gem 'dotenv'
+
   gem 'awesome_print', :require => 'ap'
   gem 'guard-rspec'
   gem 'launchy'

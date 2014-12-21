@@ -93,8 +93,8 @@ module Tacokit
         end
       elsif suffix.nil? && SPECIAL_METHODS.include?(attr_name)
         instance_variable_get "@_#{attr_name}"
-      elsif attr_name && !@_fields.include?(attr_name.to_sym)
-        nil
+      # elsif attr_name && !@_fields.include?(attr_name.to_sym)
+      #   nil
       else
         super
       end
@@ -103,6 +103,8 @@ module Tacokit
     def inspect
       to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect
     end
+
+    alias to_s inspect
 
     def to_attrs
       hash = self.attrs.clone
@@ -118,3 +120,6 @@ module Tacokit
 
   end
 end
+
+require 'tacokit/member'
+

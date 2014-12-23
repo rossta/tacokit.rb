@@ -25,11 +25,53 @@ module Tacokit
       # GET /1/cards/[card id or shortlink]/membersVoted
       # GET /1/cards/[card id or shortlink]/stickers
       # GET /1/cards/[card id or shortlink]/stickers/[idSticker]
-      def card_resource(card_id, resource, options = nil)
+      def card_resource(card_id, resource, options = {})
         get "cards/#{card_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/cards/[card id or shortlink]
+      def update_card(card_id, options = {})
+        put "cards/#{card_id}", options
+      end
+
+      # POST /1/cards
+      def create_card(list_id, name = nil, options = {})
+        post "cards", options.merge(name: name, 'idList' => list_id)
+      end
+
+      # DELETE /1/cards/[card id or shortlink]
+      def delete_card(card_id)
+        delete "cards/#{card_id}"
+      end
+
+      def create_card_resource(card_id, resource, options = {})
+        post "cards/#{card_id}/#{resource}", options
+      end
+
+      # POST /1/cards/[card id or shortlink]/actions/comments
+      # POST /1/cards/[card id or shortlink]/attachments
+      def create_card_attachment(card_id, url, mime_type = nil, options = {})
+        uri = Addressable::URI.parse(url)
+
+        if uri.scheme =~ %r{https?}
+          options.update url: uri.to_s, mime_type: mime_type
+        else
+          file = Faraday::UploadIO.new(uri.to_s, mime_type)
+          options.update file: file, mime_type: file.content_type
+        end
+
+        create_card_resource card_id, 'attachments', options
+      end
+
+      # POST /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem
+      # POST /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem/[idCheckItem]/convertToCard
+      # POST /1/cards/[card id or shortlink]/checklists
+      # POST /1/cards/[card id or shortlink]/idMembers
+      # POST /1/cards/[card id or shortlink]/labels
+      # POST /1/cards/[card id or shortlink]/markAssociatedNotificationsRead
+      # POST /1/cards/[card id or shortlink]/membersVoted
+      # POST /1/cards/[card id or shortlink]/stickers
+
       # PUT /1/cards/[card id or shortlink]/actions/[idAction]/comments
       # PUT /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem/[idCheckItem]/name
       # PUT /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem/[idCheckItem]/pos
@@ -47,26 +89,7 @@ module Tacokit
       # PUT /1/cards/[card id or shortlink]/pos
       # PUT /1/cards/[card id or shortlink]/stickers/[idSticker]
       # PUT /1/cards/[card id or shortlink]/subscribed
-      def update_card(card_id, options = {})
-        put "cards/#{card_id}", options
-      end
 
-      # POST /1/cards
-      # POST /1/cards/[card id or shortlink]/actions/comments
-      # POST /1/cards/[card id or shortlink]/attachments
-      # POST /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem
-      # POST /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem/[idCheckItem]/convertToCard
-      # POST /1/cards/[card id or shortlink]/checklists
-      # POST /1/cards/[card id or shortlink]/idMembers
-      # POST /1/cards/[card id or shortlink]/labels
-      # POST /1/cards/[card id or shortlink]/markAssociatedNotificationsRead
-      # POST /1/cards/[card id or shortlink]/membersVoted
-      # POST /1/cards/[card id or shortlink]/stickers
-      def create_card(list_id, name = nil, options = {})
-        post "cards", options.merge(name: name, 'idList' => list_id)
-      end
-
-      # DELETE /1/cards/[card id or shortlink]
       # DELETE /1/cards/[card id or shortlink]/actions/[idAction]/comments
       # DELETE /1/cards/[card id or shortlink]/attachments/[idAttachment]
       # DELETE /1/cards/[card id or shortlink]/checklist/[idChecklist]/checkItem/[idCheckItem]
@@ -75,10 +98,6 @@ module Tacokit
       # DELETE /1/cards/[card id or shortlink]/labels/[color]
       # DELETE /1/cards/[card id or shortlink]/membersVoted/[idMember]
       # DELETE /1/cards/[card id or shortlink]/stickers/[idSticker]
-      def delete_card(card_id)
-        delete "cards/#{card_id}"
-      end
-
     end
   end
 end

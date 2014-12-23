@@ -1,4 +1,4 @@
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "bundle exec rspec --format progress" do
   require "ostruct"
 
   rspec = OpenStruct.new

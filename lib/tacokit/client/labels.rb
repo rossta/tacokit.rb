@@ -7,18 +7,20 @@ module Tacokit
         get "labels/#{label_id}", options
       end
 
-      # GET /1/labels/[idLabel]/board
-      # GET /1/labels/[idLabel]/board/[field]
+      # GET /1/labels/[idLabel]/[resource]
+      # board
+      # board/[field]
       def label_resource(label_id, resource, options = nil)
         get "labels/#{label_id}/#{resource}", options
       end
 
       # PUT /1/labels/[idLabel]
-      # PUT /1/labels/[idLabel]/color
-      # PUT /1/labels/[idLabel]/name
       def update_label(label_id, options = {})
         put "labels/#{label_id}", options
       end
+
+      # PUT /1/labels/[idLabel]/color
+      # PUT /1/labels/[idLabel]/name
 
       # POST /1/labels
       def create_label(board_id, name, color)

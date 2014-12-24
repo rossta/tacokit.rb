@@ -104,10 +104,8 @@ describe Tacokit::Client::Boards do
   end
 
   describe "#create_board_resource", :vcr do
-
     it "creates a board resource" do
       @label = label = app_client.create_board_resource test_board_id, 'labels', name: "Autolabel", color: 'blue'
-      binding.pry
 
       expect(label.name).to eq "Autolabel"
       expect(label.color).to eq "blue"

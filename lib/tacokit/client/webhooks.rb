@@ -13,14 +13,15 @@ module Tacokit
       end
 
       # PUT /1/webhooks/[idWebhook]
-      # PUT /1/webhooks/
-      # PUT /1/webhooks/[idWebhook]/active
-      # PUT /1/webhooks/[idWebhook]/callbackURL
-      # PUT /1/webhooks/[idWebhook]/description
-      # PUT /1/webhooks/[idWebhook]/idModel
       def update_webhook(webhook_id, options = {})
         put "webhooks/#{webhook_id}", options
       end
+
+      # PUT /1/webhooks/[idWebhook]/[field]
+      # active
+      # callbackURL
+      # description
+      # idModel
 
       # POST /1/webhooks
       def create_webhook(token, model_id, callback_url, options = {})

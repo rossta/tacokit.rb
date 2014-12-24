@@ -3,83 +3,84 @@ module Tacokit
     module Members
 
       # GET /1/members/[idMember or username]
-      #
       def member(username = 'me', options = nil)
         get "members/#{username}", options
       end
 
-      # PUT /1/members/[idMember or username]
-      # PUT /1/members/[idMember or username]/avatarSource
-      # PUT /1/members/[idMember or username]/fullName
-      # PUT /1/members/[idMember or username]/initials
-      # PUT /1/members/[idMember or username]/username
-      # POST /1/members/[idMember or username]/avatar
-
       # GET /1/members/[idMember or username]/[field]
-      #
       def member_field(username, field, options = nil)
         get "members/#{username}/#{to_path(field)}", options
       end
 
-      # GET /1/members/[idMember or username]/actions
-      # GET /1/members/[idMember or username]/boardBackgrounds
-      # GET /1/members/[idMember or username]/boardBackgrounds/[idBoardBackground]
-      # GET /1/members/[idMember or username]/boardStars
-      # GET /1/members/[idMember or username]/boardStars/[idBoardStar]
-      # GET /1/members/[idMember or username]/boards/[filter]
-      # GET /1/members/[idMember or username]/boardsInvited
-      # GET /1/members/[idMember or username]/boardsInvited/[field]
-      # GET /1/members/[idMember or username]/cards
-      # GET /1/members/[idMember or username]/cards/[filter]
-      # GET /1/members/[idMember or username]/customBoardBackgrounds
-      # GET /1/members/[idMember or username]/customBoardBackgrounds/[idBoardBackground]
-      # GET /1/members/[idMember or username]/customEmoji
-      # GET /1/members/[idMember or username]/customEmoji/[idCustomEmoji]
-      # GET /1/members/[idMember or username]/customStickers
-      # GET /1/members/[idMember or username]/customStickers/[idCustomSticker]
-      # GET /1/members/[idMember or username]/deltas
-      # GET /1/members/[idMember or username]/notifications
-      # GET /1/members/[idMember or username]/notifications/[filter]
-      # GET /1/members/[idMember or username]/organizations
-      # GET /1/members/[idMember or username]/organizations/[filter]
-      # GET /1/members/[idMember or username]/organizationsInvited
-      # GET /1/members/[idMember or username]/organizationsInvited/[field]
-      # GET /1/members/[idMember or username]/savedSearches
-      # GET /1/members/[idMember or username]/savedSearches/[idSavedSearch]
-      # GET /1/members/[idMember or username]/tokens
-      #
+      # GET /1/members/[idMember or username]/[resource]
+      # actions
+      # boardBackgrounds
+      # boardBackgrounds/[idBoardBackground]
+      # boardStars
+      # boardStars/[idBoardStar]
+      # boards/[filter]
+      # boardsInvited
+      # boardsInvited/[field]
+      # cards
+      # cards/[filter]
+      # customBoardBackgrounds
+      # customBoardBackgrounds/[idBoardBackground]
+      # customEmoji
+      # customEmoji/[idCustomEmoji]
+      # customStickers
+      # customStickers/[idCustomSticker]
+      # deltas
+      # notifications
+      # notifications/[filter]
+      # organizations
+      # organizations/[filter]
+      # organizationsInvited
+      # organizationsInvited/[field]
+      # savedSearches
+      # savedSearches/[idSavedSearch]
+      # tokens
       def member_resource(username, resource, options = nil)
         get "members/#{username}/#{to_path(resource)}", options
       end
 
-      # POST /1/members/[idMember or username]/boardBackgrounds
-      # POST /1/members/[idMember or username]/boardStars
-      # POST /1/members/[idMember or username]/customBoardBackgrounds
-      # POST /1/members/[idMember or username]/customEmoji
-      # POST /1/members/[idMember or username]/customStickers
-      # POST /1/members/[idMember or username]/oneTimeMessagesDismissed
-      # POST /1/members/[idMember or username]/savedSearches
+      # POST /1/members/[idMember or username]/[resource]
+      # avatar
+      # boardBackgrounds
+      # boardStars
+      # customBoardBackgrounds
+      # customEmoji
+      # customStickers
+      # oneTimeMessagesDismissed
+      # savedSearches
 
-      # PUT /1/members/[idMember or username]/boardBackgrounds/[idBoardBackground]
-      # PUT /1/members/[idMember or username]/boardStars/[idBoardStar]
-      # PUT /1/members/[idMember or username]/boardStars/[idBoardStar]/idBoard
-      # PUT /1/members/[idMember or username]/boardStars/[idBoardStar]/pos
-      # PUT /1/members/[idMember or username]/customBoardBackgrounds/[idBoardBackground]
-      # PUT /1/members/[idMember or username]/prefs/colorBlind
-      # PUT /1/members/[idMember or username]/prefs/minutesBetweenSummaries
-      # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]
-      # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/name
-      # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/pos
-      # PUT /1/members/[idMember or username]/savedSearches/[idSavedSearch]/query
+      # PUT /1/members/[idMember or username]
       def update_member(username, options = {})
         put "members/#{username}", options
       end
 
-      # DELETE /1/members/[idMember or username]/boardBackgrounds/[idBoardBackground]
-      # DELETE /1/members/[idMember or username]/boardStars/[idBoardStar]
-      # DELETE /1/members/[idMember or username]/customBoardBackgrounds/[idBoardBackground]
-      # DELETE /1/members/[idMember or username]/customStickers/[idCustomSticker]
-      # DELETE /1/members/[idMember or username]/savedSearches/[idSavedSearch]
+      # PUT /1/members/[idMember or username]/[field]
+      # avatarSource
+      # fullName
+      # initials
+      # username
+      # boardBackgrounds/[idBoardBackground]
+      # boardStars/[idBoardStar]
+      # boardStars/[idBoardStar]/idBoard
+      # boardStars/[idBoardStar]/pos
+      # customBoardBackgrounds/[idBoardBackground]
+      # prefs/colorBlind
+      # prefs/minutesBetweenSummaries
+      # savedSearches/[idSavedSearch]
+      # savedSearches/[idSavedSearch]/name
+      # savedSearches/[idSavedSearch]/pos
+      # savedSearches/[idSavedSearch]/query
+
+      # DELETE /1/members/[idMember or username]/[resource]/[resource_id]
+      # boardBackgrounds/[idBoardBackground]
+      # boardStars/[idBoardStar]
+      # customBoardBackgrounds/[idBoardBackground]
+      # customStickers/[idCustomSticker]
+      # savedSearches/[idSavedSearch]
     end
   end
 end

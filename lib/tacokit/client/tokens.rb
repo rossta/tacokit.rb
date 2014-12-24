@@ -12,22 +12,26 @@ module Tacokit
         get "tokens/#{token}/#{to_path(field)}", options
       end
 
-      # GET /1/tokens/[token]/member
-      # GET /1/tokens/[token]/webhooks
-      # GET /1/tokens/[token]/member/[field]
-      # GET /1/tokens/[token]/webhooks/[idWebhook]
+      # GET /1/tokens/[token]/[resource]
+      # member
+      # webhooks
+      # member/[field]
+      # webhooks/[idWebhook]
       def token_resource(token, resource, options = nil)
         get "tokens/#{token}/#{to_path(resource)}", options
       end
 
       # POST /1/tokens/[token]/webhooks
+
       # PUT /1/tokens/[token]/webhooks
 
       # DELETE /1/tokens/[token]
-      # DELETE /1/tokens/[token]/webhooks/[idWebhook]
       def delete_token(token)
         delete "tokens/#{token}"
       end
+
+      # DELETE /1/tokens/[token]/webhooks/[idWebhook]
+
     end
   end
 end

@@ -12,26 +12,28 @@ module Tacokit
         get "checklists/#{checklist_id}/#{to_path(field)}"
       end
 
-      # GET /1/checklists/[idChecklist]/board
-      # GET /1/checklists/[idChecklist]/board/[field]
-      # GET /1/checklists/[idChecklist]/checklists
-      # GET /1/checklists/[idChecklist]/checklists/[filter]
-      # GET /1/checklists/[idChecklist]/checkItems
-      # GET /1/checklists/[idChecklist]/checkItems/[idCheckItem]
+      # GET /1/checklists/[idChecklist]/[resource]
+      # board
+      # board/[field]
+      # checklists
+      # checklists/[filter]
+      # checkItems
+      # checkItems/[idCheckItem]
       def checklist_resource(checklist_id, resource, options = nil)
         get "checklists/#{checklist_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/checklists/[idChecklist]
-      # PUT /1/checklists/[idChecklist]/idCard
-      # PUT /1/checklists/[idChecklist]/name
-      # PUT /1/checklists/[idChecklist]/pos
       def update_checklist(checklist_id, options = {})
         put "checklists/#{checklist_id}", options
       end
 
+      # PUT /1/checklists/[idChecklist]/[field]
+      # idCard
+      # name
+      # pos
+
       # POST /1/checklists
-      # POST /1/checklists/[idChecklist]/checkItems
       def create_checklist(card_id, name, options = {})
         options.merge! \
           'idCard' => card_id,
@@ -39,11 +41,15 @@ module Tacokit
         post "checklists", options
       end
 
+      # POST /1/checklists/[idChecklist]/checkItems
+
       # DELETE /1/checklists/[idChecklist]
-      # DELETE /1/checklists/[idChecklist]/checkItems/[idCheckItem]
       def delete_checklist(checklist_id)
         delete "checklists/#{checklist_id}"
       end
+
+      # DELETE /1/checklists/[idChecklist]/checkItems/[idCheckItem]
+
     end
   end
 end

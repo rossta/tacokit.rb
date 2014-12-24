@@ -12,28 +12,30 @@ module Tacokit
         get "actions/#{action_id}/#{to_path(field)}"
       end
 
-      # GET /1/actions/[idAction]/board
-      # GET /1/actions/[idAction]/board/[field]
-      # GET /1/actions/[idAction]/card
-      # GET /1/actions/[idAction]/card/[field]
-      # GET /1/actions/[idAction]/entities
-      # GET /1/actions/[idAction]/list
-      # GET /1/actions/[idAction]/list/[field]
-      # GET /1/actions/[idAction]/member
-      # GET /1/actions/[idAction]/member/[field]
-      # GET /1/actions/[idAction]/memberCreator
-      # GET /1/actions/[idAction]/memberCreator/[field]
-      # GET /1/actions/[idAction]/organization
-      # GET /1/actions/[idAction]/organization/[field]
+      # GET /1/actions/[idAction]/[resource]
+      # board
+      # board/[field]
+      # card
+      # card/[field]
+      # entities
+      # list
+      # list/[field]
+      # member
+      # member/[field]
+      # memberCreator
+      # memberCreator/[field]
+      # organization
+      # organization/[field]
       def action_resource(action_id, resource, options = nil)
         get "actions/#{action_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/actions/[idAction]
-      # PUT /1/actions/[idAction]/text
       def update_action(action_id, options = {})
         put "actions/#{action_id}", options
       end
+
+      # PUT /1/actions/[idAction]/text
 
       # DELETE /1/actions/[idAction]
       def delete_action(action_id)

@@ -120,8 +120,8 @@ module Tacokit
       end
     end
 
-    def to_path(path)
-      camelize(path.to_s, :lower)
+    def to_path(*paths)
+      paths.map { |path| camelize(path.to_s, :lower) }.join('/')
     end
 
     def to_s

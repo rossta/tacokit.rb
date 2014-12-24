@@ -86,7 +86,7 @@ module Tacokit
       # POST cards/[card id or shortlink]/actions/comments
       def create_card_comment(card_id, text, options = {})
         options.update text: text
-        create_card_resource card_id, "actions/comments", options
+        create_card_resource card_id, "actions", "comments", options
       end
 
       # POST cards/[card id or shortlink]/attachments
@@ -112,8 +112,9 @@ module Tacokit
       # markAssociatedNotificationsRead
       # membersVoted
       # stickers
-      def create_card_resource(card_id, resource, options = {})
-        post "cards/#{card_id}/#{resource}", options
+      def create_card_resource(card_id, *args)
+        paths, options = extract_options(*args)
+        post "cards/#{card_id}/#{to_path(*paths)}", options
       end
 
       # DELETE cards/[card id or shortlink]
@@ -130,8 +131,8 @@ module Tacokit
       # labels/[color]
       # membersVoted/[idMember]
       # stickers/[idSticker]
-      def delete_card_resource(card_id, resource)
-        delete "cards/#{card_id}/#{resource}"
+      def delete_card_resource(card_id, *resources)
+        delete "cards/#{card_id}/#{to_path(*resources)}"
       end
     end
   end

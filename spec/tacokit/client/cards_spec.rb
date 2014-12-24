@@ -173,7 +173,7 @@ describe Tacokit::Client::Cards do
     end
 
     it "deletes resource" do
-      app_client.delete_card_resource @card.id, "actions/#{@comment.id}/comments"
+      app_client.delete_card_resource @card.id, "actions", @comment.id, "comments"
 
       actions = app_client.card_resource(@card.id, "actions")
 

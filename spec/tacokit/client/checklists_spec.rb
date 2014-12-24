@@ -75,7 +75,7 @@ describe Tacokit::Client::Checklists do
     it "deletes a checklist" do
       app_client.delete_checklist(@checklist.id)
 
-      expect { app_client.checklist(@checklist.id) }.to raise_error(Faraday::ResourceNotFound)
+      expect { app_client.checklist(@checklist.id) }.to raise_error(Tacokit::Error::ResourceNotFound)
       assert_requested :delete, trello_url_template("checklists/#{@checklist.id}{?key,token}")
     end
   end

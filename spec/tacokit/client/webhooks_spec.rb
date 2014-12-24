@@ -59,7 +59,7 @@ describe Tacokit::Client::Webhooks do
     it "deletes a webhook" do
       app_client.delete_webhook(@webhook.id)
 
-      expect { app_client.webhook(@webhook.id) }.to raise_error(Faraday::ResourceNotFound)
+      expect { app_client.webhook(@webhook.id) }.to raise_error(Tacokit::Error::ResourceNotFound)
       assert_requested :delete, trello_url_template("webhooks/#{@webhook.id}{?key,token}")
     end
   end

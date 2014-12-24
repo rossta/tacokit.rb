@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'launchy'
 
 describe Tacokit::Authorization do
   before do

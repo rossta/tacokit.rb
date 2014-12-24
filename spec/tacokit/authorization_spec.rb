@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'launchy'
 
 describe Tacokit::Authorization do
   before do
@@ -8,18 +7,15 @@ describe Tacokit::Authorization do
 
   describe "#generate_app_key" do
     it "launches app key endpoint" do
-      expect(Launchy).to receive(:open).with("https://trello.com/1/appKey/generate")
-
-      Tacokit.client.generate_app_key
+      expect(Tacokit.client.generate_app_key).to eq("https://trello.com/1/appKey/generate")
     end
   end
 
   describe "#authorize" do
     it "launches authorize endpoint" do
       authorize_url = "https://trello.com/1/authorize?key=#{test_trello_app_key}&name=Tacokit&response_type=token"
-      expect(Launchy).to receive(:open).with(authorize_url)
 
-      Tacokit.client.authorize
+      expect(Tacokit.client.authorize).to eq(authorize_url)
     end
   end
 

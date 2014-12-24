@@ -1,0 +1,18 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+  - ruby-head
+
+bundler_args: --without development --retry=3 --jobs=3
+
+env:
+  # global:
+  #   - TRELLO_APP_KEY='tacokit-app-key'
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+  fast_finish: true

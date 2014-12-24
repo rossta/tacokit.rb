@@ -68,23 +68,23 @@ def test_trello_username
 end
 
 def test_trello_app_key
-  ENV.fetch 'TRELLO_TEST_APP_KEY' #, 'api-padawan'
+  ENV.fetch 'TRELLO_TEST_APP_KEY', 'tacokit-app-key'
 end
 
 def test_trello_app_secret
-  ENV.fetch 'TRELLO_TEST_APP_SECRET' #, 'wow_such_password'
+  ENV.fetch 'TRELLO_TEST_APP_SECRET', 'tacokit-app-secret'
 end
 
 def test_trello_app_token
-  ENV.fetch 'TRELLO_TEST_APP_TOKEN'
+  ENV.fetch 'TRELLO_TEST_APP_TOKEN', 'tacokit-app-token'
 end
 
 def test_trello_oauth_token
-  ENV.fetch 'TRELLO_TEST_OAUTH_TOKEN'
+  ENV.fetch 'TRELLO_TEST_OAUTH_TOKEN', 'tacokit-oauth-token'
 end
 
 def test_trello_oauth_secret
-  ENV.fetch 'TRELLO_TEST_OAUTH_SECRET'
+  ENV.fetch 'TRELLO_TEST_OAUTH_SECRET', 'tacokit-oauth-secret'
 end
 
 def test_org_name
@@ -148,4 +148,10 @@ RSpec::Matchers.define :be_present do |expected|
   match do |actual|
     present?(actual)
   end
+end
+
+module Launchy
+  def open(*args)
+  end
+  module_function :open
 end

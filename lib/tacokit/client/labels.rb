@@ -11,7 +11,7 @@ module Tacokit
       # board
       # board/[field]
       def label_resource(label_id, resource, options = nil)
-        get "labels/#{label_id}/#{resource}", options
+        get "labels/#{label_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/labels/[idLabel]

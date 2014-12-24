@@ -6,6 +6,11 @@ module Tacokit
       _deep_transform_keys_in_object(hash, &block)
     end
 
+    def extract_options(*args)
+      opts = args.last.is_a?(Hash) ? args.pop : {}
+      [args, opts]
+    end
+
     def underscore(string)
       string.gsub(/::/, '/').
         gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').

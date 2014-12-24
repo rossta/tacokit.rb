@@ -10,7 +10,6 @@ group :development do
   gem 'pry-byebug', :platforms => :ruby_21
 
   gem 'oauth'
-  gem 'simple_oauth'
   gem 'sinatra'
 end
 

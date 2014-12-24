@@ -1,5 +1,5 @@
 require 'tacokit/middleware/boom'
-require 'tacokit/middleware/debug'
+# require 'tacokit/middleware/debug'
 
 module Tacokit
   module Middleware
@@ -9,8 +9,7 @@ module Tacokit
     #
 
     Faraday::Response.register_middleware \
-      :boom => lambda { Tacokit::Middleware::Boom },
-      :debug => lambda { Tacokit::Middleware::Debug }
+      :boom => lambda { Tacokit::Middleware::Boom }
 
   end
 end

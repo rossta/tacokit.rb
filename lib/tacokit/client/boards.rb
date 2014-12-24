@@ -12,80 +12,89 @@ module Tacokit
         get "boards/#{board_id}/#{to_path(field)}", options
       end
 
-      # GET /1/boards/[board_id]/actions
-      # GET /1/boards/[board_id]/boardStars
-      # GET /1/boards/[board_id]/cards
-      # GET /1/boards/[board_id]/cards/[filter]
-      # GET /1/boards/[board_id]/cards/[idCard]
-      # GET /1/boards/[board_id]/checklists
-      # GET /1/boards/[board_id]/deltas
-      # GET /1/boards/[board_id]/labels
-      # GET /1/boards/[board_id]/labels/[idLabel]
-      # GET /1/boards/[board_id]/lists
-      # GET /1/boards/[board_id]/lists/[filter]
-      # GET /1/boards/[board_id]/members
-      # GET /1/boards/[board_id]/members/[filter]
-      # GET /1/boards/[board_id]/members/[idMember]/cards
-      # GET /1/boards/[board_id]/membersInvited
-      # GET /1/boards/[board_id]/membersInvited/[field]
-      # GET /1/boards/[board_id]/memberships
-      # GET /1/boards/[board_id]/memberships/[idMembership]
-      # GET /1/boards/[board_id]/myPrefs
-      # GET /1/boards/[board_id]/organization
-      # GET /1/boards/[board_id]/organization/[field]
+      # GET /1/boards/[board_id]/[resource]
+      # actions
+      # boardStars
+      # cards
+      # cards/[filter]
+      # cards/[idCard]
+      # checklists
+      # deltas
+      # labels
+      # labels/[idLabel]
+      # lists
+      # lists/[filter]
+      # members
+      # members/[filter]
+      # members/[idMember]/cards
+      # membersInvited
+      # membersInvited/[field]
+      # memberships
+      # memberships/[idMembership]
+      # myPrefs
+      # organization
+      # organization/[field]
       def board_resource(board_id, resource, options = nil)
         get "boards/#{board_id}/#{to_path(resource)}", options
       end
 
       # PUT /1/boards/[board_id]
-      # PUT /1/boards/[board_id]/closed
-      # PUT /1/boards/[board_id]/desc
-      # PUT /1/boards/[board_id]/idOrganization
-      # PUT /1/boards/[board_id]/labelNames/blue
-      # PUT /1/boards/[board_id]/labelNames/green
-      # PUT /1/boards/[board_id]/labelNames/orange
-      # PUT /1/boards/[board_id]/labelNames/purple
-      # PUT /1/boards/[board_id]/labelNames/red
-      # PUT /1/boards/[board_id]/labelNames/yellow
-      # PUT /1/boards/[board_id]/members
-      # PUT /1/boards/[board_id]/members/[idMember]
-      # PUT /1/boards/[board_id]/memberships/[idMembership]
-      # PUT /1/boards/[board_id]/myPrefs/emailPosition
-      # PUT /1/boards/[board_id]/myPrefs/idEmailList
-      # PUT /1/boards/[board_id]/myPrefs/showListGuide
-      # PUT /1/boards/[board_id]/myPrefs/showSidebar
-      # PUT /1/boards/[board_id]/myPrefs/showSidebarActivity
-      # PUT /1/boards/[board_id]/myPrefs/showSidebarBoardActions
-      # PUT /1/boards/[board_id]/myPrefs/showSidebarMembers
-      # PUT /1/boards/[board_id]/name
-      # PUT /1/boards/[board_id]/prefs/background
-      # PUT /1/boards/[board_id]/prefs/calendarFeedEnabled
-      # PUT /1/boards/[board_id]/prefs/cardAging
-      # PUT /1/boards/[board_id]/prefs/cardCovers
-      # PUT /1/boards/[board_id]/prefs/comments
-      # PUT /1/boards/[board_id]/prefs/invitations
-      # PUT /1/boards/[board_id]/prefs/permissionLevel
-      # PUT /1/boards/[board_id]/prefs/selfJoin
-      # PUT /1/boards/[board_id]/prefs/voting
-      # PUT /1/boards/[board_id]/subscribed
       def update_board(board_id, options = {})
         put "boards/#{board_id}", options
       end
 
+      # PUT /1/boards/[board_id]/[field]
+      # closed
+      # desc
+      # idOrganization
+      # labelNames/blue
+      # labelNames/green
+      # labelNames/orange
+      # labelNames/purple
+      # labelNames/red
+      # labelNames/yellow
+      # members
+      # members/[idMember]
+      # memberships/[idMembership]
+      # myPrefs/emailPosition
+      # myPrefs/idEmailList
+      # myPrefs/showListGuide
+      # myPrefs/showSidebar
+      # myPrefs/showSidebarActivity
+      # myPrefs/showSidebarBoardActions
+      # myPrefs/showSidebarMembers
+      # name
+      # prefs/background
+      # prefs/calendarFeedEnabled
+      # prefs/cardAging
+      # prefs/cardCovers
+      # prefs/comments
+      # prefs/invitations
+      # prefs/permissionLevel
+      # prefs/selfJoin
+      # prefs/voting
+      # subscribed
+
       # POST /1/boards
-      # POST /1/boards/[board_id]/calendarKey/generate
-      # POST /1/boards/[board_id]/checklists
-      # POST /1/boards/[board_id]/emailKey/generate
-      # POST /1/boards/[board_id]/labels
-      # POST /1/boards/[board_id]/lists
-      # POST /1/boards/[board_id]/markAsViewed
-      # POST /1/boards/[board_id]/powerUps
       def create_board(name, options = {})
         post "boards", options.merge(name: name)
       end
 
-      # DELETE /1/boards/[board_id]/members/[idMember]
-      # DELETE /1/boards/[board_id]/powerUps/[powerUp]
+      # POST /1/boards/[board_id]/[resource]
+      # calendarKey/generate
+      # checklists
+      # emailKey/generate
+      # labels
+      # lists
+      # markAsViewed
+      # powerUps
+      def create_board_resource(board_id, resource, options = {})
+        post "boards/#{board_id}/#{to_path(resource)}", options
+      end
+
+      # DELETE /1/boards/[board_id]/[resource]/[resource_id]
+      # members/[idMember]
+      # powerUps/[powerUp]
       def delete_board(board_id)
         delete "boards/#{board_id}"
       end

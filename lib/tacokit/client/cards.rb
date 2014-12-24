@@ -49,6 +49,11 @@ module Tacokit
       end
 
       # POST /1/cards/[card id or shortlink]/actions/comments
+      def create_card_comment(card_id, text, options = {})
+        options.update text: text
+        create_card_resource card_id, "actions/comments", options
+      end
+
       # POST /1/cards/[card id or shortlink]/attachments
       def create_card_attachment(card_id, url, mime_type = nil, options = {})
         uri = Addressable::URI.parse(url)

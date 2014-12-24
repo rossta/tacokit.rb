@@ -78,7 +78,7 @@ describe Tacokit::Client::Actions do
       app_client.delete_action(@action.id)
 
       assert_requested :delete, trello_url_template("actions/#{@action.id}{?key,token}")
-      expect { app_client.action(@action.id) }.to raise_error(Faraday::ResourceNotFound)
+      expect { app_client.action(@action.id) }.to raise_error(Tacokit::Error::ResourceNotFound)
     end
   end
 end

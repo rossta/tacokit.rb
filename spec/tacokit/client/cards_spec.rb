@@ -110,7 +110,7 @@ describe Tacokit::Client::Cards do
       app_client.delete_card(@card.id)
 
       assert_requested :delete, trello_url_template("cards/#{@card.id}{?key,token}")
-      expect { app_client.card(@card.id) }.to raise_error(Faraday::ResourceNotFound)
+      expect { app_client.card(@card.id) }.to raise_error(Tacokit::Error::ResourceNotFound)
     end
   end
 

@@ -95,9 +95,6 @@ module Tacokit
       # DELETE /1/boards/[board_id]/[resource]/[resource_id]
       # members/[idMember]
       # powerUps/[powerUp]
-      def delete_board(board_id)
-        delete "boards/#{board_id}"
-      end
 
     end
   end

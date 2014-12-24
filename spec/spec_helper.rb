@@ -1,6 +1,12 @@
 require 'bundler/setup'
 Bundler.setup
 
+begin
+  require 'simplecov'
+  SimpleCov.start
+rescue LoadError
+  warn "Skipping simplecov"
+end
 require 'dotenv'
 Dotenv.load(File.expand_path("../../.env",  __FILE__))
 
@@ -25,6 +31,13 @@ RSpec.configure do |config|
       c.oauth_token  = nil
       c.oauth_secret = nil
     end
+  end
+
+  config.around(:each, :silence_warnings) do |example|
+    verbose = $VERBOSE
+    $VERBOSE = nil
+    example.run
+    $VERBOSE = verbose
   end
 end
 
@@ -148,10 +161,4 @@ RSpec::Matchers.define :be_present do |expected|
   match do |actual|
     present?(actual)
   end
-end
-
-module Launchy
-  def open(*args)
-  end
-  module_function :open
 end

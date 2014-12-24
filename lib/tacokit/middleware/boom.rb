@@ -5,19 +5,22 @@ module Tacokit
 
       def on_complete(env)
         case env[:status]
+        when 401
+          raise Tacokit::Error::Unauthorized.new(error_message(env))
         when 404
-          raise Faraday::Error::ResourceNotFound, response_values(env)
+          raise Tacokit::Error::ResourceNotFound.new(error_message(env))
         when 407
           # mimic the behavior that we get with proxy requests with HTTPS
-          raise Faraday::Error::ConnectionFailed, %{407 "Proxy Authentication Required "}
+          raise Tacokit::Error::ConnectionFailed, %{407 "Proxy Authentication Required "}
         when ClientErrorStatuses
-          raise Faraday::Error.new("server return #{env[:status]}: #{env.body}")
+          raise Tacokit::Error::ClientError.new(error_message(env))
         end
       end
 
-      def response_values(env)
-        {:status => env.status, :headers => env.response_headers, :body => env.body}
+      def error_message(env)
+        "Server returned #{env[:status]}: #{env.body}. Headers #{env.response_headers.inspect}"
       end
+
     end
   end
 end

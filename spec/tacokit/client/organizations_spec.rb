@@ -90,7 +90,7 @@ describe Tacokit::Client::Organizations do
       app_client.delete_organization(@organization.id)
 
       assert_requested :delete, trello_url_template("organizations/#{@organization.id}{?key,token}")
-      expect { app_client.organization(@organization.id) }.to raise_error(Faraday::ResourceNotFound)
+      expect { app_client.organization(@organization.id) }.to raise_error(Tacokit::Error::ResourceNotFound)
     end
   end
 end

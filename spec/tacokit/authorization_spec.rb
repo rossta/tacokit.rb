@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'launchy'
 
 describe Tacokit::Authorization do
   before do
@@ -7,15 +8,27 @@ describe Tacokit::Authorization do
 
   describe "#generate_app_key" do
     it "launches app key endpoint" do
-      expect(Tacokit.client.generate_app_key).to eq("https://trello.com/1/appKey/generate")
+      expect(Launchy).to receive(:open).with("https://trello.com/1/appKey/generate")
+
+      Tacokit.client.generate_app_key
+    end
+
+    it "doesn't require launchy", :silence_warnings do
+      allow(Launchy).to receive(:open).and_raise(LoadError)
+
+      # verbose = $VERBOSE
+      # $VERBOSE = nil
+      Tacokit.client.generate_app_key
+      # $VERBOSE = verbose
     end
   end
 
   describe "#authorize" do
     it "launches authorize endpoint" do
       authorize_url = "https://trello.com/1/authorize?key=#{test_trello_app_key}&name=Tacokit&response_type=token"
+      expect(Launchy).to receive(:open).with(authorize_url)
 
-      expect(Tacokit.client.authorize).to eq(authorize_url)
+      Tacokit.client.authorize
     end
   end
 

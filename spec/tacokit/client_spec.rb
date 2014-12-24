@@ -21,4 +21,8 @@ describe Tacokit::Client do
       assert_requested :get, trello_url_template('members/me/boards{?key,token}')
     end
   end
+
+  describe "#inspect" do
+    it { expect(Tacokit::Client.new({}).inspect).to match %r{Tacokit::Client} }
+  end
 end

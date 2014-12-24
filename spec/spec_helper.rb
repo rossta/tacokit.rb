@@ -149,3 +149,9 @@ RSpec::Matchers.define :be_present do |expected|
     present?(actual)
   end
 end
+
+module Launchy
+  def open(*args)
+  end
+  module_function :open
+end

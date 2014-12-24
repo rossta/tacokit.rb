@@ -5,7 +5,7 @@ gemspec
 group :development do
   gem 'awesome_print', :require => 'ap'
   gem 'guard-rspec'
-  gem 'launchy'
+  # gem 'launchy'
   gem 'pry'
   gem 'pry-byebug', :platforms => :ruby_21
 

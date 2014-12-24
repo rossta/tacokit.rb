@@ -30,8 +30,9 @@ module Tacokit
       require 'launchy'
       Launchy.open(url)
     rescue LoadError
-      warn "Visit #{app_key_url}"
+      warn "Visit #{url}"
       warn "Please install the launchy gem to open the url automatically."
+      return url
     end
 
     def web_url(path, params = {})

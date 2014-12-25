@@ -24,7 +24,7 @@ gem 'tacokit'
 
 ### Quick Start
 
-[Generate][appkey] your TRELLO_APP_KEY and TRELLO_APP_SECRET].
+[Generate][appkey] your TRELLO_APP_KEY and TRELLO_APP_SECRET.
 [appkey]: https://tacokit.herokuapp.com
 
 You can also access your app key and secret from the command line with

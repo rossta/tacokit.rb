@@ -73,7 +73,7 @@ VCR.configure do |c|
   }
 
   c.cassette_library_dir = 'spec/cassettes'
-  c.hook_into :webmock # or :fakeweb
+  c.hook_into :webmock
 end
 
 def test_trello_username

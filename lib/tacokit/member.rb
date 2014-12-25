@@ -11,13 +11,13 @@ module Tacokit
 
     def fetch_field(field)
       client.member_field(self.username, field).tap do |res|
-        self.update field => res
+        update field => res
       end
     end
 
     def fetch_relation(relation, options = {})
       client.member_resource(self.username, relation).tap do |res|
-        self.update relation => res
+        update relation => res
       end
     end
 

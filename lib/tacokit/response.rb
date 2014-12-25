@@ -13,7 +13,7 @@ module Tacokit
 
     def process_data(data)
       case data
-      when Hash then Resource.new(client, data)
+      when Hash then @client.respond_as.new(@client, data)
       when Array then data.map { |value| process_data(value) }
       else data
       end

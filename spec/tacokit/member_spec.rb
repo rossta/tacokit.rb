@@ -4,15 +4,15 @@ require 'ostruct'
 module Tacokit
   describe Member do
     let(:client) { OpenStruct.new }
-    let(:member) { Tacokit::Member.new(client, username: 'tacokit') }
+    let(:member) { Member.new(client, username: 'tacokit') }
 
     describe "#fetch" do
       it "calls member" do
-        member = Tacokit::Member.new(client, username: 'tacokit')
+        member = Member.new(client, username: 'tacokit')
 
         expect(client).to receive(:member).with(
           'tacokit', {}
-        ).and_return(
+        ).and_return(Member.new client,
           username: 'tacokit',
           bio: 'A world traveler'
         )
@@ -24,11 +24,11 @@ module Tacokit
       end
 
       it "accepts params" do
-        member = Tacokit::Member.new(client, username: 'tacokit')
+        member = Member.new(client, username: 'tacokit')
 
         expect(client).to receive(:member).with(
           'tacokit', boards: true
-        ).and_return(
+        ).and_return(Member.new client,
           username: 'tacokit',
           bio: 'A world traveler',
           boards: []

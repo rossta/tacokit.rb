@@ -99,15 +99,13 @@ module Tacokit
         end
       elsif suffix.nil? && SPECIAL_METHODS.include?(attr_name)
         instance_variable_get "@_#{attr_name}"
-      # elsif attr_name && !@_fields.include?(attr_name.to_sym)
-      #   nil
       else
         super
       end
     end
 
     def inspect
-      to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect
+      (to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect)
     end
 
     alias to_s inspect

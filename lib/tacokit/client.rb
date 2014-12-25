@@ -49,6 +49,8 @@ module Tacokit
     def_delegators :configuration, :app_authenticated?, :app_credentials
     def_delegators :transform, :serialize, :deserialize, :serialize_params
 
+    attr_accessor :respond_as
+
     def initialize(options = {})
       self.configuration.options = options
     end
@@ -92,8 +94,33 @@ module Tacokit
         req.body = serialize(data) if data
       end
 
-      Response.new(self, response).data
+      @last_response = last_response = Response.new(self, response)
+
+      last_response.data
     end
+
+    def as(response_class, &block)
+      prev_respond_as = self.respond_as
+      self.respond_as = response_class
+      block.call.tap do |res|
+        self.respond_as = prev_respond_as
+      end
+    end
+
+    def to_path(*paths)
+      paths.map { |path| camelize(path.to_s, :lower) }.join('/')
+    end
+
+    def to_s
+      "<Tacokit::Client:#{object_id}>"
+    end
+    alias_method :inspect, :to_s
+
+    def respond_as
+      @respond_as || Resource
+    end
+
+    private
 
     def transform
       @transform ||= Transform.new

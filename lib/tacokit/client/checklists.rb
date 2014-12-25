@@ -36,9 +36,7 @@ module Tacokit
 
       # POST /1/checklists
       def create_checklist(card_id, name, options = {})
-        options.update \
-          card_id: card_id,
-          name: name
+        options.update card_id: card_id, name: name
         post checklist_path, options
       end
 

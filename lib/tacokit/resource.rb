@@ -122,8 +122,14 @@ module Tacokit
       hash
     end
 
+    def update(attributes)
+      attributes.each do |key, value|
+        self.send("#{key}=", value)
+      end
+    end
+
   end
 end
 
+require 'tacokit/board'
 require 'tacokit/member'
-

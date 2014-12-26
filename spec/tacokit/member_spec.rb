@@ -4,15 +4,14 @@ require 'ostruct'
 module Tacokit
   describe Member do
     let(:client) { OpenStruct.new }
-    let(:member) { Member.new(client, username: 'tacokit') }
+    let(:resource) { Resource.new(client, username: 'tacokit') }
+    let(:member) { Member.new(resource) }
 
     describe "#fetch" do
       it "calls member" do
-        member = Member.new(client, username: 'tacokit')
-
         expect(client).to receive(:member).with(
           'tacokit', {}
-        ).and_return(Member.new client,
+        ).and_return(Resource.new client,
           username: 'tacokit',
           bio: 'A world traveler'
         )
@@ -24,11 +23,9 @@ module Tacokit
       end
 
       it "accepts params" do
-        member = Member.new(client, username: 'tacokit')
-
         expect(client).to receive(:member).with(
           'tacokit', boards: true
-        ).and_return(Member.new client,
+        ).and_return(Resource.new client,
           username: 'tacokit',
           bio: 'A world traveler',
           boards: []
@@ -102,8 +99,18 @@ module Tacokit
       end
     end
 
-    describe "relations" do
-
-    end
+    # describe "relations" do
+    #   describe "#boards" do
+    #     it "returns array of Board resources" do
+    #       require 'pry'; binding.pry
+    #       member.boards = [{id: "1234", name: "Board 1"}]
+    #
+    #       board = member.boards.first
+    #       expect(board).to be_a(Board)
+    #       expect(board.id).to eq "1234"
+    #       expect(board.name).to eq "Board 1"
+    #     end
+    #   end
+    # end
   end
 end

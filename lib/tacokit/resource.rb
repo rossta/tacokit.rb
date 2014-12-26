@@ -49,12 +49,6 @@ module Tacokit
       nil
     end
 
-    def update(attributes)
-      attributes.each do |key, value|
-        self.send("#{key}=", value)
-      end
-    end
-
     def self.attr_accessor(*attrs)
       attrs.each do |attribute|
         class_eval do
@@ -116,8 +110,14 @@ module Tacokit
       hash
     end
 
+    def update(attributes)
+      attributes.each do |key, value|
+        self.send("#{key}=", value)
+      end
+    end
+
   end
 end
 
+require 'tacokit/board'
 require 'tacokit/member'
-

@@ -1,16 +1,9 @@
 module Tacokit
   class Member
+    include Model
 
-    def initialize(resource)
-      @resource = resource
-    end
-
-    def method_missing(method, *args)
-      @resource.send(method, *args)
-    end
-
-    def client
-      @resource._client
+    def self.fetch(client, username, options = {})
+      new(client.member(username, options))
     end
 
     def fetch(options = {})
@@ -33,5 +26,8 @@ module Tacokit
       end
     end
 
+    def boards=(data)
+      super(data.map { |attrs| Board.new(process_value(attrs)) })
+    end
   end
 end

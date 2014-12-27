@@ -127,9 +127,9 @@ module Tacokit
         self.send("#{key}=", value)
       end
     end
-
   end
-end
 
+end
+require 'tacokit/model'
 require 'tacokit/board'
 require 'tacokit/member'

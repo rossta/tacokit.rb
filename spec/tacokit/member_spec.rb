@@ -7,6 +7,22 @@ module Tacokit
     let(:resource) { Resource.new(client, username: 'tacokit') }
     let(:member) { Member.new(resource) }
 
+    describe "self.fetch" do
+      it "returns a member resource" do
+        expect(client).to receive(:member).with(
+          'tacokit', {}
+        ).and_return(Resource.new client,
+          username: 'tacokit',
+          bio: 'A world traveler'
+        )
+
+        member = Member.fetch(client, 'tacokit')
+
+        expect(member.username).to eq 'tacokit'
+        expect(member.bio).to eq 'A world traveler'
+      end
+    end
+
     describe "#fetch" do
       it "calls member" do
         expect(client).to receive(:member).with(
@@ -82,9 +98,7 @@ module Tacokit
     describe "#fetch_field" do
       it "calls member_field" do
         expect(client).to receive(:member_field).with('tacokit', 'bio').and_return('A world traveler')
-
         expect(member.fetch_field('bio')).to eq 'A world traveler'
-
         expect(member.bio).to eq 'A world traveler'
       end
     end
@@ -92,25 +106,22 @@ module Tacokit
     describe "#fetch_relation" do
       it "calls member_resource" do
         expect(client).to receive(:member_resource).with('tacokit', :boards).and_return([])
-
         expect(member.fetch_relation(:boards)).to eq []
-
         expect(member.boards).to eq []
       end
     end
 
-    # describe "relations" do
-    #   describe "#boards" do
-    #     it "returns array of Board resources" do
-    #       require 'pry'; binding.pry
-    #       member.boards = [{id: "1234", name: "Board 1"}]
-    #
-    #       board = member.boards.first
-    #       expect(board).to be_a(Board)
-    #       expect(board.id).to eq "1234"
-    #       expect(board.name).to eq "Board 1"
-    #     end
-    #   end
-    # end
+    describe "relations" do
+      describe "#boards" do
+        it "returns array of Board resources" do
+          member.boards = [{id: "1234", name: "Board 1"}]
+
+          board = member.boards.first
+          expect(board).to be_a(Board)
+          expect(board.id).to eq "1234"
+          expect(board.name).to eq "Board 1"
+        end
+      end
+    end
   end
 end

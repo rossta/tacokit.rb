@@ -54,7 +54,7 @@ describe Tacokit::Client::Cards do
     it "returns card actions" do
       actions = app_client.card_resource(test_card_link, :actions)
 
-      expect(actions).to be_empty
+      expect(actions).to be_any
     end
 
     it "returns card board" do

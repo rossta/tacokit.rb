@@ -118,9 +118,7 @@ end
 def test_oauth_credentials
   {
     app_key: test_trello_app_key,
-    app_secret: test_trello_app_secret,
-    oauth_token: test_trello_oauth_token,
-    oauth_secret: test_trello_oauth_secret
+    oauth_token: test_trello_oauth_token
   }
 end
 

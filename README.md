@@ -97,19 +97,19 @@ flow. Tacokit clients can therefore be configured separately to make requests on
 behalf of different members:
 
 ```ruby
-client = Tacokit::Client.new app_key: "4ppk3y", oauth_token: 04utht0k3n
+client = Tacokit::Client.new app_key: "4ppk3y", oauth_token: "04utht0k3n"
 ```
 
 To experiment with OAuth tokens for development, visit the [Tacokit
-Sandbox](sandbox) and enter your Trello app key and app secret.
+Sandbox](https://tacokit.herokuapp.com) and enter your Trello app key and app secret.
 
-For more information on setting up Trello OAuth for your web application,
-check out the [Trello OAuth docs](oauth). You can also check out the Tacokit
-sandbox source.
+#### Resources
 
-[sandbox]: https://tacokit.herokuapp.com
-[source]: https://github.com/rossta/tacokit.rb/blob/heroku/app.rb
-[oauth]: https://trello.com/docs/gettingstarted/oauth.html
+For more information on setting up Trello OAuth for your web application
+
+* Using OmniAuth? Try adding [omniauth-trello](https://github.com/joshrowley/omniauth-trello)
+* To roll your own, see how the sandbox works: [Tacokit sandbox source](https://github.com/rossta/tacokit.rb/blob/heroku/app.rb)
+* Check out the [Trello OAuth docs](https://trello.com/docs/gettingstarted/oauth.html)
 
 ### Using ENV variables
 

@@ -30,7 +30,7 @@ Tacokit.generate_app_key
 
 # Configure the client
 Tacokit.configure do |c|
-  c.app_key    = "4ppk3y"
+  c.app_key = '4ppk3y'
 end
 ```
 
@@ -44,7 +44,7 @@ Tacokit.member
 Tacokit.member 'tacokit'
 
 # Configure a separate client
-client = Tacokit::Client.new app_key: '4ppk3y', app_secret: '4pps3cr3t!'
+client = Tacokit::Client.new app_key: '4ppk3y'
 
 # Fetch a member
 client.member 'tacokit'
@@ -55,23 +55,27 @@ client.member 'tacokit'
 
 Trello supports application-level client authorization via an application key and application token.
 
-Your application key are available by logging into Trello and visiting the [app key](appkey) page. This page also provides your application secret that can be used to generate OAuth token access (see below). Tacokit also provides a simple way to retrieve your application key from the command line.
+Tacokit provides a simple way to retrieve your application key:
 
 ```ruby
 # Install the `launchy` gem to load the Trello page automatically
 Tacokit.generate_app_key
 ```
+Your application key are available by logging into Trello and visiting the [app key](https://trello.com/app-key) page. This page also provides your application secret that can be used to generate OAuth token access (see below).
 
-The application token, generated separately from the app key, can be associated with a `scope` and `expiration`. See the Trello [authorization docs](authorize) for more info on token params.
+The application token, generated separately from the app key, can be associated with a `scope` and `expiration`. See the Trello [authorization docs](https://trello.com/docs/gettingstarted/authorize.html) for more info on token params.
 
 Tacokit provides a simple way to generate a new app token:
 
 ```ruby
 # Full permissions for 30 days
-Tacokit.authorize scope: %w[ read write account ], expiration: "30days"
+Tacokit.authorize scope: %w[ read write account ], expiration: '30days'
 
 # Authorize a custom application and a different app key
-Tacokit.authorize name: 'My Trello App', key: "4ppk3y2"
+Tacokit.authorize name: 'My Trello App', key: '4ppk3y2'
+
+# Read only permissions for custom app forever
+Tacokit.authorize scope: 'read', expiration: 'never', name: 'My Trello App'
 ```
 
 Your Tacokit client can now be configured to make requests:
@@ -79,16 +83,12 @@ Your Tacokit client can now be configured to make requests:
 ```ruby
 # Configure the client
 Tacokit.configure do |c|
-  c.app_key    = "4ppk3y"
-  c.app_token  = "4ppt0k3n"
+  c.app_key   = '4ppk3y'
+  c.app_token = '4ppt0k3n'
 end
 ```
 
-More information is available in the [Trello docs](docs).
-
-[appkey]: https://trello.com/1/appKey/generate
-[docs]: https://trello.com/docs/index.html
-[authorize]: https://trello.com/docs/gettingstarted/authorize.html
+More information is available in the [Trello docs](https://trello.com/docs/index.html).
 
 ### OAuth Authorization
 
@@ -97,7 +97,7 @@ flow. Tacokit clients can therefore be configured separately to make requests on
 behalf of different members:
 
 ```ruby
-client = Tacokit::Client.new app_key: "4ppk3y", oauth_token: "04utht0k3n"
+client = Tacokit::Client.new app_key: '4ppk3y', oauth_token: '04utht0k3n'
 ```
 
 To experiment with OAuth tokens for development, visit the [Tacokit

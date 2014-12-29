@@ -138,4 +138,31 @@ describe Tacokit::Client::Boards do
       assert_requested :put, trello_url_template("boards/#{test_board_id}/desc{?key,token}"), body: { value: 'This board is for Tacokit testing' }
     end
   end
+
+  describe "#add_board_member", :vcr do
+    it "adds invites member to board" do
+      @member = member = app_client.add_board_member(test_board_id, 'rosskaff+tacokit2@gmail.com', 'Taco Kit2')
+
+      expect(member.email).to eq 'rosskaff+tacokit2@gmail.com'
+    end
+
+    after do
+      app_client.delete("boards/#{test_board_id}/members/#{@member.id}")
+    end
+  end
+
+  describe "#update_board_resource", :vcr do
+    before do
+      @member = app_client.add_board_member(test_board_id, 'rosskaff+tacokit3@gmail.com', 'Taco Kit3')
+    end
+
+    it "updates member" do
+      membership = app_client.update_board_resource(test_board_id, 'members', @member.id, type: 'normal')
+      expect(membership.id).to_not be_nil
+    end
+
+    after do
+      app_client.delete("boards/#{test_board_id}/members/#{@member.id}")
+    end
+  end
 end

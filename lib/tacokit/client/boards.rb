@@ -44,11 +44,6 @@ module Tacokit
         put board_path(board_id), options
       end
 
-      # POST /1/boards
-      def create_board(name, options = {})
-        post board_path, options.merge(name: name)
-      end
-
       # PUT /1/boards/[board_id]/[field]
       # closed
       # desc
@@ -82,10 +77,25 @@ module Tacokit
         put board_path(board_id, camel_join(*paths)), value: value
       end
 
+      # PUT /1/boards/[board_id]/members
+      def add_board_member(board_id, email, full_name, options = {})
+        options.update \
+          email: email,
+          full_name: full_name
+        put board_path(board_id, "members"), options
+      end
+
       # PUT /1/boards/[board_id]/[resource]
-      # members
       # members/[idMember]
       # memberships/[idMembership]
+      def update_board_resource(board_id, resource, resource_id, options = {})
+        put board_path(board_id, camp(resource), resource_id), options
+      end
+
+      # POST /1/boards
+      def create_board(name, options = {})
+        post board_path, options.merge(name: name)
+      end
 
       # POST /1/boards/[board_id]/[resource]
       # calendarKey/generate

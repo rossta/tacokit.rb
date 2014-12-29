@@ -129,4 +129,13 @@ describe Tacokit::Client::Boards do
       assert_requested :post, trello_url_template("boards/#{test_board_id}/calendarKey/generate{?key,token}")
     end
   end
+
+  describe "#update_board_field", :vcr do
+    it "updates a board field" do
+      board = app_client.update_board_field(test_board_id, 'desc', 'This board is for Tacokit testing')
+
+      expect(board.desc).to eq 'This board is for Tacokit testing'
+      assert_requested :put, trello_url_template("boards/#{test_board_id}/desc{?key,token}"), body: { value: 'This board is for Tacokit testing' }
+    end
+  end
 end

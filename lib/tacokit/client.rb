@@ -134,6 +134,10 @@ module Tacokit
     end
     alias camp camel_path
 
+    def camel_join(*paths)
+      path_join paths.map { |p| camel_path(p) }
+    end
+
     def to_s
       "<#{self.class}:#{object_id}>"
     end

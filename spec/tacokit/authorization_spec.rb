@@ -16,10 +16,7 @@ describe Tacokit::Authorization do
     it "doesn't require launchy", :silence_warnings do
       allow(Launchy).to receive(:open).and_raise(LoadError)
 
-      # verbose = $VERBOSE
-      # $VERBOSE = nil
       Tacokit.client.open_app_key
-      # $VERBOSE = verbose
     end
   end
 

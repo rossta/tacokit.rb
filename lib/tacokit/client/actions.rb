@@ -37,6 +37,9 @@ module Tacokit
       end
 
       # PUT /1/actions/[idAction]/text
+      def update_action_text(action_id, text)
+        put action_path(action_id, 'text'), value: text
+      end
 
       # DELETE /1/actions/[idAction]
       def delete_action(action_id)

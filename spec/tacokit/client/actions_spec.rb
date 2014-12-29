@@ -69,6 +69,22 @@ describe Tacokit::Client::Actions do
     end
   end
 
+  describe "#update_action_text", :vcr do
+    before do
+      @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Update action test. Booya!"
+    end
+
+    it "updates an action" do
+      action = app_client.update_action_text(@action.id, "@tacokit Thanks for the invite, bud")
+
+      expect(action.data.text).to eq "@tacokit Thanks for the invite, bud"
+    end
+
+    after do
+      app_client.delete_action(@action.id)
+    end
+  end
+
   describe "#delete_action", :vcr do
     before do
       @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Delete action test. Booya!"

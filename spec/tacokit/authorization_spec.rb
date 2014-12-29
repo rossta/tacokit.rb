@@ -6,11 +6,11 @@ describe Tacokit::Authorization do
     allow(Launchy).to receive(:open)
   end
 
-  describe "#generate_app_key" do
+  describe "#open_app_key" do
     it "launches app key endpoint" do
       expect(Launchy).to receive(:open).with("https://trello.com/1/appKey/generate")
 
-      Tacokit.client.generate_app_key
+      Tacokit.client.open_app_key
     end
 
     it "doesn't require launchy", :silence_warnings do
@@ -18,7 +18,7 @@ describe Tacokit::Authorization do
 
       # verbose = $VERBOSE
       # $VERBOSE = nil
-      Tacokit.client.generate_app_key
+      Tacokit.client.open_app_key
       # $VERBOSE = verbose
     end
   end

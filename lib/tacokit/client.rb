@@ -120,16 +120,16 @@ module Tacokit
       @respond_as || Resource
     end
 
+    def to_s
+      "<#{self.class}:#{object_id}>"
+    end
+    alias_method :inspect, :to_s
+
     private
 
     def transform
       @transform ||= Transform.new
     end
-
-    def to_s
-      "<#{self.class}:#{object_id}>"
-    end
-    alias_method :inspect, :to_s
 
     def connection
       @connection = Faraday.new(url: api_endpoint) do |http|

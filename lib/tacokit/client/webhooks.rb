@@ -4,17 +4,17 @@ module Tacokit
 
       # GET /1/webhooks/[idWebhook]
       def webhook(webhook_id)
-        get "webhooks/#{webhook_id}"
+        get webhook_path(webhook_id)
       end
 
       # GET /1/webhooks/[idWebhook]/[field]
       def webhook_field(webhook_id, field, options = nil)
-        get "webhooks/#{webhook_id}/#{to_path(field)}", options
+        get webhook_path(webhook_id, camp(field)), options
       end
 
       # PUT /1/webhooks/[idWebhook]
       def update_webhook(webhook_id, options = {})
-        put "webhooks/#{webhook_id}", options
+        put webhook_path(webhook_id), options
       end
 
       # PUT /1/webhooks/[idWebhook]/[field]
@@ -25,16 +25,18 @@ module Tacokit
 
       # POST /1/webhooks
       def create_webhook(token, model_id, callback_url, options = {})
-        options.merge! \
-          'token' => token,
-          'idModel' => model_id,
-          'callbackURL' => callback_url
-        post "webhooks", options
+        post webhook_path, options.merge(
+          model_id: model_id,
+          callback_url: callback_url)
       end
 
       # DELETE /1/webhooks/[idWebhook]
       def delete_webhook(webhook_id)
-        delete "webhooks/#{webhook_id}"
+        delete webhook_path(webhook_id)
+      end
+
+      def webhook_path(*paths)
+        path_join "webhooks", *paths
       end
     end
   end

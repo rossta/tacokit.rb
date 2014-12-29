@@ -42,7 +42,12 @@ describe Tacokit::Client::Labels do
       expect(@label.name).to eq "Test Label X"
       expect(@label.color).to eq "sky"
 
-      assert_requested :post, trello_url_template("labels{?key,token}")
+      assert_requested :post, trello_url_template("labels{?key,token}"),
+        body: {
+          'idBoard' => test_board_id,
+          'name' => 'Test Label X',
+          'color' => 'sky'
+        }
     end
 
     after do

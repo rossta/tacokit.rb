@@ -4,7 +4,7 @@ module Tacokit
 
       # GET cards/[card id or shortlink]
       def card(card_id, options = nil)
-        get "cards/#{card_id}", options
+        get card_path(card_id), options
       end
 
       # GET cards/[card id or shortlink]/[field]
@@ -33,7 +33,7 @@ module Tacokit
       # subscribed
       # url
       def card_field(card_id, field, options = nil)
-        get "cards/#{card_id}/#{to_path(field)}", options
+        get card_path(card_id, camp(field)), options
       end
 
       # GET cards/[card id or shortlink]/[resource]
@@ -51,12 +51,12 @@ module Tacokit
       # stickers
       # stickers/[idSticker]
       def card_resource(card_id, resource, options = {})
-        get "cards/#{card_id}/#{to_path(resource)}", options
+        get card_path(card_id, camp(resource)), options
       end
 
       # PUT cards/[card id or shortlink]
       def update_card(card_id, options = {})
-        put "cards/#{card_id}", options
+        put card_path(card_id), options
       end
 
       # PUT cards/[card id or shortlink]/[resource]
@@ -80,7 +80,7 @@ module Tacokit
 
       # POST cards
       def create_card(list_id, name = nil, options = {})
-        post "cards", options.merge(name: name, 'idList' => list_id)
+        post card_path, options.merge(name: name, list_id: list_id)
       end
 
       # POST cards/[card id or shortlink]/actions/comments
@@ -112,14 +112,14 @@ module Tacokit
       # markAssociatedNotificationsRead
       # membersVoted
       # stickers
-      def create_card_resource(card_id, *args)
-        paths, options = extract_options(*args)
-        post "cards/#{card_id}/#{to_path(*paths)}", options
+      def create_card_resource(card_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        post card_path(card_id, *paths), options
       end
 
       # DELETE cards/[card id or shortlink]
       def delete_card(card_id)
-        delete "cards/#{card_id}"
+        delete card_path(card_id)
       end
 
       # DELETE cards/[card id or shortlink]/[resource]
@@ -131,8 +131,12 @@ module Tacokit
       # labels/[color]
       # membersVoted/[idMember]
       # stickers/[idSticker]
-      def delete_card_resource(card_id, *resources)
-        delete "cards/#{card_id}/#{to_path(*resources)}"
+      def delete_card_resource(card_id, resource, *paths)
+        delete card_path(card_id, camp(resource), *paths)
+      end
+
+      def card_path(*paths)
+        path_join "cards", *paths
       end
     end
   end

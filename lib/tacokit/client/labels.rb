@@ -4,19 +4,20 @@ module Tacokit
 
       # GET /1/labels/[idLabel]
       def label(label_id, options = nil)
-        get "labels/#{label_id}", options
+        get label_path(label_id), options
       end
 
       # GET /1/labels/[idLabel]/[resource]
       # board
       # board/[field]
-      def label_resource(label_id, resource, options = nil)
-        get "labels/#{label_id}/#{to_path(resource)}", options
+      def label_resource(label_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get label_path(label_id, *paths), options
       end
 
       # PUT /1/labels/[idLabel]
       def update_label(label_id, options = {})
-        put "labels/#{label_id}", options
+        put label_path(label_id), options
       end
 
       # PUT /1/labels/[idLabel]/color
@@ -24,12 +25,19 @@ module Tacokit
 
       # POST /1/labels
       def create_label(board_id, name, color)
-        post "labels", 'idBoard' => board_id, name: name, color: color
+        post label_path,
+          board_id: board_id,
+          name: name,
+          color: color
       end
 
       # DELETE /1/labels/[idLabel]
       def delete_label(label_id)
-        delete "labels/#{label_id}"
+        delete label_path(label_id)
+      end
+
+      def label_path(*paths)
+        path_join "labels", *paths
       end
     end
   end

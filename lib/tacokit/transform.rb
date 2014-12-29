@@ -32,6 +32,7 @@ module Tacokit
     def camelize_key(key)
       k = key.to_s
       k = k.gsub(%r{([a-zA-Z]+?)_id(s\b|\b)?$}, "id_\\1\\2")
+      k = k.gsub(%r{(#{camelize_special_cases.keys.join('|')})}) { |m| camelize_special_cases.fetch(m) }
       camelize(k, :lower)
     end
 
@@ -84,6 +85,12 @@ module Tacokit
 
     def pluralize_special_cases
       %w[ idBoardsPinned idPremOrgsAdmin ]
+    end
+
+    def camelize_special_cases
+      {
+        'callback_url' => 'callbackURL'
+      }
     end
 
   end

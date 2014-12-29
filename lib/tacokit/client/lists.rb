@@ -4,12 +4,12 @@ module Tacokit
 
       # GET /1/lists/[idList]
       def list(list_id, options = nil)
-        get "lists/#{list_id}", options
+        get list_path(list_id), options
       end
 
       # GET /1/lists/[idList]/[field]
       def list_field(list_id, field, options = nil)
-        get "lists/#{list_id}/#{to_path(field)}", options
+        get list_path(list_id, camp(field)), options
       end
 
       # GET /1/lists/[idList]/[resource]
@@ -18,13 +18,14 @@ module Tacokit
       # board/[field]
       # lists
       # lists/[filter]
-      def list_resource(list_id, resource, options = nil)
-        get "lists/#{list_id}/#{to_path(resource)}", options
+      def list_resource(list_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get list_path(list_id, *paths), options
       end
 
       # PUT /1/lists/[idList]
       def update_list(list_id, options = {})
-        put "lists/#{list_id}", options
+        put list_path(list_id), options
       end
 
       # PUT /1/lists/[idList]/[field]
@@ -36,13 +37,17 @@ module Tacokit
 
       # POST /1/lists
       def create_list(board_id, name, options = {})
-        post "lists", options.merge(name: name, 'idBoard' => board_id)
+        post list_path, options.merge(name: name, board_id: board_id)
       end
 
       # POST /1/lists/[idList]/[resource]
       # archiveAllCards
       # cards
       # moveAllCards
+
+      def list_path(*paths)
+        path_join("lists", *paths)
+      end
 
     end
   end

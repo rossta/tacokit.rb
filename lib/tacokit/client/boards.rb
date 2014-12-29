@@ -4,12 +4,12 @@ module Tacokit
 
       # GET /1/boards/[board_id]
       def board(board_id, options = nil)
-        get "boards/#{board_id}", options
+        get board_path(board_id), options
       end
 
       # GET /1/boards/[board_id]/[field]
       def board_field(board_id, field, options = nil)
-        get "boards/#{board_id}/#{to_path(field)}", options
+        get board_path(board_id, camp(field)), options
       end
 
       # GET /1/boards/[board_id]/[resource]
@@ -34,13 +34,14 @@ module Tacokit
       # myPrefs
       # organization
       # organization/[field]
-      def board_resource(board_id, resource, options = nil)
-        get "boards/#{board_id}/#{to_path(resource)}", options
+      def board_resource(board_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get board_path(board_id, *paths), options
       end
 
       # PUT /1/boards/[board_id]
       def update_board(board_id, options = {})
-        put "boards/#{board_id}", options
+        put board_path(board_id), options
       end
 
       # PUT /1/boards/[board_id]/[field]
@@ -77,7 +78,7 @@ module Tacokit
 
       # POST /1/boards
       def create_board(name, options = {})
-        post "boards", options.merge(name: name)
+        post board_path, options.merge(name: name)
       end
 
       # POST /1/boards/[board_id]/[resource]
@@ -88,13 +89,19 @@ module Tacokit
       # lists
       # markAsViewed
       # powerUps
-      def create_board_resource(board_id, resource, options = {})
-        post "boards/#{board_id}/#{to_path(resource)}", options
+      def create_board_resource(board_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        post board_path(board_id, *paths), options
       end
 
       # DELETE /1/boards/[board_id]/[resource]/[resource_id]
       # members/[idMember]
       # powerUps/[powerUp]
+      #
+
+      def board_path(*paths)
+        path_join("boards", *paths)
+      end
 
     end
   end

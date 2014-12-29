@@ -112,20 +112,30 @@ module Tacokit
     def normalize_param_value(value)
       case value
       when Array
-        value.map { |v| to_path(v) }.join(',')
+        value.map { |v| camp(v) }.join(',')
       when /\,/
         normalize_param_value(value.split(','))
       else
-        value
+        camp(value)
       end
     end
 
-    def to_path(*paths)
-      paths.map { |path| camelize(path.to_s, :lower) }.join('/')
+    def path_join(*paths)
+      paths.join('/')
     end
 
+    def to_path(*paths)
+      warn "to_path is deprecated"
+      path_join(*paths)
+    end
+
+    def camel_path(path)
+      camelize(path.to_s, :lower)
+    end
+    alias camp camel_path
+
     def to_s
-      "<Tacokit::Client:#{object_id}>"
+      "<#{self.class}:#{object_id}>"
     end
     alias_method :inspect, :to_s
 

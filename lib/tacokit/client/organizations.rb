@@ -4,12 +4,12 @@ module Tacokit
 
       # GET /1/organizations/[idOrg or name]
       def organization(org_id, options = nil)
-        get "organizations/#{org_id}", options
+        get organization_path(org_id), options
       end
 
       # GET /1/organizations/[idOrg or name]/[field]
       def organization_field(org_id, field, options = nil)
-        get "organizations/#{org_id}/#{to_path(field)}", options
+        get organization_path(org_id, camp(field)), options
       end
 
       # GET /1/organizations/[idOrg or name]/[resource]
@@ -24,13 +24,14 @@ module Tacokit
       # membersInvited/[field]
       # memberships
       # memberships/[idMembership]
-      def organization_resource(org_id, resource, options = nil)
-        get "organizations/#{org_id}/#{to_path(resource)}", options
+      def organization_resource(org_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get organization_path(org_id, *paths), options
       end
 
       # PUT /1/organizations/[idOrg or name]
       def update_organization(org_id, options = {})
-        put "organizations/#{org_id}", options
+        put organization_path(org_id), options
       end
 
       # PUT /1/organizations/[idOrg or name]/[field]
@@ -53,14 +54,14 @@ module Tacokit
 
       # POST /1/organizations
       def create_organization(display_name, options = {})
-        post "organizations", options.merge(display_name: display_name)
+        post organization_path, options.merge(display_name: display_name)
       end
 
       # POST /1/organizations/[idOrg or name]/logo
 
       # DELETE /1/organizations/[idOrg or name]
-      def delete_organization(organization_id)
-        delete "organizations/#{organization_id}"
+      def delete_organization(org_id)
+        delete organization_path(org_id)
       end
 
       # DELETE /1/organizations/[idOrg or name]/[resource]
@@ -69,6 +70,10 @@ module Tacokit
       # members/[idMember]/all
       # prefs/associatedDomain
       # prefs/orgInviteRestrict
+
+      def organization_path(*paths)
+        path_join "organizations", *paths
+      end
     end
   end
 end

@@ -8,7 +8,7 @@ module Tacokit
 
     def extract_options(*args)
       opts = args.last.is_a?(Hash) ? args.pop : {}
-      [args, opts]
+      return args, opts
     end
 
     def underscore(string)
@@ -20,9 +20,17 @@ module Tacokit
     end
 
     def camelize(string, lower = false)
-      string = string.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }
+      string = string.to_s.gsub(/(?:^|_)(.)/) { $1.upcase }
       string = string[0].chr.downcase + string[1..-1] if lower
       string
+    end
+
+    def blank?(obj)
+      obj.respond_to?(:empty?) ? !!obj.empty? : !obj
+    end
+
+    def present?(obj)
+      !blank?(obj)
     end
 
     private

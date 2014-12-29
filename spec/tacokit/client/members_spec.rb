@@ -23,10 +23,10 @@ describe Tacokit::Client::Members do
     end
 
     it "supports query fields as string or array" do
-      member = app_client.member("tacokit",
-                                 boards: 'all',
-                                 board_fields: 'name,short_url',
-                                 fields: ['username', 'full_name'])
+      member = app_client.member "tacokit",
+        boards: 'all',
+        board_fields: 'name,short_url',
+        fields: ['username', 'full_name']
 
       expect(member.username).to eq("tacokit")
       expect(member.full_name).to eq("Taco Kit")

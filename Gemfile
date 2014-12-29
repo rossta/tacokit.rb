@@ -10,7 +10,6 @@ group :development do
 
   gem 'oauth'
   gem 'sinatra'
-  gem 'simplecov', require: false
 end
 
 group :test do

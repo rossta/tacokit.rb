@@ -4,12 +4,12 @@ module Tacokit
 
       # GET /1/notifications/[idNotification]
       def notification(notification_id, options = nil)
-        get "notifications/#{notification_id}", options
+        get notification_path(notification_id), options
       end
 
       # GET /1/notifications/[idNotification]/[field]
       def notification_field(notification_id, field)
-        get "notifications/#{notification_id}/#{to_path(field)}"
+        get notification_path(notification_id, camp(field))
       end
 
       # GET /1/notifications/[idNotification]/[resource]
@@ -26,18 +26,23 @@ module Tacokit
       # memberCreator/[field]
       # organization
       # organization/[field]
-      def notification_resource(notification_id, resource, options = nil)
-        get "notifications/#{notification_id}/#{to_path(resource)}", options
+      def notification_resource(notification_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get notification_path(notification_id, *paths), options
       end
 
       # PUT /1/notifications/[idNotification]
       def update_notification(notification_id, options = {})
-        put "notifications/#{notification_id}", options
+        put notification_path(notification_id), options
       end
 
       # PUT /1/notifications/[idNotification]/unread
 
       # POST /1/notifications/all/read
+
+      def notification_path(*paths)
+        path_join "notifications", *paths
+      end
     end
   end
 end

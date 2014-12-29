@@ -4,7 +4,7 @@ module Tacokit
 
       # GET /1/types/[id]
       def type(model_id)
-        get "types/#{model_id}"
+        get path_join "types", model_id
       end
     end
   end

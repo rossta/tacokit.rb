@@ -9,7 +9,6 @@ describe Tacokit::Resource do
   end
 
   describe "#initialize" do
-
     it "responds to given attributes" do
       resource = build_resource(one: 'one', 'two' => :two)
 

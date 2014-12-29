@@ -4,12 +4,12 @@ module Tacokit
 
       # GET /1/members/[idMember or username]
       def member(username = 'me', options = nil)
-        get "members/#{username}", options
+        get member_path(username), options
       end
 
       # GET /1/members/[idMember or username]/[field]
       def member_field(username, field, options = nil)
-        get "members/#{username}/#{to_path(field)}", options
+        get member_path(username, camp(field)), options
       end
 
       # GET /1/members/[idMember or username]/[resource]
@@ -39,8 +39,9 @@ module Tacokit
       # savedSearches
       # savedSearches/[idSavedSearch]
       # tokens
-      def member_resource(username, resource, options = nil)
-        get "members/#{username}/#{to_path(resource)}", options
+      def member_resource(username, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get member_path(username, *paths), options
       end
 
       # POST /1/members/[idMember or username]/[resource]
@@ -55,7 +56,7 @@ module Tacokit
 
       # PUT /1/members/[idMember or username]
       def update_member(username, options = {})
-        put "members/#{username}", options
+        put member_path(username), options
       end
 
       # PUT /1/members/[idMember or username]/[field]
@@ -81,6 +82,10 @@ module Tacokit
       # customBoardBackgrounds/[idBoardBackground]
       # customStickers/[idCustomSticker]
       # savedSearches/[idSavedSearch]
+
+      def member_path(*paths)
+        path_join "members", *paths
+      end
     end
   end
 end

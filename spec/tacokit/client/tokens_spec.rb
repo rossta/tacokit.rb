@@ -40,12 +40,10 @@ describe Tacokit::Client::Tokens do
   end
 
   describe "#delete_token", :vcr do
-
     it "deletes a token" do
-      expect { app_client.delete_token('fake_token_id') }.to raise_error(Tacokit::Error) # 400, invalid token
+      expect { app_client.delete_token('faketokenid') }.to raise_error(Tacokit::Error) # 400, invalid token
 
-      assert_requested :delete, trello_url_template("tokens/fake_token_id{?key,token}")
+      assert_requested :delete, trello_url_template("tokens/faketokenid{?key,token}")
     end
   end
-
 end

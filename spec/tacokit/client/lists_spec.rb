@@ -66,7 +66,12 @@ describe Tacokit::Client::Lists do
     it "creates a list" do
       expect(@list.name).to eq "Autolist"
       expect(@list.pos).to be >= 1
-      assert_requested :post, trello_url_template("lists{?key,token}")
+      assert_requested :post, trello_url_template("lists{?key,token}"),
+        body: {
+          'name' => 'Autolist',
+          'pos' => 'bottom',
+          'idBoard' => test_board_id
+        }
     end
 
     after do

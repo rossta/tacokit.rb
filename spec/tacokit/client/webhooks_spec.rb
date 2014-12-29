@@ -40,7 +40,11 @@ describe Tacokit::Client::Webhooks do
 
     it "creates a webhook" do
       expect(@webhook.callback_url).to match(%r{https://[^/]*/webhook})
-      assert_requested :post, trello_url_template("webhooks{?key,token}")
+      assert_requested :post, trello_url_template("webhooks{?key,token}"),
+        body: {
+          'callbackURL' => tacokit_web_endpoint("webhook?create_webhook"),
+          'idModel' => test_org_id
+        }
     end
 
     after do

@@ -60,6 +60,16 @@ module Tacokit
 
           expect(result).to eq('idCards' => "a"*10)
         end
+
+        describe "special cases" do
+
+          it "callbackURL" do
+            result = process(callback_url: 'http://example.com')
+
+            expect(result).to eq('callbackURL' => 'http://example.com')
+          end
+        end
+
       end
 
     end

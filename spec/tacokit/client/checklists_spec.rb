@@ -59,7 +59,12 @@ describe Tacokit::Client::Checklists do
     it "creates a checklist" do
       expect(@checklist.name).to eq "Autochecklist"
       expect(@checklist.pos).to be >= 1
-      assert_requested :post, trello_url_template("checklists{?key,token}")
+      assert_requested :post, trello_url_template("checklists{?key,token}"),
+        body: {
+          'name' => 'Autochecklist',
+          'pos' => 'top',
+          'idCard' => test_card_id
+        }
     end
 
     after do

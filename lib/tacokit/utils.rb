@@ -46,11 +46,6 @@ module Tacokit
       paths.join('/')
     end
 
-    def to_path(*paths)
-      warn "to_path is deprecated"
-      path_join(*paths)
-    end
-
     private
 
     def _deep_transform_keys_in_object(object, &block)

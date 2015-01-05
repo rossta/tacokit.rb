@@ -1,9 +1,9 @@
 module Tacokit
   class Member
-    include Model
+    include Tacokit::Model
 
     def self.fetch(client, username, options = {})
-      new(client.member(username, options))
+      new(client, client.member(username, options))
     end
 
     def fetch(options = {})
@@ -27,7 +27,7 @@ module Tacokit
     end
 
     def boards=(data)
-      super(data.map { |attrs| Board.new(process_value(attrs)) })
+      super(data.map { |attrs| Board.new(client, process_value(attrs)) })
     end
   end
 end

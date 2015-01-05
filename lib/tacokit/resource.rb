@@ -2,8 +2,7 @@ require 'forwardable'
 
 module Tacokit
   class Resource
-    SPECIAL_METHODS = Set.new(%w(client fields))
-    attr_reader :_client
+    SPECIAL_METHODS = Set.new(%w(fields))
     attr_reader :_fields
     attr_reader :attrs
     alias to_hash attrs
@@ -13,8 +12,7 @@ module Tacokit
 
     def_delegators :@_fields, :fetch, :keys, :any?
 
-    def initialize(client, data = {})
-      @_client = client
+    def initialize(data = {})
       @attrs = {}
       @_metaclass = (class << self; self; end)
       @_fields = Set.new
@@ -27,7 +25,7 @@ module Tacokit
 
     def process_value(value)
       case value
-      when Hash then self.class.new(@_client, value)
+      when Hash then self.class.new(value)
       when Array then value.map { |v| process_value(v) }
       else value
       end
@@ -113,9 +111,9 @@ module Tacokit
     def to_attrs
       hash = self.attrs.clone
       hash.keys.each do |k|
-        if hash[k].is_a?(Tacokit::Resource)
+        if hash[k].is_a?(self.class)
           hash[k] = hash[k].to_attrs
-        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(Tacokit::Resource)}
+        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(self.class)}
           hash[k] = hash[k].collect{|el| el.to_attrs}
         end
       end

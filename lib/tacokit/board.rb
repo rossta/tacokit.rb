@@ -1,5 +1,5 @@
 module Tacokit
   class Board
-    include Model
+    include Tacokit::Model
   end
 end

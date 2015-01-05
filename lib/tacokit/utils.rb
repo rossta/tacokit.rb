@@ -33,6 +33,24 @@ module Tacokit
       !blank?(obj)
     end
 
+    def camel_path(path)
+      camelize(path.to_s, :lower)
+    end
+    alias camp camel_path
+
+    def camel_join(*paths)
+      path_join paths.map { |p| camel_path(p) }
+    end
+
+    def path_join(*paths)
+      paths.join('/')
+    end
+
+    def to_path(*paths)
+      warn "to_path is deprecated"
+      path_join(*paths)
+    end
+
     private
 
     def _deep_transform_keys_in_object(object, &block)

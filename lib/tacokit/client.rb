@@ -47,7 +47,7 @@ module Tacokit
     def_delegators :configuration, *Configuration.keys
     def_delegators :configuration, :user_authenticated?, :user_credentials
     def_delegators :configuration, :app_authenticated?, :app_credentials
-    def_delegators :transform, :serialize, :deserialize
+    def_delegators :transform, :serialize, :deserialize, :serialize_params
 
     def initialize(options = {})
       self.configuration.options = options
@@ -87,9 +87,8 @@ module Tacokit
         data      = nil
       end
 
-      params = normalize_request_params(params || {})
       response = connection.send method, url do |req|
-        req.params.update params
+        req.params.update serialize_params(params)
         req.body = serialize(data) if data
       end
 
@@ -98,44 +97,6 @@ module Tacokit
 
     def transform
       @transform ||= Transform.new
-    end
-
-    # Prepare ruby-style params for trello request
-    def normalize_request_params(params)
-      {}.tap do |norm|
-        params.each do |key,value|
-          norm[key] = normalize_param_value(value)
-        end
-      end
-    end
-
-    def normalize_param_value(value)
-      case value
-      when Array
-        value.map { |v| camp(v) }.join(',')
-      when /\,/
-        normalize_param_value(value.split(','))
-      else
-        camp(value)
-      end
-    end
-
-    def path_join(*paths)
-      paths.join('/')
-    end
-
-    def to_path(*paths)
-      warn "to_path is deprecated"
-      path_join(*paths)
-    end
-
-    def camel_path(path)
-      camelize(path.to_s, :lower)
-    end
-    alias camp camel_path
-
-    def camel_join(*paths)
-      path_join paths.map { |p| camel_path(p) }
     end
 
     def to_s

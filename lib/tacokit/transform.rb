@@ -2,6 +2,10 @@ module Tacokit
   class Transform
     include Tacokit::Utils
 
+    def serialize_params(params)
+      normalize_request_params(params)
+    end
+
     def serialize(body)
       serialize_body(body)
     end
@@ -11,6 +15,25 @@ module Tacokit
     end
 
     private
+
+    def normalize_request_params(params)
+      {}.tap do |norm|
+        (params || {}).each do |key,value|
+          norm[key] = normalize_param_value(value)
+        end
+      end
+    end
+
+    def normalize_param_value(value)
+      case value
+      when Array
+        value.map { |v| camel_path(v) }.join(',')
+      when /\,/
+        normalize_param_value(value.split(','))
+      else
+        camel_path(value)
+      end
+    end
 
     def serialize_body(body)
       case body

@@ -1,11 +1,9 @@
 require 'spec_helper'
-require 'ostruct'
 
 describe Tacokit::Resource do
-  let(:client) { OpenStruct.new }
 
   def build_resource(attrs = {})
-    described_class.new(client, attrs)
+    described_class.new(attrs)
   end
 
   describe "#initialize" do

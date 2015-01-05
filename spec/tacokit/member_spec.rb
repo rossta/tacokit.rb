@@ -4,17 +4,13 @@ require 'ostruct'
 module Tacokit
   describe Member do
     let(:client) { OpenStruct.new }
-    let(:resource) { Resource.new(client, username: 'tacokit') }
-    let(:member) { Member.new(resource) }
+    let(:resource) { Resource.new(username: 'tacokit') }
+    let(:member) { Member.new(client, resource) }
 
     describe "self.fetch" do
       it "returns a member resource" do
-        expect(client).to receive(:member).with(
-          'tacokit', {}
-        ).and_return(Resource.new client,
-          username: 'tacokit',
-          bio: 'A world traveler'
-        )
+        expect(client).to receive(:member).with('tacokit', {}).
+          and_return(Resource.new username: 'tacokit', bio: 'A world traveler')
 
         member = Member.fetch(client, 'tacokit')
 
@@ -25,12 +21,8 @@ module Tacokit
 
     describe "#fetch" do
       it "calls member" do
-        expect(client).to receive(:member).with(
-          'tacokit', {}
-        ).and_return(Resource.new client,
-          username: 'tacokit',
-          bio: 'A world traveler'
-        )
+        expect(client).to receive(:member).with('tacokit', {}).
+          and_return(Resource.new username: 'tacokit', bio: 'A world traveler')
 
         member.fetch
 
@@ -39,13 +31,8 @@ module Tacokit
       end
 
       it "accepts params" do
-        expect(client).to receive(:member).with(
-          'tacokit', boards: true
-        ).and_return(Resource.new client,
-          username: 'tacokit',
-          bio: 'A world traveler',
-          boards: []
-        )
+        expect(client).to receive(:member).with('tacokit', boards: true).
+          and_return(Resource.new username: 'tacokit', bio: 'A world traveler', boards: [])
 
         member.fetch(boards: true)
 

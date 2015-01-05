@@ -1,12 +1,11 @@
 module Tacokit
   module Model
 
-    def initialize(resource)
-      @resource = resource
-    end
+    attr_reader :client
 
-    def client
-      @resource._client
+    def initialize(client, resource)
+      @client   = client
+      @resource = resource
     end
 
     def inspect

@@ -99,6 +99,20 @@ module Tacokit
       last_response.data
     end
 
+    def as(model, resource)
+      model_class = constantize(model)
+      return resource unless model_class
+
+      case resource
+      when Resource
+        model_class.new(self, resource)
+      when Array
+        resource.map { |r| as(model, r) }
+      else
+        resource
+      end
+    end
+
     def to_s
       "<#{self.class}:#{object_id}>"
     end

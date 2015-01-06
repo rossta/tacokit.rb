@@ -2,10 +2,6 @@ module Tacokit
   class Member
     include Tacokit::Model
 
-    def self.fetch(client, username, options = {})
-      new(client, client.member(username, options))
-    end
-
     def fetch(options = {})
       update client.member(username, options)
     end
@@ -26,8 +22,13 @@ module Tacokit
       end
     end
 
+    def boards
+      @boards ||= client.as(:boards, Resource[super])
+    end
+
     def boards=(data)
-      super(data.map { |attrs| Board.new(client, process_value(attrs)) })
+      @boards = nil
+      super
     end
   end
 end

@@ -6,7 +6,7 @@ describe Tacokit::Client::Members do
     it "returns a member" do
       member = app_client.member("rossta")
 
-      expect(member).to be_a(Tacokit::Resource)
+      expect(member).to be_a(Tacokit::Member)
       expect(member.username).to eq("rossta")
       assert_requested :get, trello_url_template("members/rossta{?key,token}")
     end
@@ -84,6 +84,7 @@ describe Tacokit::Client::Members do
       expect(boards).not_to be_empty
 
       board = boards.first
+      expect(board).to be_a(Tacokit::Board)
       expect(board.name).to be_present
     end
 

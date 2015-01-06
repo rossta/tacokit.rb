@@ -46,6 +46,16 @@ module Tacokit
       paths.join('/')
     end
 
+    def constantize(class_name)
+      Tacokit.const_get(camelize(singularize(class_name.to_s)))
+    rescue NameError
+      nil
+    end
+
+    def singularize(string)
+      string.gsub(/s$/, '')
+    end
+
     private
 
     def _deep_transform_keys_in_object(object, &block)

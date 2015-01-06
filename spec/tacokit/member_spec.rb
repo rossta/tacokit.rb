@@ -3,21 +3,9 @@ require 'ostruct'
 
 module Tacokit
   describe Member do
-    let(:client) { OpenStruct.new }
+    let(:client) { Tacokit.client }
     let(:resource) { Resource.new(username: 'tacokit') }
     let(:member) { Member.new(client, resource) }
-
-    describe "self.fetch" do
-      it "returns a member resource" do
-        expect(client).to receive(:member).with('tacokit', {}).
-          and_return(Resource.new username: 'tacokit', bio: 'A world traveler')
-
-        member = Member.fetch(client, 'tacokit')
-
-        expect(member.username).to eq 'tacokit'
-        expect(member.bio).to eq 'A world traveler'
-      end
-    end
 
     describe "#fetch" do
       it "calls member" do
@@ -100,13 +88,21 @@ module Tacokit
 
     describe "relations" do
       describe "#boards" do
-        it "returns array of Board resources" do
-          member.boards = [{id: "1234", name: "Board 1"}]
+        let(:resource) { Resource.new(username: 'tacokit', boards: [{id: "1234", name: "Board 1"}]) }
 
+        it "returns array of Board resources" do
           board = member.boards.first
           expect(board).to be_a(Board)
           expect(board.id).to eq "1234"
           expect(board.name).to eq "Board 1"
+        end
+
+        it "through setter" do
+          member.boards = [{id: "5678", name: "Board 2"}]
+          board = member.boards.first
+          expect(board).to be_a(Board)
+          expect(board.id).to eq "5678"
+          expect(board.name).to eq "Board 2"
         end
       end
     end

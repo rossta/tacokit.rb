@@ -6,6 +6,8 @@ rvm:
   - 2.1
   - ruby-head
 
+cache: bundler
+
 bundler_args: --without development --retry=3 --jobs=3
 
 env:

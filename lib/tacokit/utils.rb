@@ -46,9 +46,14 @@ module Tacokit
       paths.join('/')
     end
 
-    def to_path(*paths)
-      warn "to_path is deprecated"
-      path_join(*paths)
+    def constantize(class_name)
+      Tacokit.const_get(camelize(singularize(class_name.to_s)))
+    rescue NameError
+      nil
+    end
+
+    def singularize(string)
+      string.gsub(/s$/, '')
     end
 
     private

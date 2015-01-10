@@ -4,12 +4,12 @@ module Tacokit
 
     class Debug < Faraday::Response::Middleware
       def on_complete(env)
-        binding.pry
+        require 'pry'; binding.pry
         env
       end
 
       def parse(body)
-        binding.pry
+        require 'pry'; binding.pry
         body
       end
     end

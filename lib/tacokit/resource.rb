@@ -2,8 +2,7 @@ require 'forwardable'
 
 module Tacokit
   class Resource
-    SPECIAL_METHODS = Set.new(%w(client fields))
-    attr_reader :_client
+    SPECIAL_METHODS = Set.new(%w(fields))
     attr_reader :_fields
     attr_reader :attrs
     alias to_hash attrs
@@ -13,8 +12,7 @@ module Tacokit
 
     def_delegators :@_fields, :fetch, :keys, :any?
 
-    def initialize(client, data = {})
-      @_client = client
+    def initialize(data = {})
       @attrs = {}
       @_metaclass = (class << self; self; end)
       @_fields = Set.new
@@ -27,7 +25,7 @@ module Tacokit
 
     def process_value(value)
       case value
-      when Hash then self.class.new(@_client, value)
+      when Hash then self.class.new(value)
       when Array then value.map { |v| process_value(v) }
       else value
       end
@@ -55,6 +53,12 @@ module Tacokit
     alias has_key? key?
     alias include? key?
 
+    def update(attributes)
+      attributes.each do |key, value|
+        self.send("#{key}=", value)
+      end
+    end
+
     def self.attr_accessor(*attrs)
       attrs.each do |attribute|
         class_eval do
@@ -72,6 +76,14 @@ module Tacokit
         end
       end
     end
+
+    # def self.[](data)
+    #   case data
+    #   when Hash then self.new(data)
+    #   when Array then data.map { |value| self[value] }
+    #   else data
+    #   end
+    # end
 
     ATTR_SETTER    = '='.freeze
     ATTR_PREDICATE = '?'.freeze
@@ -101,20 +113,27 @@ module Tacokit
     end
 
     def inspect
-      to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect
+      (to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect)
     end
+
+    alias to_s inspect
 
     def to_attrs
       hash = self.attrs.clone
       hash.keys.each do |k|
-        if hash[k].is_a?(Tacokit::Resource)
+        if hash[k].is_a?(self.class)
           hash[k] = hash[k].to_attrs
-        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(Tacokit::Resource)}
+        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(self.class)}
           hash[k] = hash[k].collect{|el| el.to_attrs}
         end
       end
       hash
     end
 
+    def update(attributes)
+      attributes.each do |key, value|
+        self.send("#{key}=", value)
+      end
+    end
   end
 end

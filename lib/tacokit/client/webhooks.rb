@@ -25,9 +25,10 @@ module Tacokit
 
       # POST /1/webhooks
       def create_webhook(token, model_id, callback_url, options = {})
-        post webhook_path, options.merge(
+        options.update \
           model_id: model_id,
-          callback_url: callback_url)
+          callback_url: callback_url
+        post webhook_path, options
       end
 
       # DELETE /1/webhooks/[idWebhook]

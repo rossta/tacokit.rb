@@ -49,6 +49,8 @@ module Tacokit
     def_delegators :configuration, :app_authenticated?, :app_credentials
     def_delegators :transform, :serialize, :deserialize, :serialize_params
 
+    attr_accessor :last_response
+
     def initialize(options = {})
       self.configuration.options = options
     end
@@ -92,17 +94,21 @@ module Tacokit
         req.body = serialize(data) if data
       end
 
-      Response.new(self, response).data
-    end
+      @last_response = last_response = Response.new(self, response)
 
-    def transform
-      @transform ||= Transform.new
+      last_response.data
     end
 
     def to_s
       "<#{self.class}:#{object_id}>"
     end
     alias_method :inspect, :to_s
+
+    private
+
+    def transform
+      @transform ||= Transform.new
+    end
 
     def connection
       @connection = Faraday.new(url: api_endpoint) do |http|

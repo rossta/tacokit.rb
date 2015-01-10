@@ -4,7 +4,7 @@ module Tacokit
 
       # GET /1/members/[idMember or username]
       def member(username = 'me', options = nil)
-        get member_path(username), options
+        get(member_path(username), options)
       end
 
       # GET /1/members/[idMember or username]/[field]
@@ -41,7 +41,7 @@ module Tacokit
       # tokens
       def member_resource(username, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
-        get member_path(username, *paths), options
+        get(member_path(username, *paths), options)
       end
 
       # POST /1/members/[idMember or username]/[resource]

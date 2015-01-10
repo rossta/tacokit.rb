@@ -111,7 +111,7 @@ module Tacokit
     end
 
     def connection
-      @connection = Faraday.new(url: api_endpoint) do |http|
+      @connection ||= Faraday.new(url: api_endpoint) do |http|
         http.headers[:user_agent] = 'TacoKit 0.0.1'
 
         if user_authenticated?

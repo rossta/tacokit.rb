@@ -9,7 +9,7 @@ describe Tacokit::Client::Notifications do
     it "returns a notification by id" do
       notification = app_client.notification(test_notification_id)
 
-      expect(notification.data).to include('text')
+      expect(notification.data).to include(:text)
     end
   end
 

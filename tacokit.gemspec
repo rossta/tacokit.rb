@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Tacokit::VERSION
   spec.authors       = ["Ross Kaffenberger"]
   spec.email         = ["rosskaff@gmail.com"]
-  spec.summary       = %q{A simple wrapper for the Trello API.}
-  spec.description   = %q{A ruby toolkit for working with the Trello API.}
+  spec.summary       = %q{A ruby toolkit for the Trello API.}
+  spec.description   = %q{A ruby toolkit for working with the Trello API via a flat client.}
   spec.homepage      = "http://rossta.github.io/tacokit.rb"
   spec.license       = "MIT"
 

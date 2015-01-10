@@ -14,13 +14,12 @@ module Tacokit
 
     def initialize(data = {})
       @attrs = {}
-      @_metaclass = (class << self; self; end)
       @_fields = Set.new
       data.each do |key, value|
         @_fields << key
         @attrs[key.to_sym] = process_value(value)
       end
-      @_metaclass.send(:attr_accessor, *data.keys)
+      new_attrs(*data.keys)
     end
 
     def process_value(value)
@@ -59,31 +58,19 @@ module Tacokit
       end
     end
 
-    def self.attr_accessor(*attrs)
-      attrs.each do |attribute|
-        class_eval do
-          define_method attribute do
-            @attrs[attribute.to_sym]
-          end
-
-          define_method "#{attribute}=" do |value|
-            @attrs[attribute.to_sym] = value
-          end
-
-          define_method "#{attribute}?" do
-            !!@attrs[attribute.to_sym]
-          end
-        end
-      end
+    def new_attrs(*names)
+      names.map { |n| new_attr(n) }
     end
 
-    # def self.[](data)
-    #   case data
-    #   when Hash then self.new(data)
-    #   when Array then data.map { |value| self[value] }
-    #   else data
-    #   end
-    # end
+    def new_attr(name)
+      name = name.to_sym
+      unless respond_to?(name)
+        define_singleton_method(name) { @attrs[name] }
+        define_singleton_method("#{name}=") { |v| @attrs[name] = v }
+        define_singleton_method("#{name}?") { !!@attrs[name] }
+      end
+      name
+    end
 
     ATTR_SETTER    = '='.freeze
     ATTR_PREDICATE = '?'.freeze
@@ -92,14 +79,14 @@ module Tacokit
     def method_missing(method, *args)
       attr_name, suffix = method.to_s.scan(/([a-z0-9\_]+)(\?|\=)?$/i).first
       if suffix == ATTR_SETTER
-        @_metaclass.send(:attr_accessor, attr_name)
+        new_attr(attr_name)
         @_fields << attr_name.to_sym
         send(method, args.first)
       elsif attr_name && @_fields.include?(attr_name.to_sym)
         value = @attrs[attr_name.to_sym]
         case suffix
         when nil
-          @_metaclass.send(:attr_accessor, attr_name)
+          new_attr(attr_name)
           value
         when ATTR_PREDICATE then !!value
         end
@@ -121,9 +108,9 @@ module Tacokit
     def to_attrs
       hash = self.attrs.clone
       hash.keys.each do |k|
-        if hash[k].is_a?(self.class)
+        if hash[k].is_a?(Resource)
           hash[k] = hash[k].to_attrs
-        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(self.class)}
+        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(Resource)}
           hash[k] = hash[k].collect{|el| el.to_attrs}
         end
       end

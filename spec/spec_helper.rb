@@ -69,7 +69,7 @@ VCR.configure do |c|
     :serialize_with             => :json,
     :preserve_exact_body_bytes  => true,
     :decode_compressed_response => true,
-    :record                     => :once
+    :record                     => :new_episodes
   }
 
   c.cassette_library_dir = 'spec/cassettes'
@@ -106,6 +106,14 @@ end
 
 def test_org_id
   ENV.fetch 'TRELLO_TEST_ORGANIZATION_ID', '548e30e9683e1923f676ba20'
+end
+
+def test_board_link
+  'swezQ9XS'
+end
+
+def test_board_id
+  '548a675581d1d669c9e8184e'
 end
 
 def test_client_credentials

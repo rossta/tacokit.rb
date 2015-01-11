@@ -1,18 +1,14 @@
 module Tacokit
   class Response
 
-    attr_reader :client, :status, :headers, :env, :body
+    attr_reader :client, :status, :headers, :env, :data
 
     def initialize(client, res, options = {})
       @client   = client
       @status   = res.status
       @headers  = res.headers
       @env      = res.env
-      @body     = res.body
-    end
-
-    def data
-      @data ||= process_data(@client.deserialize(@body))
+      @data     = process_data(@client.deserialize(res.body))
     end
 
     private

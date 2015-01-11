@@ -6,7 +6,6 @@ describe Tacokit::Client::Members do
     it "returns a member" do
       member = app_client.member("rossta")
 
-      expect(member).to be_a(Tacokit::Resource)
       expect(member.username).to eq("rossta")
       assert_requested :get, trello_url_template("members/rossta{?key,token}")
     end
@@ -15,12 +14,6 @@ describe Tacokit::Client::Members do
       member = app_client.member
 
       expect(member.full_name).to eq("Taco Kit")
-    end
-
-    it "raises error for missing token" do
-      app_client.configuration.app_token = nil
-
-      expect { app_client.member }.to raise_error
     end
 
     it "supports query fields as string or array" do

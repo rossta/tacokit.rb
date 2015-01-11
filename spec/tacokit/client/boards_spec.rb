@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe Tacokit::Client::Boards do
-  def test_board_link
-    'swezQ9XS'
-  end
-
-  def test_board_id
-    '548a675581d1d669c9e8184e'
-  end
-
   describe "#board", :vcr do
     it "returns a token authorized board" do
       board = app_client.board(test_board_link)

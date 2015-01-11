@@ -1,5 +1,7 @@
 require 'forwardable'
 
+require 'addressable/uri'
+
 require 'faraday'
 require 'faraday_middleware'
 

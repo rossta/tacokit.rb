@@ -68,6 +68,12 @@ module Tacokit
 
             expect(result).to eq('callbackURL' => 'http://example.com')
           end
+
+          it "idChecklistSource" do
+            result = process('checklist_source_id' => "a"*10)
+
+            expect(result).to eq('idChecklistSource' => "a"*10)
+          end
         end
 
       end

@@ -225,10 +225,11 @@ module Tacokit
       # Start a new checklist on card
       #
       # @see https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-checklists
-      def start_checklist(card_id, name)
+      def add_checklist(card_id, name)
         create_card_resource(card_id, 'checklists', name: name)
       end
-      alias create_card_checklist start_checklist
+      alias create_checklist add_checklist
+      alias start_checklist add_checklist
 
       # Copy another checklist to card
       #
@@ -257,6 +258,16 @@ module Tacokit
       def vote(card_id, member_id)
         create_card_resource(card_id, 'membersVoted', value: member_id)
       end
+      alias create_vote vote
+
+      # Add sticker to card
+      #
+      # @see https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-stickers
+      def add_sticker(card_id, image_name, options = {})
+        defaults = { top: 0, left: 0, z_index: 1 }
+        create_card_resource(card_id, 'stickers', defaults.merge(options.merge(image: image_name)))
+      end
+      alias create_sticker add_sticker
 
       # Create a card resource
       #
@@ -272,12 +283,13 @@ module Tacokit
         delete card_path(card_id)
       end
 
-      # Delete a comment
+      # Remove a comment
       #
       # @see https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-labels
-      def delete_comment(card_id, comment_id)
+      def remove_comment(card_id, comment_id)
         delete_card_resource card_id, "actions", comment_id, "comments"
       end
+      alias delete_comment remove_comment
 
       # Remove an attachment
       #
@@ -285,6 +297,7 @@ module Tacokit
       def remove_attachment(card_id, attachment_id)
         delete_card_resource card_id, 'attachments', attachment_id
       end
+      alias delete_attachement remove_attachment
 
       # Remove checklist
       #
@@ -292,6 +305,7 @@ module Tacokit
       def remove_checklist(card_id, checklist_id)
         delete_card_resource card_id, 'checklists', checklist_id
       end
+      alias delete_checklist remove_checklist
 
       # Remove a member from a card
       #
@@ -299,6 +313,7 @@ module Tacokit
       def remove_card_member(card_id, member_id)
         delete_card_resource card_id, 'idMembers', member_id
       end
+      alias delete_card_member remove_card_member
 
       # Remove label from card
       #
@@ -306,6 +321,7 @@ module Tacokit
       def remove_label(card_id, color)
         delete_card_resource card_id, 'labels', color
       end
+      alias delete_label remove_label
 
       # Remove a vote from a card
       #
@@ -313,6 +329,7 @@ module Tacokit
       def remove_vote(card_id, member_id)
         delete_card_resource card_id, 'membersVoted', member_id
       end
+      alias delete_vote remove_vote
 
       # Remove a sticker from a card
       #
@@ -320,6 +337,7 @@ module Tacokit
       def remove_sticker(card_id, sticker_id)
         delete_card_resource card_id, 'stickers', sticker_id
       end
+      alias delete_sticker remove_sticker
 
       # Delete a card resource
       def delete_card_resource(card_id, resource, *paths)

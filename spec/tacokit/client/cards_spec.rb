@@ -13,7 +13,7 @@ describe Tacokit::Client::Cards do
     '548dd948ffd374221926b4c8'
   end
 
-  describe "#card" do
+  describe "#card", :vcr do
     it "returns a card by short link" do
       card = app_client.card(test_card_link)
 
@@ -168,11 +168,20 @@ describe Tacokit::Client::Cards do
     end
   end
 
-  describe "#stickers", :vcr do
+  describe "#stickers", :vcr => { :record => :new_episodes } do
+    before do
+      @sticker = app_client.add_sticker(test_card_link, 'star')
+    end
+
     it "returns stickers" do
       stickers = app_client.stickers(test_card_link)
 
-      expect(stickers).to be_empty
+      expect(stickers.size).to eq(1)
+      expect(stickers.first.image).to eq('star')
+    end
+
+    after do
+      app_client.remove_sticker(test_card_link, @sticker.id)
     end
   end
 

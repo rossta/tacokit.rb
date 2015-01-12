@@ -69,7 +69,8 @@ VCR.configure do |c|
     :serialize_with             => :json,
     :preserve_exact_body_bytes  => true,
     :decode_compressed_response => true,
-    :record                     => :new_episodes
+    :record                     => :once,
+    :re_record_interval         => 60 # 7 days
   }
 
   c.cassette_library_dir = 'spec/cassettes'

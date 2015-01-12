@@ -56,6 +56,14 @@ module Tacokit
       string.gsub(/s$/, '')
     end
 
+    def base_path(base, *paths)
+      return base if paths.empty?
+
+      resource = paths.shift
+      resource = resource.id if resource.respond_to?(:id)
+      path_join base, resource, *paths
+    end
+
     private
 
     def _deep_transform_keys_in_object(object, &block)

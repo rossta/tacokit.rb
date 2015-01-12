@@ -13,7 +13,7 @@ describe Tacokit::Client::Cards do
     '548dd948ffd374221926b4c8'
   end
 
-  describe "#card", :vcr do
+  describe "#card" do
     it "returns a card by short link" do
       card = app_client.card(test_card_link)
 
@@ -22,6 +22,14 @@ describe Tacokit::Client::Cards do
 
     it "returns a card by id" do
       card = app_client.card(test_card_id)
+
+      expect(card.name).to eq 'Card 1'
+    end
+
+    it "returns a card by card resource" do
+      card = app_client.card(test_card_link)
+
+      card = app_client.card(card)
 
       expect(card.name).to eq 'Card 1'
     end

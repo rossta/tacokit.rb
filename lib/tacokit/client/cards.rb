@@ -327,8 +327,9 @@ module Tacokit
       end
 
       def card_path(*paths)
-        path_join "cards", *paths
+        base_path "cards", *paths
       end
+
     end
   end
 end

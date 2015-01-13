@@ -221,7 +221,6 @@ module Tacokit
       def add_checklist(card_id, name)
         create_card_resource(card_id, 'checklists', name: name)
       end
-      alias create_checklist add_checklist
       alias start_checklist add_checklist
 
       # Copy another checklist to card

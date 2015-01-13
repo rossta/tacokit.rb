@@ -33,14 +33,10 @@ module Tacokit
       # Retrieve a checklist's check items
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-checkitems
-      def checklist_check_items(checklist_id, options = {})
-        checklist_resource 'check_items', options
+      def check_items(checklist_id, options = {})
+        checklist_resource checklist_id, 'check_items', options
       end
-
-      def checklist_resource(checklist_id, resource, *paths)
-        paths, options = extract_options(camp(resource), *paths)
-        get checklist_path(checklist_id, *paths), options
-      end
+      alias checklist_check_items check_items
 
       # Updates a checklist
       #
@@ -48,6 +44,7 @@ module Tacokit
       def update_checklist(checklist_id, options = {})
         put checklist_path(checklist_id), options
       end
+      alias checklist_update update_checklist
 
       # Create a checklist
       #
@@ -56,13 +53,16 @@ module Tacokit
         options.update card_id: card_id, name: name
         post checklist_path, options
       end
+      alias checklist_create create_checklist
 
       # Add a checklist item to a checklist
       #
       # @see https://trello.com/docs/api/checklist/index.html#post-1-checklists-idchecklist-checkitems
-      def add_checklist_item(checklist_id, name, options = {})
+      def add_checklist_check_item(checklist_id, name, options = {})
         post checklist_path(checklist_id, 'checkItems'), options.merge(name: name)
       end
+      alias checklist_check_item_create add_checklist_check_item
+      alias add_checklist_item add_checklist_check_item
 
       # Delete a checklist
       #
@@ -70,8 +70,15 @@ module Tacokit
       def delete_checklist(checklist_id)
         delete checklist_path(checklist_id)
       end
+      alias checklist_delete delete_checklist
 
       # DELETE /1/checklists/[idChecklist]/checkItems/[idCheckItem]
+
+      # no doc
+      def checklist_resource(checklist_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get checklist_path(checklist_id, *paths), options
+      end
 
       def checklist_path(*paths)
         path_join("checklists", *paths)

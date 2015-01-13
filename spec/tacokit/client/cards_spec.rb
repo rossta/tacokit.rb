@@ -9,10 +9,6 @@ describe Tacokit::Client::Cards do
     '548dd95c8ca25ac9d0d9ce71'
   end
 
-  def test_list_id
-    '548dd948ffd374221926b4c8'
-  end
-
   describe "#card", :vcr do
     it "returns a card by short link" do
       card = app_client.card(test_card_link)
@@ -427,14 +423,6 @@ describe Tacokit::Client::Cards do
       expect(new_checklist.check_items.first.name).to eq("Test Checklist Item")
 
       assert_requested :post, trello_url_template("cards/#{@card.id}/checklists{?key,token}"), { body: { 'idChecklistSource' => source_checklist.id } }
-    end
-
-    it "adds a checklist item" do
-      checklist = app_client.start_checklist(@card.id, "Making a list")
-
-      item = app_client.add_checklist_item(checklist.id, "Test Checklist Item")
-
-      expect(item.name).to eq("Test Checklist Item")
     end
 
     after do

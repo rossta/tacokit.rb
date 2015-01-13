@@ -117,6 +117,10 @@ def test_board_id
   '548a675581d1d669c9e8184e'
 end
 
+def test_list_id
+  '548dd948ffd374221926b4c8'
+end
+
 def test_client_credentials
   {
     app_key: test_trello_app_key,

@@ -215,13 +215,6 @@ module Tacokit
         create_card_resource(card_id, 'checklist', checklist_id, 'checkItem', check_item_id, 'convertToCard')
       end
 
-      # Add a checklist item to a checklist
-      #
-      # @see https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-checklist-idchecklist-checkitem
-      def add_checklist_item(card_id, checklist_id, name, options = {})
-        create_card_resource(card_id, 'checklist', checklist_id, 'checkItem', options.merge(name: name))
-      end
-
       # Start a new checklist on card
       #
       # @see https://trello.com/docs/api/card/index.html#post-1-cards-card-id-or-shortlink-checklists

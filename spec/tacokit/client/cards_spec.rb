@@ -418,7 +418,7 @@ describe Tacokit::Client::Cards do
 
     it "copies a checklist by id" do
       source_checklist = app_client.start_checklist(@card.id, "Making a list")
-      app_client.add_checklist_item(@card.id, source_checklist.id, "Test Checklist Item")
+      app_client.add_checklist_item(source_checklist.id, "Test Checklist Item")
 
       new_checklist = app_client.copy_checklist(@card.id, source_checklist.id)
 
@@ -432,7 +432,7 @@ describe Tacokit::Client::Cards do
     it "adds a checklist item" do
       checklist = app_client.start_checklist(@card.id, "Making a list")
 
-      item = app_client.add_checklist_item(@card.id, checklist.id, "Test Checklist Item")
+      item = app_client.add_checklist_item(checklist.id, "Test Checklist Item")
 
       expect(item.name).to eq("Test Checklist Item")
     end

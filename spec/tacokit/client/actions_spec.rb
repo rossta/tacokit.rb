@@ -39,23 +39,74 @@ describe Tacokit::Client::Actions do
     end
   end
 
-  describe "#action_resource", :vcr do
-    it "returns action entities" do
-      entities = app_client.action_resource(test_action_id, :entities)
-
-      expect(entities).to be_any
+  describe "#action_board", :vcr do
+    before do
+      @action = app_client.add_comment(test_card_id, "Get action resource test. Booya!")
     end
 
     it "returns action board" do
-      board = app_client.action_resource(test_action_id, :board)
+      board = app_client.action_board(@action.id)
 
       expect(board.name).to be_present
+    end
+
+    after do
+      app_client.delete_action(@action.id)
+    end
+  end
+
+  describe "#action_card", :vcr do
+    before do
+      @action = app_client.add_comment(test_card_id, "Get action resource test. Booya!")
+    end
+
+    it "returns action card" do
+      card = app_client.action_card(@action.id)
+
+      expect(card.name).to be_present
+    end
+
+    after do
+      app_client.delete_action(@action.id)
+    end
+  end
+
+  describe "#action_entities", :vcr do
+    before do
+      @action = app_client.add_comment(test_card_id, "Get action resource test. Booya!")
+    end
+
+    it "returns action entities" do
+      entities = app_client.action_entities(@action.id)
+
+      expect(entities).to be_any
+      expect(entities.map(&:type)).to include("comment")
+    end
+
+    after do
+      app_client.delete_action(@action.id)
+    end
+  end
+
+  describe "#action_list", :vcr do
+    before do
+      @action = app_client.add_comment(test_card_id, "Get action resource test. Booya!")
+    end
+
+    it "returns action list" do
+      list = app_client.action_list(@action.id)
+
+      expect(list.name).to be_present
+    end
+
+    after do
+      app_client.delete_action(@action.id)
     end
   end
 
   describe "#update_action", :vcr do
     before do
-      @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Update action test. Booya!"
+      @action = app_client.add_comment(test_card_id, "Update action test. Booya!")
     end
 
     it "updates an action" do

@@ -6,17 +6,17 @@ describe Tacokit::Authorization do
     allow(Launchy).to receive(:open)
   end
 
-  describe "#open_app_key" do
+  describe "#get_app_key" do
     it "launches app key endpoint" do
       expect(Launchy).to receive(:open).with("https://trello.com/1/appKey/generate")
 
-      Tacokit.client.open_app_key
+      Tacokit.client.get_app_key
     end
 
     it "doesn't require launchy", :silence_warnings do
       allow(Launchy).to receive(:open).and_raise(LoadError)
 
-      Tacokit.client.open_app_key
+      Tacokit.client.get_app_key
     end
   end
 

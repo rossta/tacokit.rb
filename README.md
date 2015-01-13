@@ -26,7 +26,7 @@ Configure the client with public-read application credentials:
 
 ```ruby
 # View an app key and secret on Trello
-Tacokit.open_app_key
+Tacokit.get_app_key
 
 # Configure the client
 Tacokit.configure do |c|
@@ -59,7 +59,7 @@ Tacokit provides a simple way to retrieve your application key:
 
 ```ruby
 # Install the `launchy` gem to load the Trello page automatically
-Tacokit.open_app_key
+Tacokit.get_app_key
 ```
 Your application key are available by logging into Trello and visiting the [app key](https://trello.com/app-key) page. This page also provides your application secret that can be used to generate OAuth token access (see below).
 

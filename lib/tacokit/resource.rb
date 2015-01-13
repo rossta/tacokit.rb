@@ -73,7 +73,7 @@ module Tacokit
       case value
       when Hash then self.class.new(value)
       when Array then value.map { |v| process_value(v) }
-      else value
+      else cast_value_type(value)
       end
     end
 
@@ -123,6 +123,16 @@ module Tacokit
         value
       when ATTR_PREDICATE then !!value
       end
+    end
+
+    ISO8601 = %r{^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$}.freeze
+    def cast_value_type(value)
+      case value
+      when ISO8601 then DateTime.parse(value)
+      else value
+      end
+    rescue
+      value
     end
 
   end

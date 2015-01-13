@@ -106,6 +106,12 @@ module Tacokit
         expect(output).to eq [[:a,1],[:b,2]]
       end
 
+      it "casts date timestamps" do
+        res = Resource.new date: "2015-01-13T13:43:00.347Z"
+
+        expect(res.date).to be_a(DateTime)
+      end
+
       describe "#attrs" do
         it "returns hash of attributes" do
           res = Resource.new a: 1

@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Tokens
-
       # GET /1/tokens/[token]
       def token(token, options = nil)
         get token_path(token), options

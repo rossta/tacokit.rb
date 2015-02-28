@@ -1,15 +1,15 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tacokit/version'
+require "tacokit/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "tacokit"
   spec.version       = Tacokit::VERSION
   spec.authors       = ["Ross Kaffenberger"]
   spec.email         = ["rosskaff@gmail.com"]
-  spec.summary       = %q{A ruby toolkit for the Trello API.}
-  spec.description   = %q{A ruby toolkit for working with the Trello API via a flat client.}
+  spec.summary       = "A ruby toolkit for the Trello API."
+  spec.description   = "A ruby toolkit for the Trello API."
   spec.homepage      = "http://rossta.github.io/tacokit.rb"
   spec.license       = "MIT"
 

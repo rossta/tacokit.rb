@@ -1,12 +1,12 @@
-require 'forwardable'
+require "forwardable"
 
 module Tacokit
   class Resource
-    SPECIAL_METHODS = Set.new(%w(fields))
+    SPECIAL_METHODS = Set.new(%w[fields])
     attr_reader :_fields
     attr_reader :attrs
-    alias to_hash attrs
-    alias to_h attrs
+    alias_method :to_hash, :attrs
+    alias_method :to_h, :attrs
     include Enumerable
     extend Forwardable
 
@@ -40,22 +40,22 @@ module Tacokit
     def key?(key)
       @_fields.include?(key)
     end
-    alias has_key? key?
-    alias include? key?
+    alias_method :has_key?, :key?
+    alias_method :include?, :key?
 
     def inspect
       (to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect)
     end
 
-    alias to_s inspect
+    alias_method :to_s, :inspect
 
     def to_attrs
-      hash = self.attrs.clone
+      hash = attrs.clone
       hash.keys.each do |k|
         if hash[k].is_a?(Resource)
           hash[k] = hash[k].to_attrs
-        elsif hash[k].is_a?(Array) && hash[k].all?{|el| el.is_a?(Resource)}
-          hash[k] = hash[k].collect{|el| el.to_attrs}
+        elsif hash[k].is_a?(Array) && hash[k].all? { |el| el.is_a?(Resource) }
+          hash[k] = hash[k].collect(&:to_attrs)
         end
       end
       hash
@@ -63,7 +63,7 @@ module Tacokit
 
     def update(attributes)
       attributes.each do |key, value|
-        self.send("#{key}=", value)
+        send("#{key}=", value)
       end
     end
 
@@ -77,8 +77,8 @@ module Tacokit
       end
     end
 
-    ATTR_SETTER    = '='.freeze
-    ATTR_PREDICATE = '?'.freeze
+    ATTR_SETTER    = "=".freeze
+    ATTR_PREDICATE = "?".freeze
 
     def method_missing(method, *args)
       attr_name, suffix = method.to_s.scan(/([a-z0-9\_]+)(\?|\=)?$/i).first
@@ -125,7 +125,9 @@ module Tacokit
       end
     end
 
+    # rubocop:disable Metrics/LineLength
     ISO8601 = %r{^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$}.freeze
+    # rubocop:enable Metrics/LineLength
     def cast_value_type(value)
       case value
       when ISO8601 then DateTime.parse(value)
@@ -134,6 +136,5 @@ module Tacokit
     rescue
       value
     end
-
   end
 end

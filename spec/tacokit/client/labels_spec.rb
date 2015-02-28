@@ -1,12 +1,12 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client::Labels do
   def test_label_id
-    '548a675574d650d567d52ad0'
+    "548a675574d650d567d52ad0"
   end
 
   def test_board_id
-    '548a675581d1d669c9e8184e'
+    "548a675581d1d669c9e8184e"
   end
 
   describe "#label", :vcr do
@@ -26,9 +26,9 @@ describe Tacokit::Client::Labels do
 
   describe "#update_label", :vcr do
     it "updates a label" do
-      label = app_client.update_label test_label_id, name: 'Test Label 1'
+      label = app_client.update_label test_label_id, name: "Test Label 1"
 
-      expect(label.name).to eq 'Test Label 1'
+      expect(label.name).to eq "Test Label 1"
       assert_requested :put, trello_url_template("labels/#{test_label_id}{?key,token}")
     end
   end
@@ -44,9 +44,9 @@ describe Tacokit::Client::Labels do
 
       assert_requested :post, trello_url_template("labels{?key,token}"),
         body: {
-          'idBoard' => test_board_id,
-          'name' => 'Test Label X',
-          'color' => 'sky'
+          "idBoard" => test_board_id,
+          "name" => "Test Label X",
+          "color" => "sky"
         }
     end
 

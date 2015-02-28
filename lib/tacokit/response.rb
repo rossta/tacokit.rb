@@ -1,6 +1,5 @@
 module Tacokit
   class Response
-
     attr_reader :client, :status, :headers, :env, :data
 
     def initialize(client, res, options = {})

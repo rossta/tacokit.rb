@@ -1,29 +1,29 @@
-require 'forwardable'
+require "forwardable"
 
-require 'addressable/uri'
+require "addressable/uri"
 
-require 'faraday'
-require 'faraday_middleware'
+require "faraday"
+require "faraday_middleware"
 
-require 'tacokit/authorization'
-require 'tacokit/configuration'
-require 'tacokit/middleware'
-require 'tacokit/response'
-require 'tacokit/transform'
+require "tacokit/authorization"
+require "tacokit/configuration"
+require "tacokit/middleware"
+require "tacokit/response"
+require "tacokit/transform"
 
-require 'tacokit/client/actions'
-require 'tacokit/client/boards'
-require 'tacokit/client/cards'
-require 'tacokit/client/checklists'
-require 'tacokit/client/labels'
-require 'tacokit/client/lists'
-require 'tacokit/client/members'
-require 'tacokit/client/notifications'
-require 'tacokit/client/organizations'
-require 'tacokit/client/searches'
-require 'tacokit/client/tokens'
-require 'tacokit/client/types'
-require 'tacokit/client/webhooks'
+require "tacokit/client/actions"
+require "tacokit/client/boards"
+require "tacokit/client/cards"
+require "tacokit/client/checklists"
+require "tacokit/client/labels"
+require "tacokit/client/lists"
+require "tacokit/client/members"
+require "tacokit/client/notifications"
+require "tacokit/client/organizations"
+require "tacokit/client/searches"
+require "tacokit/client/tokens"
+require "tacokit/client/types"
+require "tacokit/client/webhooks"
 
 module Tacokit
   class Client
@@ -54,7 +54,7 @@ module Tacokit
     attr_accessor :last_response
 
     def initialize(options = {})
-      self.configuration.options = options
+      configuration.options = options
     end
 
     def reset!
@@ -114,11 +114,11 @@ module Tacokit
 
     def connection
       @connection ||= Faraday.new(url: api_endpoint) do |http|
-        http.headers[:user_agent] = 'TacoKit 0.0.1'
+        http.headers[:user_agent] = "TacoKit 0.0.1"
 
         if user_authenticated?
           http.request :oauth, user_credentials
-        else app_authenticated?
+        elsif app_authenticated?
           http.params.update app_credentials
         end
 
@@ -128,11 +128,10 @@ module Tacokit
 
         http.response :json, content_type: /\bjson$/
         http.response :boom
-        http.response :logger if ENV['DEBUG']
+        http.response :logger if ENV["DEBUG"]
 
         http.adapter Faraday.default_adapter
       end
     end
-
   end
 end

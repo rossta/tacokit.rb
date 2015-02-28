@@ -18,7 +18,7 @@ module Tacokit
 
     def normalize_request_params(params)
       {}.tap do |norm|
-        (params || {}).each do |key,value|
+        (params || {}).each do |key, value|
           norm[key] = normalize_param_value(value)
         end
       end
@@ -27,9 +27,9 @@ module Tacokit
     def normalize_param_value(value)
       case value
       when Array
-        value.map { |v| camel_path(v) }.join(',')
+        value.map { |v| camel_path(v) }.join(",")
       when /\,/
-        normalize_param_value(value.split(','))
+        normalize_param_value(value.split(","))
       else
         camel_path(value)
       end
@@ -55,25 +55,24 @@ module Tacokit
     def camelize_key(key)
       k = key.to_s
       k = k.gsub(%r{([a-zA-Z_]+?)_id(s\b|\b)?$}, "id_\\1\\2")
-      k = k.gsub(%r{(#{camelize_special_cases.keys.join('|')})}) { |m| camelize_special_cases.fetch(m) }
+      k = k.gsub(%r{(#{camelize_special_cases.keys.join("|")})}) { |m| camelize_special_cases.fetch(m) }
       camelize(k, :lower)
     end
 
     # Converts
-    # 'prefs' => { 'voting' => 'members' }
+    # "prefs" => { "voting" => "members" }
     # to
-    # 'prefs/voting' => 'members
+    # "prefs/voting" => "members
     #
     def flatten_nested_keys(body)
       options = {}
       body.each do |key, value|
-        if value.is_a?(Hash)
-          value = flatten_nested_keys(value.dup)
-          value.each do |nested_key, nested_value|
-            options["#{key}/#{nested_key}"] = nested_value
-          end
-          body.delete(key)
+        next unless value.is_a?(Hash)
+        value = flatten_nested_keys(value.dup)
+        value.each do |nested_key, nested_value|
+          options["#{key}/#{nested_key}"] = nested_value
         end
+        body.delete(key)
       end
       body.merge(options)
     end
@@ -101,7 +100,7 @@ module Tacokit
 
     def underscore_key(key)
       k = key.to_s
-      k = k.gsub(%r{(#{pluralize_special_cases.join('|')})}, "\\1s")
+      k = k.gsub(%r{(#{pluralize_special_cases.join("|")})}, "\\1s")
       k = underscore(k)
       k.gsub(%r{^id_([a-zA-Z_]+?)(s\b|\b)$}, "\\1_id\\2")
     end
@@ -112,10 +111,9 @@ module Tacokit
 
     def camelize_special_cases
       {
-        'callback_url' => 'callbackURL',
-        'checklist_source_id' => 'idChecklistSource'
+        "callback_url" => "callbackURL",
+        "checklist_source_id" => "idChecklistSource"
       }
     end
-
   end
 end

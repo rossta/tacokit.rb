@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Lists
-
       # GET /1/lists/[idList]
       def list(list_id, options = nil)
         get list_path(list_id), options
@@ -48,7 +47,6 @@ module Tacokit
       def list_path(*paths)
         path_join("lists", *paths)
       end
-
     end
   end
 end

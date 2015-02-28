@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'launchy'
+require "spec_helper"
+require "launchy"
 
 describe Tacokit::Authorization do
   before do
@@ -34,14 +34,14 @@ describe Tacokit::Authorization do
       uri = Addressable::URI.parse Tacokit.authorize_url(
         app_name: "Tacokit", key: test_trello_app_key, scope: "read")
 
-      expect(uri.scheme).to eq 'https'
-      expect(uri.host).to eq 'trello.com'
+      expect(uri.scheme).to eq "https"
+      expect(uri.host).to eq "trello.com"
 
       params = uri.query_values
-      expect(params['key']).to eq test_trello_app_key
-      expect(params['app_name']).to eq 'Tacokit'
-      expect(params['response_type']).to eq 'token'
-      expect(params['scope']).to eq 'read'
+      expect(params["key"]).to eq test_trello_app_key
+      expect(params["app_name"]).to eq "Tacokit"
+      expect(params["response_type"]).to eq "token"
+      expect(params["scope"]).to eq "read"
     end
   end
 end

@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Checklists
-
       # Retrieve a checklist
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist
@@ -9,34 +8,34 @@ module Tacokit
         get checklist_path(checklist_id), options
       end
 
-      # Retrieve a checklist's field
+      # Retrieve a checklist"s field
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-field
       def checklist_field(checklist_id, field)
         get checklist_path(checklist_id, camp(field))
       end
 
-      # Retrieve the checklist's board
+      # Retrieve the checklist"s board
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-board
       def checklist_board(checklist_id, options = {})
-        checklist_resource 'board', options
+        checklist_resource "board", options
       end
 
-      # Retrieve a checklist's card
+      # Retrieve a checklist"s card
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-cards
       def checklist_card(checklist_id, options = {})
-        checklist_resource 'card', options
+        checklist_resource "card", options
       end
 
-      # Retrieve a checklist's check items
+      # Retrieve a checklist"s check items
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-checkitems
       def check_items(checklist_id, options = {})
-        checklist_resource checklist_id, 'check_items', options
+        checklist_resource checklist_id, "check_items", options
       end
-      alias checklist_check_items check_items
+      alias_method :checklist_check_items, :check_items
 
       # Updates a checklist
       #
@@ -44,7 +43,7 @@ module Tacokit
       def update_checklist(checklist_id, options = {})
         put checklist_path(checklist_id), options
       end
-      alias checklist_update update_checklist
+      alias_method :checklist_update, :update_checklist
 
       # Create a checklist
       #
@@ -53,16 +52,16 @@ module Tacokit
         options.update card_id: card_id, name: name
         post checklist_path, options
       end
-      alias checklist_create create_checklist
+      alias_method :checklist_create, :create_checklist
 
       # Add a checklist item to a checklist
       #
       # @see https://trello.com/docs/api/checklist/index.html#post-1-checklists-idchecklist-checkitems
       def add_checklist_check_item(checklist_id, name, options = {})
-        post checklist_path(checklist_id, 'checkItems'), options.merge(name: name)
+        post checklist_path(checklist_id, "checkItems"), options.merge(name: name)
       end
-      alias checklist_check_item_create add_checklist_check_item
-      alias add_checklist_item add_checklist_check_item
+      alias_method :checklist_check_item_create, :add_checklist_check_item
+      alias_method :add_checklist_item, :add_checklist_check_item
 
       # Delete a checklist
       #
@@ -70,7 +69,7 @@ module Tacokit
       def delete_checklist(checklist_id)
         delete checklist_path(checklist_id)
       end
-      alias checklist_delete delete_checklist
+      alias_method :checklist_delete, :delete_checklist
 
       # DELETE /1/checklists/[idChecklist]/checkItems/[idCheckItem]
 

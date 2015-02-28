@@ -1,12 +1,12 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client::Actions do
   def test_action_id
-    '548e3153ea7ca8f9cd3cb77b'
+    "548e3153ea7ca8f9cd3cb77b"
   end
 
   def test_card_id
-    '548dd95c8ca25ac9d0d9ce71'
+    "548dd95c8ca25ac9d0d9ce71"
   end
 
   describe "#action", :vcr do
@@ -17,7 +17,7 @@ describe Tacokit::Client::Actions do
       expect(action.data).to be_any
     end
 
-    it 'returns oauth authorized board' do
+    it "returns oauth authorized board" do
       action = oauth_client.action(test_action_id)
 
       expect(action.type).to be_present
@@ -29,7 +29,7 @@ describe Tacokit::Client::Actions do
     it "returns a value" do
       field = app_client.action_field(test_action_id, :type)
 
-      expect(field['_value']).to be_present
+      expect(field["_value"]).to be_present
     end
 
     it "returns a resource" do

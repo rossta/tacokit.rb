@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Organizations
-
       # GET /1/organizations/[idOrg or name]
       def organization(org_id, options = nil)
         get organization_path(org_id), options

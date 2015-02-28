@@ -1,7 +1,6 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client::Members do
-
   describe "#member", :vcr do
     it "returns a member" do
       member = app_client.member("rossta")
@@ -18,9 +17,9 @@ describe Tacokit::Client::Members do
 
     it "supports query fields as string or array" do
       member = app_client.member "tacokit",
-        boards: 'all',
-        board_fields: 'name,short_url',
-        fields: ['username', 'full_name']
+        boards: "all",
+        board_fields: "name,short_url",
+        fields: %w[ username full_name ]
 
       expect(member.username).to eq("tacokit")
       expect(member.full_name).to eq("Taco Kit")
@@ -43,19 +42,19 @@ describe Tacokit::Client::Members do
 
   describe "#member_field", :vcr do
     it "returns a value" do
-      field = app_client.member_field('tacokit', 'full_name')
+      field = app_client.member_field("tacokit", "full_name")
 
-      expect(field['_value']).to eq('Taco Kit')
+      expect(field["_value"]).to eq("Taco Kit")
     end
 
     it "returns an array" do
-      field = app_client.member_field('tacokit', :id_organizations)
+      field = app_client.member_field("tacokit", :id_organizations)
 
       expect(field).to include(test_org_id)
     end
 
     it "returns a resource" do
-      field = app_client.member_field('tacokit', :prefs)
+      field = app_client.member_field("tacokit", :prefs)
 
       expect(field.to_attrs).to include(color_blind: true)
     end
@@ -63,7 +62,7 @@ describe Tacokit::Client::Members do
 
   describe "#member_resource", :vcr do
     it "returns member actions" do
-      actions = app_client.member_resource('tacokit', :actions)
+      actions = app_client.member_resource("tacokit", :actions)
 
       expect(actions).not_to be_empty
 
@@ -72,7 +71,7 @@ describe Tacokit::Client::Members do
     end
 
     it "returns member boards" do
-      boards = app_client.member_resource('tacokit', :boards)
+      boards = app_client.member_resource("tacokit", :boards)
 
       expect(boards).not_to be_empty
 
@@ -82,7 +81,7 @@ describe Tacokit::Client::Members do
     end
 
     it "returns member board stars" do
-      stars = app_client.member_resource('tacokit', :board_stars)
+      stars = app_client.member_resource("tacokit", :board_stars)
 
       expect(stars).not_to be_empty
 
@@ -93,14 +92,14 @@ describe Tacokit::Client::Members do
 
   describe "#update_member", :vcr do
     it "updates a member" do
-      member = oauth_client.update_member('tacokit', bio: 'Tacokit puts the Trello API on Ruby')
+      member = oauth_client.update_member("tacokit", bio: "Tacokit puts the Trello API on Ruby")
 
-      expect(member.bio).to eq 'Tacokit puts the Trello API on Ruby'
+      expect(member.bio).to eq "Tacokit puts the Trello API on Ruby"
       assert_requested :put, trello_url_template("members/tacokit{?key,token}")
     end
 
     it "updates nested resource" do
-      member = oauth_client.update_member('tacokit', prefs: { color_blind: true })
+      member = oauth_client.update_member("tacokit", prefs: { color_blind: true })
 
       expect(member.prefs.color_blind).to eq true
     end

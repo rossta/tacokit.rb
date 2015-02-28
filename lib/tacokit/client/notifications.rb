@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Notifications
-
       # GET /1/notifications/[idNotification]
       def notification(notification_id, options = nil)
         get notification_path(notification_id), options

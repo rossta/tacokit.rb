@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Middleware::Boom do
   let(:app) { Object.new }
@@ -6,30 +6,29 @@ describe Tacokit::Middleware::Boom do
   let(:middleware) { described_class.new(app) }
 
   describe "#on_complete" do
-
     it "raises 404" do
       env[:status] = 404
-      expect{middleware.on_complete(env)}.to raise_error(Tacokit::Error::ResourceNotFound)
+      expect { middleware.on_complete(env) }.to raise_error(Tacokit::Error::ResourceNotFound)
     end
 
     it "raises 407" do
       env[:status] = 407
-      expect{middleware.on_complete(env)}.to raise_error(Tacokit::Error::ConnectionFailed)
+      expect { middleware.on_complete(env) }.to raise_error(Tacokit::Error::ConnectionFailed)
     end
 
     it "raises 400" do
       env[:status] = 400
-      expect{middleware.on_complete(env)}.to raise_error(Tacokit::Error::ClientError)
+      expect { middleware.on_complete(env) }.to raise_error(Tacokit::Error::ClientError)
     end
 
     it "raises 401" do
       env[:status] = 401
-      expect{middleware.on_complete(env)}.to raise_error(Tacokit::Error::Unauthorized)
+      expect { middleware.on_complete(env) }.to raise_error(Tacokit::Error::Unauthorized)
     end
 
     it "does nothing" do
       env[:status] = 200
-      expect{middleware.on_complete(env)}.not_to raise_error
+      expect { middleware.on_complete(env) }.not_to raise_error
     end
   end
 end

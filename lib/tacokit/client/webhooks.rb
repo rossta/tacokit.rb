@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Webhooks
-
       # GET /1/webhooks/[idWebhook]
       def webhook(webhook_id)
         get webhook_path(webhook_id)

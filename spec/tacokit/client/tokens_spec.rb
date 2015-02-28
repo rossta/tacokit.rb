@@ -1,7 +1,6 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client::Tokens do
-
   describe "#token", :vcr do
     it "returns a token for token string" do
       token = app_client.token(test_trello_app_token)
@@ -14,7 +13,7 @@ describe Tacokit::Client::Tokens do
     it "returns a value" do
       field = app_client.token_field(test_trello_app_token, :date_created)
 
-      expect(field['_value']).to be_present
+      expect(field["_value"]).to be_present
     end
 
     it "returns an array" do
@@ -41,7 +40,7 @@ describe Tacokit::Client::Tokens do
 
   describe "#delete_token", :vcr do
     it "deletes a token" do
-      expect { app_client.delete_token('faketokenid') }.to raise_error(Tacokit::Error) # 400, invalid token
+      expect { app_client.delete_token("faketokenid") }.to raise_error(Tacokit::Error) # 400, invalid token
 
       assert_requested :delete, trello_url_template("tokens/faketokenid{?key,token}")
     end

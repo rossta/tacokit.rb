@@ -1,9 +1,8 @@
 module Tacokit
   class Client
     module Members
-
       # GET /1/members/[idMember or username]
-      def member(username = 'me', options = nil)
+      def member(username = "me", options = nil)
         get(member_path(username), options)
       end
 

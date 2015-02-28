@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client do
   describe "#configuration" do
@@ -17,8 +17,8 @@ describe Tacokit::Client do
 
       board = boards.first
 
-      expect(board.name).to eq 'Test Board'
-      assert_requested :get, trello_url_template('members/me/boards{?key,token}')
+      expect(board.name).to eq "Test Board"
+      assert_requested :get, trello_url_template("members/me/boards{?key,token}")
     end
   end
 

@@ -1,15 +1,7 @@
-require 'tacokit/middleware/boom'
-# require 'tacokit/middleware/debug'
+require "tacokit/middleware/boom"
 
 module Tacokit
   module Middleware
-
-    # Faraday::Request.register_middleware \
-    #   :example => lambda { Tacokit::Middleware::Example }
-    #
-
-    Faraday::Response.register_middleware \
-      :boom => lambda { Tacokit::Middleware::Boom }
-
+    Faraday::Response.register_middleware boom: -> { Tacokit::Middleware::Boom }
   end
 end

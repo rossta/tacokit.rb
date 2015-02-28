@@ -1,24 +1,24 @@
-require 'bundler/setup'
+require "bundler/setup"
 Bundler.setup
 
 begin
-  require 'simplecov'
+  require "simplecov"
   SimpleCov.start
 rescue LoadError
   warn "Skipping simplecov"
 end
-require 'dotenv'
+require "dotenv"
 Dotenv.load(File.expand_path("../../.env",  __FILE__))
 
-require 'tacokit'
-require 'rspec'
-require 'webmock/rspec'
+require "tacokit"
+require "rspec"
+require "webmock/rspec"
 
 WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.before(:suite) do
-    warn "Using test_oauth_credentials #{ test_oauth_credentials }" if ENV['DEBUG']
+    warn "Using test_oauth_credentials #{ test_oauth_credentials }" if ENV["DEBUG"]
   end
 
   config.before do
@@ -41,7 +41,7 @@ RSpec.configure do |config|
   end
 end
 
-require 'vcr'
+require "vcr"
 VCR.configure do |c|
   c.configure_rspec_metadata!
 
@@ -66,59 +66,59 @@ VCR.configure do |c|
   end
 
   c.default_cassette_options = {
-    :serialize_with             => :json,
-    :preserve_exact_body_bytes  => true,
-    :decode_compressed_response => true,
-    # :re_record_interval         => 7 * 24 * 60 * 60, # 7 days
-    :record                     => :once
+    serialize_with:             :json,
+    preserve_exact_body_bytes:  true,
+    decode_compressed_response: true,
+    # re_record_interval:         7 * 24 * 60 * 60, # 7 days
+    record:                     :once
   }
 
-  c.cassette_library_dir = 'spec/cassettes'
+  c.cassette_library_dir = "spec/cassettes"
   c.hook_into :webmock
 end
 
 def test_trello_username
-  ENV.fetch 'TRELLO_TEST_USERNAME', 'tacokit'
+  ENV.fetch "TRELLO_TEST_USERNAME", "tacokit"
 end
 
 def test_trello_app_key
-  ENV.fetch 'TRELLO_TEST_APP_KEY', 'tacokit-app-key'
+  ENV.fetch "TRELLO_TEST_APP_KEY", "tacokit-app-key"
 end
 
 def test_trello_app_secret
-  ENV.fetch 'TRELLO_TEST_APP_SECRET', 'tacokit-app-secret'
+  ENV.fetch "TRELLO_TEST_APP_SECRET", "tacokit-app-secret"
 end
 
 def test_trello_app_token
-  ENV.fetch 'TRELLO_TEST_APP_TOKEN', 'tacokit-app-token'
+  ENV.fetch "TRELLO_TEST_APP_TOKEN", "tacokit-app-token"
 end
 
 def test_trello_oauth_token
-  ENV.fetch 'TRELLO_TEST_OAUTH_TOKEN', 'tacokit-oauth-token'
+  ENV.fetch "TRELLO_TEST_OAUTH_TOKEN", "tacokit-oauth-token"
 end
 
 def test_trello_oauth_secret
-  ENV.fetch 'TRELLO_TEST_OAUTH_SECRET', 'tacokit-oauth-secret'
+  ENV.fetch "TRELLO_TEST_OAUTH_SECRET", "tacokit-oauth-secret"
 end
 
 def test_org_name
-  ENV.fetch 'TRELLO_TEST_ORGANIZATION', 'teamtacokit'
+  ENV.fetch "TRELLO_TEST_ORGANIZATION", "teamtacokit"
 end
 
 def test_org_id
-  ENV.fetch 'TRELLO_TEST_ORGANIZATION_ID', '548e30e9683e1923f676ba20'
+  ENV.fetch "TRELLO_TEST_ORGANIZATION_ID", "548e30e9683e1923f676ba20"
 end
 
 def test_board_link
-  'swezQ9XS'
+  "swezQ9XS"
 end
 
 def test_board_id
-  '548a675581d1d669c9e8184e'
+  "548a675581d1d669c9e8184e"
 end
 
 def test_list_id
-  '548dd948ffd374221926b4c8'
+  "548dd948ffd374221926b4c8"
 end
 
 def test_client_credentials
@@ -144,7 +144,7 @@ def oauth_client
 end
 
 def tacokit_web_endpoint(*segments)
-  File.join(ENV.fetch('TACOKIT_WEB_CLIENT', 'https://tacokit.herokuapp.com'), *segments)
+  File.join(ENV.fetch("TACOKIT_WEB_CLIENT", "https://tacokit.herokuapp.com"), *segments)
 end
 
 def trello_url(url)
@@ -161,14 +161,14 @@ def trello_url_template(url)
 end
 
 def blank?(object)
-  object.respond_to?(:empty?) ? !!object.empty? : !object
+  object.respond_to?(:empty?) ? object.empty? : !object
 end
 
 def present?(object)
   !blank?(object)
 end
 
-RSpec::Matchers.define :be_present do |expected|
+RSpec::Matchers.define :be_present do
   match do |actual|
     present?(actual)
   end

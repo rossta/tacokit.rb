@@ -25,7 +25,5 @@ module Tacokit
 
     # 407
     ConnectionFailed = Class.new(ClientError)
-
   end
-
 end

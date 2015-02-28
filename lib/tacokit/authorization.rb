@@ -1,7 +1,6 @@
 module Tacokit
   module Authorization
-
-    def get_app_key
+    def get_app_key # rubocop:disable Style/AccessorMethodName
       open_url web_url("appKey/generate")
     end
 
@@ -19,15 +18,15 @@ module Tacokit
 
     def authorize_url(params = {})
       params[:key] ||= app_key
-      params[:name] ||= 'Tacokit'
-      params[:response_type] ||= 'token'
+      params[:name] ||= "Tacokit"
+      params[:response_type] ||= "token"
       web_url "authorize", params
     end
 
     private
 
     def open_url(url)
-      require 'launchy'
+      require "launchy"
       Launchy.open(url)
     rescue LoadError
       warn "Visit #{url}"
@@ -41,6 +40,5 @@ module Tacokit
     def web_connection
       Faraday::Connection.new(web_endpoint)
     end
-
   end
 end

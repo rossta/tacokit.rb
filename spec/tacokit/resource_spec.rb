@@ -1,31 +1,31 @@
-require 'spec_helper'
+require "spec_helper"
 
 module Tacokit
   describe Resource do
     describe "#initialize" do
       it "handles given attributes" do
-        res = Resource.new one: 'one', 'two' => :two
+        res = Resource.new one: "one", "two" => :two
 
         expect(res).to be_a(Resource)
-        expect(res.one).to eq 'one'
+        expect(res.one).to eq "one"
         expect(res.two).to eq :two
       end
 
       it "handles nested objects" do
-        res = Resource.new prefs: { user: { read: 'ftw' }}
+        res = Resource.new prefs: { user: { read: "ftw" } }
 
-        expect(res.prefs.user.read).to eq 'ftw'
+        expect(res.prefs.user.read).to eq "ftw"
         expect(res.prefs).to be_a(Resource)
         expect(res.prefs.user).to be_a(Resource)
       end
 
       it "has nested collections" do
-        res = Resource.new labels: [{ color: 'blue' }]
+        res = Resource.new labels: [{ color: "blue" }]
 
         expect(res.labels.size).to eq 1
 
         label = res.labels.first
-        expect(label.color).to eq 'blue'
+        expect(label.color).to eq "blue"
         expect(label).to be_a(Resource)
       end
 
@@ -102,8 +102,8 @@ module Tacokit
         res = Resource.new a: 1, b: 2
 
         output = []
-        res.each { |k,v| output << [k,v] }
-        expect(output).to eq [[:a,1],[:b,2]]
+        res.each { |k, v| output << [k, v] }
+        expect(output).to eq [[:a, 1], [:b, 2]]
       end
 
       it "casts date timestamps" do
@@ -125,7 +125,7 @@ module Tacokit
           expect(res.b).to be_a(Array)
           expect(res.b.first).to be_a(Resource)
 
-          expect(res.to_attrs).to eq(a: 1, b: [{c: 2}])
+          expect(res.to_attrs).to eq(a: 1, b: [{ c: 2 }])
         end
 
         it "responds to [] and []=" do
@@ -133,20 +133,19 @@ module Tacokit
 
           expect(res.a).to eq 1
           expect(res[:a]).to eq 1
-          expect(res['a']).to eq 1
+          expect(res["a"]).to eq 1
 
           res[:a] = 2
           expect(res.a).to eq 2
           expect(res[:a]).to eq 2
-          expect(res['a']).to eq 2
+          expect(res["a"]).to eq 2
 
-          res['a'] = 3
+          res["a"] = 3
           expect(res.a).to eq 3
           expect(res[:a]).to eq 3
-          expect(res['a']).to eq 3
+          expect(res["a"]).to eq 3
         end
       end
     end
-
   end
 end

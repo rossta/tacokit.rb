@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client::Notifications do
   def test_notification_id
-    '549102431b607566bafc93ab'
+    "549102431b607566bafc93ab"
   end
 
   describe "#notification", :vcr do
@@ -17,7 +17,7 @@ describe Tacokit::Client::Notifications do
     it "returns a value" do
       field = app_client.notification_field(test_notification_id, :type)
 
-      expect(field['_value']).to be_present
+      expect(field["_value"]).to be_present
     end
 
     it "returns a resource" do

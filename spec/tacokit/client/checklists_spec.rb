@@ -1,19 +1,19 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Tacokit::Client::Checklists do
   def test_checklist_id
-    '548ddd3f5402eb674035334f'
+    "548ddd3f5402eb674035334f"
   end
 
   def test_card_id
-    '548dd95c8ca25ac9d0d9ce71'
+    "548dd95c8ca25ac9d0d9ce71"
   end
 
   describe "#checklist", :vcr do
     it "returns a checklist by id" do
       checklist = app_client.checklist(test_checklist_id)
 
-      expect(checklist.name).to eq 'Checklist 1'
+      expect(checklist.name).to eq "Checklist 1"
     end
   end
 
@@ -21,7 +21,7 @@ describe Tacokit::Client::Checklists do
     it "returns a value" do
       field = app_client.checklist_field(test_checklist_id, :pos)
 
-      expect(field['_value']).to be_present
+      expect(field["_value"]).to be_present
     end
   end
 
@@ -38,15 +38,14 @@ describe Tacokit::Client::Checklists do
 
       expect(board.name).to be_present
     end
-
   end
 
   describe "#update_checklist", :vcr do
     it "updates a checklist" do
       checklist = app_client.update_checklist test_checklist_id,
-        name: 'Test Checklist 1'
+        name: "Test Checklist 1"
 
-      expect(checklist.name).to eq 'Test Checklist 1'
+      expect(checklist.name).to eq "Test Checklist 1"
       assert_requested :put, trello_url_template("checklists/#{test_checklist_id}{?key,token}")
     end
   end
@@ -87,9 +86,9 @@ describe Tacokit::Client::Checklists do
       expect(@checklist.pos).to be >= 1
       assert_requested :post, trello_url_template("checklists{?key,token}"),
         body: {
-          'name' => 'Autochecklist',
-          'pos' => 'top',
-          'idCard' => test_card_id
+          "name" => "Autochecklist",
+          "pos" => "top",
+          "idCard" => test_card_id
         }
     end
 

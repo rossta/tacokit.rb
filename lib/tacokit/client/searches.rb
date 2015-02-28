@@ -1,7 +1,6 @@
 module Tacokit
   class Client
     module Searches
-
       # GET /1/search
       def search(query, options = {})
         get search_path, options.merge(query: query)

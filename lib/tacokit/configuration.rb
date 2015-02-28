@@ -1,6 +1,5 @@
 module Tacokit
   class Configuration
-
     API_URL = "https://api.trello.com".freeze
     WEB_URL = "https://trello.com".freeze
 
@@ -41,7 +40,7 @@ module Tacokit
     end
 
     def app_credentials
-      { key: app_key, token: app_token }.delete_if { |k,v| v.nil? }
+      { key: app_key, token: app_token }.delete_if { |k, v| v.nil? }
     end
 
     private
@@ -50,11 +49,10 @@ module Tacokit
       {
         api_endpoint: File.join(API_URL, API_VERSION),
         web_endpoint: File.join(WEB_URL, API_VERSION),
-        app_key: ENV['TRELLO_APP_KEY'],
-        app_secret: ENV['TRELLO_APP_SECRET'],
-        app_token: ENV['TRELLO_APP_TOKEN']
+        app_key: ENV["TRELLO_APP_KEY"],
+        app_secret: ENV["TRELLO_APP_SECRET"],
+        app_token: ENV["TRELLO_APP_TOKEN"]
       }
     end
-
   end
 end

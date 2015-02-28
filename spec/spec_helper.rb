@@ -1,12 +1,9 @@
 require "bundler/setup"
 Bundler.setup
 
-begin
-  require "simplecov"
-  SimpleCov.start
-rescue LoadError
-  warn "Skipping simplecov"
-end
+require "coveralls"
+Coveralls.wear!
+
 require "dotenv"
 Dotenv.load(File.expand_path("../../.env",  __FILE__))
 

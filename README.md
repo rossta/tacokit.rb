@@ -12,10 +12,10 @@ This is Taco.
 
 ## Quick Start
 
-Add this line to your application's Gemfile:
+Add this line to your application"s Gemfile:
 
 ```ruby
-gem 'tacokit'
+gem "tacokit"
 ```
 
 ... or install it yourself as:
@@ -30,7 +30,7 @@ Tacokit.get_app_key
 
 # Configure the client
 Tacokit.configure do |c|
-  c.app_key = '4ppk3y'
+  c.app_key = "4ppk3y"
 end
 ```
 
@@ -41,13 +41,13 @@ client instance methods.
 Tacokit.member
 
 # Fetch another member
-Tacokit.member 'tacokit'
+Tacokit.member "tacokit"
 
 # Configure a separate client
-client = Tacokit::Client.new app_key: '4ppk3y'
+client = Tacokit::Client.new app_key: "4ppk3y"
 
 # Fetch a member
-client.member 'tacokit'
+client.member "tacokit"
 ```
 ## Authentication
 
@@ -69,13 +69,13 @@ Tacokit provides a simple way to generate a new app token:
 
 ```ruby
 # Full permissions for 30 days
-Tacokit.authorize scope: %w[ read write account ], expiration: '30days'
+Tacokit.authorize scope: %w[ read write account ], expiration: "30days"
 
 # Authorize a custom application and a different app key
-Tacokit.authorize name: 'My Trello App', key: '4ppk3y2'
+Tacokit.authorize name: "My Trello App", key: "4ppk3y2"
 
 # Read only permissions for custom app forever
-Tacokit.authorize scope: 'read', expiration: 'never', name: 'My Trello App'
+Tacokit.authorize scope: "read", expiration: "never", name: "My Trello App"
 ```
 
 Your Tacokit client can now be configured to make requests:
@@ -83,8 +83,8 @@ Your Tacokit client can now be configured to make requests:
 ```ruby
 # Configure the client
 Tacokit.configure do |c|
-  c.app_key   = '4ppk3y'
-  c.app_token = '4ppt0k3n'
+  c.app_key   = "4ppk3y"
+  c.app_token = "4ppt0k3n"
 end
 ```
 
@@ -97,7 +97,7 @@ flow. Tacokit clients can therefore be configured separately to make requests on
 behalf of different members:
 
 ```ruby
-client = Tacokit::Client.new app_key: '4ppk3y', oauth_token: '04utht0k3n'
+client = Tacokit::Client.new app_key: "4ppk3y", oauth_token: "04utht0k3n"
 ```
 
 To experiment with OAuth tokens for development, visit the [Tacokit
@@ -129,6 +129,6 @@ Coming soon.
 
 1. Fork it ( https://github.com/[my-github-username]/tacokit/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
+3. Commit your changes (`git commit -am "Add some feature"`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request

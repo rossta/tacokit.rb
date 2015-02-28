@@ -1,12 +1,16 @@
 module Tacokit
   class Client
     module Boards
-      # GET /1/boards/[board_id]
+      # Retrieve a board
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id
       def board(board_id, options = nil)
         get board_path(board_id), options
       end
 
-      # GET /1/boards/[board_id]/[field]
+      # Retrieve a board's field
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-field
       def board_field(board_id, field, options = nil)
         get board_path(board_id, camp(field)), options
       end
@@ -80,45 +84,21 @@ module Tacokit
         board_resource(board_id, "organization", options)
       end
 
-      # PUT /1/boards/[board_id]
+      # Update board attributes
+      #
+      # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id
       def update_board(board_id, options = {})
         put board_path(board_id), options
       end
 
-      # PUT /1/boards/[board_id]/[field]
-      # closed
-      # desc
-      # idOrganization
-      # labelNames/blue
-      # labelNames/green
-      # labelNames/orange
-      # labelNames/purple
-      # labelNames/red
-      # labelNames/yellow
-      # myPrefs/emailPosition
-      # myPrefs/idEmailList
-      # myPrefs/showListGuide
-      # myPrefs/showSidebar
-      # myPrefs/showSidebarActivity
-      # myPrefs/showSidebarBoardActions
-      # myPrefs/showSidebarMembers
-      # name
-      # prefs/background
-      # prefs/calendarFeedEnabled
-      # prefs/cardAging
-      # prefs/cardCovers
-      # prefs/comments
-      # prefs/invitations
-      # prefs/permissionLevel
-      # prefs/selfJoin
-      # prefs/voting
-      # subscribed
       def update_board_field(board_id, *paths)
         value = paths.pop
         put board_path(board_id, camel_join(*paths)), value: value
       end
 
-      # PUT /1/boards/[board_id]/members
+      # Add a member to a board
+      #
+      # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id-members-idmember
       def add_board_member(board_id, email, full_name, options = {})
         options.update \
           email: email,
@@ -126,11 +106,11 @@ module Tacokit
         put board_path(board_id, "members"), options
       end
 
-      # PUT /1/boards/[board_id]/[resource]
-      # members/[idMember]
-      # memberships/[idMembership]
-      def update_board_resource(board_id, resource, resource_id, options = {})
-        put board_path(board_id, camp(resource), resource_id), options
+      # Update a board member's type
+      #
+      # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id-members-idmember
+      def update_board_member(board_id, member_id, type)
+        update_board_resource(board_id, 'members', member_id, type: type)
       end
 
       # POST /1/boards
@@ -138,25 +118,17 @@ module Tacokit
         post board_path, options.merge(name: name)
       end
 
-      # POST /1/boards/[board_id]/[resource]
-      # calendarKey/generate
-      # checklists
-      # emailKey/generate
-      # labels
-      # lists
-      # markAsViewed
-      # powerUps
+      private
+
       def create_board_resource(board_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         post board_path(board_id, *paths), options
       end
 
-      # DELETE /1/boards/[board_id]/[resource]/[resource_id]
-      # members/[idMember]
-      # powerUps/[powerUp]
-      #
-
-      # private
+      def update_board_resource(board_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        put board_path(board_id, *paths), options
+      end
 
       def board_path(*paths)
         path_join("boards", *paths)

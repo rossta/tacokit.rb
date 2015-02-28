@@ -173,43 +173,11 @@ describe Tacokit::Client::Boards do
     end
   end
 
-  describe "#create_board_resource", :vcr do
-    it "creates a board label" do
-      @label = label = app_client.create_board_resource test_board_id, "labels", name: "Autolabel", color: "blue"
-
-      expect(label.name).to eq "Autolabel"
-      expect(label.color).to eq "blue"
-
-      assert_requested :post, trello_url_template("boards/#{test_board_id}/labels{?key,token}"),
-        body: {
-          "name" => "Autolabel",
-          "color" => "blue"
-        }
-      app_client.delete_label @label.id
-    end
-
-    it "creates a board calendar key" do
-      key = app_client.create_board_resource test_board_id, "calendar_key", "generate", foo: "bar"
-
-      expect(key.id).to_not be_nil
-      assert_requested :post, trello_url_template("boards/#{test_board_id}/calendarKey/generate{?key,token}")
-    end
-  end
-
-  describe "#update_board_field", :vcr do
-    it "updates a board field" do
-      board = app_client.update_board_field(test_board_id, "desc", "This board is for Tacokit testing")
-
-      expect(board.desc).to eq "This board is for Tacokit testing"
-      assert_requested :put, trello_url_template("boards/#{test_board_id}/desc{?key,token}"), body: { value: "This board is for Tacokit testing" }
-    end
-  end
-
   describe "#add_board_member", :vcr do
     it "adds invites member to board" do
-      @member = member = app_client.add_board_member(test_board_id, "rosskaff+tacokit2@gmail.com", "Taco Kit2")
+      @member = member = app_client.add_board_member(test_board_id, "rossta+tacokit2@example.com", "Taco Kit2")
 
-      expect(member.email).to eq "rosskaff+tacokit2@gmail.com"
+      expect(member.email).to eq "rossta+tacokit2@example.com"
     end
 
     after do
@@ -217,13 +185,13 @@ describe Tacokit::Client::Boards do
     end
   end
 
-  describe "#update_board_resource", :vcr do
+  describe "#update_board_member", :vcr do
     before do
-      @member = app_client.add_board_member(test_board_id, "rosskaff+tacokit3@gmail.com", "Taco Kit3")
+      @member = app_client.add_board_member(test_board_id, "rossta+tacokit@example.com", "Taco Kit3")
     end
 
     it "updates member" do
-      membership = app_client.update_board_resource(test_board_id, "members", @member.id, type: "normal")
+      membership = app_client.update_board_member(test_board_id, @member.id, "normal")
       expect(membership.id).to_not be_nil
     end
 

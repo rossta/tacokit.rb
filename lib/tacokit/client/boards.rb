@@ -110,7 +110,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id-members-idmember
       def update_board_member(board_id, member_id, type)
-        update_board_resource(board_id, 'members', member_id, type: type)
+        update_board_resource(board_id, "members", member_id, type: type)
       end
 
       # POST /1/boards

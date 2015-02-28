@@ -1,7 +1,8 @@
 AllCops:
   Exclude:
-    - "spec/cassettes/**/*"
     - "Guardfile"
+    - "spec/cassettes/**/*"
+    - "vendor/**/*"
 
 Lint/UnusedBlockArgument:
   Enabled: false
@@ -60,8 +61,8 @@ Style/CaseIndentation:
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
-    '%w': "[]"
-    '%W': "[]"
+    "%w": "[]"
+    "%W": "[]"
 
 Style/AccessModifierIndentation:
   EnforcedStyle: indent

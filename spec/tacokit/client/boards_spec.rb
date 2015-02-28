@@ -36,15 +36,6 @@ describe Tacokit::Client::Boards do
   end
 
   describe "#board_resource", :vcr do
-    it "returns board actions" do
-      actions = app_client.board_resource(test_board_link, :actions)
-
-      expect(actions).not_to be_empty
-
-      action = actions.first
-      expect(action.member_creator.full_name).to be_present
-    end
-
     it "returns board members" do
       members = app_client.board_resource(test_board_link, :members)
 
@@ -53,14 +44,97 @@ describe Tacokit::Client::Boards do
       member = members.first
       expect(member.username).to be_present
     end
+  end
 
+  describe "#board_actions", :vcr do
+    it "returns board actions" do
+      actions = app_client.board_actions(test_board_link)
+
+      expect(actions).not_to be_empty
+
+      action = actions.first
+      expect(action.member_creator.full_name).to be_present
+    end
+  end
+
+  describe "#board_stars", :vcr do
+    it "returns board stars" do
+      stars = app_client.board_stars(test_board_link)
+
+      expect(stars).not_to be_empty
+
+      expect(stars.first.board_id).to eq(test_board_id)
+    end
+  end
+
+  describe "#board_cards", :vcr do
     it "returns board cards" do
-      cards = app_client.board_resource(test_board_link, :cards)
+      cards = app_client.board_cards(test_board_link)
 
       expect(cards).not_to be_empty
 
       card = cards.first
       expect(card.pos).to be_present
+    end
+  end
+
+  describe "#board_checklists", :vcr do
+    it "returns board checklists" do
+      checklists = app_client.board_checklists(test_board_link)
+
+      expect(checklists).not_to be_empty
+
+      checklist = checklists.first
+      expect(checklist.name).to eq 'Test Checklist 1'
+    end
+  end
+
+  describe "#board_labels", :vcr do
+    it "returns board labels" do
+      labels = app_client.board_labels(test_board_link)
+
+      expect(labels).not_to be_empty
+
+      label = labels.first
+      expect(label.name).to eq 'Blue Label'
+    end
+  end
+
+  describe "#board_lists", :vcr do
+    it "returns board lists" do
+      lists = app_client.board_lists(test_board_link)
+
+      expect(lists).not_to be_empty
+
+      list = lists.first
+      expect(list.name).to eq 'Test List 1'
+    end
+  end
+
+  describe "#board_members", :vcr do
+    it "returns board members" do
+      members = app_client.board_members(test_board_link)
+
+      expect(members).not_to be_empty
+
+      member = members.first
+      expect(member.username).to eq 'rossta'
+    end
+  end
+
+  describe "#board_preferences", :vcr do
+    it "returns preferences for a board" do
+      prefs = app_client.board_preferences(test_board_link)
+
+      expect(prefs.show_sidebar).to be_truthy
+    end
+  end
+
+  describe "#board_organization", :vcr do
+    it "returns board organization" do
+      organization = app_client.board_organization(test_board_link)
+
+      expect(organization.name).to eq 'teamtacokit'
     end
   end
 

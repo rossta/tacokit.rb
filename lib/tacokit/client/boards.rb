@@ -13,30 +13,72 @@ module Tacokit
       end
 
       # GET /1/boards/[board_id]/[resource]
-      # actions
-      # boardStars
-      # cards
-      # cards/[filter]
-      # cards/[idCard]
-      # checklists
-      # deltas
-      # labels
-      # labels/[idLabel]
-      # lists
-      # lists/[filter]
-      # members
-      # members/[filter]
-      # members/[idMember]/cards
-      # membersInvited
-      # membersInvited/[field]
-      # memberships
-      # memberships/[idMembership]
-      # myPrefs
-      # organization
-      # organization/[field]
       def board_resource(board_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         get board_path(board_id, *paths), options
+      end
+
+      # Retrieve a board's actions
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-actions
+      def board_actions(board_id, options = {})
+        board_resource(board_id, 'actions', options)
+      end
+
+      # Retrieve a board's stars
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-boardstars
+      def board_stars(board_id, options = {})
+        board_resource(board_id, 'board_stars', options)
+      end
+
+      # Retrieve a board's cards
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-cards
+      def board_cards(board_id, options = {})
+        board_resource(board_id, 'cards', options)
+      end
+
+      # Retrieve a board's checklists
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-checklists
+      def board_checklists(board_id, options = {})
+        board_resource(board_id, 'checklists', options)
+      end
+
+      # Retrieve a board's labels
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-labels
+      def board_labels(board_id, options = {})
+        board_resource(board_id, 'labels', options)
+      end
+
+      # Retrieve a board's lists
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-lists
+      def board_lists(board_id, options = {})
+        board_resource(board_id, 'lists', options)
+      end
+
+      # Retrieve a board's members
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-members
+      def board_members(board_id, options = {})
+        board_resource(board_id, 'members', options)
+      end
+
+      # Retrieve your preferences for a board
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-myprefs
+      def board_preferences(board_id, options = {})
+        board_resource(board_id, 'my_prefs', options)
+      end
+
+      # Retrieve a board's organization
+      #
+      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-organization
+      def board_organization(board_id, options = {})
+        board_resource(board_id, 'organization', options)
       end
 
       # PUT /1/boards/[board_id]
@@ -115,10 +157,11 @@ module Tacokit
       # powerUps/[powerUp]
       #
 
+      # private
+
       def board_path(*paths)
         path_join("boards", *paths)
       end
-
     end
   end
 end

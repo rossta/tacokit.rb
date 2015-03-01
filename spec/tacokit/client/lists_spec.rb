@@ -25,26 +25,30 @@ describe Tacokit::Client::Lists do
     end
   end
 
-  describe "#list_resource", :vcr do
+  describe "#list_actions", :vcr do
     it "returns list actions" do
-      actions = app_client.list_resource(test_list_id, :actions)
+      actions = app_client.list_actions(test_list_id)
 
       expect(actions).to be_any
     end
+  end
 
-    it "returns list board" do
-      board = app_client.list_resource(test_list_id, :board)
-
-      expect(board.name).to be_present
-    end
-
+  describe "#list_cards", :vcr do
     it "returns list cards" do
-      cards = app_client.list_resource(test_list_id, :cards)
+      cards = app_client.list_cards(test_list_id)
 
       expect(cards).to be_any
 
       card = cards.first
       expect(card.name).to be_present
+    end
+  end
+
+  describe "#list_board", :vcr do
+    it "returns list board" do
+      board = app_client.list_board(test_list_id)
+
+      expect(board.name).to be_present
     end
   end
 

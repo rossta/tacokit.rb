@@ -123,7 +123,30 @@ TRELLO_APP_TOKEN=4ppt0k3n
 
 ## Usage
 
-Coming soon.
+Retrieve boards
+
+```ruby
+client.boards
+
+client.boards('rossta')
+```
+
+Retrieve cards
+
+```ruby
+client.cards
+
+client.cards('rossta')
+
+board_id = 'swezQ9XS' # short link to "Test Board" for Tacokit
+client.board_cards(board_id)
+```
+
+Retrieve lists
+
+```ruby
+client.lists(board_id)
+```
 
 ## Contributing
 

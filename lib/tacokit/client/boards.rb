@@ -8,49 +8,50 @@ module Tacokit
         get board_path(board_id), options
       end
 
-      # Retrieve a board"s actions
+      # Retrieve a board's actions
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-actions
       def board_actions(board_id, options = {})
         board_resource(board_id, "actions", options)
       end
 
-      # Retrieve a board"s stars
+      # Retrieve a board's stars
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-boardstars
       def board_stars(board_id, options = {})
         board_resource(board_id, "board_stars", options)
       end
 
-      # Retrieve a board"s cards
+      # Retrieve a board's cards
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-cards
       def board_cards(board_id, options = {})
         board_resource(board_id, "cards", options)
       end
 
-      # Retrieve a board"s checklists
+      # Retrieve a board's checklists
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-checklists
       def board_checklists(board_id, options = {})
         board_resource(board_id, "checklists", options)
       end
 
-      # Retrieve a board"s labels
+      # Retrieve a board's labels
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-labels
       def board_labels(board_id, options = {})
         board_resource(board_id, "labels", options)
       end
 
-      # Retrieve a board"s lists
+      # Retrieve a board's lists
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-lists
-      def board_lists(board_id, options = {})
+      def lists(board_id, options = {})
         board_resource(board_id, "lists", options)
       end
+      alias_method :board_lists, :lists
 
-      # Retrieve a board"s members
+      # Retrieve a board's members
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-members
       def board_members(board_id, options = {})
@@ -64,7 +65,7 @@ module Tacokit
         board_resource(board_id, "my_prefs", options)
       end
 
-      # Retrieve a board"s organization
+      # Retrieve a board's organization
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-organization
       def board_organization(board_id, options = {})

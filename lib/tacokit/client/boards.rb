@@ -8,19 +8,6 @@ module Tacokit
         get board_path(board_id), options
       end
 
-      # Retrieve a board's field
-      #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-field
-      def board_field(board_id, field, options = nil)
-        get board_path(board_id, camp(field)), options
-      end
-
-      # GET /1/boards/[board_id]/[resource]
-      def board_resource(board_id, resource, *paths)
-        paths, options = extract_options(camp(resource), *paths)
-        get board_path(board_id, *paths), options
-      end
-
       # Retrieve a board"s actions
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-actions
@@ -91,11 +78,6 @@ module Tacokit
         put board_path(board_id), options
       end
 
-      def update_board_field(board_id, *paths)
-        value = paths.pop
-        put board_path(board_id, camel_join(*paths)), value: value
-      end
-
       # Add a member to a board
       #
       # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id-members-idmember
@@ -128,6 +110,11 @@ module Tacokit
       def update_board_resource(board_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         put board_path(board_id, *paths), options
+      end
+
+      def board_resource(board_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get board_path(board_id, *paths), options
       end
 
       def board_path(*paths)

@@ -11,13 +11,6 @@ module Tacokit
         get card_path(card_id), options
       end
 
-      # Retrieve a card"s field
-      #
-      # @see https://trello.com/docs/api/card/index.html#get-1-cards-card-id-or-shortlink-field
-      def card_field(card_id, field, options = nil)
-        get card_path(card_id, camp(field)), options
-      end
-
       # Retrieve card actions
       #
       # @see https://trello.com/docs/api/card/index.html#get-1-cards-card-id-or-shortlink-actions
@@ -325,6 +318,8 @@ module Tacokit
         delete_card_resource card_id, "stickers", sticker_id
       end
       alias_method :delete_sticker, :remove_sticker
+
+      private
 
       # Delete a card resource
       def delete_card_resource(card_id, resource, *paths)

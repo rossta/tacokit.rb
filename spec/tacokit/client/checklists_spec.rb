@@ -17,14 +17,6 @@ describe Tacokit::Client::Checklists do
     end
   end
 
-  describe "#checklist_field", :vcr do
-    it "returns a value" do
-      field = app_client.checklist_field(test_checklist_id, :pos)
-
-      expect(field["_value"]).to be_present
-    end
-  end
-
   describe "#checklist_resource", :vcr do
     it "returns checklist actions" do
       items = app_client.checklist_resource(test_checklist_id, :check_items)

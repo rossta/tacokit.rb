@@ -1,14 +1,11 @@
 module Tacokit
   class Client
     module Members
-      # GET /1/members/[idMember or username]
+      # Retrieve a Trello member
+      #
+      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
         get(member_path(username), options)
-      end
-
-      # GET /1/members/[idMember or username]/[field]
-      def member_field(username, field, options = nil)
-        get member_path(username, camp(field)), options
       end
 
       # GET /1/members/[idMember or username]/[resource]

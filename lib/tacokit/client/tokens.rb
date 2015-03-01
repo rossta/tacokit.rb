@@ -6,11 +6,6 @@ module Tacokit
         get token_path(token), options
       end
 
-      # GET /1/tokens/[token]/[field]
-      def token_field(token, field, options = nil)
-        get token_path(token, camp(field)), options
-      end
-
       # GET /1/tokens/[token]/[resource]
       # member
       # webhooks

@@ -13,14 +13,6 @@ describe Tacokit::Client::Webhooks do
     end
   end
 
-  describe "#webhook_field", :vcr do
-    it "returns a value" do
-      field = app_client.webhook_field(test_webhook_id, :callback_url)
-
-      expect(field["_value"]).to be_present
-    end
-  end
-
   describe "#update_webhook", :vcr do
     it "updates a webhook" do
       webhook = app_client.update_webhook(test_webhook_id, description: "This webhook is for Tacokit testing")

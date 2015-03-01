@@ -8,11 +8,6 @@ module Tacokit
         get list_path(list_id), options
       end
 
-      # GET /1/lists/[idList]/[field]
-      def list_field(list_id, field, options = nil)
-        get list_path(list_id, camp(field)), options
-      end
-
       # Retrive a list's actions
       #
       # @see https://trello.com/docs/api/list/index.html#get-1-lists-idlist-actions

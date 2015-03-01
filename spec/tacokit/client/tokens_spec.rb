@@ -9,21 +9,6 @@ describe Tacokit::Client::Tokens do
     end
   end
 
-  describe "#token_field", :vcr do
-    it "returns a value" do
-      field = app_client.token_field(test_trello_app_token, :date_created)
-
-      expect(field["_value"]).to be_present
-    end
-
-    it "returns an array" do
-      field = app_client.token_field(test_trello_app_token, :permissions)
-
-      expect(field).to be_any
-      expect(field.first.read).to be_present
-    end
-  end
-
   describe "#token_resource", :vcr do
     it "returns token member" do
       member = app_client.token_resource(test_trello_app_token, :member)

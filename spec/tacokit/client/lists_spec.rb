@@ -25,14 +25,6 @@ describe Tacokit::Client::Lists do
     end
   end
 
-  describe "#list_field", :vcr do
-    it "returns a value" do
-      field = app_client.list_field(test_list_id, :pos)
-
-      expect(field["_value"]).to be_present
-    end
-  end
-
   describe "#list_actions", :vcr do
     it "returns list actions" do
       actions = app_client.list_actions(test_list_id)

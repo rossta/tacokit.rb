@@ -8,28 +8,21 @@ module Tacokit
         get checklist_path(checklist_id), options
       end
 
-      # Retrieve a checklist"s field
-      #
-      # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-field
-      def checklist_field(checklist_id, field)
-        get checklist_path(checklist_id, camp(field))
-      end
-
-      # Retrieve the checklist"s board
+      # Retrieve the checklist's board
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-board
       def checklist_board(checklist_id, options = {})
         checklist_resource "board", options
       end
 
-      # Retrieve a checklist"s card
+      # Retrieve a checklist's card
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-cards
       def checklist_card(checklist_id, options = {})
         checklist_resource "card", options
       end
 
-      # Retrieve a checklist"s check items
+      # Retrieve a checklist's check items
       #
       # @see https://trello.com/docs/api/checklist/index.html#get-1-checklists-idchecklist-checkitems
       def check_items(checklist_id, options = {})

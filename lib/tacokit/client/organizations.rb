@@ -6,11 +6,6 @@ module Tacokit
         get organization_path(org_id), options
       end
 
-      # GET /1/organizations/[idOrg or name]/[field]
-      def organization_field(org_id, field, options = nil)
-        get organization_path(org_id, camp(field)), options
-      end
-
       # GET /1/organizations/[idOrg or name]/[resource]
       # actions
       # boards

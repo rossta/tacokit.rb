@@ -8,19 +8,6 @@ module Tacokit
         get action_path(action_id), options
       end
 
-      # Retrieve an action"s field
-      #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-field
-      def action_field(action_id, field)
-        get action_path(action_id, camp(field))
-      end
-
-      # Retrives an action"s resources
-      def action_resource(action_id, resource, *paths)
-        paths, options = extract_options(camp(resource), *paths)
-        get action_path(action_id, *paths), options
-      end
-
       # Retrieve an action"s board
       #
       # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-field
@@ -90,6 +77,13 @@ module Tacokit
       # @see https://trello.com/docs/api/action/index.html#delete-1-actions-idaction
       def delete_action(action_id)
         delete action_path(action_id)
+      end
+
+      private
+
+      def action_resource(action_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        get action_path(action_id, *paths), options
       end
 
       def action_path(*paths)

@@ -9,26 +9,6 @@ describe Tacokit::Client::Organizations do
     end
   end
 
-  describe "#organization_field", :vcr do
-    it "returns a value" do
-      field = app_client.organization_field(test_org_name, :desc)
-
-      expect(field["_value"]).to eq("Tacokit the organization")
-    end
-
-    it "returns an array" do
-      field = app_client.organization_field(test_org_name, :premium_features)
-
-      expect(field).to be_empty
-    end
-
-    it "returns a resource" do
-      field = app_client.organization_field(test_org_name, :prefs)
-
-      expect(field.to_attrs).to include(permission_level: "public")
-    end
-  end
-
   describe "#organization_resource", :vcr do
     it "returns organization actions" do
       actions = app_client.organization_resource(test_org_name, :actions)

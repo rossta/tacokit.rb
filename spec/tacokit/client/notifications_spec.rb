@@ -13,20 +13,6 @@ describe Tacokit::Client::Notifications do
     end
   end
 
-  describe "#notification_field", :vcr do
-    it "returns a value" do
-      field = app_client.notification_field(test_notification_id, :type)
-
-      expect(field["_value"]).to be_present
-    end
-
-    it "returns a resource" do
-      field = app_client.notification_field(test_notification_id, :data)
-
-      expect(field).to be_a(Tacokit::Resource)
-    end
-  end
-
   describe "#notification_resource", :vcr do
     it "returns action entities" do
       entities = app_client.notification_resource(test_notification_id, :entities)

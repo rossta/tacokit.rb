@@ -6,11 +6,6 @@ module Tacokit
         get webhook_path(webhook_id)
       end
 
-      # GET /1/webhooks/[idWebhook]/[field]
-      def webhook_field(webhook_id, field, options = nil)
-        get webhook_path(webhook_id, camp(field)), options
-      end
-
       # PUT /1/webhooks/[idWebhook]
       def update_webhook(webhook_id, options = {})
         put webhook_path(webhook_id), options

@@ -6,11 +6,6 @@ module Tacokit
         get notification_path(notification_id), options
       end
 
-      # GET /1/notifications/[idNotification]/[field]
-      def notification_field(notification_id, field)
-        get notification_path(notification_id, camp(field))
-      end
-
       # GET /1/notifications/[idNotification]/[resource]
       # board
       # board/[field]

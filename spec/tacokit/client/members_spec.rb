@@ -40,26 +40,6 @@ describe Tacokit::Client::Members do
     end
   end
 
-  describe "#member_field", :vcr do
-    it "returns a value" do
-      field = app_client.member_field("tacokit", "full_name")
-
-      expect(field["_value"]).to eq("Taco Kit")
-    end
-
-    it "returns an array" do
-      field = app_client.member_field("tacokit", :id_organizations)
-
-      expect(field).to include(test_org_id)
-    end
-
-    it "returns a resource" do
-      field = app_client.member_field("tacokit", :prefs)
-
-      expect(field.to_attrs).to include(color_blind: true)
-    end
-  end
-
   describe "#member_resource", :vcr do
     it "returns member actions" do
       actions = app_client.member_resource("tacokit", :actions)

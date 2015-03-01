@@ -4,14 +4,17 @@ module Tacokit
       open_url web_url("appKey/generate")
     end
 
-    # Params
-    # callback_method: "postMessage" or "fragment"
-    # return_url: URL the token should be returned to
-    # scope: Comma-separated list of one or more of "read", "write", "account"
-    # expiration: "1hour", "1day", "30days", "never"
-    # name: Name of the application
-    # key: Application key
+    # Get a token for making authorized requests to the Trello API
     #
+    # @param [String, #read] contents the contents to reverse
+    # @param options [Hash] Repository information to update
+    # @option options [String] :name Name of the application
+    # @option options [String] :key Application key
+    # @option options [String] :callback_method "postMessage" or "fragment"
+    # @option options [String] :return_url URL the token should be returned to
+    # @option options [String] :scope Comma-separated list of one or more of "read", "write", "account"
+    # @option options [String] :expiration "1hour", "1day", "30days", "never"
+    # @see https://trello.com/docs/gettingstarted/authorize.html
     def authorize(params = {})
       open_url authorize_url(params)
     end

@@ -16,14 +16,6 @@ describe Tacokit::Client::Labels do
     end
   end
 
-  describe "#label_resource", :vcr do
-    it "returns a board" do
-      board = app_client.label_resource(test_label_id, :board)
-
-      expect(board.name).to be_present
-    end
-  end
-
   describe "#update_label", :vcr do
     it "updates a label" do
       label = app_client.update_label test_label_id, name: "Test Label 1"

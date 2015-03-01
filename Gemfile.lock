@@ -17,6 +17,8 @@ GEM
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
+    rack-ssl (1.4.1)
+      rack
     rack_csrf (2.5.0)
       rack (>= 1.1.0)
     rake (10.4.2)
@@ -37,6 +39,7 @@ DEPENDENCIES
   dotenv
   oauth
   puma
+  rack-ssl
   rack_csrf
   rake
   sinatra

@@ -9,8 +9,12 @@ class TrelloOauth < Sinatra::Base
 
   use Rack::Session::Cookie, secret: ENV.fetch('SESSION_SECRET', SecureRandom.hex(32))
   use Rack::Csrf, raise: true
-
   enable :protection
+
+  configure :production do
+    require 'rack/ssl'
+    use Rack::SSL
+  end
 
   set :app_name   , ENV.fetch('TRELLO_APP_NAME', 'Tacokit')
   set :app_key    , ENV.fetch('TRELLO_APP_KEY')
@@ -21,12 +25,11 @@ class TrelloOauth < Sinatra::Base
   set :authorize_path     , "/1/OAuthAuthorizeToken"
   set :access_token_path  , "/1/OAuthGetAccessToken"
 
-  set :force_ssl, false
   set :debug, false
-  # set :show_exceptions, false
+  set :show_exceptions, false
 
-  configure :production do
-    set :force_ssl, true
+  configure :development do
+    set :show_exceptions, true
   end
 
   helpers do
@@ -42,10 +45,6 @@ class TrelloOauth < Sinatra::Base
   before do
     session[:_init] = '1'
     log_request
-
-    if settings.force_ssl && !request.secure?
-      halt 400, "Please use SSL: <a href='#{ssl_url("/")}'>#{ssl_url("/")}</a>"
-    end
   end
 
   IncompleteCredentials = Class.new(RuntimeError)

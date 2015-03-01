@@ -40,33 +40,74 @@ describe Tacokit::Client::Members do
     end
   end
 
-  describe "#member_resource", :vcr do
+  describe "#actions", :vcr do
     it "returns member actions" do
-      actions = app_client.member_resource("tacokit", :actions)
+      actions = app_client.actions("tacokit")
 
       expect(actions).not_to be_empty
 
       action = actions.first
       expect(action.member_creator.full_name).to be_present
-    end
 
+      assert_requested :get, trello_url_template("members/tacokit/actions{?key,token}")
+    end
+  end
+
+  describe "#boards", :vcr do
     it "returns member boards" do
-      boards = app_client.member_resource("tacokit", :boards)
+      boards = app_client.boards("tacokit")
 
       expect(boards).not_to be_empty
 
       board = boards.first
       expect(board).to be_a(Tacokit::Resource)
       expect(board.name).to be_present
+
+      assert_requested :get, trello_url_template("members/tacokit/boards{?key,token}")
     end
+  end
 
-    it "returns member board stars" do
-      stars = app_client.member_resource("tacokit", :board_stars)
+  describe "#cards", :vcr do
+    it "returns member cards" do
+      cards = app_client.cards("tacokit")
 
-      expect(stars).not_to be_empty
+      expect(cards).to be_empty
 
-      star = stars.first
-      expect(star.pos).to be_present
+      assert_requested :get, trello_url_template("members/tacokit/cards{?key,token}")
+    end
+  end
+
+  describe "#notifications", :vcr do
+    it "returns member notifications" do
+      notifications = app_client.notifications("tacokit")
+
+      expect(notifications).to be_empty
+
+      assert_requested :get, trello_url_template("members/tacokit/notifications{?key,token}")
+    end
+  end
+
+  describe "#organizations", :vcr do
+    it "returns member organizations" do
+      organizations = app_client.organizations("tacokit")
+
+      expect(organizations).not_to be_empty
+      org = organizations.first
+      expect(org.name).to eq "teamtacokit"
+
+      assert_requested :get, trello_url_template("members/tacokit/organizations{?key,token}")
+    end
+  end
+
+  describe "#tokens", :vcr do
+    it "returns member tokens" do
+      tokens = app_client.tokens("tacokit")
+
+      expect(tokens).not_to be_empty
+      token = tokens.first
+      expect(token.identifier).to be_present
+
+      assert_requested :get, trello_url_template("members/tacokit/tokens{?key,token}")
     end
   end
 

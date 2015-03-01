@@ -81,8 +81,6 @@ class TrelloOauth < Sinatra::Base
     redirect authorize_url
   end
 
-  post
-
   post "/webhook" do
     logger.info "webhook received"
     status 200

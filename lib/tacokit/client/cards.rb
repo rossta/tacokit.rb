@@ -82,11 +82,6 @@ module Tacokit
         card_resource(card_id, "stickers", options)
       end
 
-      # Retrieve any card resource
-      def card_resource(card_id, resource, options = {})
-        get card_path(card_id, camp(resource)), options
-      end
-
       # Update card attributes
       #
       # @see https://trello.com/docs/api/card/index.html#put-1-cards-card-id-or-shortlink
@@ -321,7 +316,10 @@ module Tacokit
 
       private
 
-      # Delete a card resource
+      def card_resource(card_id, resource, options = {})
+        get card_path(card_id, camp(resource)), options
+      end
+
       def delete_card_resource(card_id, resource, *paths)
         delete card_path(card_id, camp(resource), *paths)
       end

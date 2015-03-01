@@ -60,13 +60,13 @@ module Tacokit
 
       private
 
-      def list_path(*paths)
-        path_join("lists", *paths)
-      end
-
       def list_resource(list_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         get list_path(list_id, *paths), options
+      end
+
+      def list_path(*paths)
+        path_join("lists", *paths)
       end
     end
   end

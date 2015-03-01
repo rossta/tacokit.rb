@@ -64,9 +64,8 @@ module Tacokit
       end
       alias_method :checklist_delete, :delete_checklist
 
-      # DELETE /1/checklists/[idChecklist]/checkItems/[idCheckItem]
+      private
 
-      # no doc
       def checklist_resource(checklist_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         get checklist_path(checklist_id, *paths), options

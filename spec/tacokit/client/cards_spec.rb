@@ -31,29 +31,6 @@ describe Tacokit::Client::Cards do
     end
   end
 
-  describe "#card_resource", :vcr do
-    it "returns card actions" do
-      actions = app_client.card_resource(test_card_link, :actions)
-
-      expect(actions).to be_any
-    end
-
-    it "returns card board" do
-      board = app_client.card_resource(test_card_link, :board)
-
-      expect(board.name).to be_present
-    end
-
-    it "returns card check item states" do
-      states = app_client.card_resource(test_card_link, :check_item_states)
-
-      expect(states).to be_any
-
-      state = states.first
-      expect(state.state).to be_present
-    end
-  end
-
   describe "#card_actions", :vcr do
     it "returns card actions" do
       actions = app_client.card_actions(test_card_link)
@@ -368,7 +345,7 @@ describe Tacokit::Client::Cards do
       expect(comment.data.text).to eq "I'm singing, I'm singing, I'm singing!"
       expect(comment.data.card.id).to eq @card.id
 
-      actions = app_client.card_resource(@card.id, "actions")
+      actions = app_client.card_actions(@card.id)
       expect(actions.map(&:id)).to include(comment.id)
     end
 

@@ -9,6 +9,14 @@ describe Tacokit::Client::Lists do
     "548a675581d1d669c9e8184e"
   end
 
+  def test_alternate_list_id
+    "54f3724e8a0bbe01a80f8712"
+  end
+
+  def test_alternate_board_id
+    "54f371b4086781e1a71b6111"
+  end
+
   describe "#list", :vcr do
     it "returns a list by id" do
       list = app_client.list(test_list_id)
@@ -84,14 +92,45 @@ describe Tacokit::Client::Lists do
   end
 
   describe "#archive_list_cards", :vcr do
-    it "should archive cards in list", :pending do
-      raise NotImplementedError
+    before do
+      @list = app_client.create_list test_board_id, "Autolist", pos: "bottom"
+      @card = app_client.create_card @list.id, "Test card"
+    end
+
+    it "should archive cards in list" do
+      app_client.archive_list_cards(@list.id)
+
+      card = app_client.card(@card.id)
+      expect(card.closed?).to be_truthy
+    end
+
+    after do
+      app_client.update_list @list.id, closed: true
     end
   end
 
-  describe "#move_all_cards" do
-    it "should archive cards in list", :pending do
-      raise NotImplementedError
+  describe "#move_list_cards", :vcr do
+    before do
+      @list = app_client.create_list test_board_id, "Autolist", pos: "bottom"
+      @card = app_client.create_card @list.id, "Test card"
+    end
+
+    it "should move cards in list" do
+      app_client.move_list_cards @list.id, test_alternate_list_id, test_alternate_board_id
+
+      source = app_client.list_cards(@list.id)
+      expect(source).to be_empty
+
+      destination = app_client.list_cards(test_alternate_list_id)
+      expect(destination.size).to eq(1)
+
+      card = destination.first
+      expect(card.list_id).to eq test_alternate_list_id
+    end
+
+    after do
+      app_client.delete_card @card.id
+      app_client.update_list @list.id, closed: true
     end
   end
 end

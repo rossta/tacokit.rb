@@ -11,25 +11,25 @@ module Tacokit
         get list_path(list_id, camp(field)), options
       end
 
-      # Retrive a list's actions
+      # Retrive a list"s actions
       #
       # @see https://trello.com/docs/api/list/index.html#get-1-lists-idlist-actions
       def list_actions(list_id, options = {})
-        list_resource list_id, 'actions', options
+        list_resource list_id, "actions", options
       end
 
-      # Retrive a list's board
+      # Retrive a list"s board
       #
       # @see https://trello.com/docs/api/list/index.html#get-1-lists-idlist-board
       def list_board(list_id, options = {})
-        list_resource list_id, 'board', options
+        list_resource list_id, "board", options
       end
 
-      # Retrive a list's cards
+      # Retrive a list"s cards
       #
       # @see https://trello.com/docs/api/list/index.html#get-1-lists-idlist-cards
       def list_cards(list_id, options = {})
-        list_resource list_id, 'cards', options
+        list_resource list_id, "cards", options
       end
 
       # PUT /1/lists/[idList]
@@ -64,7 +64,6 @@ module Tacokit
         paths, options = extract_options(camp(resource), *paths)
         get list_path(list_id, *paths), options
       end
-
     end
   end
 end

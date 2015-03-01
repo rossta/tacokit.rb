@@ -82,4 +82,16 @@ describe Tacokit::Client::Lists do
       app_client.update_list @list.id, closed: true
     end
   end
+
+  describe "#archive_list_cards", :vcr do
+    it "should archive cards in list", :pending do
+      raise NotImplementedError
+    end
+  end
+
+  describe "#move_all_cards" do
+    it "should archive cards in list", :pending do
+      raise NotImplementedError
+    end
+  end
 end

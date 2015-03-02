@@ -123,34 +123,51 @@ TRELLO_APP_TOKEN=4ppt0k3n
 
 ## Usage
 
-Retrieve boards
+Working with boards
 
 ```ruby
 client.boards
 
-client.boards('rossta')
+client.boards("rossta")
+
+board_id = "swezQ9XS" # short link to "Test Board" for Tacokit
+
+board = client.board(board_id)
+
+board.name = "Ice Box"
+
+client.update_board(board.id, name: "TODO")
 ```
 
-Retrieve cards
+Working with cards
 
 ```ruby
 client.cards
 
-client.cards('rossta')
+client.cards("rossta")
 
-board_id = 'swezQ9XS' # short link to "Test Board" for Tacokit
 client.board_cards(board_id)
+
+card_id = "SpbauOpX" # short link to card on "Test Board"
+
+card.name = "Shopping List"
+
+client.update_card(card.id, name: "Wish List")
+
+client.move_card(card.id, list_id: list_id)
 ```
 
-Retrieve lists
+Working with lists
 
 ```ruby
 client.lists(board_id)
+
+list = client.list(list_id)
+
+list.name = "Work in Progress"
+
+client.update_list(list.id, name: "Done")
 ```
-
-## TODO
-
-Paginated collections for actions, cards, labels, notifications
 
 ## Contributing
 

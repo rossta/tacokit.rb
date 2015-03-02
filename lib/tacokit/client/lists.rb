@@ -26,7 +26,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/list/index.html#get-1-lists-idlist-cards
       def list_cards(list_id, options = {})
-        list_resource list_id, "cards", options
+        paginated_list_resource list_id, "cards", options
       end
 
       # Update a list's attributes

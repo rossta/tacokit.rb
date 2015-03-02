@@ -26,7 +26,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-cards
       def board_cards(board_id, options = {})
-        board_resource(board_id, "cards", options)
+        paginated_board_resource(board_id, "cards", options)
       end
 
       # Retrieve a board's checklists

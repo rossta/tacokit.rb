@@ -1,3 +1,4 @@
+require "set"
 require "forwardable"
 
 module Tacokit

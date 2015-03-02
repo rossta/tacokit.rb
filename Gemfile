@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "addressable"
 gem "awesome_print", require: "ap"
 gem "coveralls", require: false
 gem "dotenv"

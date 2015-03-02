@@ -1,3 +1,5 @@
+require "uri"
+
 module Tacokit
   class Client
     # Methods for the Cards API
@@ -178,7 +180,7 @@ module Tacokit
       def attach_file(card_id, url, mime_type = nil, options = {})
         options = mime_type if mime_type.is_a?(Hash)
 
-        uri = Addressable::URI.parse(url)
+        uri = URI.parse(url)
 
         if uri.scheme =~ %r{https?}
           options.update url: uri.to_s, mime_type: mime_type

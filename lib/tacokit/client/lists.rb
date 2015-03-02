@@ -12,7 +12,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/list/index.html#get-1-lists-idlist-actions
       def list_actions(list_id, options = {})
-        list_resource list_id, "actions", options
+        paginated_list_resource list_id, "actions", options
       end
 
       # Retrive a list's board
@@ -63,6 +63,11 @@ module Tacokit
       def list_resource(list_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         get list_path(list_id, *paths), options
+      end
+
+      def paginated_list_resource(list_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        paginated_get list_path(list_id, *paths), options
       end
 
       def list_path(*paths)

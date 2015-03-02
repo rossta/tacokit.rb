@@ -8,7 +8,7 @@ module Tacokit
         get action_path(action_id), options
       end
 
-      # Retrieve an action"s board
+      # Retrieve an action's board
       #
       # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-field
       def action_board(action_id, fields = "all")
@@ -22,14 +22,14 @@ module Tacokit
         action_resource action_id, "card", fields: fields
       end
 
-      # Retrive an action"s entities
+      # Retrive an action's entities
       #
       # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-entities
       def action_entities(action_id)
         action_resource action_id, "entities"
       end
 
-      # Retrieve an action"s list
+      # Retrieve an action's list
       #
       # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-list
       def action_list(action_id, fields = "all")
@@ -43,14 +43,14 @@ module Tacokit
         action_resource action_id, "member", fields: fields
       end
 
-      # Retrieve an action"s creator
+      # Retrieve an action's creator
       #
       # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-membercreator
       def action_member_creator(action_id, fields = "all")
         action_resource action_id, "memberCreator", fields: fields
       end
 
-      # Retrieve an action"s org
+      # Retrieve an action's org
       #
       # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-organization
       def action_organization(action_id, fields = "all")

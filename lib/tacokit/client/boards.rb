@@ -12,7 +12,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-actions
       def board_actions(board_id, options = {})
-        board_resource(board_id, "actions", options)
+        paginated_board_resource(board_id, "actions", options)
       end
 
       # Retrieve a board's stars
@@ -116,6 +116,11 @@ module Tacokit
       def board_resource(board_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         get board_path(board_id, *paths), options
+      end
+
+      def paginated_board_resource(board_id, resource, *paths)
+        paths, options = extract_options(camp(resource), *paths)
+        paginated_get board_path(board_id, *paths), options
       end
 
       def board_path(*paths)

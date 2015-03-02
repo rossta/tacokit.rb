@@ -108,7 +108,7 @@ describe Tacokit::Client::Actions do
 
   describe "#update_action_text", :vcr do
     before do
-      @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Update action test. Booya!"
+      @action = app_client.add_comment test_card_id, "Update action test. Booya!"
     end
 
     it "updates an action" do
@@ -124,7 +124,7 @@ describe Tacokit::Client::Actions do
 
   describe "#delete_action", :vcr do
     before do
-      @action = app_client.post "cards/#{test_card_id}/actions/comments", text: "Delete action test. Booya!"
+      @action = app_client.add_comment(test_card_id, text: "Delete action test. Booya!")
     end
 
     it "deletes an action" do

@@ -15,7 +15,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/card/index.html#get-1-cards-card-id-or-shortlink-actions
       def card_actions(card_id, options = {})
-        card_resource(card_id, "actions", options)
+        paginated_card_resource(card_id, "actions", options)
       end
 
       # Retrieve card attachments
@@ -318,6 +318,10 @@ module Tacokit
 
       def card_resource(card_id, resource, options = {})
         get card_path(card_id, camp(resource)), options
+      end
+
+      def paginated_card_resource(card_id, resource, options = {})
+        paginated_get card_path(card_id, camp(resource)), options
       end
 
       def delete_card_resource(card_id, resource, *paths)

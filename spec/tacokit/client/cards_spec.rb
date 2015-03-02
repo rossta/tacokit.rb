@@ -166,6 +166,7 @@ describe Tacokit::Client::Cards do
     it "updates a comment" do
       app_client.update_comment(test_card_link, @comment.id, "I'm not singing")
       actions = app_client.card_actions(test_card_link)
+
       comment = actions.first.data
       expect(comment.text).to eq("I'm not singing")
     end

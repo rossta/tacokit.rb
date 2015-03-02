@@ -7,11 +7,12 @@ module Tacokit
 
     MAX = 1000
 
-    def_delegators :@collection, :[], :empty?
+    def_delegators :@collection, :[], :empty?, :size
 
     def initialize(client, method, path, options)
       @client, @method, @path, @options = client, method, path, options
-      @page = options.fetch(:page, 1)
+
+      @page  = options.fetch(:page, 0)
       @limit = options.fetch(:limit, 50)
 
       @collection = []

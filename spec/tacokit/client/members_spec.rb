@@ -83,7 +83,7 @@ describe Tacokit::Client::Members do
 
       expect(notifications).to be_empty
 
-      assert_requested :get, trello_url_template("members/tacokit/notifications{?key,token}")
+      assert_requested :get, trello_url_template("members/tacokit/notifications{?key,token,page}")
     end
   end
 

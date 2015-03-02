@@ -13,20 +13,6 @@ describe Tacokit::Client::Notifications do
     end
   end
 
-  describe "#notification_resource", :vcr do
-    it "returns action entities" do
-      entities = app_client.notification_resource(test_notification_id, :entities)
-
-      expect(entities).to be_any
-    end
-
-    it "returns notification board" do
-      board = app_client.notification_resource(test_notification_id, :board)
-
-      expect(board.name).to be_present
-    end
-  end
-
   describe "#update_notification", :vcr do
     it "updates a notification" do
       notification = oauth_client.update_notification(test_notification_id, unread: false)

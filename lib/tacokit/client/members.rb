@@ -38,7 +38,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-notifications
       def notifications(username = "me", options = {})
-        get member_path(username, "notifications"), options
+        paginated_get member_path(username, "notifications"), options
       end
 
       # Retrieve a member's organizations

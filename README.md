@@ -148,6 +148,10 @@ Retrieve lists
 client.lists(board_id)
 ```
 
+## TODO
+
+Paginated collections for actions, cards, labels, notifications
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/tacokit/fork )

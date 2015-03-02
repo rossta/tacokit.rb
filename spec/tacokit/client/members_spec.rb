@@ -49,7 +49,7 @@ describe Tacokit::Client::Members do
       action = actions.first
       expect(action.member_creator.full_name).to be_present
 
-      assert_requested :get, trello_url_template("members/tacokit/actions{?key,token}")
+      assert_requested :get, trello_url_template("members/tacokit/actions{?key,token,page}")
     end
   end
 

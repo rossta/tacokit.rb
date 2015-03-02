@@ -2,13 +2,14 @@ require "forwardable"
 
 module Tacokit
   class Resource
+    include Enumerable
+    extend Forwardable
+
     SPECIAL_METHODS = Set.new(%w[fields])
     attr_reader :_fields
     attr_reader :attrs
     alias_method :to_hash, :attrs
     alias_method :to_h, :attrs
-    include Enumerable
-    extend Forwardable
 
     def_delegators :@_fields, :fetch, :keys, :any?
 

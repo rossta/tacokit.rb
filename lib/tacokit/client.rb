@@ -6,6 +6,7 @@ require "faraday"
 require "faraday_middleware"
 
 require "tacokit/authorization"
+require "tacokit/collection"
 require "tacokit/configuration"
 require "tacokit/middleware"
 require "tacokit/response"
@@ -83,6 +84,10 @@ module Tacokit
 
     def delete(url, options = {})
       request :delete, url, options
+    end
+
+    def paginated_get(*args)
+      Collection.new(self, :get, *args)
     end
 
     def request(method, url, data = nil, params = nil)

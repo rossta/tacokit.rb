@@ -12,7 +12,11 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-actions
       def actions(username = "me", options = {})
-        get member_path(username, "actions"), options
+        if username.is_a?(Hash)
+          username = "me"
+          options = username
+        end
+        paginated_get member_path(username, "actions"), options
       end
       alias_method :member_actions, :actions
 

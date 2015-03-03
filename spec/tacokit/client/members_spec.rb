@@ -65,6 +65,15 @@ describe Tacokit::Client::Members do
 
       assert_requested :get, trello_url_template("members/tacokit/boards{?key,token}")
     end
+
+    it "returns for 'me' with options as first arg" do
+      boards = app_client.boards(fields: %w[id name])
+
+      expect(boards).not_to be_empty
+
+      board = boards.first
+      expect(board.name).to be_present
+    end
   end
 
   describe "#cards", :vcr do

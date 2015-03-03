@@ -5,6 +5,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
+        username, options = extract_member_args(username, options)
         get member_path(username), options
       end
 
@@ -12,10 +13,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-actions
       def actions(username = "me", options = {})
-        if username.is_a?(Hash)
-          username = "me"
-          options = username
-        end
+        username, options = extract_member_args(username, options)
         paginated_get member_path(username, "actions"), options
       end
       alias_method :member_actions, :actions
@@ -24,6 +22,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-boards
       def boards(username = "me", options = {})
+        username, options = extract_member_args(username, options)
         get member_path(username, "boards"), options
       end
 
@@ -31,6 +30,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-cards
       def cards(username = "me", options = {})
+        username, options = extract_member_args(username, options)
         get member_path(username, "cards"), options
       end
 
@@ -38,6 +38,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-notifications
       def notifications(username = "me", options = {})
+        username, options = extract_member_args(username, options)
         paginated_get member_path(username, "notifications"), options
       end
 
@@ -45,6 +46,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-organizations
       def organizations(username = "me", options = {})
+        username, options = extract_member_args(username, options)
         get member_path(username, "organizations"), options
       end
 
@@ -52,6 +54,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-tokens
       def tokens(username = "me", options = {})
+        username, options = extract_member_args(username, options)
         get member_path(username, "tokens"), options
       end
 
@@ -95,6 +98,11 @@ module Tacokit
 
       def member_path(*paths)
         path_join "members", *paths
+      end
+
+      def extract_member_args(username, options)
+        options, username = username, "me" if username.is_a?(Hash)
+        [username, options]
       end
     end
   end

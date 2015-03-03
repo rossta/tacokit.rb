@@ -40,7 +40,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/list/index.html#post-1-lists
       def create_list(board_id, name, options = {})
-        post list_path, options.merge(name: name, board_id: board_id)
+        post "lists", options.merge(name: name, board_id: board_id)
       end
 
       # Archive all cards in a list
@@ -70,8 +70,8 @@ module Tacokit
         paginated_get list_path(list_id, *paths), options
       end
 
-      def list_path(*paths)
-        path_join("lists", *paths)
+      def list_path(list_id, *paths)
+        resource_path("lists", list_id, *paths)
       end
     end
   end

@@ -15,6 +15,14 @@ describe Tacokit::Client::Members do
       expect(member.full_name).to eq("Taco Kit")
     end
 
+    it "accepts a resource" do
+      member = app_client.member
+
+      member = app_client.member(member)
+
+      expect(member.full_name).to eq("Taco Kit")
+    end
+
     it "supports query fields as string or array" do
       member = app_client.member "tacokit",
         boards: "all",

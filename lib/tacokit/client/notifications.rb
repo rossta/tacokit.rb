@@ -26,8 +26,8 @@ module Tacokit
         get notification_path(notification_id, *paths), options
       end
 
-      def notification_path(*paths)
-        path_join "notifications", *paths
+      def notification_path(notification_id, *paths)
+        resource_path "notifications", notification_id, *paths
       end
     end
   end

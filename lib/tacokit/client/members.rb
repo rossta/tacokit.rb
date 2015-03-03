@@ -96,8 +96,8 @@ module Tacokit
         get(member_path(username, *paths), options)
       end
 
-      def member_path(*paths)
-        path_join "members", *paths
+      def member_path(member_id, *paths)
+        resource_path("members", member_id, *paths)
       end
 
       def extract_member_args(username, options)

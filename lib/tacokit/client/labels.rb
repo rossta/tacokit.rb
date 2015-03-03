@@ -19,7 +19,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/label/index.html#post-1-labels
       def create_label(board_id, name, color)
-        post label_path,
+        post "labels",
           board_id: board_id,
           name: name,
           color: color
@@ -34,8 +34,8 @@ module Tacokit
 
       private
 
-      def label_path(*paths)
-        path_join "labels", *paths
+      def label_path(label_id, *paths)
+        resource_path "labels", label_id, *paths
       end
     end
   end

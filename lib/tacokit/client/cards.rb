@@ -162,7 +162,7 @@ module Tacokit
       #
       # @see https://trello.com/docs/api/card/index.html#post-1-cards
       def create_card(list_id, name = nil, options = {})
-        post card_path, options.merge(name: name, list_id: list_id)
+        post "cards", options.merge(name: name, list_id: list_id)
       end
 
       # Add a comment to a card
@@ -330,8 +330,8 @@ module Tacokit
         delete card_path(card_id, camp(resource), *paths)
       end
 
-      def card_path(*paths)
-        base_path "cards", *paths
+      def card_path(card_id, *paths)
+        resource_path("cards", card_id, *paths)
       end
     end
   end

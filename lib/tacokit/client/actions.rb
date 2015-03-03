@@ -86,8 +86,8 @@ module Tacokit
         get action_path(action_id, *paths), options
       end
 
-      def action_path(*paths)
-        path_join("actions", *paths)
+      def action_path(action_id, *paths)
+        resource_path("actions", action_id, *paths)
       end
     end
   end

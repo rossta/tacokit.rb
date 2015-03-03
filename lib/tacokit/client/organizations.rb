@@ -48,7 +48,7 @@ module Tacokit
 
       # POST /1/organizations
       def create_organization(display_name, options = {})
-        post organization_path, options.merge(display_name: display_name)
+        post "organizations", options.merge(display_name: display_name)
       end
 
       # POST /1/organizations/[idOrg or name]/logo
@@ -65,8 +65,8 @@ module Tacokit
       # prefs/associatedDomain
       # prefs/orgInviteRestrict
 
-      def organization_path(*paths)
-        path_join "organizations", *paths
+      def organization_path(org_id, *paths)
+        resource_path "organizations", org_id, *paths
       end
     end
   end

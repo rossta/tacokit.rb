@@ -43,7 +43,7 @@ module Tacokit
       # @see https://trello.com/docs/api/checklist/index.html#post-1-checklists
       def create_checklist(card_id, name, options = {})
         options.update card_id: card_id, name: name
-        post checklist_path, options
+        post "checklists", options
       end
       alias_method :checklist_create, :create_checklist
 
@@ -71,8 +71,8 @@ module Tacokit
         get checklist_path(checklist_id, *paths), options
       end
 
-      def checklist_path(*paths)
-        path_join("checklists", *paths)
+      def checklist_path(checklist_id, *paths)
+        resource_path("checklists", checklist_id, *paths)
       end
     end
   end

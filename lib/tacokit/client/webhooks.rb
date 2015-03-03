@@ -22,7 +22,7 @@ module Tacokit
         options.update \
           model_id: model_id,
           callback_url: callback_url
-        post webhook_path, options
+        post "webhooks", options
       end
 
       # DELETE /1/webhooks/[idWebhook]
@@ -30,8 +30,10 @@ module Tacokit
         delete webhook_path(webhook_id)
       end
 
-      def webhook_path(*paths)
-        path_join "webhooks", *paths
+      private
+
+      def webhook_path(webhook_id, *paths)
+        resource_path "webhooks", webhook_id, *paths
       end
     end
   end

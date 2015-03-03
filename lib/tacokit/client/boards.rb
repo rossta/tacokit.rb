@@ -98,7 +98,7 @@ module Tacokit
 
       # POST /1/boards
       def create_board(name, options = {})
-        post board_path, options.merge(name: name)
+        post "boards", options.merge(name: name)
       end
 
       private
@@ -123,8 +123,8 @@ module Tacokit
         paginated_get board_path(board_id, *paths), options
       end
 
-      def board_path(*paths)
-        path_join("boards", *paths)
+      def board_path(board_id, *paths)
+        resource_path("boards", board_id, *paths)
       end
     end
   end

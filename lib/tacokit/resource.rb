@@ -1,4 +1,5 @@
 require "set"
+require "time"
 require "forwardable"
 
 module Tacokit
@@ -132,7 +133,7 @@ module Tacokit
     # rubocop:enable Metrics/LineLength
     def cast_value_type(value)
       case value
-      when ISO8601 then DateTime.parse(value)
+      when ISO8601 then Time.parse(value)
       else value
       end
     rescue

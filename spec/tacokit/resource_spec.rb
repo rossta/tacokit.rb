@@ -109,7 +109,7 @@ module Tacokit
       it "casts date timestamps" do
         res = Resource.new date: "2015-01-13T13:43:00.347Z"
 
-        expect(res.date).to be_a(DateTime)
+        expect(res.date).to be_a(Time)
       end
 
       describe "#attrs" do

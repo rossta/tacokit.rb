@@ -100,8 +100,12 @@ behalf of different members:
 client = Tacokit::Client.new app_key: "4ppk3y", oauth_token: "04utht0k3n"
 ```
 
+#### OAuth Tacokit Sandbox
+
 To experiment with OAuth tokens for development, visit the [Tacokit
-Sandbox](https://tacokit.herokuapp.com) and enter your Trello app key and app secret.
+Sandbox](https://tacokit.herokuapp.com) and enter your Trello app key and app secret. 
+
+The sandbox (hosted over SSL on heroku) will perform the OAuth handshake and display OAuth credentials onscreen. In a real web app, you'd more likely associate these credentials with users in your database. Check out the source code for the sandbox on the [sandbox branch of this repository](https://github.com/rossta/tacokit.rb/tree/sandbox). 
 
 #### Resources
 

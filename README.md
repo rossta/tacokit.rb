@@ -108,7 +108,7 @@ Sandbox](https://tacokit.herokuapp.com) and enter your Trello app key and app se
 For more information on setting up Trello OAuth for your web application
 
 * Using OmniAuth? Try adding [omniauth-trello](https://github.com/joshrowley/omniauth-trello)
-* To roll your own, see how the sandbox works: [Tacokit sandbox source](https://github.com/rossta/tacokit.rb/blob/heroku/app.rb)
+* To roll your own, see how the sandbox works: [Tacokit sandbox source](https://github.com/rossta/tacokit.rb/blob/817691cbc6933e5bf2fac23d37e57cf7fdbbdf04/app.rb)
 * Check out the [Trello OAuth docs](https://trello.com/docs/gettingstarted/oauth.html)
 
 ### Using ENV variables

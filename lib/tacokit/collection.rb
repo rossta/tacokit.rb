@@ -10,7 +10,10 @@ module Tacokit
     def_delegators :@collection, :[], :empty?, :size
 
     def initialize(client, method, path, options)
-      @client, @method, @path, @options = client, method, path, options
+      @client  = client
+      @method  = method
+      @path    = path
+      @options = options
 
       @page  = options.fetch(:page, 0)
       @limit = options.fetch(:limit, 50)

@@ -72,12 +72,12 @@ describe Tacokit::Client::Cards do
 
   describe "#checklists", :vcr do
     it "returns check_item_states" do
-      check_item_state, _ = app_client.check_item_states(test_card_link)
+      check_item_state = app_client.check_item_states(test_card_link).first
       expect(check_item_state.state).to eq("complete")
     end
 
     it "returns checklists" do
-      checklist, _ = app_client.checklists(test_card_link)
+      checklist = app_client.checklists(test_card_link).first
 
       expect(checklist.name).to eq("Test Checklist 1")
     end

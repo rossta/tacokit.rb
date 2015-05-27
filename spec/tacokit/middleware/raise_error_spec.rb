@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Tacokit::Middleware::Boom do
+describe Tacokit::Middleware::RaiseError do
   let(:app) { Object.new }
   let(:env) { Faraday::Env.new }
   let(:middleware) { described_class.new(app) }

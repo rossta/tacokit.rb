@@ -25,5 +25,8 @@ module Tacokit
 
     # 407
     ConnectionFailed = Class.new(ClientError)
+
+    # 408
+    TimeoutError = Class.new(ClientError)
   end
 end

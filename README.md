@@ -127,50 +127,86 @@ TRELLO_APP_TOKEN=4ppt0k3n
 
 ## Usage
 
-Working with boards
+All requests are called on instances of a `Tacokit::Client`. Most return a `Tacokit::Resource` object which behaves similar to an `OpenStruct`.
+
+### Boards
 
 ```ruby
-client.boards
+board = client.board(board_id) # retrieve board resource by board id
+# => {:id=>"54...", :name=>"Work in Progress", ... }
 
-client.boards("rossta")
+board.name
+# => "Work in Progress"
 
-board_id = "swezQ9XS" # short link to "Test Board" for Tacokit
+client.boards # retrieve boards for client account
+# => [{:id=>"54...", :name=>"Work in Progress", ... }, {...}]
 
-board = client.board(board_id)
+client.boards("rossta") # retrieve board for user 'rossta'
+# => [{:id=>"32...", :name=>"Tacokit Ideas", ... }, {...}]
 
-board.name = "Ice Box"
+client.update_board(board, name: "TODO") # change board attributes
+# => {:id=>"54...", :name=>"TODO", ... }
 
-client.update_board(board.id, name: "TODO")
+client.add_board_member(board, 'rosskaff@gmail.com', 'Ross Kaffenberger') # add
+me to your card
+
+client.create_board("All We Need is Love") # all you need is a name
 ```
 
-Working with cards
+### Cards
 
 ```ruby
-client.cards
+card = client.card(card_id) # retrieve card by card id
+# => {:id=>"12...", :name=>"Call Mom", ... }
 
-client.cards("rossta")
+card.name
+# => "Call Mom"
 
-client.board_cards(board_id)
+client.cards # retrieve cards for client account
+# => [{:id=>"12...", :name=>"Call Mom", ... }, {...}]
 
-card_id = "SpbauOpX" # short link to card on "Test Board"
+client.cards("rossta") # retrieve cards for user 'rossta'
+# => [{:id=>"34...", :name=>"Buy Milk", ... }, {...}]
 
-card.name = "Shopping List"
+client.board_cards(board) # retrieve cards for a board
+# => [{:id=>"56...", :name=>"Another Card", ... }, {...}]
 
-client.update_card(card.id, name: "Wish List")
+client.update_card(card, name: "Wish List") # change card attributes
+# => {:id=>"12...", :name=>"Wish List", ... }
 
-client.move_card(card.id, list_id: list_id)
+client.move_card(card, list_id: list_id) # move card to another list
+
+client.card_members(card) # retrieve members assigned to card
+
+client.attach_file(card, "https://pbs.twimg.com/media/CCKtnZmUsAEUAX2.jpg:large") # attach by url or file path
+
+client.add_comment(card, "Nice jorb!") # troll cards
+
+client.subscribe_to_card(card) # keep client account notified
+
+client.archive_card(card) # send card into the abyss
+
+client.restore_card(card) # save card back from the abyss
 ```
 
-Working with lists
+### Lists
 
 ```ruby
-client.lists(board_id)
+list = client.list(list_id) # retrieve list by a list id
+# => {:id=>"78...", :name=>"Ready", ... }
 
-list = client.list(list_id)
+list.name
+# => "Ready"
 
-list.name = "Work in Progress"
+client.lists(board) # retrieve lists for a board
+# => [{:id=>"56...", :name=>"Blocked", ... }, {...}]
 
-client.update_list(list.id, name: "Done")
+client.update_list(list, name: "Done") # change list attributes
+# => {:id=>"78...", :name=>"Done", ... }
+
+client.create_list(board.id, "Finished") # add a new list to a board
+
+client.archive_list_cards(list) # send all list cards to the abyss
 ```
 
 ## Contributing

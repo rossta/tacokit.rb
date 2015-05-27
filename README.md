@@ -130,47 +130,39 @@ TRELLO_APP_TOKEN=4ppt0k3n
 Working with boards
 
 ```ruby
-client.boards
+client.boards # retrieve boards for client account
 
-client.boards("rossta")
+client.boards("rossta") # retrieve board for user 'rossta'
 
-board_id = "swezQ9XS" # short link to "Test Board" for Tacokit
+client.board(board_id) # retrieve board resource by board id
 
-board = client.board(board_id)
-
-board.name = "Ice Box"
-
-client.update_board(board.id, name: "TODO")
+client.update_board(board, name: "TODO") # change board attributes
 ```
 
 Working with cards
 
 ```ruby
-client.cards
+client.cards # retrieve cards for client account
 
-client.cards("rossta")
+client.cards("rossta") # retrieve cards for user 'rossta'
 
-client.board_cards(board_id)
+client.card(card_id) # retrieve card by card id
 
-card_id = "SpbauOpX" # short link to card on "Test Board"
+client.board_cards(board) # retrieve cards for a board
 
-card.name = "Shopping List"
+client.update_card(card, name: "Wish List") # change card attributes
 
-client.update_card(card.id, name: "Wish List")
-
-client.move_card(card.id, list_id: list_id)
+client.move_card(card, list_id: list_id) # move card to another list
 ```
 
 Working with lists
 
 ```ruby
-client.lists(board_id)
+client.lists(board) # retrieve lists for a board
 
-list = client.list(list_id)
+list = client.list(list_id) # retrieve list by a list id
 
-list.name = "Work in Progress"
-
-client.update_list(list.id, name: "Done")
+client.update_list(list, name: "Done") # change list attributes
 ```
 
 ## Contributing

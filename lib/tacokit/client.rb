@@ -132,7 +132,7 @@ module Tacokit
         http.request :url_encoded
 
         http.response :json, content_type: /\bjson$/
-        http.response :boom
+        http.response :raise_error
         http.response :logger if ENV["DEBUG"]
 
         http.adapter Faraday.default_adapter

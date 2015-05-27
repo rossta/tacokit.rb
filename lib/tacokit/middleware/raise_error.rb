@@ -1,6 +1,6 @@
 module Tacokit
   module Middleware
-    class Boom < Faraday::Response::Middleware
+    class RaiseError < Faraday::Response::Middleware
       CLIENT_ERROR_STATUSES = 400...600
 
       def on_complete(env)

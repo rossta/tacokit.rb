@@ -5,7 +5,7 @@ require "coveralls"
 Coveralls.wear!
 
 require "dotenv"
-Dotenv.load(File.expand_path("../../.env",  __FILE__))
+Dotenv.load(File.expand_path("../../.env", __FILE__))
 
 require "tacokit"
 require "rspec"
@@ -15,7 +15,7 @@ WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.before(:suite) do
-    warn "Using test_oauth_credentials #{ test_oauth_credentials }" if ENV["DEBUG"]
+    warn "Using test_oauth_credentials #{test_oauth_credentials}" if ENV["DEBUG"]
   end
 
   config.before do

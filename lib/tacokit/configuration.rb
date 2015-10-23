@@ -3,7 +3,7 @@ module Tacokit
     API_URL = "https://api.trello.com".freeze
     WEB_URL = "https://trello.com".freeze
 
-    API_VERSION  = "1".freeze
+    API_VERSION = "1".freeze
 
     def self.keys
       [

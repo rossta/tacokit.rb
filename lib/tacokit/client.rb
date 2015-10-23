@@ -93,7 +93,7 @@ module Tacokit
     def request(method, url, data = nil, params = nil)
       if [:get, :body].include?(method)
         params ||= data
-        data      = nil
+        data = nil
       end
 
       response = connection.send method, url do |req|

@@ -70,9 +70,8 @@ class TrelloOauth < Sinatra::Base
       oauth_verify! params[:oauth_verifier]
       redirect to("/")
     rescue StandardError => e
-      raise e
-    ensure
       session.clear
+      raise e
     end
   end
 

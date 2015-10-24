@@ -1,69 +1,41 @@
 module Tacokit
   class Client
     module Organizations
-      # GET /1/organizations/[idOrg or name]
+      # Retrieve an organization
+      #
+      # @see https://developers.trello.com/advanced-reference/organization
       def organization(org_id, options = nil)
         get organization_path(org_id), options
       end
 
-      # GET /1/organizations/[idOrg or name]/[resource]
-      # actions
-      # boards
-      # boards/[filter]
-      # deltas
-      # members
-      # members/[filter]
-      # members/[idMember]/cards
-      # membersInvited
-      # membersInvited/[field]
-      # memberships
-      # memberships/[idMembership]
+      # Update an organization
+      #
+      # @see https://developers.trello.com/advanced-reference/organization#put-1-organizations-idorg-or-name
+      def update_organization(org_id, options = {})
+        put organization_path(org_id), options
+      end
+
+      # Create and organization
+      #
+      # @see https://developers.trello.com/advanced-reference/organization#post-1-organizations
+      def create_organization(display_name, options = {})
+        post "organizations", options.merge(display_name: display_name)
+      end
+
+      # Delete an organization
+      #
+      # @see https://developers.trello.com/advanced-reference/organization#delete-1-organizations-idorg-or-name
+      def delete_organization(org_id)
+        delete organization_path(org_id)
+      end
+
+      # @private
       def organization_resource(org_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         get organization_path(org_id, *paths), options
       end
 
-      # PUT /1/organizations/[idOrg or name]
-      def update_organization(org_id, options = {})
-        put organization_path(org_id), options
-      end
-
-      # PUT /1/organizations/[idOrg or name]/[field]
-      # desc
-      # displayName
-      # members
-      # members/[idMember]
-      # members/[idMember]/deactivated
-      # memberships/[idMembership]
-      # name
-      # prefs/associatedDomain
-      # prefs/boardVisibilityRestrict/org
-      # prefs/boardVisibilityRestrict/private
-      # prefs/boardVisibilityRestrict/public
-      # prefs/externalMembersDisabled
-      # prefs/googleAppsVersion
-      # prefs/orgInviteRestrict
-      # prefs/permissionLevel
-      # website
-
-      # POST /1/organizations
-      def create_organization(display_name, options = {})
-        post "organizations", options.merge(display_name: display_name)
-      end
-
-      # POST /1/organizations/[idOrg or name]/logo
-
-      # DELETE /1/organizations/[idOrg or name]
-      def delete_organization(org_id)
-        delete organization_path(org_id)
-      end
-
-      # DELETE /1/organizations/[idOrg or name]/[resource]
-      # logo
-      # members/[idMember]
-      # members/[idMember]/all
-      # prefs/associatedDomain
-      # prefs/orgInviteRestrict
+      private
 
       def organization_path(org_id, *paths)
         resource_path "organizations", org_id, *paths

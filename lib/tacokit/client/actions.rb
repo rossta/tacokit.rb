@@ -3,70 +3,70 @@ module Tacokit
     module Actions
       # Retrieve an action
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction
       def action(action_id, options = nil)
         get action_path(action_id), options
       end
 
       # Retrieve an action's board
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-field
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-field
       def action_board(action_id, fields = "all")
         action_resource action_id, "board", fields: fields
       end
 
       # Retrieve an actions" card
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-card
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-card
       def action_card(action_id, fields = "all")
         action_resource action_id, "card", fields: fields
       end
 
       # Retrive an action's entities
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-entities
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-entities
       def action_entities(action_id)
         action_resource action_id, "entities"
       end
 
       # Retrieve an action's list
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-list
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-list
       def action_list(action_id, fields = "all")
         action_resource action_id, "list", fields: fields
       end
 
       # Retrieve an actions" member
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-member
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-member
       def action_member(action_id, fields = "all")
         action_resource action_id, "member", fields: fields
       end
 
       # Retrieve an action's creator
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-membercreator
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-membercreator
       def action_member_creator(action_id, fields = "all")
         action_resource action_id, "memberCreator", fields: fields
       end
 
       # Retrieve an action's org
       #
-      # @see https://trello.com/docs/api/action/index.html#get-1-actions-idaction-organization
+      # @see https://developers.trello.com/advanced-reference/action#get-1-actions-idaction-organization
       def action_organization(action_id, fields = "all")
         action_resource action_id, "organization", fields: fields
       end
 
       # Update an action
       #
-      # @see https://trello.com/docs/api/action/index.html#put-1-actions-idaction
+      # @see https://developers.trello.com/advanced-reference/action#put-1-actions-idaction
       def update_action(action_id, options = {})
         put action_path(action_id), options
       end
 
       # Set new text for an action
       #
-      # @see https://trello.com/docs/api/action/index.html#put-1-actions-idaction-text
+      # @see https://developers.trello.com/advanced-reference/action#put-1-actions-idaction-text
       def update_action_text(action_id, text)
         put action_path(action_id, "text"), value: text
       end
@@ -74,7 +74,7 @@ module Tacokit
 
       # Delete an action
       #
-      # @see https://trello.com/docs/api/action/index.html#delete-1-actions-idaction
+      # @see https://developers.trello.com/advanced-reference/action#delete-1-actions-idaction
       def delete_action(action_id)
         delete action_path(action_id)
       end

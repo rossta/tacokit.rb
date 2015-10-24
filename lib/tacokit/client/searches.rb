@@ -11,6 +11,8 @@ module Tacokit
         get search_path("members"), options.merge(query: query)
       end
 
+      private
+
       def search_path(*paths)
         path_join "search", *paths
       end

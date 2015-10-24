@@ -3,49 +3,49 @@ module Tacokit
     module Boards
       # Retrieve a board
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id
       def board(board_id, options = nil)
         get board_path(board_id), options
       end
 
       # Retrieve a board's actions
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-actions
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-actions
       def board_actions(board_id, options = {})
         paginated_board_resource(board_id, "actions", options)
       end
 
       # Retrieve a board's stars
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-boardstars
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-boardstars
       def board_stars(board_id, options = {})
         board_resource(board_id, "board_stars", options)
       end
 
       # Retrieve a board's cards
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-cards
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
       def board_cards(board_id, options = {})
         paginated_board_resource(board_id, "cards", options)
       end
 
       # Retrieve a board's checklists
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-checklists
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-checklists
       def board_checklists(board_id, options = {})
         board_resource(board_id, "checklists", options)
       end
 
       # Retrieve a board's labels
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-labels
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-labels
       def board_labels(board_id, options = {})
         board_resource(board_id, "labels", options)
       end
 
       # Retrieve a board's lists
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-lists
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-lists
       def lists(board_id, options = {})
         board_resource(board_id, "lists", options)
       end
@@ -53,35 +53,35 @@ module Tacokit
 
       # Retrieve a board's members
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-members
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-members
       def board_members(board_id, options = {})
         board_resource(board_id, "members", options)
       end
 
       # Retrieve your preferences for a board
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-myprefs
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-myprefs
       def board_preferences(board_id, options = {})
         board_resource(board_id, "my_prefs", options)
       end
 
       # Retrieve a board's organization
       #
-      # @see https://trello.com/docs/api/board/index.html#get-1-boards-board-id-organization
+      # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-organization
       def board_organization(board_id, options = {})
         board_resource(board_id, "organization", options)
       end
 
       # Update board attributes
       #
-      # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id
+      # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id
       def update_board(board_id, options = {})
         put board_path(board_id), options
       end
 
       # Add a member to a board
       #
-      # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id-members-idmember
+      # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
       def add_board_member(board_id, email, full_name, options = {})
         options.update \
           email: email,
@@ -91,7 +91,7 @@ module Tacokit
 
       # Update a board member's type
       #
-      # @see https://trello.com/docs/api/board/index.html#put-1-boards-board-id-members-idmember
+      # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
       def update_board_member(board_id, member_id, type)
         update_board_resource(board_id, "members", member_id, type: type)
       end

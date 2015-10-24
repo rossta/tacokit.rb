@@ -1,7 +1,9 @@
 module Tacokit
   class Client
     module Types
-      # GET /1/types/[id]
+      # Get a resource type
+      #
+      # @see https://developers.trello.com/advanced-reference/type#get-1-types-id
       def type(model_id)
         get resource_path "types", model_id
       end

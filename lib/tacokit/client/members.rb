@@ -3,7 +3,7 @@ module Tacokit
     module Members
       # Retrieve a Trello member
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
         username, options = extract_member_args(username, options)
         get member_path(username), options
@@ -11,7 +11,7 @@ module Tacokit
 
       # Retrieve a member's actions
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-actions
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-actions
       def actions(username = "me", options = {})
         username, options = extract_member_args(username, options)
         paginated_get member_path(username, "actions"), options
@@ -20,7 +20,7 @@ module Tacokit
 
       # Retrieve a member's boards
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-boards
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-boards
       def boards(username = "me", options = {})
         username, options = extract_member_args(username, options)
         get member_path(username, "boards"), options
@@ -28,7 +28,7 @@ module Tacokit
 
       # Retrieve a member's cards
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-cards
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-cards
       def cards(username = "me", options = {})
         username, options = extract_member_args(username, options)
         get member_path(username, "cards"), options
@@ -36,7 +36,7 @@ module Tacokit
 
       # Retrieve a member's notifications
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-notifications
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-notifications
       def notifications(username = "me", options = {})
         username, options = extract_member_args(username, options)
         paginated_get member_path(username, "notifications"), options
@@ -44,7 +44,7 @@ module Tacokit
 
       # Retrieve a member's organizations
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-organizations
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-organizations
       def organizations(username = "me", options = {})
         username, options = extract_member_args(username, options)
         get member_path(username, "organizations"), options
@@ -52,7 +52,7 @@ module Tacokit
 
       # Retrieve a member's tokens
       #
-      # @see https://trello.com/docs/api/member/index.html#get-1-members-idmember-or-username-tokens
+      # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-tokens
       def tokens(username = "me", options = {})
         username, options = extract_member_args(username, options)
         get member_path(username, "tokens"), options
@@ -60,7 +60,7 @@ module Tacokit
 
       # Update a member
       #
-      # @see https://trello.com/docs/api/member/index.html#put-1-members-idmember-or-username
+      # @see https://developers.trello.com/advanced-reference/member#put-1-members-idmember-or-username
       def update_member(username, options = {})
         put member_path(username), options
       end

@@ -14,7 +14,7 @@ module Tacokit
     # @option options [String] :return_url URL the token should be returned to
     # @option options [String] :scope Comma-separated list of one or more of "read", "write", "account"
     # @option options [String] :expiration "1hour", "1day", "30days", "never"
-    # @see https://trello.com/docs/gettingstarted/authorize.html
+    # @see https://developers.trello.com/authorize
     def authorize(params = {})
       open_url authorize_url(params)
     end

@@ -6,18 +6,16 @@ module Tacokit
         get webhook_path(webhook_id)
       end
 
-      # PUT /1/webhooks/[idWebhook]
+      # Update a webhook
+      #
+      # @see https://developers.trello.com/advanced-reference/webhook#put-1-webhooks
       def update_webhook(webhook_id, options = {})
         put webhook_path(webhook_id), options
       end
 
-      # PUT /1/webhooks/[idWebhook]/[field]
-      # active
-      # callbackURL
-      # description
-      # idModel
-
-      # POST /1/webhooks
+      # Create a webhook
+      #
+      # @see https://developers.trello.com/advanced-reference/webhook#post-1-webhooks
       def create_webhook(token, model_id, callback_url, options = {})
         options.update \
           model_id: model_id,
@@ -25,7 +23,9 @@ module Tacokit
         post "webhooks", options
       end
 
-      # DELETE /1/webhooks/[idWebhook]
+      # Delete a webhook
+      #
+      # @see https://developers.trello.com/advanced-reference/webhook#delete-1-webhooks-idwebhook
       def delete_webhook(webhook_id)
         delete webhook_path(webhook_id)
       end

@@ -12,14 +12,14 @@ module Tacokit
       #
       # @see https://developers.trello.com/advanced-reference/checklist#get-1-checklists-idchecklist-board
       def checklist_board(checklist_id, options = {})
-        checklist_resource "board", options
+        checklist_resource checklist_list_id, "board", options
       end
 
       # Retrieve a checklist's card
       #
       # @see https://developers.trello.com/advanced-reference/checklist#get-1-checklists-idchecklist-cards
       def checklist_card(checklist_id, options = {})
-        checklist_resource "card", options
+        checklist_resource checklist_id, "card", options
       end
 
       # Retrieve a checklist's check items

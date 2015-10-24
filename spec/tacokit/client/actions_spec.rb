@@ -124,7 +124,7 @@ describe Tacokit::Client::Actions do
 
   describe "#delete_action", :vcr do
     before do
-      @action = app_client.add_comment(test_card_id, text: "Delete action test. Booya!")
+      @action = app_client.add_comment(test_card_id, "Delete action test. Booya!")
     end
 
     it "deletes an action" do

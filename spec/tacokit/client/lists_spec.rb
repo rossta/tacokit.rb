@@ -54,11 +54,14 @@ describe Tacokit::Client::Lists do
 
   describe "#update_list", :vcr do
     it "updates a list" do
-      list = app_client.update_list test_list_id,
-        name: "Test List 1"
+      list = app_client.update_list test_list_id, name: "Test List 1"
 
       expect(list.name).to eq "Test List 1"
       assert_requested :put, trello_url_template("lists/#{test_list_id}{?key,token}")
+    end
+
+    after do
+      app_client.update_list test_list_id, name: "List 1"
     end
   end
 

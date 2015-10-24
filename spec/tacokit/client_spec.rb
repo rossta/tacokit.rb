@@ -15,7 +15,7 @@ describe Tacokit::Client do
       client = Tacokit::Client.new(test_client_credentials)
       boards = client.get("members/me/boards")
 
-      board = boards.first
+      board = boards.detect { |b| b.name =~ /^Test Board/ }
 
       expect(board.name).to eq "Test Board"
       assert_requested :get, trello_url_template("members/me/boards{?key,token}")

@@ -32,7 +32,7 @@ describe Tacokit::Client::Members do
       expect(member.username).to eq("tacokit")
       expect(member.full_name).to eq("Taco Kit")
 
-      board = member.boards.first
+      board = member.boards.detect { |b| b.name =~ /^Test Board/ }
       expect(board.name).to eq("Test Board")
       expect(board.short_url).to match(%r{^https://trello.com})
     end

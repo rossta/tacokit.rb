@@ -87,7 +87,7 @@ describe Tacokit::Client::Cards do
     it "returns a list" do
       list = app_client.card_list(test_card_link)
 
-      expect(list.name).to eq("Test List 1")
+      expect(list.name).to eq("List 1")
     end
   end
 

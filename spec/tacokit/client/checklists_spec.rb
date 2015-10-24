@@ -13,7 +13,7 @@ describe Tacokit::Client::Checklists do
     it "returns a checklist by id" do
       checklist = app_client.checklist(test_checklist_id)
 
-      expect(checklist.name).to eq "Checklist 1"
+      expect(checklist.name).to eq "Test Checklist 1"
     end
   end
 

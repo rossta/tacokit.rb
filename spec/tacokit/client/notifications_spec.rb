@@ -1,11 +1,12 @@
 require "spec_helper"
 
 describe Tacokit::Client::Notifications do
+  # TODO: notifications disappear overtime... need to grab notification id dynamically
   def test_notification_id
     "549102431b607566bafc93ab"
   end
 
-  describe "#notification", :vcr do
+  pending "#notification", :vcr do
     it "returns a notification by id" do
       notification = app_client.notification(test_notification_id)
 
@@ -13,7 +14,7 @@ describe Tacokit::Client::Notifications do
     end
   end
 
-  describe "#update_notification", :vcr do
+  pending "#update_notification", :vcr do
     it "updates a notification" do
       notification = oauth_client.update_notification(test_notification_id, unread: false)
 

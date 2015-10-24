@@ -1,11 +1,6 @@
 module Tacokit
   class Client
     module Webhooks
-      # GET /1/webhooks/[idWebhook]
-      def webhook(webhook_id)
-        get webhook_path(webhook_id)
-      end
-
       # Update a webhook
       #
       # @see https://developers.trello.com/advanced-reference/webhook#put-1-webhooks

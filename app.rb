@@ -66,8 +66,14 @@ class TrelloOauth < Sinatra::Base
   end
 
   get "/callback" do
-    oauth_verify! params[:oauth_verifier]
-    redirect to("/")
+    begin
+      oauth_verify! params[:oauth_verifier]
+      redirect to("/")
+    rescue StandardError => e
+      raise e
+    ensure
+      session.clear
+    end
   end
 
   get "/clear" do
@@ -77,6 +83,8 @@ class TrelloOauth < Sinatra::Base
 
   post "/connect" do
     raise IncompleteCredentials unless params[:app_key].present? && params[:app_secret].present?
+    session[:app_key] = params[:app_key]
+    session[:app_secret] = params[:app_secret]
     redirect authorize_url
   end
 

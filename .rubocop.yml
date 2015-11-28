@@ -52,6 +52,9 @@ Style/Not:
 Style/DoubleNegation:
   Enabled: false
 
+Style/ParallelAssignment:
+  Enabled: false
+
 Documentation:
   Enabled: false # TODO: Enable again once we have more docs
 

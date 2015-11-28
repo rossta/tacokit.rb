@@ -13,7 +13,8 @@ module Tacokit
         :oauth_token,
         :oauth_secret,
         :api_endpoint,
-        :web_endpoint
+        :web_endpoint,
+        :stack
       ]
     end
 
@@ -41,6 +42,12 @@ module Tacokit
 
     def app_credentials
       { key: app_key, token: app_token }.delete_if { |k, v| v.nil? }
+    end
+
+    def stack
+      @stack ||= Faraday::RackBuilder.new(&Middleware.default_stack(self))
+      yield @stack if block_given?
+      @stack
     end
 
     private

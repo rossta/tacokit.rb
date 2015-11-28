@@ -33,6 +33,30 @@ describe Tacokit::Configuration do
     expect(configuration.app_secret).to eq("app_secret")
   end
 
+  it "exposes middleware stack" do
+    handlers = configuration.stack.handlers
+    expect(handlers.size).to eq(6)
+    [FaradayMiddleware::EncodeJson,
+     Faraday::Request::Multipart,
+     Faraday::Request::UrlEncoded,
+     FaradayMiddleware::ParseJson,
+     Tacokit::Middleware::RaiseError,
+     Faraday::Adapter::NetHttp].each do |middleware|
+      expect(handlers).to include(middleware), "handlers did not include #{middleware}"
+     end
+  end
+
+  it "has configurable middleware stack" do
+    test_middleware = Class.new(Faraday::Middleware)
+
+    configuration.stack do |conn|
+      conn.use test_middleware
+    end
+
+    expect(configuration.stack.handlers.size).to eq(7)
+    expect(configuration.stack.handlers.last).to eq(test_middleware)
+  end
+
   describe "#initialize" do
     it "sets key attributes provided as a hash" do
       configuration = Tacokit::Configuration.new \

@@ -10,6 +10,7 @@ Dotenv.load(File.expand_path("../../.env", __FILE__))
 require "tacokit"
 require "rspec"
 require "webmock/rspec"
+require "pry"
 
 WebMock.disable_net_connect!
 

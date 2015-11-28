@@ -17,10 +17,8 @@ module Tacokit
     private
 
     def normalize_request_params(params)
-      {}.tap do |norm|
-        (params || {}).each do |key, value|
-          norm[key] = normalize_param_value(value)
-        end
+      (params || {}).each_with_object({}) do |(key, value), norm|
+        norm[key] = normalize_param_value(value)
       end
     end
 

@@ -48,8 +48,6 @@ module Tacokit
     include Tacokit::Client::Webhooks
 
     def_delegators :configuration, *Configuration.keys
-    def_delegators :configuration, :user_authenticated?, :user_credentials
-    def_delegators :configuration, :app_authenticated?, :app_credentials
     def_delegators :transform, :serialize, :deserialize, :serialize_params
 
     attr_accessor :last_response
@@ -117,25 +115,21 @@ module Tacokit
       @transform ||= Transform.new
     end
 
+    def connection_options
+      {
+        url: api_endpoint,
+        builder: configuration.stack,
+        headers: { user_agent: "Tacokit #{Tacokit::VERSION}" }
+      }
+    end
+
     def connection
-      @connection ||= Faraday.new(url: api_endpoint) do |http|
-        http.headers[:user_agent] = "TacoKit 0.0.1"
-
-        if user_authenticated?
-          http.request :oauth, user_credentials
-        elsif app_authenticated?
-          http.params.update app_credentials
+      @connection ||= Faraday.new(connection_options) do |http|
+        if configuration.user_authenticated?
+          http.request :oauth, configuration.user_credentials
+        elsif configuration.app_authenticated?
+          http.params.update configuration.app_credentials
         end
-
-        http.request :json
-        http.request :multipart
-        http.request :url_encoded
-
-        http.response :json, content_type: /\bjson$/
-        http.response :raise_error
-        http.response :logger if ENV["DEBUG"]
-
-        http.adapter Faraday.default_adapter
       end
     end
   end

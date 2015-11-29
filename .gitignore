@@ -1,0 +1,11 @@
+.env
+.env.development
+.env.test
+.git
+.ruby-version
+.yardoc
+Gemfile.lock
+/coverage
+/doc
+/pkg
+/tmp

@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Tacokit</h1>
+
+<p><a href="https://travis-ci.org/rossta/tacokit.rb"><img src="https://travis-ci.org/rossta/tacokit.rb.svg?branch=master" alt="Build Status"></a> <a href="https://codeclimate.com/github/rossta/tacokit.rb"><img src="https://codeclimate.com/github/rossta/tacokit.rb/badges/gpa.svg" alt="Code Climate"></a> <a href="https://gemnasium.com/rossta/tacokit.rb"><img src="https://gemnasium.com/rossta/tacokit.rb.svg" alt="Dependency Status"></a> <a href="https://coveralls.io/r/rossta/tacokit.rb"><img src="https://coveralls.io/repos/rossta/tacokit.rb/badge.svg" alt="Coverage Status"></a></p>
+
+<p>Ruby toolkit for the Trello API... a work-in-progress. Design and philosophy
+inspired by <a href="https://github.com/ocktokit/ocktokit.rb">ocktokit.rb</a></p>
+
+<p>This is Taco.</p>
+
+<p><img src="http://cl.ly/image/2p1x3K1X160b/taco.png" alt="Taco"></p>
+
+<h2>Quick Start</h2>
+
+<p>Add this line to your application&#39;s Gemfile:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tacokit</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>... or install it yourself as:</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install tacokit
+</code></pre>
+
+<p>Configure the client with public-read application credentials:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># View an app key and secret on Trello
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_get_app_key'>get_app_key</span>
+
+<span class='comment'># Configure the client
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
+  <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_app_key'>app_key</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppk3y</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Make requests to Trello API methods using module-level configuration or as client instance methods.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Fetch the current member
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span>
+
+<span class='comment'># Fetch another member
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tacokit</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'># Configure a separate client
+</span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>app_key:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppk3y</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'># Fetch a member
+</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tacokit</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h2>Authentication</h2>
+
+<h3>Application Authorization</h3>
+
+<p>Trello supports application-level client authorization via an application key and application token.</p>
+
+<p>Tacokit provides a simple way to retrieve your application key:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Install the `launchy` gem to load the Trello page automatically
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_get_app_key'>get_app_key</span>
+</code></pre>
+
+<p>Your application key are available by logging into Trello and visiting the <a href="https://trello.com/app-key">app key</a> page. This page also provides your application secret that can be used to generate OAuth token access (see below).</p>
+
+<p>The application token, generated separately from the app key, can be associated with a <code>scope</code> and <code>expiration</code>. See the Trello <a href="https://trello.com/docs/gettingstarted/authorize.html">authorization docs</a> for more info on token params.</p>
+
+<p>Tacokit provides a simple way to generate a new app token:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Full permissions for 30 days
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_authorize'>authorize</span> <span class='label'>scope:</span> <span class='qwords_beg'>%w[ </span><span class='tstring_content'>read</span><span class='words_sep'> </span><span class='tstring_content'>write</span><span class='words_sep'> </span><span class='tstring_content'>account</span><span class='words_sep'> ]</span><span class='comma'>,</span> <span class='label'>expiration:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>30days</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'># Authorize a custom application and a different app key
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_authorize'>authorize</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>My Trello App</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>key:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppk3y2</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'># Read only permissions for custom app forever
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_authorize'>authorize</span> <span class='label'>scope:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>read</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>expiration:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>never</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>My Trello App</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>Your Tacokit client can now be configured to make requests:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Configure the client
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
+  <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_app_key'>app_key</span>   <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppk3y</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_app_token'>app_token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppt0k3n</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>More information is available in the <a href="https://trello.com/docs/index.html">Trello docs</a>.</p>
+
+<h3>OAuth Authorization</h3>
+
+<p>The Trello API provides OAuth 1.0 credentials through the typical OAuth web
+flow. Tacokit clients can therefore be configured separately to make requests on
+behalf of different members:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>app_key:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppk3y</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>oauth_token:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>04utht0k3n</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h4>OAuth Tacokit Sandbox</h4>
+
+<p>To experiment with OAuth tokens for development, visit the <a href="https://tacokit.herokuapp.com">Tacokit
+Sandbox</a> and enter your Trello app key and app secret.</p>
+
+<p>The sandbox (hosted over SSL on heroku) will perform the OAuth handshake and display OAuth credentials onscreen. In a real web app, you&#39;d more likely associate these credentials with users in your database. Check out the source code for the sandbox on the <a href="https://github.com/rossta/tacokit.rb/tree/sandbox">sandbox branch of this repository</a>.</p>
+
+<h4>Resources</h4>
+
+<p>For more information on setting up Trello OAuth for your web application</p>
+
+<ul>
+<li>Using OmniAuth? Try adding <a href="https://github.com/joshrowley/omniauth-trello">omniauth-trello</a></li>
+<li>To roll your own, see how the sandbox works: <a href="https://github.com/rossta/tacokit.rb/blob/817691cbc6933e5bf2fac23d37e57cf7fdbbdf04/app.rb">Tacokit sandbox source</a></li>
+<li>Check out the <a href="https://trello.com/docs/gettingstarted/oauth.html">Trello OAuth docs</a></li>
+</ul>
+
+<h3>Using ENV variables</h3>
+
+<p>Default Tacokit client values can be set by values in ENV:</p>
+
+<pre class="code shell"><code class="shell">export TRELLO_APP_KEY=4ppk3y
+export TRELLO_APP_SECRET=4pps3cr3t
+export TRELLO_APP_TOKEN=4ppt0k3n
+</code></pre>
+
+<h2>Usage</h2>
+
+<p>All requests are called on instances of a <code>Tacokit::Client</code>. Most return a <code>Tacokit::Resource</code> object which behaves similar to an <code>OpenStruct</code>.</p>
+
+<h3>Boards</h3>
+
+<pre class="code ruby"><code class="ruby"># retrieve board resource by board id
+board = client.board(board_id)
+=&gt; {:id=&gt;&quot;54...&quot;, :name=&gt;&quot;Work in Progress&quot;, ... }
+
+# access card attributes by message sending
+board.name
+=&gt; &quot;Work in Progress&quot;
+
+# retrieve boards for client account
+client.boards
+=&gt; [{:id=&gt;&quot;54...&quot;, :name=&gt;&quot;Work in Progress&quot;, ... }, {...}]
+
+# retrieve board for user &#39;rossta&#39;
+client.boards(&quot;rossta&quot;)
+=&gt; [{:id=&gt;&quot;32...&quot;, :name=&gt;&quot;Tacokit Ideas&quot;, ... }, {...}]
+
+# change board attributes
+client.update_board(board, name: &quot;TODO&quot;)
+=&gt; {:id=&gt;&quot;54...&quot;, :name=&gt;&quot;TODO&quot;, ... }
+
+# add me to your card
+client.add_board_member(board, &#39;rosskaff@gmail.com&#39;, &#39;Ross Kaffenberger&#39;)
+
+# all you need is a name
+client.create_board(&quot;All We Need is Love&quot;)
+</code></pre>
+
+<h3>Cards</h3>
+
+<pre class="code ruby"><code class="ruby"># retrieve card by card id
+card = client.card(card_id)
+=&gt; {:id=&gt;&quot;12...&quot;, :name=&gt;&quot;Call Mom&quot;, ... }
+
+# access card attributes by message sending
+card.name
+=&gt; &quot;Call wife&quot;
+
+# retrieve cards for client account
+client.cards
+# =&gt; [{:id=&gt;&quot;12...&quot;, :name=&gt;&quot;Call Mom&quot;, ... }, {...}]
+
+# retrieve cards for user &#39;rossta&#39;
+client.cards(&quot;rossta&quot;)
+=&gt; [{:id=&gt;&quot;34...&quot;, :name=&gt;&quot;Buy Milk&quot;, ... }, {...}]
+
+# retrieve cards for a board
+client.board_cards(board)
+=&gt; [{:id=&gt;&quot;56...&quot;, :name=&gt;&quot;Another Card&quot;, ... }, {...}]
+
+# change card attributes
+client.update_card(card, name: &quot;Wish List&quot;)
+=&gt; {:id=&gt;&quot;12...&quot;, :name=&gt;&quot;Wish List&quot;, ... }
+
+# move card to another list
+client.move_card(card, list_id: list_id)
+
+# retrieve members assigned to card
+client.card_members(card)
+
+# attach by url or file path
+client.attach_file(card, &quot;https://pbs.twimg.com/media/CCKtnZmUsAEUAX2.jpg:large&quot;)
+
+# add comment to a card
+client.add_comment(card, &quot;Nice jorb!&quot;)
+
+# receive notifications for card updates
+client.subscribe_to_card(card)
+
+# send card into the abyss
+client.archive_card(card)
+
+# bring card back from the abyss
+client.restore_card(card)
+</code></pre>
+
+<h3>Lists</h3>
+
+<pre class="code ruby"><code class="ruby"># retrieve list by a list id
+list = client.list(list_id)
+=&gt; {:id=&gt;&quot;78...&quot;, :name=&gt;&quot;Ready&quot;, ... }
+
+# access card attributes by message sending
+list.name
+=&gt; &quot;Ready&quot;
+
+# retrieve lists for a board
+client.lists(board)
+=&gt; [{:id=&gt;&quot;56...&quot;, :name=&gt;&quot;Blocked&quot;, ... }, {...}]
+
+# change list attributes
+client.update_list(list, name: &quot;Done&quot;)
+=&gt; {:id=&gt;&quot;78...&quot;, :name=&gt;&quot;Done&quot;, ... }
+
+# add a new list to a board
+client.create_list(board.id, &quot;Finished&quot;)
+
+# send all list cards to the abyss
+client.archive_list_cards(list)
+</code></pre>
+
+<h3>Members</h3>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
+
+<h3>Search</h3>
+
+<pre class="code ruby"><code class="ruby">Tacokit.search(&quot;rossta&quot;)
+=&gt; {:options=&gt;
+ {:terms=&gt;[{:text=&gt;&quot;rossta&quot;}],
+   :modifiers=&gt;[],
+   :model_types=&gt;[&quot;actions&quot;, &quot;cards&quot;, &quot;boards&quot;, &quot;organizations&quot;, &quot;members&quot;],
+   :partial=&gt;false},
+ :members=&gt;
+  [{:id=&gt;&quot;4f079adc73668b244b1c099a&quot;,
+    :avatar_hash=&gt;&quot;706e95e427f91670bf21eee6afccee90&quot;,
+    ...}]
+  ...}
+</code></pre>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it ( <a href="https://github.com/%5Bmy-github-username%5D/tacokit/fork">https://github.com/[my-github-username]/tacokit/fork</a> )</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am &quot;Add some feature&quot;</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
+</div></div>
+
+    <div id="footer">
+  Generated on Sat Nov 28 19:36:13 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.2).
+</div>
+
+  </body>
+</html>

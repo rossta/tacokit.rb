@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Tacokit::Middleware::RaiseError
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Tacokit/Middleware/RaiseError.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Tacokit.html" title="Tacokit (module)">Tacokit</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Middleware.html" title="Tacokit::Middleware (module)">Middleware</a></span></span>
+     &raquo; 
+    <span class="title">RaiseError</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Tacokit::Middleware::RaiseError
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Faraday::Response::Middleware</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Faraday::Response::Middleware</li>
+          
+            <li class="next">Tacokit::Middleware::RaiseError</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/tacokit/middleware/raise_error.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="CLIENT_ERROR_STATUSES-constant" class="">CLIENT_ERROR_STATUSES =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>400</span><span class='op'>...</span><span class='int'>600</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#error_message-instance_method" title="#error_message (instance method)">- (Object) <strong>error_message</strong>(env) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_complete-instance_method" title="#on_complete (instance method)">- (Object) <strong>on_complete</strong>(env) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="error_message-instance_method">
+  
+    - (<tt>Object</tt>) <strong>error_message</strong>(env) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/middleware/raise_error.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_error_message'>error_message</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Server returned </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='symbol'>:status</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='embexpr_end'>}</span><span class='tstring_content'>. Headers </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_response_headers'>response_headers</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_complete-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_complete</strong>(env) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/middleware/raise_error.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_complete'>on_complete</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='symbol'>:status</span><span class='rbracket'>]</span>
+  <span class='kw'>when</span> <span class='int'>401</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Error</span><span class='op'>::</span><span class='const'>Unauthorized</span><span class='comma'>,</span> <span class='id identifier rubyid_error_message'>error_message</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='int'>404</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Error</span><span class='op'>::</span><span class='const'>ResourceNotFound</span><span class='comma'>,</span> <span class='id identifier rubyid_error_message'>error_message</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='int'>407</span>
+    <span class='comment'># mimic the behavior that we get with proxy requests with HTTPS
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Error</span><span class='op'>::</span><span class='const'>ConnectionFailed</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>407 &quot;Proxy Authentication Required &quot;</span><span class='tstring_end'>)</span></span>
+  <span class='kw'>when</span> <span class='int'>408</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Error</span><span class='op'>::</span><span class='const'>TimeoutError</span><span class='comma'>,</span> <span class='id identifier rubyid_error_message'>error_message</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'>CLIENT_ERROR_STATUSES</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Error</span><span class='op'>::</span><span class='const'>ClientError</span><span class='comma'>,</span> <span class='id identifier rubyid_error_message'>error_message</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Nov 28 19:36:14 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.2).
+</div>
+
+  </body>
+</html>

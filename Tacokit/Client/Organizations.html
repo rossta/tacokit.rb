@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Tacokit::Client::Organizations
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Tacokit/Client/Organizations.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (O)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Tacokit.html" title="Tacokit (module)">Tacokit</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Client.html" title="Tacokit::Client (class)">Client</a></span></span>
+     &raquo; 
+    <span class="title">Organizations</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Tacokit::Client::Organizations
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="../Client.html" title="Tacokit::Client (class)">Tacokit::Client</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/tacokit/client/organizations.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_organization-instance_method" title="#create_organization (instance method)">- (Object) <strong>create_organization</strong>(display_name, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create and organization.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_organization-instance_method" title="#delete_organization (instance method)">- (Object) <strong>delete_organization</strong>(org_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Delete an organization.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#organization-instance_method" title="#organization (instance method)">- (Object) <strong>organization</strong>(org_id, options = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieve an organization.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#organization_resource-instance_method" title="#organization_resource (instance method)">- (Object) <strong>organization_resource</strong>(org_id, resource, *paths) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_organization-instance_method" title="#update_organization (instance method)">- (Object) <strong>update_organization</strong>(org_id, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Update an organization.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_organization-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_organization</strong>(display_name, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create and organization</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/advanced-reference/organization#post-1-organizations" target="_parent" title="https://developers.trello.com/advanced-reference/organization#post-1-organizations">https://developers.trello.com/advanced-reference/organization#post-1-organizations</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/organizations.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_organization'>create_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_display_name'>display_name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_post'>post</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>organizations</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>display_name:</span> <span class='id identifier rubyid_display_name'>display_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="delete_organization-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete_organization</strong>(org_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Delete an organization</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/advanced-reference/organization#delete-1-organizations-idorg-or-name" target="_parent" title="https://developers.trello.com/advanced-reference/organization#delete-1-organizations-idorg-or-name">https://developers.trello.com/advanced-reference/organization#delete-1-organizations-idorg-or-name</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/organizations.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete_organization'>delete_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_organization_path'>organization_path</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="organization-instance_method">
+  
+    - (<tt>Object</tt>) <strong>organization</strong>(org_id, options = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieve an organization</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/advanced-reference/organization" target="_parent" title="https://developers.trello.com/advanced-reference/organization">https://developers.trello.com/advanced-reference/organization</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/organizations.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_organization'>organization</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get'>get</span> <span class='id identifier rubyid_organization_path'>organization_path</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="organization_resource-instance_method">
+  
+    - (<tt>Object</tt>) <strong>organization_resource</strong>(org_id, resource, *paths) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/organizations.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_organization_resource'>organization_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_paths'>paths</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_camp'>camp</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_paths'>paths</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get'>get</span> <span class='id identifier rubyid_organization_path'>organization_path</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_paths'>paths</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_organization-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_organization</strong>(org_id, options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Update an organization</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/advanced-reference/organization#put-1-organizations-idorg-or-name" target="_parent" title="https://developers.trello.com/advanced-reference/organization#put-1-organizations-idorg-or-name">https://developers.trello.com/advanced-reference/organization#put-1-organizations-idorg-or-name</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/organizations.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_organization'>update_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_put'>put</span> <span class='id identifier rubyid_organization_path'>organization_path</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Nov 28 19:36:14 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.2).
+</div>
+
+  </body>
+</html>

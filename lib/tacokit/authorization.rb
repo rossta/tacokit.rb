@@ -6,14 +6,13 @@ module Tacokit
 
     # Get a token for making authorized requests to the Trello API
     #
-    # @param [String, #read] contents the contents to reverse
-    # @param options [Hash] Repository information to update
-    # @option options [String] :name Name of the application
-    # @option options [String] :key Application key
-    # @option options [String] :callback_method "postMessage" or "fragment"
-    # @option options [String] :return_url URL the token should be returned to
-    # @option options [String] :scope Comma-separated list of one or more of "read", "write", "account"
-    # @option options [String] :expiration "1hour", "1day", "30days", "never"
+    # @param params [Hash] Repository information to update
+    # @option params [String] :name Name of the application
+    # @option params [String] :key Application key
+    # @option params [String] :callback_method "postMessage" or "fragment"
+    # @option params [String] :return_url URL the token should be returned to
+    # @option params [String] :scope Comma-separated list of one or more of "read", "write", "account"
+    # @option params [String] :expiration "1hour", "1day", "30days", "never"
     # @see https://developers.trello.com/authorize
     def authorize(params = {})
       open_url authorize_url(params)

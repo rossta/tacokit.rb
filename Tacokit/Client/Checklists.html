@@ -132,7 +132,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_items-instance_method" title="#check_items (instance method)">- (Object) <strong>check_items</strong>(checklist_id, options = {}) </a>
+      <a href="#check_items-instance_method" title="#check_items (instance method)">- (Array) <strong>check_items</strong>(checklist_id, options = {}) </a>
     
 
     
@@ -158,7 +158,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#checklist-instance_method" title="#checklist (instance method)">- (Object) <strong>checklist</strong>(checklist_id, options = nil) </a>
+      <a href="#checklist-instance_method" title="#checklist (instance method)">- (Tacokit::Resource) <strong>checklist</strong>(checklist_id, options = nil) </a>
     
 
     
@@ -182,7 +182,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#checklist_board-instance_method" title="#checklist_board (instance method)">- (Object) <strong>checklist_board</strong>(checklist_id, options = {}) </a>
+      <a href="#checklist_board-instance_method" title="#checklist_board (instance method)">- (Tacokit::Resource) <strong>checklist_board</strong>(checklist_id, options = {}) </a>
     
 
     
@@ -206,7 +206,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#checklist_card-instance_method" title="#checklist_card (instance method)">- (Object) <strong>checklist_card</strong>(checklist_id, options = {}) </a>
+      <a href="#checklist_card-instance_method" title="#checklist_card (instance method)">- (Tacokit::Resource) <strong>checklist_card</strong>(checklist_id, options = {}) </a>
     
 
     
@@ -336,7 +336,43 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name for the check item</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -351,12 +387,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_checklist_check_item'>add_checklist_check_item</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_post'>post</span> <span class='id identifier rubyid_checklist_path'>checklist_path</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>checkItems</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -369,7 +405,7 @@
       <div class="method_details ">
   <h3 class="signature " id="check_items-instance_method">
   
-    - (<tt>Object</tt>) <strong>check_items</strong>(checklist_id, options = {}) 
+    - (<tt>Array</tt>) <strong>check_items</strong>(checklist_id, options = {}) 
   
 
   
@@ -388,7 +424,63 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options to fetch the checklist with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the check items collection</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -403,12 +495,12 @@
       <pre class="lines">
 
 
-28
-29
-30</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_items'>check_items</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_checklist_resource'>checklist_resource</span> <span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>check_items</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -421,7 +513,7 @@
       <div class="method_details ">
   <h3 class="signature " id="checklist-instance_method">
   
-    - (<tt>Object</tt>) <strong>checklist</strong>(checklist_id, options = nil) 
+    - (<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>) <strong>checklist</strong>(checklist_id, options = nil) 
   
 
   
@@ -436,7 +528,45 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist resource</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -451,12 +581,12 @@
       <pre class="lines">
 
 
-7
 8
-9</pre>
+9
+10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checklist'>checklist</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get'>get</span> <span class='id identifier rubyid_checklist_path'>checklist_path</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -469,7 +599,7 @@
       <div class="method_details ">
   <h3 class="signature " id="checklist_board-instance_method">
   
-    - (<tt>Object</tt>) <strong>checklist_board</strong>(checklist_id, options = {}) 
+    - (<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>) <strong>checklist_board</strong>(checklist_id, options = {}) 
   
 
   
@@ -484,7 +614,63 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options to fetch the board with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the board resource</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -499,12 +685,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checklist_board'>checklist_board</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_checklist_resource'>checklist_resource</span> <span class='id identifier rubyid_checklist_list_id'>checklist_list_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>board</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -517,7 +703,7 @@
       <div class="method_details ">
   <h3 class="signature " id="checklist_card-instance_method">
   
-    - (<tt>Object</tt>) <strong>checklist_card</strong>(checklist_id, options = {}) 
+    - (<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>) <strong>checklist_card</strong>(checklist_id, options = {}) 
   
 
   
@@ -532,7 +718,63 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options to fetch the card with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the card resource</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -547,12 +789,12 @@
       <pre class="lines">
 
 
-21
-22
-23</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checklist_card'>checklist_card</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_checklist_resource'>checklist_resource</span> <span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>card</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -584,7 +826,43 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>card_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span>&lt;Card&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the card identifier, shortlink, or card</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name for the checklist</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -599,13 +877,13 @@
       <pre class="lines">
 
 
-44
-45
-46
-47</pre>
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_checklist'>create_checklist</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='label'>card_id:</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span>
@@ -638,7 +916,27 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -653,12 +951,12 @@
       <pre class="lines">
 
 
-62
-63
-64</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_checklist'>delete_checklist</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_checklist_path'>checklist_path</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='rparen'>)</span>
@@ -690,7 +988,45 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>checklist_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the checklist identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options to update the checklist with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -705,12 +1041,12 @@
       <pre class="lines">
 
 
-36
-37
-38</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/checklists.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_checklist'>update_checklist</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_put'>put</span> <span class='id identifier rubyid_checklist_path'>checklist_path</span><span class='lparen'>(</span><span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -725,7 +1061,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov 29 11:37:16 2015 by
+  Generated on Sun Nov 29 18:53:03 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.2).
 </div>

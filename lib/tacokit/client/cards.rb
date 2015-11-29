@@ -151,9 +151,9 @@ module Tacokit
       # Move card to another position, board and/or list
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options for moving the card
-      # @options options [String] :board_id another board location
-      # @options options [String] :list_id another list location
-      # @options options [String] :pos new position in current list
+      # @option options [String] :board_id another board location
+      # @option options [String] :list_id another list location
+      # @option options [String] :pos new position in current list
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-idboard
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-idlist
       def move_card(card_id, options)
@@ -188,7 +188,7 @@ module Tacokit
       # Update any card resource
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param resource [String] a resource name, like board, list, attachment
-      # @params paths [Hash, String] nested paths and/or options for updating the card's nested resource
+      # @param paths [Hash, String] nested paths and/or options for updating the card's nested resource
       def update_card_resource(card_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         put card_path(card_id, *paths), options
@@ -206,7 +206,7 @@ module Tacokit
       # Add a comment to a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param text [String] comment text
-      # @params options [Hash] options to create the comment with
+      # @param options [Hash] options to create the comment with
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-actions-comments
       def add_comment(card_id, text, options = {})
         options.update text: text
@@ -217,8 +217,8 @@ module Tacokit
       # Attach a file to a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param url [String] a local file path of http url to a file
-      # @params mime_type [String] a mime type for http url
-      # @params options [Hash] additional options to attach the file with
+      # @param mime_type [String] a mime type for http url
+      # @param options [Hash] additional options to attach the file with
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-attachments
       def attach_file(card_id, url, mime_type = nil, options = {})
         options = mime_type if mime_type.is_a?(Hash)
@@ -264,7 +264,7 @@ module Tacokit
 
       # Add a member to a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
-      # @params member_id [String] the member identifier
+      # @param member_id [String] the member identifier
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-idmembers
       def add_member_to_card(card_id, member_id)
         create_card_resource(card_id, "idMembers", value: member_id)
@@ -281,7 +281,7 @@ module Tacokit
 
       # Cast vote for card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
-      # @params member_id [String] the voter member identifier
+      # @param member_id [String] the voter member identifier
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-membersvoted
       def vote(card_id, member_id)
         create_card_resource(card_id, "membersVoted", value: member_id)

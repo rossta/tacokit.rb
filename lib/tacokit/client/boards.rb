@@ -101,9 +101,9 @@ module Tacokit
 
       # Add a member to a board
       # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
-      # @params email [String] an email address of the member to add
-      # @params full_name [String] the full name of the member to add
-      # @params options [Hash] options to modify the membership with
+      # @param email [String] an email address of the member to add
+      # @param full_name [String] the full name of the member to add
+      # @param options [Hash] options to modify the membership with
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
       def add_board_member(board_id, email, full_name, options = {})
         options.update \
@@ -115,7 +115,7 @@ module Tacokit
       # Update a board member's type
       # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param member_id [String] the member identifier
-      # @params type [String] the membership type to change to
+      # @param type [String] the membership type to change to
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
       def update_board_member(board_id, member_id, type)
         update_board_resource(board_id, "members", member_id, type: type)
@@ -123,7 +123,7 @@ module Tacokit
 
       # Create a board
       # @param name [String] the new board name
-      # @params options [Hash] options to create the board with
+      # @param options [Hash] options to create the board with
       # @see https://developers.trello.com/advanced-reference/board#post-1-boards
       def create_board(name, options = {})
         post "boards", options.merge(name: name)

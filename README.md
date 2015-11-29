@@ -133,7 +133,7 @@ All requests are called on instances of a `Tacokit::Client`. Most return a `Taco
 
 ### Boards
 
-Collecting board info
+Board endpoints typically take a board id, short url, or board resource as the first argument.
 
 ```ruby
 # retrieve board resource by board id
@@ -145,16 +145,24 @@ board.name
 # => "Work in Progress"
 
 # retrieve boards for client account
-client.boards
+boards = client.boards
 # => [{:id=>"54...", :name=>"Work in Progress", ... }, {...}]
 
 # retrieve board for user 'rossta'
-client.boards("rossta")
+boards = client.boards("rossta")
 # => [{:id=>"32...", :name=>"Tacokit Ideas", ... }, {...}]
 
 # change board attributes
-client.update_board(board, name: "TODO")
+board = client.update_board(board, name: "TODO")
 # => {:id=>"54...", :name=>"TODO", ... }
+
+# retrieve lists for a board
+client.lists(board)
+# => [{:id=>"56...", :name=>"Blocked", ... }, {...}]
+
+# retrieve cards for a board
+client.board_cards(board)
+# => [{:id# =>"56...", :name# =>"Another Card", ... }, {...}]
 
 # add me to your card
 client.add_board_member(board, 'rosskaff@gmail.com', 'Ross Kaffenberger')
@@ -165,30 +173,20 @@ client.create_board("All We Need is Love")
 
 ### Cards
 
+Card endpoints typically take a card id, short url, or card resource as the first argument.
+
 ```ruby
 # retrieve card by card id
 card = client.card(card_id)
-=> {:id=>"12...", :name=>"Call Mom", ... }
+# => {:id# =>"12...", :name# =>"Call Mom", ... }
 
 # access card attributes by message sending
 card.name
-=> "Call wife"
-
-# retrieve cards for client account
-client.cards
-# => [{:id=>"12...", :name=>"Call Mom", ... }, {...}]
-
-# retrieve cards for user 'rossta'
-client.cards("rossta")
-=> [{:id=>"34...", :name=>"Buy Milk", ... }, {...}]
-
-# retrieve cards for a board
-client.board_cards(board)
-=> [{:id=>"56...", :name=>"Another Card", ... }, {...}]
+# => "Call wife"
 
 # change card attributes
-client.update_card(card, name: "Wish List")
-=> {:id=>"12...", :name=>"Wish List", ... }
+card = client.update_card(card, name: "Wish List")
+# => {:id# =>"12...", :name# =>"Wish List", ... }
 
 # move card to another list
 client.move_card(card, list_id: list_id)
@@ -214,25 +212,24 @@ client.restore_card(card)
 
 ### Lists
 
+List endpoints typically take a list id or list resource as the first argument.
+
 ```ruby
 # retrieve list by a list id
 list = client.list(list_id)
-=> {:id=>"78...", :name=>"Ready", ... }
+# => {:id=>"78...", :name=>"Ready", ... }
 
 # access card attributes by message sending
 list.name
-=> "Ready"
-
-# retrieve lists for a board
-client.lists(board)
-=> [{:id=>"56...", :name=>"Blocked", ... }, {...}]
+# => "Ready"
 
 # change list attributes
 client.update_list(list, name: "Done")
-=> {:id=>"78...", :name=>"Done", ... }
+# => {:id=>"78...", :name=>"Done", ... }
 
 # add a new list to a board
 client.create_list(board.id, "Finished")
+# => {:id => "89...", :name=>"Finished", ... }
 
 # send all list cards to the abyss
 client.archive_list_cards(list)
@@ -240,23 +237,59 @@ client.archive_list_cards(list)
 
 ### Members
 
+Most of the client member endpoints take an optional member name as the first argument. In many cases, the name can be omitted where it is assumed to be the current member (also given as "me").
+
 ```ruby
+# Retrieve current member
+me = client.member
+# => {:id=>"548a6696b3b9918beb144b07",
+# :avatar_hash=>"cb0df45055bac84e7c5fb728e00e2015",
+# :bio=>"Tacokit puts the Trello API on Ruby",
+# ... }
+
+# Also
+me = client.member("me")
+# => {:id=>"548a6696b3b9918beb144b07",
+# :avatar_hash=>"cb0df45055bac84e7c5fb728e00e2015",
+# :bio=>"Tacokit puts the Trello API on Ruby",
+# ... }
+
+# Another member
+rossta = client.member("rossta")
+# => {:id=>"4f079adc73668b244b1c099a",
+# :avatar_hash=>"706e95e427f91670bf21eee6afccee90",
+# :bio=>"I write about all things web on rossta.net",
+# ... }
+
+# Retrieve my open boards, just the short links and names,
+boards = client.boards(filter: "open", fields: %w[name short_url])
+
+# Retrieve rossta's public boards with the organization embedded
+boards = client.boards("rossta", filter: "public", organization: true)
+
+# retrieve cards for client account
+cards = client.cards
+# => [{:id=>"12...", :name=>"Call Mom", ... }, {...}]
+
+# retrieve cards for user 'rossta'
+cards = client.cards("rossta")
+# => [{:id=>"34...", :name=>"Buy Milk", ... }, {...}]
 ```
 
 ### Search
 
 ```ruby
 Tacokit.search("rossta")
-=> {:options=>
- {:terms=>[{:text=>"rossta"}],
-   :modifiers=>[],
-   :model_types=>["actions", "cards", "boards", "organizations", "members"],
-   :partial=>false},
- :members=>
-  [{:id=>"4f079adc73668b244b1c099a",
-    :avatar_hash=>"706e95e427f91670bf21eee6afccee90",
-    ...}]
-  ...}
+# => {:options=>
+# {:terms=>[{:text=>"rossta"}],
+#   :modifiers=>[],
+#   :model_types=>["actions", "cards", "boards", "organizations", "members"],
+#   :partial=>false},
+# :members=>
+#  [{:id=>"4f079adc73668b244b1c099a",
+#    :avatar_hash=>"706e95e427f91670bf21eee6afccee90",
+#    ...}]
+#  ...}
 ```
 
 ## Contributing

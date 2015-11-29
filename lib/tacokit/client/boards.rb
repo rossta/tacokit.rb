@@ -10,7 +10,7 @@ module Tacokit
       end
 
       # Retrieve a board's actions
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the actions with
       # @return [Tacokit::Collection] the action resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-actions
@@ -19,7 +19,7 @@ module Tacokit
       end
 
       # Retrieve a board's stars
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the stars with
       # @return [Tacokit::Collection] the star resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-boardstars
@@ -28,7 +28,7 @@ module Tacokit
       end
 
       # Retrieve a board's cards
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the cards with
       # @return [Tacokit::Collection] the card resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
@@ -37,7 +37,7 @@ module Tacokit
       end
 
       # Retrieve a board's checklists
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the checklists with
       # @return [Tacokit::Collection] the checklist resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-checklists
@@ -46,7 +46,7 @@ module Tacokit
       end
 
       # Retrieve a board's labels
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the labels with
       # @return [Tacokit::Collection] the label resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-labels
@@ -55,7 +55,7 @@ module Tacokit
       end
 
       # Retrieve a board's lists
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the lists with
       # @return [Tacokit::Collection] the list resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-lists
@@ -65,7 +65,7 @@ module Tacokit
       alias_method :board_lists, :lists
 
       # Retrieve a board's members
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the members with
       # @return [Tacokit::Collection] the member resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-members
@@ -74,7 +74,7 @@ module Tacokit
       end
 
       # Retrieve your preferences for a board
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the preferences with
       # @return [Tacokit::Collection] the preference resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-myprefs
@@ -83,7 +83,7 @@ module Tacokit
       end
 
       # Retrieve a board's organization
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the options to fetch the organizations with
       # @return [Tacokit::Collection] the organization resources
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-organization
@@ -92,7 +92,7 @@ module Tacokit
       end
 
       # Update board attributes
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the attributes to update on the board
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id
       def update_board(board_id, options = {})
@@ -100,7 +100,7 @@ module Tacokit
       end
 
       # Add a member to a board
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @params email [String] an email address of the member to add
       # @params full_name [String] the full name of the member to add
       # @params options [Hash] options to modify the membership with
@@ -113,7 +113,7 @@ module Tacokit
       end
 
       # Update a board member's type
-      # @param board_id [String] the board identifier
+      # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param member_id [String] the member identifier
       # @params type [String] the membership type to change to
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
@@ -122,8 +122,8 @@ module Tacokit
       end
 
       # Create a board
-      # @param board_id [String] the board identifier
-      # @params options [Hash] options to modify the board with
+      # @param name [String] the new board name
+      # @params options [Hash] options to create the board with
       # @see https://developers.trello.com/advanced-reference/board#post-1-boards
       def create_board(name, options = {})
         post "boards", options.merge(name: name)

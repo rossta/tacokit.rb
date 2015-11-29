@@ -10,3 +10,4 @@ Gemfile.lock
 /pkg
 /tmp
 lib/
+Rakefile

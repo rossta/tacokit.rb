@@ -121,7 +121,7 @@ For more information on setting up Trello OAuth for your web application
 
 Default Tacokit client values can be set by values in ENV:
 
-```shell
+```ruby
 export TRELLO_APP_KEY=4ppk3y
 export TRELLO_APP_SECRET=4pps3cr3t
 export TRELLO_APP_TOKEN=4ppt0k3n
@@ -133,26 +133,28 @@ All requests are called on instances of a `Tacokit::Client`. Most return a `Taco
 
 ### Boards
 
+Collecting board info
+
 ```ruby
 # retrieve board resource by board id
 board = client.board(board_id)
-=> {:id=>"54...", :name=>"Work in Progress", ... }
+# => {:id=>"54...", :name=>"Work in Progress", ... }
 
 # access card attributes by message sending
 board.name
-=> "Work in Progress"
+# => "Work in Progress"
 
 # retrieve boards for client account
 client.boards
-=> [{:id=>"54...", :name=>"Work in Progress", ... }, {...}]
+# => [{:id=>"54...", :name=>"Work in Progress", ... }, {...}]
 
 # retrieve board for user 'rossta'
 client.boards("rossta")
-=> [{:id=>"32...", :name=>"Tacokit Ideas", ... }, {...}]
+# => [{:id=>"32...", :name=>"Tacokit Ideas", ... }, {...}]
 
 # change board attributes
 client.update_board(board, name: "TODO")
-=> {:id=>"54...", :name=>"TODO", ... }
+# => {:id=>"54...", :name=>"TODO", ... }
 
 # add me to your card
 client.add_board_member(board, 'rosskaff@gmail.com', 'Ross Kaffenberger')

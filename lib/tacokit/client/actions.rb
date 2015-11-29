@@ -80,7 +80,8 @@ module Tacokit
       end
 
       # Set new text for an action
-      #
+      # @param action_id [String] the action identifier
+      # @param text [String] the new text
       # @see https://developers.trello.com/advanced-reference/action#put-1-actions-idaction-text
       def update_action_text(action_id, text)
         put action_path(action_id, "text"), value: text
@@ -88,7 +89,7 @@ module Tacokit
       alias_method :edit_action_text, :update_action_text
 
       # Delete an action
-      #
+      # @param action_id [String] the action identifier
       # @see https://developers.trello.com/advanced-reference/action#delete-1-actions-idaction
       def delete_action(action_id)
         delete action_path(action_id)

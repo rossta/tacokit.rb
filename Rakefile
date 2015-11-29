@@ -11,3 +11,16 @@ RuboCop::RakeTask.new
 
 task test: [:spec, :rubocop]
 task default: [:spec, :rubocop]
+
+namespace :doc do
+  begin
+    require 'yard'
+    YARD::Rake::YardocTask.new do |task|
+      task.files   = ['README.md', 'LICENSE.md', 'lib/**/*.rb']
+      task.options = [
+        '--markup', 'markdown',
+      ]
+    end
+  rescue LoadError
+  end
+end

@@ -106,7 +106,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create_label-instance_method" title="#create_label (instance method)">- (Object) <strong>create_label</strong>(board_id, name, color) </a>
+      <a href="#create_label-instance_method" title="#create_label (instance method)">- (Tacokit::Resource) <strong>create_label</strong>(board_id, name, color) </a>
     
 
     
@@ -154,7 +154,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#label-instance_method" title="#label (instance method)">- (Object) <strong>label</strong>(label_id, options = nil) </a>
+      <a href="#label-instance_method" title="#label (instance method)">- (Tacokit::Resource) <strong>label</strong>(label_id, options = nil) </a>
     
 
     
@@ -178,7 +178,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update_label-instance_method" title="#update_label (instance method)">- (Object) <strong>update_label</strong>(label_id, options = {}) </a>
+      <a href="#update_label-instance_method" title="#update_label (instance method)">- (Tacokit::Resource) <strong>update_label</strong>(label_id, options = {}) </a>
     
 
     
@@ -211,7 +211,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="create_label-instance_method">
   
-    - (<tt>Object</tt>) <strong>create_label</strong>(board_id, name, color) 
+    - (<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>) <strong>create_label</strong>(board_id, name, color) 
   
 
   
@@ -226,7 +226,77 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>board_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the board identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>color</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label color</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label resource</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -241,15 +311,15 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
-25
-26</pre>
+28
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_label'>create_label</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_post'>post</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>labels</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -280,7 +350,27 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>label_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label identifier</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -295,12 +385,12 @@
       <pre class="lines">
 
 
-31
-32
-33</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_label'>delete_label</span><span class='lparen'>(</span><span class='id identifier rubyid_label_id'>label_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_label_path'>label_path</span><span class='lparen'>(</span><span class='id identifier rubyid_label_id'>label_id</span><span class='rparen'>)</span>
@@ -313,7 +403,7 @@
       <div class="method_details ">
   <h3 class="signature " id="label-instance_method">
   
-    - (<tt>Object</tt>) <strong>label</strong>(label_id, options = nil) 
+    - (<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>) <strong>label</strong>(label_id, options = nil) 
   
 
   
@@ -328,7 +418,63 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>label_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>options to fetch the label with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label resource</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -343,12 +489,12 @@
       <pre class="lines">
 
 
-7
-8
-9</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_label'>label</span><span class='lparen'>(</span><span class='id identifier rubyid_label_id'>label_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get'>get</span> <span class='id identifier rubyid_label_path'>label_path</span><span class='lparen'>(</span><span class='id identifier rubyid_label_id'>label_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -361,7 +507,7 @@
       <div class="method_details ">
   <h3 class="signature " id="update_label-instance_method">
   
-    - (<tt>Object</tt>) <strong>update_label</strong>(label_id, options = {}) 
+    - (<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>) <strong>update_label</strong>(label_id, options = {}) 
   
 
   
@@ -376,7 +522,63 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>label_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label identifier</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the options to update the label with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Resource.html" title="Tacokit::Resource (class)">Tacokit::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the label resource</p>
+</div>
+      
+    </li>
+  
+</ul>
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -391,12 +593,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/labels.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_label'>update_label</span><span class='lparen'>(</span><span class='id identifier rubyid_label_id'>label_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_put'>put</span> <span class='id identifier rubyid_label_path'>label_path</span><span class='lparen'>(</span><span class='id identifier rubyid_label_id'>label_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -411,9 +613,9 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov 29 18:53:03 2015 by
+  Generated on Tue Dec  1 00:42:16 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.2).
+  0.8.7.6 (ruby-2.1.5).
 </div>
 
   </body>

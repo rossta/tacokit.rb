@@ -3,6 +3,7 @@ module Tacokit
     module Checklists
       # Retrieve a checklist
       # @param checklist_id [String] the checklist identifier
+      # @param options [Hash] options to fetch the checklist with
       # @return [Tacokit::Resource] the checklist resource
       # @see https://developers.trello.com/advanced-reference/checklist#get-1-checklists-idchecklist
       def checklist(checklist_id, options = nil)

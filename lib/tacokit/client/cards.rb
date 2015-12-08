@@ -194,7 +194,7 @@ module Tacokit
         put card_path(card_id, *paths), options
       end
 
-      # Create a card
+      # Create a new card
       # @param list_id [String, Tacokit::Resource<List>] the list identifier or list
       # @param name [String] a name for the card
       # @param options [Hash] options to create the card with

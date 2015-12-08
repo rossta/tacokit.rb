@@ -1,5 +1,7 @@
 module Tacokit
   class Client
+    # Methods for the Boards API
+    # @see https://developers.trello.com/advanced-reference/board
     module Boards
       # Retrieve a board
       # @param board_id [String] the board identifier

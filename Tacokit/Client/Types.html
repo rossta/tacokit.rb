@@ -88,7 +88,25 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Methods for the Types API</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/advanced-reference/type" target="_parent" title="https://developers.trello.com/advanced-reference/type">https://developers.trello.com/advanced-reference/type</a></li>
+    
+  </ul>
+
+</div>
 
 
 
@@ -121,7 +139,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Get a resource type.</p>
+<p>Get a resource type for a given identifier.</p>
 </div></span>
   
 </li>
@@ -148,13 +166,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Get a resource type</p>
+<p>Get a resource type for a given identifier</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>model_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the resource identifier</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -169,12 +207,12 @@
       <pre class="lines">
 
 
-7
-8
-9</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/types.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/types.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_model_id'>model_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get'>get</span> <span class='id identifier rubyid_resource_path'>resource_path</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>types</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_model_id'>model_id</span>
@@ -189,7 +227,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Dec  9 08:10:19 2015 by
+  Generated on Wed Dec  9 09:24:26 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

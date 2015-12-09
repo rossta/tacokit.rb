@@ -1,17 +1,24 @@
 module Tacokit
   class Client
+    # Methods for the Webhooks API
+    # @see https://developers.trello.com/advanced-reference/webhook
     module Webhooks
       # Update a webhook
-      #
+      # @param webhook_id [String] the webhook identifier
+      # @params options [Hash] options to update the webhook with
+      # @return [Tacokit::Resource<Webhook>] the webhook resource
       # @see https://developers.trello.com/advanced-reference/webhook#put-1-webhooks
       def update_webhook(webhook_id, options = {})
         put webhook_path(webhook_id), options
       end
 
       # Create a webhook
-      #
+      # @param model_id [String] the id of the model that should be webhooked
+      # @param callback_url [String] a url reachable with a HEAD request
+      # @params options [String] options to create the webhook with
+      # @return [Tacokit::Resource<Webhook>] the webhook resource
       # @see https://developers.trello.com/advanced-reference/webhook#post-1-webhooks
-      def create_webhook(token, model_id, callback_url, options = {})
+      def create_webhook(model_id, callback_url, options = {})
         options.update \
           model_id: model_id,
           callback_url: callback_url
@@ -19,7 +26,7 @@ module Tacokit
       end
 
       # Delete a webhook
-      #
+      # @param webhook_id [String] the webhook identifier
       # @see https://developers.trello.com/advanced-reference/webhook#delete-1-webhooks-idwebhook
       def delete_webhook(webhook_id)
         delete webhook_path(webhook_id)

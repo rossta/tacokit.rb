@@ -1,12 +1,21 @@
 module Tacokit
   class Client
+    # Methods for the Search API
+    # @see https://developers.trello.com/advanced-reference/search
     module Searches
-      # GET /1/search
+      # Search across resources with a query
+      # @param query [String] the text of the search query
+      # @param options [Hash] options to retrieve the search results with
+      # @return the search results
+      # @see https://developers.trello.com/advanced-reference/search#get-1-search
       def search(query, options = {})
         get search_path, options.merge(query: query)
       end
 
-      # GET /1/search/members
+      # Search members with a query
+      # @param query [String] the text of the search query
+      # @param options [Hash] options to retrieve the search results with
+      # @return the search results
       def search_members(query, options = {})
         get search_path("members"), options.merge(query: query)
       end

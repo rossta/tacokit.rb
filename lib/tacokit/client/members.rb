@@ -1,8 +1,11 @@
 module Tacokit
   class Client
+    # Methods for the Members API
+    # @see https://developers.trello.com/advanced-reference/member
     module Members
       # Retrieve a Trello member
-      #
+      # @param username [String] the member's username
+      # @return [Tacokit::Resource<Member>] the member resource
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
         username, options = extract_member_args(username, options)
@@ -10,7 +13,9 @@ module Tacokit
       end
 
       # Retrieve a member's actions
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the options to fetch the actions with
+      # @return [Tacokit::Collection] the action resources
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-actions
       def actions(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -19,7 +24,9 @@ module Tacokit
       alias_method :member_actions, :actions
 
       # Retrieve a member's boards
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the options to fetch the boards with
+      # @return [Tacokit::Resource] the boards collection
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-boards
       def boards(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -27,7 +34,9 @@ module Tacokit
       end
 
       # Retrieve a member's cards
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the options to fetch the cards with
+      # @return [Tacokit::Resource] the cards collection
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-cards
       def cards(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -35,7 +44,9 @@ module Tacokit
       end
 
       # Retrieve a member's notifications
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the options to fetch the notifications with
+      # @return [Tacokit::Resource] the notifications collection
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-notifications
       def notifications(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -43,7 +54,9 @@ module Tacokit
       end
 
       # Retrieve a member's organizations
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the options to fetch the organizations with
+      # @return [Tacokit::Resource] the organizations collection
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-organizations
       def organizations(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -51,7 +64,9 @@ module Tacokit
       end
 
       # Retrieve a member's tokens
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the options to fetch the tokens with
+      # @return [Tacokit::Resource] the tokens collection
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-tokens
       def tokens(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -59,35 +74,12 @@ module Tacokit
       end
 
       # Update a member
-      #
+      # @param username [String, Tacokit::Resource<Member>] the username or member resource
+      # @param options [Hash] the attributes to update on the list
       # @see https://developers.trello.com/advanced-reference/member#put-1-members-idmember-or-username
       def update_member(username, options = {})
         put member_path(username), options
       end
-
-      # PUT /1/members/[idMember or username]/[field]
-      # avatarSource
-      # fullName
-      # initials
-      # username
-      # boardBackgrounds/[idBoardBackground]
-      # boardStars/[idBoardStar]
-      # boardStars/[idBoardStar]/idBoard
-      # boardStars/[idBoardStar]/pos
-      # customBoardBackgrounds/[idBoardBackground]
-      # prefs/colorBlind
-      # prefs/minutesBetweenSummaries
-      # savedSearches/[idSavedSearch]
-      # savedSearches/[idSavedSearch]/name
-      # savedSearches/[idSavedSearch]/pos
-      # savedSearches/[idSavedSearch]/query
-
-      # DELETE /1/members/[idMember or username]/[resource]/[resource_id]
-      # boardBackgrounds/[idBoardBackground]
-      # boardStars/[idBoardStar]
-      # customBoardBackgrounds/[idBoardBackground]
-      # customStickers/[idCustomSticker]
-      # savedSearches/[idSavedSearch]
 
       private
 

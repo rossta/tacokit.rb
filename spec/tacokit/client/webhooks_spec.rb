@@ -4,7 +4,6 @@ describe Tacokit::Client::Webhooks do
   describe "#update_webhook", :vcr do
     before do
       @webhook = app_client.create_webhook \
-        test_trello_app_token,
         test_org_id,
         tacokit_web_endpoint("webhook?create_webhook")
     end
@@ -24,7 +23,6 @@ describe Tacokit::Client::Webhooks do
   describe "#create_webhook", :vcr do
     before do
       @webhook = app_client.create_webhook \
-        test_trello_app_token,
         test_org_id,
         tacokit_web_endpoint("webhook?create_webhook")
     end
@@ -46,7 +44,6 @@ describe Tacokit::Client::Webhooks do
   describe "#delete_webhook", :vcr do
     before do
       @webhook = app_client.create_webhook \
-        test_trello_app_token,
         test_org_id,
         tacokit_web_endpoint("webhook?delete_webhook")
     end

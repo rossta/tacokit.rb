@@ -4,7 +4,7 @@ module Tacokit
     # @see https://developers.trello.com/advanced-reference/organization
     module Organizations
       # Retrieve an organization
-      # @param organization_id [String] the organization identifier
+      # @param org_id [String] the organization identifier
       # @param options [Hash] options to fetch the organization with
       # @return [Tacokit::Resource] the organization resource
       # @see https://developers.trello.com/advanced-reference/organization
@@ -13,7 +13,7 @@ module Tacokit
       end
 
       # Update an organization
-      # @param organization_id [String] the organization identifier
+      # @param org_id [String] the organization identifier
       # @param options [Hash] options to update the organization with
       # @return [Tacokit::Resource] the organization resource
       # @see https://developers.trello.com/advanced-reference/organization#put-1-organizations-idorg-or-name
@@ -31,7 +31,7 @@ module Tacokit
       end
 
       # Delete an organization
-      # @param organization_id [String] the organization identifier
+      # @param org_id [String] the organization identifier
       # @see https://developers.trello.com/advanced-reference/organization#delete-1-organizations-idorg-or-name
       def delete_organization(org_id)
         delete organization_path(org_id)

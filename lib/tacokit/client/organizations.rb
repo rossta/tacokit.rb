@@ -1,5 +1,7 @@
 module Tacokit
   class Client
+    # Methods for the Organizations API
+    # @see https://developers.trello.com/advanced-reference/organization
     module Organizations
       # Retrieve an organization
       # @param organization_id [String] the organization identifier

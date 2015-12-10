@@ -3,9 +3,19 @@ module Tacokit
     # Methods for the Members API
     # @see https://developers.trello.com/advanced-reference/member
     module Members
-      # Retrieve a Trello member
-      # @param username [String] the member's username
-      # @return [Tacokit::Resource<Member>] the member resource
+      # @overload member(username = "me", options = nil)
+      #   Retrieve a Trello member by username
+      #   @param username [String] the member's username
+      #   @param options [Hash] the options to fetch the member with
+      #   @return [Tacokit::Resource<Member>] the member resource
+      # @overload member(options)
+      #   Retrieve the current member
+      #   @param options [Hash] the options to fetch the member with
+      #   @return [Tacokit::Resource<Member>] the member resource
+      # @example fetch the current member with app credentials
+      #   Tacokit.member #=> Tacokit::Resource<Member>
+      # @example fetch the member named 'rossta' with app credentials
+      #   Tacokit.member('rossta') #=> Tacokit::Resource<Member>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
         username, options = extract_member_args(username, options)

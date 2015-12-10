@@ -15,6 +15,13 @@ describe Tacokit::Client::Members do
       expect(member.full_name).to eq("Taco Kit")
     end
 
+    it "returns self with options" do
+      member = app_client.member(boards: 'all')
+
+      board = member.boards.find { |b| b.name =~ /tacokit\.rb/ }
+      expect(board.name).to eq('tacokit.rb')
+    end
+
     it "accepts a resource" do
       member = app_client.member
 

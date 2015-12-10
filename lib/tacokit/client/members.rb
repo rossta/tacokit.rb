@@ -12,26 +12,42 @@ module Tacokit
       #   Retrieve the current member
       #   @param options [Hash] the options to fetch the member with
       #   @return [Tacokit::Resource<Member>] the member resource
-      # @example fetch the current member with app credentials
+      # @example fetch the current member
       #   Tacokit.member #=> Tacokit::Resource<Member>
-      # @example fetch the member named 'rossta' with app credentials
-      #   Tacokit.member('rossta') #=> Tacokit::Resource<Member>
+      # @example fetch the current member with all boards
+      #   Tacokit.member(boards: "all") #=> Tacokit::Resource<Member>
+      # @example fetch the member named 'rossta'
+      #   Tacokit.member("tacokit") #=> Tacokit::Resource<Member>
+      # @example configure a local client and fetch different current member
+      #   client = Tacokit::Client.new app_key: "another-app-key"
+      #   client.member #=> Tacokit::Resource<Member>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
         username, options = extract_member_args(username, options)
         get member_path(username), options
       end
 
-      # Retrieve a member's actions
-      # @param username [String, Tacokit::Resource<Member>] the username or member resource
-      # @param options [Hash] the options to fetch the actions with
-      # @return [Tacokit::Collection] the action resources
+      # @overload actions(username = "me", options = nil)
+      #   Retrieve a member's actions
+      #   @param username [String, Tacokit::Resource<Member>] the username or member resource
+      #   @param options [Hash] the options to fetch the actions with
+      #   @return [Tacokit::Collection] the action resources
+      # @overload actions(options = nil)
+      #   Retrieve the current member's actions
+      #   @param options [Hash] the options to fetch the actions with
+      #   @return [Tacokit::Collection] the action resources
+      # @example fetch the current member's actions
+      #   Tacokit.actions #=> Tacokit::Collection<Action>
+      # @example fetch the current member with only card comment actions; use "commentCard" or "card_comment" as option value
+      #   Tacokit.actions(filter: "comment_card") #=> Tacokit::Collection<Action>
+      # @example fetch the actions for the member named 'tacokit'
+      #   Tacokit.actions("tacokit") #=> Tacokit::Collection<Member>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-actions
       def actions(username = "me", options = {})
         username, options = extract_member_args(username, options)
         paginated_get member_path(username, "actions"), options
       end
-      alias_method :member_actions, :actions
+      alias_method :member_actions, :action
 
       # Retrieve a member's boards
       # @param username [String, Tacokit::Resource<Member>] the username or member resource

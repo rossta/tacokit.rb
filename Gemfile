@@ -9,7 +9,6 @@ gem "guard-rspec"
 gem "launchy"
 gem "oauth"
 gem "pry"
-gem "pry-byebug", platforms: [:ruby_20, :ruby_21, :ruby_22]
 gem "rake"
 gem "rb-fsevent"
 gem "rspec", "~> 3.3"

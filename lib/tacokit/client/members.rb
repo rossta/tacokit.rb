@@ -47,7 +47,7 @@ module Tacokit
         username, options = extract_member_args(username, options)
         paginated_get member_path(username, "actions"), options
       end
-      alias_method :member_actions, :action
+      alias_method :member_actions, :actions
 
       # Retrieve a member's boards
       # @param username [String, Tacokit::Resource<Member>] the username or member resource

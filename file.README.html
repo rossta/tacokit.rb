@@ -61,36 +61,28 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'>
-<h1 id="label-Tacokit">Tacokit</h1>
+    <div id="content"><div id='filecontents'><h1>Tacokit</h1>
 
-<p><a href="https://travis-ci.org/rossta/tacokit.rb"><img
-src="https://travis-ci.org/rossta/tacokit.rb.svg?branch=master"></a> <a
-href="https://codeclimate.com/github/rossta/tacokit.rb"><img
-src="https://codeclimate.com/github/rossta/tacokit.rb/badges/gpa.svg"></a>
-<a href="https://gemnasium.com/rossta/tacokit.rb"><img
-src="https://gemnasium.com/rossta/tacokit.rb.svg"></a> <a
-href="https://coveralls.io/r/rossta/tacokit.rb"><img
-src="https://coveralls.io/repos/rossta/tacokit.rb/badge.svg"></a></p>
+<p><a href="https://travis-ci.org/rossta/tacokit.rb"><img src="https://travis-ci.org/rossta/tacokit.rb.svg?branch=master" alt="Build Status"></a> <a href="https://codeclimate.com/github/rossta/tacokit.rb"><img src="https://codeclimate.com/github/rossta/tacokit.rb/badges/gpa.svg" alt="Code Climate"></a> <a href="https://gemnasium.com/rossta/tacokit.rb"><img src="https://gemnasium.com/rossta/tacokit.rb.svg" alt="Dependency Status"></a> <a href="https://coveralls.io/r/rossta/tacokit.rb"><img src="https://coveralls.io/repos/rossta/tacokit.rb/badge.svg" alt="Coverage Status"></a></p>
 
-<p>Ruby toolkit for the Trello API… a work-in-progress. Design and philosophy
-inspired by <a
-href="https://github.com/ocktokit/ocktokit.rb">ocktokit.rb</a></p>
+<p>Ruby toolkit for the Trello API... a work-in-progress. Design and philosophy
+inspired by <a href="https://github.com/ocktokit/ocktokit.rb">ocktokit.rb</a></p>
 
 <p>This is Taco.</p>
 
-<p><img src="http://cl.ly/image/2p1x3K1X160b/taco.png"></p>
+<p><img src="http://cl.ly/image/2p1x3K1X160b/taco.png" alt="Taco"></p>
 
-<h2 id="label-Quick+Start">Quick Start</h2>
+<h2>Quick Start</h2>
 
 <p>Add this line to your application&#39;s Gemfile:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tacokit</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
 
-<p>… or install it yourself as:</p>
+<p>... or install it yourself as:</p>
 
-<pre class="code ruby"><code class="ruby">$ gem install tacokit</code></pre>
+<pre class="code ruby"><code class="ruby">$ gem install tacokit
+</code></pre>
 
 <p>Configure the client with public-read application credentials:</p>
 
@@ -103,8 +95,7 @@ href="https://github.com/ocktokit/ocktokit.rb">ocktokit.rb</a></p>
 <span class='kw'>end</span>
 </code></pre>
 
-<p>Make requests to Trello API methods using module-level configuration or as
-client instance methods.</p>
+<p>Make requests to Trello API methods using module-level configuration or as client instance methods.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># Fetch the current member
 </span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span>
@@ -119,12 +110,11 @@ client instance methods.</p>
 </span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tacokit</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
 
-<h2 id="label-Authentication">Authentication</h2>
+<h2>Authentication</h2>
 
-<h3 id="label-Application+Authorization">Application Authorization</h3>
+<h3>Application Authorization</h3>
 
-<p>Trello supports application-level client authorization via an application
-key and application token.</p>
+<p>Trello supports application-level client authorization via an application key and application token.</p>
 
 <p>Tacokit provides a simple way to retrieve your application key:</p>
 
@@ -132,16 +122,9 @@ key and application token.</p>
 </span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_get_app_key'>get_app_key</span>
 </code></pre>
 
-<p>Your application key are available by logging into Trello and visiting the
-<a href="https://trello.com/app-key">app key</a> page. This page also
-provides your application secret that can be used to generate OAuth token
-access (see below).</p>
+<p>Your application key are available by logging into Trello and visiting the <a href="https://trello.com/app-key">app key</a> page. This page also provides your application secret that can be used to generate OAuth token access (see below).</p>
 
-<p>The application token, generated separately from the app key, can be
-associated with a <code>scope</code> and <code>expiration</code>. See the
-Trello <a
-href="https://trello.com/docs/gettingstarted/authorize.html">authorization
-docs</a> for more info on token params.</p>
+<p>The application token, generated separately from the app key, can be associated with a <code>scope</code> and <code>expiration</code>. See the Trello <a href="https://trello.com/docs/gettingstarted/authorize.html">authorization docs</a> for more info on token params.</p>
 
 <p>Tacokit provides a simple way to generate a new app token:</p>
 
@@ -164,48 +147,35 @@ docs</a> for more info on token params.</p>
 <span class='kw'>end</span>
 </code></pre>
 
-<p>More information is available in the <a
-href="https://trello.com/docs/index.html">Trello docs</a>.</p>
+<p>More information is available in the <a href="https://trello.com/docs/index.html">Trello docs</a>.</p>
 
-<h3 id="label-OAuth+Authorization">OAuth Authorization</h3>
+<h3>OAuth Authorization</h3>
 
 <p>The Trello API provides OAuth 1.0 credentials through the typical OAuth web
-flow. Tacokit clients can therefore be configured separately to make
-requests on behalf of different members:</p>
+flow. Tacokit clients can therefore be configured separately to make requests on
+behalf of different members:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>app_key:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4ppk3y</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>oauth_token:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>04utht0k3n</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
 
-<h4 id="label-OAuth+Tacokit+Sandbox">OAuth Tacokit Sandbox</h4>
+<h4>OAuth Tacokit Sandbox</h4>
 
-<p>To experiment with OAuth tokens for development, visit the <a
-href="https://tacokit.herokuapp.com">Tacokit Sandbox</a> and enter your
-Trello app key and app secret.</p>
+<p>To experiment with OAuth tokens for development, visit the <a href="https://tacokit.herokuapp.com">Tacokit
+Sandbox</a> and enter your Trello app key and app secret.</p>
 
-<p>The sandbox (hosted over SSL on heroku) will perform the OAuth handshake
-and display OAuth credentials onscreen. In a real web app, you&#39;d more
-likely associate these credentials with users in your database. Check out
-the source code for the sandbox on the <a
-href="https://github.com/rossta/tacokit.rb/tree/sandbox">sandbox branch of
-this repository</a>.</p>
+<p>The sandbox (hosted over SSL on heroku) will perform the OAuth handshake and display OAuth credentials onscreen. In a real web app, you&#39;d more likely associate these credentials with users in your database. Check out the source code for the sandbox on the <a href="https://github.com/rossta/tacokit.rb/tree/sandbox">sandbox branch of this repository</a>.</p>
 
-<h4 id="label-Resources">Resources</h4>
+<h4>Resources</h4>
 
 <p>For more information on setting up Trello OAuth for your web application</p>
-<ul><li>
-<p>Using OmniAuth? Try adding <a
-href="https://github.com/joshrowley/omniauth-trello">omniauth-trello</a></p>
-</li><li>
-<p>To roll your own, see how the sandbox works: <a
-href="https://github.com/rossta/tacokit.rb/blob/817691cbc6933e5bf2fac23d37e57cf7fdbbdf04/app.rb">Tacokit
-sandbox source</a></p>
-</li><li>
-<p>Check out the <a
-href="https://trello.com/docs/gettingstarted/oauth.html">Trello OAuth
-docs</a></p>
-</li></ul>
 
-<h3 id="label-Using+ENV+variables">Using ENV variables</h3>
+<ul>
+<li>Using OmniAuth? Try adding <a href="https://github.com/joshrowley/omniauth-trello">omniauth-trello</a></li>
+<li>To roll your own, see how the sandbox works: <a href="https://github.com/rossta/tacokit.rb/blob/817691cbc6933e5bf2fac23d37e57cf7fdbbdf04/app.rb">Tacokit sandbox source</a></li>
+<li>Check out the <a href="https://trello.com/docs/gettingstarted/oauth.html">Trello OAuth docs</a></li>
+</ul>
+
+<h3>Using ENV variables</h3>
 
 <p>Default Tacokit client values can be set by values in ENV:</p>
 
@@ -214,16 +184,13 @@ export TRELLO_APP_SECRET=4pps3cr3t
 export TRELLO_APP_TOKEN=4ppt0k3n
 </code></pre>
 
-<h2 id="label-Usage">Usage</h2>
+<h2>Usage</h2>
 
-<p>All requests are called on instances of a <code>Tacokit::Client</code>.
-Most return a <code>Tacokit::Resource</code> object which behaves similar
-to an <code>OpenStruct</code>.</p>
+<p>All requests are called on instances of a <code>Tacokit::Client</code>. Most return a <code>Tacokit::Resource</code> object which behaves similar to an <code>OpenStruct</code>.</p>
 
-<h3 id="label-Boards">Boards</h3>
+<h3>Boards</h3>
 
-<p>Board endpoints typically take a board id, short url, or board resource as
-the first argument.</p>
+<p>Board endpoints typically take a board id, short url, or board resource as the first argument.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># retrieve board resource by board id
 </span><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_board'>board</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='rparen'>)</span>
@@ -260,10 +227,9 @@ the first argument.</p>
 </span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_create_board'>create_board</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>All We Need is Love</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 </code></pre>
 
-<h3 id="label-Cards">Cards</h3>
+<h3>Cards</h3>
 
-<p>Card endpoints typically take a card id, short url, or card resource as the
-first argument.</p>
+<p>Card endpoints typically take a card id, short url, or card resource as the first argument.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># retrieve card by card id
 </span><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
@@ -299,10 +265,9 @@ first argument.</p>
 </span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_restore_card'>restore_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
 </code></pre>
 
-<h3 id="label-Lists">Lists</h3>
+<h3>Lists</h3>
 
-<p>List endpoints typically take a list id or list resource as the first
-argument.</p>
+<p>List endpoints typically take a list id or list resource as the first argument.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># retrieve list by a list id
 </span><span class='id identifier rubyid_list'>list</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='lparen'>(</span><span class='id identifier rubyid_list_id'>list_id</span><span class='rparen'>)</span>
@@ -324,11 +289,9 @@ argument.</p>
 </span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_archive_list_cards'>archive_list_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_list'>list</span><span class='rparen'>)</span>
 </code></pre>
 
-<h3 id="label-Members">Members</h3>
+<h3>Members</h3>
 
-<p>Most of the client member endpoints take an optional member name as the
-first argument. In many cases, the name can be omitted where it is assumed
-to be the current member (also given as “me”).</p>
+<p>Most of the client member endpoints take an optional member name as the first argument. In many cases, the name can be omitted where it is assumed to be the current member (also given as &quot;me&quot;).</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># Retrieve current member
 </span><span class='id identifier rubyid_me'>me</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span>
@@ -366,7 +329,7 @@ to be the current member (also given as “me”).</p>
 <span class='comment'># =&gt; [{:id=&gt;&quot;34...&quot;, :name=&gt;&quot;Buy Milk&quot;, ... }, {...}]
 </span></code></pre>
 
-<h3 id="label-Search">Search</h3>
+<h3>Search</h3>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rossta</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='comment'># =&gt; {:options=&gt;
@@ -381,27 +344,21 @@ to be the current member (also given as “me”).</p>
 </span><span class='comment'>#  ...}
 </span></code></pre>
 
-<h2 id="label-Contributing">Contributing</h2>
-<ol><li>
-<p>Fork it ( <a
-href="https://github.com/[my-github-username]/tacokit/fork">github.com/[my-github-username]/tacokit/fork</a>
-)</p>
-</li><li>
-<p>Create your feature branch (<code>git checkout -b my-new-feature</code>)</p>
-</li><li>
-<p>Commit your changes (<code>git commit -am &quot;Add some
-feature&quot;</code>)</p>
-</li><li>
-<p>Push to the branch (<code>git push origin my-new-feature</code>)</p>
-</li><li>
-<p>Create a new Pull Request</p>
-</li></ol>
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it ( <a href="https://github.com/%5Bmy-github-username%5D/tacokit/fork">https://github.com/[my-github-username]/tacokit/fork</a> )</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am &quot;Add some feature&quot;</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
 </div></div>
 
     <div id="footer">
-  Generated on Thu Dec 10 09:28:39 2015 by
+  Generated on Thu Dec 10 19:40:26 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.3).
+  0.8.7.6 (ruby-2.1.5).
 </div>
 
   </body>

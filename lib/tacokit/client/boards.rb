@@ -50,7 +50,7 @@ module Tacokit
       #   Tacokit.board_cards("aBoardId", attachments: true, members: true, stickers: true) #=> Tacokit::Collection<Card>
       # @example configure a local client, fetch a board"s cards with a subset of attributes
       #   client = Tacokit::Client.new app_key: "another-app-key"
-      #   client.board_cards("aBoardId") #=> Tacokit::Resource<Card>
+      #   client.board_cards("aBoardId") #=> Tacokit::Collection<Card>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
       def board_cards(board_id, options = {})
         paginated_board_resource(board_id, "cards", options)

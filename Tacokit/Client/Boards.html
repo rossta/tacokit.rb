@@ -495,7 +495,8 @@
 <p>Add your friend Susan as an admin to your board</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_board_member'>add_board_member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>susan@example.com</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Susan Example</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>admin</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_board_member'>add_board_member</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>susan@example.com</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Susan Example</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>admin</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -583,15 +584,15 @@
       <pre class="lines">
 
 
-157
-158
-159
-160
-161
-162</pre>
+168
+169
+170
+171
+172
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_board_member'>add_board_member</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_full_name'>full_name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> \
@@ -744,7 +745,8 @@
 <p>fetch “create card” actions for a given board</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_actions'>board_actions</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>create_card</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Action&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_actions'>board_actions</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>create_card</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Action&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -818,12 +820,12 @@
       <pre class="lines">
 
 
-28
 29
-30</pre>
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_actions'>board_actions</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_paginated_board_resource'>paginated_board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>actions</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -860,14 +862,15 @@
 <p>fetch board cards</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_cards'>board_cards</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Card&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_cards'>board_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Card&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
 <p>fetch board cards with attachments, members, stickers</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_cards'>board_cards</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>attachments:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>members:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>stickers:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Card&gt;</span></code></pre>
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_cards'>board_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>attachments:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>members:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>stickers:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Card&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
@@ -949,12 +952,12 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_cards'>board_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_paginated_board_resource'>paginated_board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -991,7 +994,8 @@
 <p>fetch board checklists</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_checklists'>board_checklists</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Checklist&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_checklists'>board_checklists</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Checklist&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1065,12 +1069,12 @@
       <pre class="lines">
 
 
-66
-67
-68</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_checklists'>board_checklists</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>checklists</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1107,14 +1111,15 @@
 <p>fetch board&#39;s first 50 (default) labels</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_labels'>board_labels</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Label&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_labels'>board_labels</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Label&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
 <p>fetch board&#39;s first 100 labels</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_labels'>board_labels</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>limit:</span> <span class='int'>100</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Label&gt;</span></code></pre>
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_labels'>board_labels</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>limit:</span> <span class='int'>100</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Label&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1188,12 +1193,12 @@
       <pre class="lines">
 
 
-79
-80
-81</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_labels'>board_labels</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>labels</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1230,14 +1235,15 @@
 <p>fetch board&#39;s members</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_members'>board_members</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Member&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_members'>board_members</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Member&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
 <p>fetch board&#39;s members with selected attributes</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_members'>board_members</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>fields:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>username</span><span class='words_sep'> </span><span class='tstring_content'>url</span><span class='words_sep'> </span><span class='tstring_content'>avatar_hash</span><span class='words_sep'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Member&gt;</span></code></pre>
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_members'>board_members</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>fields:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>username</span><span class='words_sep'> </span><span class='tstring_content'>url</span><span class='words_sep'> </span><span class='tstring_content'>avatar_hash</span><span class='words_sep'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Member&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1311,12 +1317,12 @@
       <pre class="lines">
 
 
-109
-110
-111</pre>
+116
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 116</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_members'>board_members</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>members</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1353,14 +1359,15 @@
 <p>fetch board&#39;s organization</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_organization'>board_organization</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Organization&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_organization'>board_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Organization&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
 <p>fetch board&#39;s organization with selected attributes</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_organization'>board_organization</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>fields:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>name</span><span class='words_sep'> </span><span class='tstring_content'>url</span><span class='words_sep'> </span><span class='tstring_content'>website</span><span class='words_sep'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Organization&gt;</span></code></pre>
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_organization'>board_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>fields:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>name</span><span class='words_sep'> </span><span class='tstring_content'>url</span><span class='words_sep'> </span><span class='tstring_content'>website</span><span class='words_sep'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Organization&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1434,12 +1441,12 @@
       <pre class="lines">
 
 
-133
-134
-135</pre>
+142
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_organization'>board_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>organization</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1476,7 +1483,8 @@
 <p>fetch board&#39;s preferences</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_preferences'>board_preferences</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Preference&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_preferences'>board_preferences</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Preference&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1550,12 +1558,12 @@
       <pre class="lines">
 
 
-120
-121
-122</pre>
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_preferences'>board_preferences</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>my_prefs</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1592,7 +1600,8 @@
 <p>fetch board stars</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_stars'>board_stars</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Star&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_stars'>board_stars</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;Star&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1666,12 +1675,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_board_stars'>board_stars</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>board_stars</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1772,12 +1781,12 @@ organization and description</p>
       <pre class="lines">
 
 
-183
-184
-185</pre>
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_board'>create_board</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_post'>post</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>boards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1818,14 +1827,15 @@ organization and description</p>
 <p>fetch open board lists</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_lists'>board_lists</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;List&gt;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_lists'>board_lists</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;List&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
 <p>fetch all board lists with open cards</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_lists'>board_lists</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>all</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>cards:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>open</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;List&gt;</span></code></pre>
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_board_lists'>board_lists</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>all</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>cards:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>open</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Collection&lt;List&gt;</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
@@ -1834,7 +1844,7 @@ and pos</p>
 </div></p>
       
       <pre class="example code"><code><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>app_key:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>another-app-key</span><span class='tstring_end'>&quot;</span></span>
-<span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_board_lists'>board_lists</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>fields:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>name</span><span class='words_sep'> </span><span class='tstring_content'>pos</span><span class='words_sep'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;List&gt;</span></code></pre>
+<span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_board_lists'>board_lists</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>fields:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>name</span><span class='words_sep'> </span><span class='tstring_content'>pos</span><span class='words_sep'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;List&gt;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1908,12 +1918,12 @@ and pos</p>
       <pre class="lines">
 
 
-95
-96
-97</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lists'>lists</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_board_resource'>board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lists</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1950,14 +1960,15 @@ and pos</p>
 <p>Update a board&#39;s name and description</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_update_board'>update_board</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New Board Name</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>desc:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>For realz this time</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_update_board'>update_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New Board Name</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>desc:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>For realz this time</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
       
         <p class="example_title"><div class='inline'>
 <p>Open a closed board</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_update_board'>update_board</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>closed:</span> <span class='kw'>false</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_update_board'>update_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='label'>closed:</span> <span class='kw'>false</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2013,12 +2024,12 @@ and pos</p>
       <pre class="lines">
 
 
-145
-146
-147</pre>
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_board'>update_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_put'>put</span> <span class='id identifier rubyid_board_path'>board_path</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>
@@ -2055,7 +2066,9 @@ and pos</p>
 <p>Demote your friend Larry to a member with “normal” membership privileges</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_update_board_member'>update_board_member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>larrysMemberIdentifier</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aBoardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Board&gt;
+</span><span class='id identifier rubyid_larry'>larry</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>someMemberNamedLarry</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; Tacokit::Resource&lt;Member&gt;
+</span><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_update_board_member'>update_board_member</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='comma'>,</span> <span class='id identifier rubyid_larry'>larry</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2125,15 +2138,15 @@ and pos</p>
       <pre class="lines">
 
 
-171
-172
-173</pre>
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/boards.rb', line 184</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_board_member'>update_board_member</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_update_board_resource'>update_board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>members</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_update_board_resource'>update_board_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>members</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2145,7 +2158,7 @@ and pos</p>
 </div>
 
     <div id="footer">
-  Generated on Sat Dec 12 10:45:18 2015 by
+  Generated on Sat Dec 12 10:55:41 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

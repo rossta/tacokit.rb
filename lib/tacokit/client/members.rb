@@ -8,19 +8,19 @@ module Tacokit
       #   @param username [String] the member's username
       #   @param options [Hash] the options to fetch the member with
       #   @return [Tacokit::Resource<Member>] the member resource
+      #   @example fetch the member named 'rossta'
+      #     Tacokit.member("tacokit") #=> Tacokit::Resource<Member>
       # @overload member(options)
       #   Retrieve the current member
       #   @param options [Hash] the options to fetch the member with
       #   @return [Tacokit::Resource<Member>] the member resource
-      # @example fetch the current member
-      #   Tacokit.member #=> Tacokit::Resource<Member>
-      # @example fetch the current member with all boards
-      #   Tacokit.member(boards: "all") #=> Tacokit::Resource<Member>
-      # @example fetch the member named 'rossta'
-      #   Tacokit.member("tacokit") #=> Tacokit::Resource<Member>
-      # @example configure a local client and fetch different current member
-      #   client = Tacokit::Client.new app_key: "another-app-key"
-      #   client.member #=> Tacokit::Resource<Member>
+      #   @example fetch the current member
+      #     Tacokit.member #=> Tacokit::Resource<Member>
+      #   @example fetch the current member with all boards
+      #     Tacokit.member(boards: "all") #=> Tacokit::Resource<Member>
+      #   @example configure a local client and fetch different current member
+      #     client = Tacokit::Client.new app_key: "another-app-key"
+      #     client.member #=> Tacokit::Resource<Member>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
       def member(username = "me", options = nil)
         username, options = extract_member_args(username, options)
@@ -32,16 +32,16 @@ module Tacokit
       #   @param username [String, Tacokit::Resource<Member>] the username or member resource
       #   @param options [Hash] the options to fetch the actions with
       #   @return [Tacokit::Collection<Action>] the actions collection
+      #   @example fetch the actions for the member named 'tacokit'
+      #     Tacokit.actions("tacokit") #=> Tacokit::Collection<Member>
       # @overload actions(options = nil)
       #   Retrieve the current member's actions
       #   @param options [Hash] the options to fetch the actions with
       #   @return [Tacokit::Collection] the action resources
-      # @example fetch the current member's actions
-      #   Tacokit.actions #=> Tacokit::Collection<Action>
-      # @example fetch the current member's card comment actions only
-      #   Tacokit.actions(filter: "comment_card") #=> Tacokit::Collection<Action>
-      # @example fetch the actions for the member named 'tacokit'
-      #   Tacokit.actions("tacokit") #=> Tacokit::Collection<Member>
+      #   @example fetch the current member's actions
+      #     Tacokit.actions #=> Tacokit::Collection<Action>
+      #   @example fetch the current member's card comment actions only
+      #     Tacokit.actions(filter: "comment_card") #=> Tacokit::Collection<Action>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-actions
       def actions(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -54,16 +54,16 @@ module Tacokit
       #   @param username [String, Tacokit::Resource<Member>] the username or member resource
       #   @param options [Hash] the options to fetch the boards with
       #   @return [Tacokit::Collection<Board>] the boards collection
+      #   @example fetch the boards for the member named 'tacokit'
+      #     Tacokit.boards("tacokit") #=> Tacokit::Collection<Board>
       # @overload boards(options = {})
       #   Retrieve current member's boards
       #   @param options [Hash] the options to fetch the boards with
       #   @return [Tacokit::Resource] the boards collection
-      # @example fetch the current member's boards
-      #   Tacokit.boards #=> Tacokit::Collection<Board>
-      # @example fetch the current member's open boards only
-      #   Tacokit.boards(filter: "all") #=> Tacokit::Collection<Board>
-      # @example fetch the boards for the member named 'tacokit'
-      #   Tacokit.boards("tacokit") #=> Tacokit::Collection<Board>
+      #   @example fetch the current member's boards
+      #     Tacokit.boards #=> Tacokit::Collection<Board>
+      #   @example fetch the current member's open boards only
+      #     Tacokit.boards(filter: "all") #=> Tacokit::Collection<Board>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-boards
       def boards(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -75,16 +75,16 @@ module Tacokit
       #   @param username [String, Tacokit::Resource<Member>] the username or member resource
       #   @param options [Hash] the options to fetch the cards with
       #   @return [Tacokit::Collection<Card>] the cards collection
+      #   @example fetch the cards for the member named 'tacokit'
+      #     Tacokit.cards("tacokit") #=> Tacokit::Collection<Card>
       # @overload cards(options = {})
       #   Retrieve current member's cards
       #   @param options [Hash] the options to fetch the cards with
       #   @return [Tacokit::Collection<Card>] the cards collection
-      # @example fetch the current member's boards
-      #   Tacokit.cards #=> Tacokit::Collection<Card>
-      # @example fetch the current member's closed cards only
-      #   Tacokit.cards(filter: "closed") #=> Tacokit::Collection<Card>
-      # @example fetch the cards for the member named 'tacokit'
-      #   Tacokit.cards("tacokit") #=> Tacokit::Collection<Card>
+      #   @example fetch the current member's boards
+      #     Tacokit.cards #=> Tacokit::Collection<Card>
+      #   @example fetch the current member's closed cards only
+      #     Tacokit.cards(filter: "closed") #=> Tacokit::Collection<Card>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-cards
       def cards(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -96,16 +96,16 @@ module Tacokit
       #   @param username [String, Tacokit::Resource<Member>] the username or member resource
       #   @param options [Hash] the options to fetch the notifications with
       #   @return [Tacokit::Collection<Notification>] the notifications collection
+      #   @example fetch the notifications for the member named 'tacokit'
+      #     Tacokit.notifications("tacokit") #=> Tacokit::Collection<Notification>
       # @overload notifications(options = {})
       #   Retrieve current member's notifications
       #   @param options [Hash] the options to fetch the notifications with
       #   @return [Tacokit::Collection<Notification>] the notifications collection
-      # @example fetch the current member's boards
-      #   Tacokit.notifications #=> Tacokit::Collection<Notification>
-      # @example fetch the current member's closed notifications only
-      #   Tacokit.notifications(filter: "closed") #=> Tacokit::Collection<Notification>
-      # @example fetch the notifications for the member named 'tacokit'
-      #   Tacokit.notifications("tacokit") #=> Tacokit::Collection<Notification>
+      #   @example fetch the current member's boards
+      #     Tacokit.notifications #=> Tacokit::Collection<Notification>
+      #   @example fetch the current member's closed notifications only
+      #     Tacokit.notifications(filter: "closed") #=> Tacokit::Collection<Notification>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-notifications
       def notifications(username = "me", options = {})
         username, options = extract_member_args(username, options)
@@ -117,16 +117,16 @@ module Tacokit
       #   @param username [String, Tacokit::Resource<Member>] the username or member resource
       #   @param options [Hash] the options to fetch the organizations with
       #   @return [Tacokit::Collection<Organization>] the organizations collection
+      #   @example fetch the current member's boards
+      #     Tacokit.organizations #=> Tacokit::Collection<Organization>
+      #   @example fetch the current member's closed organizations only
+      #     Tacokit.organizations(filter: "closed") #=> Tacokit::Collection<Organization>
       # @overload organizations(options = {})
       #   Retrieve current member's organizations
       #   @param options [Hash] the options to fetch the organizations with
       #   @return [Tacokit::Collection<Organization>] the organizations collection
-      # @example fetch the current member's boards
-      #   Tacokit.organizations #=> Tacokit::Collection<Organization>
-      # @example fetch the current member's closed organizations only
-      #   Tacokit.organizations(filter: "closed") #=> Tacokit::Collection<Organization>
-      # @example fetch the organizations for the member named 'tacokit'
-      #   Tacokit.organizations("tacokit") #=> Tacokit::Collection<Organization>
+      #   @example fetch the organizations for the member named 'tacokit'
+      #     Tacokit.organizations("tacokit") #=> Tacokit::Collection<Organization>
       # @see https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-organizations
       def organizations(username = "me", options = {})
         username, options = extract_member_args(username, options)

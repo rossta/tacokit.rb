@@ -225,6 +225,10 @@ to an <code>OpenStruct</code>.</p>
 <p>Board endpoints typically take a board id, short url, or board resource as
 the first argument.</p>
 
+<p>See the client <a
+href="https://rossta.net/tacokit.rb/Tacokit/Client/Board.html">Board
+docs</a> for more details.</p>
+
 <pre class="code ruby"><code class="ruby"><span class='comment'># retrieve board resource by board id
 </span><span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_board'>board</span><span class='lparen'>(</span><span class='id identifier rubyid_board_id'>board_id</span><span class='rparen'>)</span>
 <span class='comment'># =&gt; {:id=&gt;&quot;54...&quot;, :name=&gt;&quot;Work in Progress&quot;, ... }
@@ -265,6 +269,10 @@ the first argument.</p>
 <p>Card endpoints typically take a card id, short url, or card resource as the
 first argument.</p>
 
+<p>See the client <a
+href="https://rossta.net/tacokit.rb/Tacokit/Client/Card.html">Card docs</a>
+for more details.</p>
+
 <pre class="code ruby"><code class="ruby"><span class='comment'># retrieve card by card id
 </span><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
 <span class='comment'># =&gt; {:id# =&gt;&quot;12...&quot;, :name# =&gt;&quot;Call Mom&quot;, ... }
@@ -304,6 +312,10 @@ first argument.</p>
 <p>List endpoints typically take a list id or list resource as the first
 argument.</p>
 
+<p>See the client <a
+href="https://rossta.net/tacokit.rb/Tacokit/Client/List.html">List docs</a>
+for more details.</p>
+
 <pre class="code ruby"><code class="ruby"><span class='comment'># retrieve list by a list id
 </span><span class='id identifier rubyid_list'>list</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='lparen'>(</span><span class='id identifier rubyid_list_id'>list_id</span><span class='rparen'>)</span>
 <span class='comment'># =&gt; {:id=&gt;&quot;78...&quot;, :name=&gt;&quot;Ready&quot;, ... }
@@ -329,6 +341,10 @@ argument.</p>
 <p>Most of the client member endpoints take an optional member name as the
 first argument. In many cases, the name can be omitted where it is assumed
 to be the current member (also given as “me”).</p>
+
+<p>See the client <a
+href="https://rossta.net/tacokit.rb/Tacokit/Client/Member.html">Member
+docs</a> for more details.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># Retrieve current member
 </span><span class='id identifier rubyid_me'>me</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span>
@@ -368,6 +384,10 @@ to be the current member (also given as “me”).</p>
 
 <h3 id="label-Search">Search</h3>
 
+<p>See the client <a
+href="https://rossta.net/tacokit.rb/Tacokit/Client/Search.html">Search
+docs</a> for more details.</p>
+
 <pre class="code ruby"><code class="ruby"><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rossta</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='comment'># =&gt; {:options=&gt;
 </span><span class='comment'># {:terms=&gt;[{:text=&gt;&quot;rossta&quot;}],
@@ -399,7 +419,7 @@ feature&quot;</code>)</p>
 </div></div>
 
     <div id="footer">
-  Generated on Sat Dec 12 10:21:08 2015 by
+  Generated on Sat Dec 12 10:41:57 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

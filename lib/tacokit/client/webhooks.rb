@@ -7,6 +7,8 @@ module Tacokit
       # @param webhook_id [String] the webhook identifier
       # @param options [Hash] options to update the webhook with
       # @return [Tacokit::Resource<Webhook>] the webhook resource
+      # @example Update webhook description
+      #   Tacokit.update_webhook(webhook.id, desc: "Here's the real webhook description") #=> Tacokit::Resource<Webhook>
       # @see https://developers.trello.com/advanced-reference/webhook#put-1-webhooks
       def update_webhook(webhook_id, options = {})
         put webhook_path(webhook_id), options
@@ -17,6 +19,10 @@ module Tacokit
       # @param callback_url [String] a url reachable with a HEAD request
       # @param options [String] options to create the webhook with
       # @return [Tacokit::Resource<Webhook>] the webhook resource
+      # @example Create a webhook for a board
+      #   board = Tacokit.boards.first
+      #   Tacokit.create_webhook(board.id, "https://example.com/board/callback",
+      #     desc: "My first Trello webhook!") #=> Tacokit::Resource<Webhook>
       # @see https://developers.trello.com/advanced-reference/webhook#post-1-webhooks
       def create_webhook(model_id, callback_url, options = {})
         options.update \

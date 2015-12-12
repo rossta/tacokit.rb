@@ -48,9 +48,12 @@ module Tacokit
     end
 
     # Returns a resource path for a given resource name and id
-    def resource_path(resource_name, resource_id, *paths)
-      resource_id = resource_id.id if resource_id.respond_to?(:id)
-      path_join resource_name, resource_id, *paths
+    def resource_path(resource_name, identifier, *paths)
+      path_join resource_name, resource_id(identifier), *paths
+    end
+
+    def resource_id(identifier)
+      identifier.respond_to?(:id) ? identifier.id : identifier
     end
 
     def constantize(class_name)

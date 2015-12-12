@@ -67,12 +67,20 @@ module Tacokit
       # @param destination_list_id [String, Tacokit::Resource<List>] the destination list identifier
       # @param board_id [String] the board identifier
       # @see https://developers.trello.com/advanced-reference/list#post-1-lists-idlist-moveallcards
-      def move_list_cards(list_id, destination_list_id, board_id)
+      def move_list_cards(list_id, destination_list_id, board_id = nil)
+        board_id ||= resolve_board_id(destination_list_id)
         post list_path(list_id, camp("move_all_cards")),
-          list_id: destination_list_id, board_id: board_id
+          list_id: resource_id(destination_list_id), board_id: resource_id(board_id)
       end
 
       private
+
+      def resolve_board_id(list_id)
+        return list_id.board_id if list_id.respond_to?(:board_id)
+        return list_id.board.id if list_id.respond_to?(:board)
+
+        raise ArgumentError, "Required option :board_i"
+      end
 
       def list_resource(list_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)

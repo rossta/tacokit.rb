@@ -111,7 +111,9 @@ describe Tacokit::Client::Lists do
     end
 
     it "should move cards in list" do
-      app_client.move_list_cards @list.id, test_alternate_list_id, test_alternate_board_id
+      destination_list = double(id: test_alternate_list_id, board_id: test_alternate_board_id)
+
+      app_client.move_list_cards @list, destination_list
 
       source = app_client.list_cards(@list.id)
       expect(source).to be_empty
@@ -121,6 +123,10 @@ describe Tacokit::Client::Lists do
 
       card = destination.first
       expect(card.list_id).to eq test_alternate_list_id
+    end
+
+    it "should assert board_id argument" do
+      expect { app_client.move_list_cards(@list, test_alternate_list_id) }.to raise_error(ArgumentError)
     end
 
     after do

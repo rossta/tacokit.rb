@@ -135,6 +135,8 @@ All requests are called on instances of a `Tacokit::Client`. Most return a `Taco
 
 Board endpoints typically take a board id, short url, or board resource as the first argument.
 
+See the client [Board docs](https://rossta.net/tacokit.rb/Tacokit/Client/Board.html) for more details.
+
 ```ruby
 # retrieve board resource by board id
 board = client.board(board_id)
@@ -175,6 +177,8 @@ client.create_board("All We Need is Love")
 
 Card endpoints typically take a card id, short url, or card resource as the first argument.
 
+See the client [Card docs](https://rossta.net/tacokit.rb/Tacokit/Client/Card.html) for more details.
+
 ```ruby
 # retrieve card by card id
 card = client.card(card_id)
@@ -214,6 +218,8 @@ client.restore_card(card)
 
 List endpoints typically take a list id or list resource as the first argument.
 
+See the client [List docs](https://rossta.net/tacokit.rb/Tacokit/Client/List.html) for more details.
+
 ```ruby
 # retrieve list by a list id
 list = client.list(list_id)
@@ -238,6 +244,8 @@ client.archive_list_cards(list)
 ### Members
 
 Most of the client member endpoints take an optional member name as the first argument. In many cases, the name can be omitted where it is assumed to be the current member (also given as "me").
+
+See the client [Member docs](https://rossta.net/tacokit.rb/Tacokit/Client/Member.html) for more details.
 
 ```ruby
 # Retrieve current member
@@ -277,6 +285,8 @@ cards = client.cards("rossta")
 ```
 
 ### Search
+
+See the client [Search docs](https://rossta.net/tacokit.rb/Tacokit/Client/Search.html) for more details.
 
 ```ruby
 Tacokit.search("rossta")

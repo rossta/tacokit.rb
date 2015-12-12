@@ -23,7 +23,8 @@ module Tacokit
       # @param options [Hash] the options to fetch the actions with
       # @return [Tacokit::Collection<Action>] the action resources
       # @example fetch "create card" actions for a given board
-      #   Tacokit.board_actions("aBoardId", filter: "create_card") #=> Tacokit::Collection<Action>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_actions(board, filter: "create_card") #=> Tacokit::Collection<Action>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-actions
       def board_actions(board_id, options = {})
         paginated_board_resource(board_id, "actions", options)
@@ -34,7 +35,8 @@ module Tacokit
       # @param options [Hash] the options to fetch the stars with
       # @return [Tacokit::Collection<Star>] the star resources
       # @example fetch board stars
-      #   Tacokit.board_stars("aBoardId") #=> Tacokit::Collection<Star>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_stars(board) #=> Tacokit::Collection<Star>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-boardstars
       def board_stars(board_id, options = {})
         board_resource(board_id, "board_stars", options)
@@ -45,9 +47,10 @@ module Tacokit
       # @param options [Hash] the options to fetch the cards with
       # @return [Tacokit::Collection<Card>] the card resources
       # @example fetch board cards
-      #   Tacokit.board_cards("aBoardId") #=> Tacokit::Collection<Card>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_cards(board) #=> Tacokit::Collection<Card>
       # @example fetch board cards with attachments, members, stickers
-      #   Tacokit.board_cards("aBoardId", attachments: true, members: true, stickers: true) #=> Tacokit::Collection<Card>
+      #   Tacokit.board_cards(board, attachments: true, members: true, stickers: true) #=> Tacokit::Collection<Card>
       # @example configure a local client, fetch a board"s cards with a subset of attributes
       #   client = Tacokit::Client.new app_key: "another-app-key"
       #   client.board_cards("aBoardId") #=> Tacokit::Collection<Card>
@@ -61,7 +64,8 @@ module Tacokit
       # @param options [Hash] the options to fetch the checklists with
       # @return [Tacokit::Collection<Checklist>] the checklist resources
       # @example fetch board checklists
-      #   Tacokit.board_checklists("aBoardId") #=> Tacokit::Collection<Checklist>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_checklists(board) #=> Tacokit::Collection<Checklist>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-checklists
       def board_checklists(board_id, options = {})
         board_resource(board_id, "checklists", options)
@@ -72,9 +76,10 @@ module Tacokit
       # @param options [Hash] the options to fetch the labels with
       # @return [Tacokit::Collection<Label>] the label resources
       # @example fetch board's first 50 (default) labels
-      #   Tacokit.board_labels("aBoardId") #=> Tacokit::Collection<Label>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_labels(board) #=> Tacokit::Collection<Label>
       # @example fetch board's first 100 labels
-      #   Tacokit.board_labels("aBoardId", limit: 100) #=> Tacokit::Collection<Label>
+      #   Tacokit.board_labels(board, limit: 100) #=> Tacokit::Collection<Label>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-labels
       def board_labels(board_id, options = {})
         board_resource(board_id, "labels", options)
@@ -85,12 +90,13 @@ module Tacokit
       # @param options [Hash] the options to fetch the lists with
       # @return [Tacokit::Collection<List>] the list resources
       # @example fetch open board lists
-      #   Tacokit.board_lists("aBoardId") #=> Tacokit::Collection<List>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_lists(board) #=> Tacokit::Collection<List>
       # @example fetch all board lists with open cards
-      #   Tacokit.board_lists("aBoardId", filter: "all", cards: "open") #=> Tacokit::Collection<List>
+      #   Tacokit.board_lists(board, filter: "all", cards: "open") #=> Tacokit::Collection<List>
       # @example configure a local client, fetch a board's open lists with lists names and pos
       #   client = Tacokit::Client.new app_key: "another-app-key"
-      #   client.board_lists("aBoardId", fields: %w[name pos]) #=> Tacokit::Resource<List>
+      #   client.board_lists(board, fields: %w[name pos]) #=> Tacokit::Resource<List>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-lists
       def lists(board_id, options = {})
         board_resource(board_id, "lists", options)
@@ -102,9 +108,10 @@ module Tacokit
       # @param options [Hash] the options to fetch the members with
       # @return [Tacokit::Collection<Member>] the member resources
       # @example fetch board's members
-      #   Tacokit.board_members("aBoardId") #=> Tacokit::Collection<Member>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_members(board) #=> Tacokit::Collection<Member>
       # @example fetch board's members with selected attributes
-      #   Tacokit.board_members("aBoardId", fields: %w[username url avatar_hash]) #=> Tacokit::Collection<Member>
+      #   Tacokit.board_members(board, fields: %w[username url avatar_hash]) #=> Tacokit::Collection<Member>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-members
       def board_members(board_id, options = {})
         board_resource(board_id, "members", options)
@@ -115,7 +122,8 @@ module Tacokit
       # @param options [Hash] the options to fetch the preferences with
       # @return [Tacokit::Collection] the preference resources
       # @example fetch board's preferences
-      #   Tacokit.board_preferences("aBoardId") #=> Tacokit::Collection<Preference>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_preferences(board) #=> Tacokit::Collection<Preference>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-myprefs
       def board_preferences(board_id, options = {})
         board_resource(board_id, "my_prefs", options)
@@ -126,9 +134,10 @@ module Tacokit
       # @param options [Hash] the options to fetch the organizations with
       # @return [Tacokit::Collection] the organization resources
       # @example fetch board's organization
-      #   Tacokit.board_organization("aBoardId") #=> Tacokit::Resource<Organization>
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.board_organization(board) #=> Tacokit::Resource<Organization>
       # @example fetch board's organization with selected attributes
-      #   Tacokit.board_organization("aBoardId", fields: %w[name url website]) #=> Tacokit::Resource<Organization>
+      #   Tacokit.board_organization(board, fields: %w[name url website]) #=> Tacokit::Resource<Organization>
       # @see https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-organization
       def board_organization(board_id, options = {})
         board_resource(board_id, "organization", options)
@@ -138,9 +147,10 @@ module Tacokit
       # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board
       # @param options [Hash] the attributes to update on the board
       # @example Update a board's name and description
-      #   Tacokit.update_board("aBoardId", name: "New Board Name", desc: "For realz this time")
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.update_board(board, name: "New Board Name", desc: "For realz this time")
       # @example Open a closed board
-      #   Tacokit.update_board("aBoardId", closed: false)
+      #   Tacokit.update_board(board, closed: false)
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id
       def update_board(board_id, options = {})
         put board_path(board_id), options
@@ -152,7 +162,8 @@ module Tacokit
       # @param full_name [String] the full name of the member to add
       # @param options [Hash] options to modify the membership with
       # @example Add your friend Susan as an admin to your board
-      #   Tacokit.add_board_member("aBoardId", "susan@example.com", "Susan Example", type: "admin")
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   Tacokit.add_board_member(board, "susan@example.com", "Susan Example", type: "admin")
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
       def add_board_member(board_id, email, full_name, options = {})
         options.update \
@@ -166,10 +177,12 @@ module Tacokit
       # @param member_id [String] the member identifier
       # @param type [String] the membership type to change to
       # @example Demote your friend Larry to a member with "normal" membership privileges
-      #   Tacokit.update_board_member("aBoardId", "larrysMemberIdentifier", "normal")
+      #   board = Tacokit.client("aBoardId") #=> Tacokit::Resource<Board>
+      #   larry = Tacokit.member("someMemberNamedLarry") #=> Tacokit::Resource<Member>
+      #   Tacokit.update_board_member(board, larry, "normal")
       # @see https://developers.trello.com/advanced-reference/board#put-1-boards-board-id-members-idmember
       def update_board_member(board_id, member_id, type)
-        update_board_resource(board_id, "members", member_id, type: type)
+        update_board_resource(board_id, "members", resource_id(member_id), type: type)
       end
 
       # Create a board

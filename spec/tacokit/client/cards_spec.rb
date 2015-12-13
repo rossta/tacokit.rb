@@ -183,7 +183,7 @@ describe Tacokit::Client::Cards do
     end
 
     it "updates checklist item" do
-      checkitem = app_client.update_check_item(test_card_link, @checklist.id, @checkitem.id, name: "Going on vacation instead")
+      checkitem = app_client.update_check_item(test_card_link, @checklist, @checkitem, name: "Going on vacation instead")
 
       expect(checkitem.id).to eq(@checkitem.id)
       expect(checkitem.name).to eq("Going on vacation instead")

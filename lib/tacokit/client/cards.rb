@@ -7,7 +7,11 @@ module Tacokit
     module Cards
       # Retrieve a card by id or shortlink
       # @param card_id [String] the card identifier or shortlink
-      # @return [Tacokit::Resource] the card resource
+      # @return [Tacokit::Resource<Card>] the card resource
+      # @example Retrieve a card by its id
+      #   Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      # @example Retrieve a card by its short link with its members
+      #   Tacokit.card("aCardShortLink", members: true) #=> Tacokit::Resource<Card>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink
       def card(card_id, options = nil)
         get card_path(card_id), options
@@ -16,7 +20,10 @@ module Tacokit
       # Retrieve card actions
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the actions with
-      # @return [Tacokit::Collection] the action resources
+      # @return [Tacokit::Collection<Action>] the action resources
+      # @example Retrieve a card's comments
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.card_actions(card, filter: "comment_card") #=> Tacokit::Collection<Action>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-actions
       def card_actions(card_id, options = {})
         paginated_card_resource(card_id, "actions", options)
@@ -25,7 +32,10 @@ module Tacokit
       # Retrieve card attachments
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the attachments with
-      # @return [Tacokit::Collection] the attachment resources
+      # @return [Tacokit::Collection<Attachment>] the attachment resources
+      # @example Retrieve attachments for a card
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.attachments(card) #=> Tacokit::Collection<Attachment>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-attachments
       def attachments(card_id, options = {})
         card_resource(card_id, "attachments", options)
@@ -36,16 +46,22 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param attachment_id [String] the attachment id
       # @param options [Hash] the options to fetch the attachments with
-      # @return [Tacokit::Resource] the attachment resource
+      # @return [Tacokit::Resource<Attachment>] the attachment resource
+      # @example Retrieve a single card attachment
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.attachment(card, "anAttachmentId") #=> Tacokit::Resource<Attachment>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-attachments-idattachment
       def attachment(card_id, attachment_id, options = {})
-        card_resource(card_id, "attachments/#{attachment_id}", options)
+        card_resource(card_id, "attachments/#{resource_id(attachment_id)}", options)
       end
 
       # Retrieve a card board
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the board with
-      # @return [Tacokit::Resource] the board resource
+      # @return [Tacokit::Resource<Board>] the board resource
+      # @example Retrieve a card board
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.card_board(card) #=> Tacokit::Resource<Board>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-board
       def card_board(card_id, options = {})
         card_resource(card_id, "board", options)
@@ -55,6 +71,8 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the states with
       # @return [Tacokit::Collection] the check item state resources
+      # @example Retrieve states of checked items
+      #   Tacokit.check_item_states("aCardId") #=> Tacokit::Collection
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-board
       def check_item_states(card_id, options = {})
         card_resource(card_id, "check_item_states", options)
@@ -63,7 +81,10 @@ module Tacokit
       # Retrieve card checklists
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the checklists with
-      # @return [Tacokit::Collection] the checklist resources
+      # @return [Tacokit::Collection<Checklist>] the checklist resources
+      # @example Retrieve checklists
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.checklists(card) #=> Tacokit::Collection<Checklist>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-board
       def checklists(card_id, options = {})
         card_resource(card_id, "checklists", options)
@@ -72,7 +93,10 @@ module Tacokit
       # Retrive a card list
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the list with
-      # @return [Tacokit::Resource] the list resource
+      # @return [Tacokit::Resource<List>] the list resource
+      # @example Retrieve a card list
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.card_list(card) #=> Tacokit::Resource<List>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-list
       def card_list(card_id, options = {})
         card_resource(card_id, "list", options)
@@ -82,6 +106,9 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the members with
       # @return [Tacokit::Collection] the member resources
+      # @example Retrieve a card's members
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.card_members(card) #=> Tacokit::Collection<Member>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-members
       def card_members(card_id, options = {})
         card_resource(card_id, "members", options)
@@ -91,6 +118,9 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the members with
       # @return [Tacokit::Collection] the member resources
+      # @example Retrieve members who voted for card
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.card_members_voted(card) #=> Tacokit::Collection<Member>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-membersvoted
       def card_members_voted(card_id, options = {})
         card_resource(card_id, "members_voted", options)
@@ -100,6 +130,9 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the options to fetch the stickers with
       # @return [Tacokit::Collection] the sticker resources
+      # @example Retrieve stickers on card
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.stickers(card) #=> Tacokit::Collection<Stickers>
       # @see https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink-stickers
       def stickers(card_id, options = {})
         card_resource(card_id, "stickers", options)
@@ -108,6 +141,9 @@ module Tacokit
       # Update card attributes
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param options [Hash] the attributes to update on the card
+      # @example Update name of card
+      #   card = Tacokit.card("aCardId") #=> Tacokit::Resource<Card>
+      #   Tacokit.update_card(card, name: "New card") #=> Tacokit::Resource<Card>
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink
       def update_card(card_id, options = {})
         put card_path(card_id), options
@@ -118,9 +154,13 @@ module Tacokit
       # @param comment_id [String] the comment identifier
       # @param text [String] the updated comment text
       # @param options [Hash] the attributes to update on the comment
+      # @example Change text of existing comment
+      #   card = Tacokit.card("aCardId", action: "commentCard")
+      #   comment = card.actions.first
+      #   Tacokit.update_comment(card, comment, "New comment text")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-actions-idaction-comments
       def update_comment(card_id, comment_id, text, options = {})
-        update_card_resource(card_id, "actions", comment_id, "comments", options.merge(text: text))
+        update_card_resource(card_id, "actions", resource_id(comment_id), "comments", options.merge(text: text))
       end
       alias_method :edit_comment, :update_comment
 
@@ -131,11 +171,18 @@ module Tacokit
       # @param options [Hash] the attributes to update on the check item
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-checklist-idchecklistcurrent-checkitem-idcheckitem
       def update_check_item(card_id, checklist_id, check_item_id, options = {})
-        update_card_resource(card_id, "checklist", checklist_id, "checkItem", check_item_id, options)
+        update_card_resource card_id,
+          "checklist",
+          resource_id(checklist_id),
+          "checkItem",
+          resource_id(check_item_id),
+          options
       end
 
       # Archive a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
+      # @example Archive a card
+      #   Tacokit.archive_card("aCardId")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-closed
       def archive_card(card_id)
         update_card(card_id, closed: true)
@@ -143,6 +190,8 @@ module Tacokit
 
       # Restore an archived card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
+      # @example Restore a card
+      #   Tacokit.restore_card("aCardId")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-closed
       def restore_card(card_id)
         update_card(card_id, closed: false)

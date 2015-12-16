@@ -203,6 +203,9 @@ module Tacokit
       # @option options [String] :board_id another board location
       # @option options [String] :list_id another list location
       # @option options [String] :pos new position in current list
+      # @example Move card to the top of a new list
+      #   card = Tacokit.card("aCardId")
+      #   Tacokit.move_card(card, list_id: "aListId", pos: "top")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-idboard
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-idlist
       def move_card(card_id, options)
@@ -215,6 +218,8 @@ module Tacokit
       # Update card name
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param name [String] a name for the card
+      # @example Change card name
+      #   Tacokit.update_card_name("aCardId", "New card name")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-name
       def update_card_name(card_id, name)
         put card_path(card_id, "name"), value: name
@@ -222,6 +227,8 @@ module Tacokit
 
       # Subscribe to card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
+      # @example Subscribe to card
+      #   Tacokit.subscribe_to_card("aCardId")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-subscribed
       def subscribe_to_card(card_id)
         put card_path(card_id, "subscribed"), value: true
@@ -229,6 +236,8 @@ module Tacokit
 
       # Unubscribe from card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
+      # @example Unubscribe from card
+      #   Tacokit.unsubscribe_from_card("aCardId")
       # @see https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink-subscribed
       def unsubscribe_from_card(card_id)
         put card_path(card_id, "subscribed"), value: false
@@ -247,9 +256,11 @@ module Tacokit
       # @param list_id [String, Tacokit::Resource<List>] the list identifier or list
       # @param name [String] a name for the card
       # @param options [Hash] options to create the card with
+      # @example Create a new card at bottom of a given list
+      #   Tacokit.create_card("aListId", "Card name", pos: "bottom")
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards
       def create_card(list_id, name = nil, options = {})
-        post "cards", options.merge(name: name, list_id: list_id)
+        post "cards", options.merge(name: name, list_id: resource_id(list_id))
       end
 
       # Add a comment to a card

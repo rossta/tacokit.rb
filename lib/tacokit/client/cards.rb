@@ -267,6 +267,8 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param text [String] comment text
       # @param options [Hash] options to create the comment with
+      # @example Add comment to a card
+      #   Tacokit.add_comment("aCardId", "@bob What do you mean?")
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-actions-comments
       def add_comment(card_id, text, options = {})
         options.update text: text
@@ -279,6 +281,10 @@ module Tacokit
       # @param url [String] a local file path of http url to a file
       # @param mime_type [String] a mime type for http url
       # @param options [Hash] additional options to attach the file with
+      # @example Attach a file from the file system
+      #   Tacokit.attach_file("aCardId", "/path/to/local/file.png")
+      # @example Attach a file the "Internet" with mime type
+      #   Tacokit.attach_file("aCardId", "https://imgur.com/giphy.gif", "image/gif")
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-attachments
       def attach_file(card_id, url, mime_type = nil, options = {})
         options = mime_type if mime_type.is_a?(Hash)
@@ -300,9 +306,15 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param checklist_id [String] the checklist identifier
       # @param check_item_id [String] the check item identifier to convert to a card
+      # @example Convert a checklist item to a card
+      #   card = Tacokit.card("aCardId", checklists: :all)
+      #   checklist = card.checklists.first
+      #   check_item = checklist.check_items.first
+      #   Tacokit.convert_to_card(card, checklist, check_item)
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-checklist-idchecklist-checkitem-idcheckitem-converttocard
       def convert_to_card(card_id, checklist_id, check_item_id)
-        create_card_resource(card_id, "checklist", checklist_id, "checkItem", check_item_id, "convertToCard")
+        create_card_resource card_id, "checklist", resource_id(checklist_id),
+          "checkItem", resource_id(check_item_id), "convertToCard"
       end
 
       # Start a new checklist on card

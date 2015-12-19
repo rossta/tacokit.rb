@@ -320,6 +320,9 @@ module Tacokit
       # Start a new checklist on card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param name [String] the new checklist name
+      # @example Add checklist to card
+      #   card = Tacokit.card("aCardId")
+      #   checklist = Tacokit.add_checklist(card, "Tasks")
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-checklists
       def add_checklist(card_id, name)
         create_card_resource(card_id, "checklists", name: name)
@@ -329,9 +332,13 @@ module Tacokit
       # Copy another checklist to card
       # @param card_id [String, Tacokit::Resource<Card>] the destination card identifier, shortlink, or card
       # @param checklist_id [String] the checklist identifier
+      #   card_1 = Tacokit.card("aCardId")
+      #   checklist = card.add_checklist(card_1, "Tasks")
+      #   card_2 = Tacokit.card("bCardId")
+      #   Tacokit.copy_checklist(card_2, checklist)
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-checklists
       def copy_checklist(card_id, checklist_id)
-        create_card_resource(card_id, "checklists", checklist_source_id: checklist_id)
+        create_card_resource(card_id, "checklists", checklist_source_id: resource_id(checklist_id))
       end
 
       # Add a member to a card

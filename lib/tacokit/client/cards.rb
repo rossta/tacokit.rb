@@ -344,9 +344,15 @@ module Tacokit
       # Add a member to a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param member_id [String] the member identifier
+      # @example Add a member to a card
+      #   card = Tacokit.card("aCardId")
+      #   member = Tacokit.member("nickname")
+      #   Tacokit.add_member_to_card(card, member)
+      # @example Add a member by id to a card
+      #   Tacokit.add_member_to_card("aCardId", "aMemberId")
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-idmembers
       def add_member_to_card(card_id, member_id)
-        create_card_resource(card_id, "idMembers", value: member_id)
+        create_card_resource(card_id, "idMembers", value: resource_id(member_id))
       end
 
       # Add label to card

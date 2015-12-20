@@ -359,6 +359,8 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param color [String] a color name or hex value
       # @param options [Hash] options to add the label with
+      # @example Add label to card
+      #   Tacokit.add_label("aCardId", "red", name: "Overdue")
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-labels
       def add_label(card_id, color, options = {})
         create_card_resource(card_id, "labels", options.merge(color: color))
@@ -367,9 +369,12 @@ module Tacokit
       # Cast vote for card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param member_id [String] the voter member identifier
+      # @example Vote on card for given member
+      #   member = Tacokit.member("rossta")
+      #   Tacokit.vote("aCardId", member)
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-membersvoted
       def vote(card_id, member_id)
-        create_card_resource(card_id, "membersVoted", value: member_id)
+        create_card_resource(card_id, "membersVoted", value: resource_id(member_id))
       end
       alias_method :create_vote, :vote
 

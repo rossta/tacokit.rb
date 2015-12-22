@@ -164,7 +164,7 @@ describe Tacokit::Client::Cards do
     end
 
     it "updates a comment" do
-      app_client.update_comment(test_card_link, @comment.id, "I'm not singing")
+      app_client.update_comment(test_card_link, @comment, "I'm not singing")
       actions = app_client.card_actions(test_card_link)
 
       comment = actions.first.data
@@ -172,7 +172,7 @@ describe Tacokit::Client::Cards do
     end
 
     after do
-      app_client.remove_comment test_card_link, @comment.id
+      app_client.remove_comment test_card_link, @comment
     end
   end
 
@@ -438,7 +438,7 @@ describe Tacokit::Client::Cards do
 
     it "deletes comment" do
       # rubocop:disable Style/DotPosition
-      expect { app_client.delete_comment(test_card_link, @comment.id) }.
+      expect { app_client.delete_comment(test_card_link, @comment) }.
         to change { app_client.card_actions(test_card_link, filter: "comment_card").size }.by(-1)
       # rubocop:enable Style/DotPosition
     end

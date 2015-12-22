@@ -382,6 +382,8 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param image_name [String] the sticker name
       # @param options [Hash] options to add the sticker with, such as position arguments
+      # @exmple Add sticker to card with optional positioning
+      #   Tacokit.add_sticker("aCardId", "star", top: 100, left: 200, z_index: 50)
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-stickers
       def add_sticker(card_id, image_name, options = {})
         defaults = { top: 0, left: 0, z_index: 1 }
@@ -389,40 +391,55 @@ module Tacokit
       end
       alias_method :create_sticker, :add_sticker
 
+      # @private
       # Create a card resource
       def create_card_resource(card_id, resource, *paths)
         paths, options = extract_options(camp(resource), *paths)
         post card_path(card_id, *paths), options
       end
 
-      # Delete a chard
+      # Delete a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
+      # @example Delete a card
+      #   card = Tacokit.card("aCardId")
+      #   Tacokit.delete_card(card)
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink
       def delete_card(card_id)
-        delete card_path(card_id)
+        delete card_path(resource_id(card_id))
       end
 
       # Remove a comment
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param comment_id [String] the comment identifier
+      # @example Remove a comment
+      #   card = Tacokit.card("aCardId")
+      #   comment = Tacokit.add_comment(card, "This message will be deleted")
+      #   Tacokit.remove_comment(comment)
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-labels
       def remove_comment(card_id, comment_id)
-        delete_card_resource card_id, "actions", comment_id, "comments"
+        delete_card_resource card_id, "actions", resource_id(comment_id), "comments"
       end
       alias_method :delete_comment, :remove_comment
 
       # Remove an attachment
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param attachment_id [String] the attachment identifier
+      # @example Remove an attachment
+      #   card = Tacokit.card("aCardId")
+      #   attachment = Tacokit.attach_file(card, "/path/to/local/file.png")
+      #   Tacokit.remove_attachment(card, attachment)
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink-attachments-idattachment
       def remove_attachment(card_id, attachment_id)
-        delete_card_resource card_id, "attachments", attachment_id
+        delete_card_resource card_id, "attachments", resource_id(attachment_id)
       end
       alias_method :delete_attachement, :remove_attachment
 
       # Remove checklist
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param checklist_id [String] the checklist identifier
+      #   card = Tacokit.card("aCardId")
+      #   checklist = Tacokit.create_checklist(card, "Things")
+      #   Tacokit.remove_checklist(card, checklist)
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink-checklists-idchecklist
       def remove_checklist(card_id, checklist_id)
         delete_card_resource card_id, "checklists", checklist_id

@@ -382,7 +382,7 @@ module Tacokit
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param image_name [String] the sticker name
       # @param options [Hash] options to add the sticker with, such as position arguments
-      # @exmple Add sticker to card with optional positioning
+      # @example Add sticker to card with optional positioning
       #   Tacokit.add_sticker("aCardId", "star", top: 100, left: 200, z_index: 50)
       # @see https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-stickers
       def add_sticker(card_id, image_name, options = {})
@@ -449,15 +449,23 @@ module Tacokit
       # Remove a member from a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param member_id [String] the member identifier
+      # @example Remove a member from a card
+      #   card = Tacokit.card("aCardId")
+      #   member = Tacokit.member("nickname")
+      #   Tacokit.remove_card_member(card, member)
+      # @example Remove member by id from a card
+      #   Tacokit.remove_card_member("aCardId", "aMemberId")
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink-idmembers-idmember
       def remove_card_member(card_id, member_id)
-        delete_card_resource card_id, "idMembers", member_id
+        delete_card_resource card_id, "idMembers", resource_id(member_id)
       end
       alias_method :delete_card_member, :remove_card_member
 
       # Remove label from card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param color [String] color of label to remove
+      # @example Remove label from card
+      #   Tacokit.remove_label("aCardId", "red", name: "Overdue")
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink-labels-color
       def remove_label(card_id, color)
         delete_card_resource card_id, "labels", color
@@ -467,18 +475,24 @@ module Tacokit
       # Remove a vote from a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param member_id [String] the member identifier
+      # @example Remove member's vote from a card
+      #   member = Tacokit.member("rossta")
+      #   Tacokit.remove_vote("aCardId", member)
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink-membersvoted-idmember
       def remove_vote(card_id, member_id)
-        delete_card_resource card_id, "membersVoted", member_id
+        delete_card_resource card_id, "membersVoted", resource_id(member_id)
       end
       alias_method :delete_vote, :remove_vote
 
       # Remove a sticker from a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
       # @param sticker_id [String] the sticker identifier
+      # @example Remove sticker from card with optional positioning
+      #   sticker = Tacokit.add_sticker("aCardId", "star")
+      #   Tacokit.remove_sticker("aCardId", sticker)
       # @see https://developers.trello.com/advanced-reference/card#delete-1-cards-card-id-or-shortlink-membersvoted-idmember
       def remove_sticker(card_id, sticker_id)
-        delete_card_resource card_id, "stickers", sticker_id
+        delete_card_resource card_id, "stickers", resource_id(sticker_id)
       end
       alias_method :delete_sticker, :remove_sticker
 

@@ -653,7 +653,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Delete a chard.</p>
+<p>Delete a card.</p>
 </div></span>
   
 </li>
@@ -1357,7 +1357,19 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Add label to card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_label'>add_label</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Overdue</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1426,12 +1438,12 @@
       <pre class="lines">
 
 
-357
-358
-359</pre>
+365
+366
+367</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 357</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 365</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_label'>add_label</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_create_card_resource'>create_card_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>labels</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>color:</span> <span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1459,7 +1471,28 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Add a member to a card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_member'>member</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nickname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_member_to_card'>add_member_to_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span> <span class='id identifier rubyid_member'>member</span><span class='rparen'>)</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Add a member by id to a card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_member_to_card'>add_member_to_card</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aMemberId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1510,15 +1543,15 @@
       <pre class="lines">
 
 
-348
-349
-350</pre>
+354
+355
+356</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 354</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_member_to_card'>add_member_to_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_create_card_resource'>create_card_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>idMembers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_card_resource'>create_card_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>idMembers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1547,7 +1580,19 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Add sticker to card with optional positioning</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_sticker'>add_sticker</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>star</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>top:</span> <span class='int'>100</span><span class='comma'>,</span> <span class='label'>left:</span> <span class='int'>200</span><span class='comma'>,</span> <span class='label'>z_index:</span> <span class='int'>50</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1616,13 +1661,13 @@
       <pre class="lines">
 
 
-375
-376
-377
-378</pre>
+388
+389
+390
+391</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 375</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 388</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_sticker'>add_sticker</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_image_name'>image_name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_defaults'>defaults</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>top:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>left:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>z_index:</span> <span class='int'>1</span> <span class='rbrace'>}</span>
@@ -3400,13 +3445,13 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-382
-383
-384
-385</pre>
+396
+397
+398
+399</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 382</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 396</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_card_resource'>create_card_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_paths'>paths</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_options'>extract_options</span><span class='lparen'>(</span><span class='id identifier rubyid_camp'>camp</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_paths'>paths</span><span class='rparen'>)</span>
@@ -3429,13 +3474,26 @@ Tacokit.copy_checklist(card_2, checklist)</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Delete a chard</p>
+<p>Delete a card</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Delete a card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_delete_card'>delete_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3470,15 +3528,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-390
-391
-392</pre>
+407
+408
+409</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 390</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 407</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_card'>delete_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_card_path'>card_path</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_card_path'>card_path</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3662,7 +3720,21 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove an attachment</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_attachment'>attachment</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_attach_file'>attach_file</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/local/file.png</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_attachment'>remove_attachment</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span> <span class='id identifier rubyid_attachment'>attachment</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3713,15 +3785,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-407
-408
-409</pre>
+432
+433
+434</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 407</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 432</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_attachment'>remove_attachment</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_attachment_id'>attachment_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attachments</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_attachment_id'>attachment_id</span>
+  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attachments</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_attachment_id'>attachment_id</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3750,7 +3822,28 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove a member from a card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_member'>member</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nickname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_card_member'>remove_card_member</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span> <span class='id identifier rubyid_member'>member</span><span class='rparen'>)</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove member by id from a card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_card_member'>remove_card_member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aMemberId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3801,15 +3894,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-425
-426
-427</pre>
+459
+460
+461</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 425</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 459</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_card_member'>remove_card_member</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>idMembers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span>
+  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>idMembers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3868,7 +3961,9 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       
         &mdash;
         <div class='inline'>
-<p>the checklist identifier</p>
+<p>the checklist identifier card = Tacokit.card(“aCardId”) checklist =
+Tacokit.create_checklist(card, “Things”) Tacokit.remove_checklist(card,
+checklist)</p>
 </div>
       
     </li>
@@ -3889,12 +3984,12 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-416
-417
-418</pre>
+444
+445
+446</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 416</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 444</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_checklist'>remove_checklist</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_checklist_id'>checklist_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>checklists</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_checklist_id'>checklist_id</span>
@@ -3926,7 +4021,21 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove a comment</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_comment'>comment</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_comment'>add_comment</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This message will be deleted</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_comment'>remove_comment</span><span class='lparen'>(</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3977,15 +4086,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-398
-399
-400</pre>
+419
+420
+421</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 398</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 419</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_comment'>remove_comment</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_comment_id'>comment_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>actions</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_comment_id'>comment_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>comments</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>actions</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_comment_id'>comment_id</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>comments</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4014,7 +4123,19 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove label from card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_label'>remove_label</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Overdue</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -4065,12 +4186,12 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-434
-435
-436</pre>
+470
+471
+472</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 434</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 470</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_label'>remove_label</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>labels</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span>
@@ -4102,7 +4223,20 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove sticker from card with optional positioning</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_sticker'>sticker</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_add_sticker'>add_sticker</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>star</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_sticker'>remove_sticker</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_sticker'>sticker</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -4153,15 +4287,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-452
-453
-454</pre>
+494
+495
+496</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 452</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 494</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_sticker'>remove_sticker</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_sticker_id'>sticker_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stickers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_sticker_id'>sticker_id</span>
+  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stickers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_sticker_id'>sticker_id</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4190,7 +4324,20 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Remove member&#39;s vote from a card</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_member'>member</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rossta</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_remove_vote'>remove_vote</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_member'>member</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -4241,15 +4388,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-443
-444
-445</pre>
+482
+483
+484</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 443</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 482</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_vote'>remove_vote</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>membersVoted</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span>
+  <span class='id identifier rubyid_delete_card_resource'>delete_card_resource</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>membersVoted</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -5189,7 +5336,20 @@ Tacokit.copy_checklist(card_2, checklist)</p>
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Vote on card for given member</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_member'>member</span> <span class='op'>=</span> <span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rossta</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Tacokit</span><span class='period'>.</span><span class='id identifier rubyid_vote'>vote</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>aCardId</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_member'>member</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -5240,15 +5400,15 @@ Tacokit.copy_checklist(card_2, checklist)</p>
       <pre class="lines">
 
 
-365
-366
-367</pre>
+376
+377
+378</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 365</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/client/cards.rb', line 376</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_vote'>vote</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_create_card_resource'>create_card_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>membersVoted</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_card_resource'>create_card_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>membersVoted</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_resource_id'>resource_id</span><span class='lparen'>(</span><span class='id identifier rubyid_member_id'>member_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -5260,7 +5420,7 @@ Tacokit.copy_checklist(card_2, checklist)</p>
 </div>
 
     <div id="footer">
-  Generated on Sat Dec 19 12:28:35 2015 by
+  Generated on Sat Dec 26 17:28:06 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

@@ -1,7 +1,7 @@
 module Tacokit
   module Authorization
     def get_app_key # rubocop:disable Style/AccessorMethodName
-      open_url web_url("appKey/generate")
+      open_url web_url("app-key")
     end
 
     # Get a token for making authorized requests to the Trello API

@@ -28,7 +28,7 @@ module Tacokit
       # @example Mark a notification as read
       #   Tacokit.mark_notification_read("aNotificationId") #=> Tacokit::Resource<Notification>
       # @see https://developers.trello.com/advanced-reference/notification#put-1-notifications-idnotification
-      def mark_notification_unread(notification_id)
+      def mark_notification_read(notification_id)
         update_notification notification_id, unread: false
       end
 

@@ -14,6 +14,8 @@ module Tacokit
 
       # Delete an authorization token
       # @param token [String] the token identifier
+      # @example Delete an authorization token
+      #   Tacokit.delete_token("aToken")
       # @see https://developers.trello.com/advanced-reference/token#delete-1-tokens-token
       def delete_token(token)
         delete token_path(token)

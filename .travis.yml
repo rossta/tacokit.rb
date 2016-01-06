@@ -9,6 +9,7 @@ rvm:
 sudo: false
 cache: bundler
 
+before_install: gem install bundler -v 1.11.2
 bundler_args: --without development --retry=3 --jobs=3
 
 script:

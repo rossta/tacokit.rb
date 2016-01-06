@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "tacokit"
+
+require "dotenv"
+Dotenv.load(
+  File.expand_path("../.env", __FILE__),
+  File.expand_path("../.env.development", __FILE__)
+)
+
+require "pry"
+
+Pry.start

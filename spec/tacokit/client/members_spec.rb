@@ -66,6 +66,13 @@ describe Tacokit::Client::Members do
 
       assert_requested :get, trello_url_template("members/tacokit/actions{?key,token,page}")
     end
+
+    it "handles pagination" do
+      actions = app_client.actions("tacokit", limit: 1, max: 3).each.to_a # force pagination
+
+      expect(actions.size).to eq 3
+      expect(actions.map { |a| a["id"] }.uniq.size).to eq 3
+    end
   end
 
   describe "#boards", :vcr do

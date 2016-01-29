@@ -13,7 +13,7 @@ gem "pry-byebug", platforms: [:ruby_21, :ruby_22]
 gem "rake"
 gem "rb-fsevent"
 gem "rspec", "~> 3.3"
-gem "rubocop", "~> 0.34"
+gem "rubocop", "0.34"
 gem "sinatra"
 gem "vcr"
 gem "webmock"

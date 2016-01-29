@@ -45,6 +45,13 @@ describe Tacokit::Client::Boards do
       card = cards.first
       expect(card.pos).to be_present
     end
+
+    it "handles pagination" do
+      cards = app_client.board_cards(test_board_link, limit: 1, max: 3).each.to_a # force pagination
+
+      expect(cards.size).to eq 3
+      expect(cards.map { |c| c["id"] }.uniq.size).to eq 3
+    end
   end
 
   describe "#board_checklists", :vcr do

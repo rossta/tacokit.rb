@@ -68,7 +68,7 @@ VCR.configure do |c|
     preserve_exact_body_bytes:  true,
     decode_compressed_response: true,
     record:                     :none,
-    re_record_interval:         60 * 60 * 24 * 30 * 3
+    re_record_interval:         60 * 60 * 24 * 30 * 12
   }
 
   c.cassette_library_dir = "spec/cassettes"

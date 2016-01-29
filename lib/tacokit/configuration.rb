@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Tacokit
   class Configuration
     API_URL = "https://api.trello.com".freeze

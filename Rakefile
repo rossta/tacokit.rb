@@ -15,14 +15,6 @@ task default: [:spec, :rubocop]
 namespace :doc do
   desc "Generate docs and publish to gh-pages"
   task :publish do
-    begin
-      require "yard"
-    rescue LoadError => e
-      raise e unless e.message =~ /yard/
-      warn "Please install `gem install yard` first"
-      exit
-    end
-
     require "fileutils"
     sh "yard doc"
     sh "git checkout gh-pages"

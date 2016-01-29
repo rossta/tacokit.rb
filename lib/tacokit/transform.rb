@@ -17,7 +17,7 @@ module Tacokit
     private
 
     def normalize_request_params(params)
-      (params || {}).each_with_object({}) do |(key, value), norm|
+      (params || {}).reject { |_k, v| v.nil? }.each_with_object({}) do |(key, value), norm|
         norm[key] = normalize_param_value(value)
       end
     end

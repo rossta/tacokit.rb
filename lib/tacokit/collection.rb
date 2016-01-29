@@ -15,8 +15,9 @@ module Tacokit
       @path    = path
       @options = options
 
-      @page  = options.fetch(:page, 0)
-      @limit = options.fetch(:limit, 50)
+      @before = options.fetch(:before, nil)
+      @limit  = options.fetch(:limit, 50)
+      @max    = options.fetch(:max, MAX)
 
       @collection = []
 
@@ -39,14 +40,14 @@ module Tacokit
     private
 
     def last?
-      @last_response_empty || (@page * @limit) >= MAX
+      @last_response_empty || @collection.length >= @max
     end
 
     def fetch_next_page
-      response = @client.send(@method, @path, @options.merge(page: @page))
+      response = @client.send(@method, @path, @options.merge(before: @before, limit: @limit))
       @last_response_empty = response.empty?
-      @page += 1
       @collection += response
+      @before = response.last["id"] unless @last_response_empty
     end
   end
 end

@@ -101,7 +101,7 @@ module Tacokit
       def lists(board_id, options = {})
         board_resource(board_id, "lists", options)
       end
-      alias_method :board_lists, :lists
+      alias board_lists lists
 
       # Retrieve a board's members
       # @param board_id [String, Tacokit::Resource<Board>] the board identifier or board

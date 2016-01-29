@@ -107,7 +107,7 @@ module Tacokit
     def to_s
       "<#{self.class}:#{object_id}>"
     end
-    alias_method :inspect, :to_s
+    alias inspect to_s
 
     private
 

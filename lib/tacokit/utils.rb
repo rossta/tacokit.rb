@@ -37,7 +37,7 @@ module Tacokit
     def camel_path(path)
       camelize(path.to_s, :lower)
     end
-    alias_method :camp, :camel_path
+    alias camp camel_path
 
     def camel_join(*paths)
       path_join paths.map { |p| camel_path(p) }

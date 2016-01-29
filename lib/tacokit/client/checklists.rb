@@ -36,7 +36,7 @@ module Tacokit
       def check_items(checklist_id, options = {})
         checklist_resource checklist_id, "check_items", options
       end
-      alias_method :checklist_check_items, :check_items
+      alias checklist_check_items check_items
 
       # Updates a checklist
       # @param checklist_id [String] the checklist identifier
@@ -45,7 +45,7 @@ module Tacokit
       def update_checklist(checklist_id, options = {})
         put checklist_path(checklist_id), options
       end
-      alias_method :checklist_update, :update_checklist
+      alias checklist_update update_checklist
 
       # Create a checklist
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -55,7 +55,7 @@ module Tacokit
         options.update card_id: card_id, name: name
         post "checklists", options
       end
-      alias_method :checklist_create, :create_checklist
+      alias checklist_create create_checklist
 
       # Add a checklist item to a checklist
       # @param checklist_id [String] the checklist identifier
@@ -64,8 +64,8 @@ module Tacokit
       def add_checklist_check_item(checklist_id, name, options = {})
         post checklist_path(checklist_id, "checkItems"), options.merge(name: name)
       end
-      alias_method :checklist_check_item_create, :add_checklist_check_item
-      alias_method :add_checklist_item, :add_checklist_check_item
+      alias checklist_check_item_create add_checklist_check_item
+      alias add_checklist_item add_checklist_check_item
 
       # Delete a checklist
       # @param checklist_id [String] the checklist identifier
@@ -73,7 +73,7 @@ module Tacokit
       def delete_checklist(checklist_id)
         delete checklist_path(checklist_id)
       end
-      alias_method :checklist_delete, :delete_checklist
+      alias checklist_delete delete_checklist
 
       private
 

@@ -33,7 +33,7 @@ module Tacokit
     end
 
     def user_credentials
-      { consumer_key: app_key, token: oauth_token }.delete_if { |k, v| v.nil? }
+      { consumer_key: app_key, consumer_secret: app_secret, token: oauth_token }.delete_if { |k, v| v.nil? }
     end
 
     def app_authenticated?

@@ -40,7 +40,7 @@ module Tacokit
       def attachments(card_id, options = {})
         card_resource(card_id, "attachments", options)
       end
-      alias_method :card_attachments, :attachments
+      alias card_attachments attachments
 
       # Retrieve a card attachment
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -162,7 +162,7 @@ module Tacokit
       def update_comment(card_id, comment_id, text, options = {})
         update_card_resource(card_id, "actions", resource_id(comment_id), "comments", options.merge(text: text))
       end
-      alias_method :edit_comment, :update_comment
+      alias edit_comment update_comment
 
       # Update checklist item text, position or state
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -274,7 +274,7 @@ module Tacokit
         options.update text: text
         create_card_resource card_id, "actions", "comments", options
       end
-      alias_method :create_card_comment, :add_comment
+      alias create_card_comment add_comment
 
       # Attach a file to a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -300,7 +300,7 @@ module Tacokit
 
         create_card_resource card_id, "attachments", options
       end
-      alias_method :create_card_attachment, :attach_file
+      alias create_card_attachment attach_file
 
       # Convert a checklist item to a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -327,7 +327,7 @@ module Tacokit
       def add_checklist(card_id, name)
         create_card_resource(card_id, "checklists", name: name)
       end
-      alias_method :start_checklist, :add_checklist
+      alias start_checklist add_checklist
 
       # Copy another checklist to card
       # @param card_id [String, Tacokit::Resource<Card>] the destination card identifier, shortlink, or card
@@ -376,7 +376,7 @@ module Tacokit
       def vote(card_id, member_id)
         create_card_resource(card_id, "membersVoted", value: resource_id(member_id))
       end
-      alias_method :create_vote, :vote
+      alias create_vote vote
 
       # Add sticker to card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -389,7 +389,7 @@ module Tacokit
         defaults = { top: 0, left: 0, z_index: 1 }
         create_card_resource(card_id, "stickers", defaults.merge(options.merge(image: image_name)))
       end
-      alias_method :create_sticker, :add_sticker
+      alias create_sticker add_sticker
 
       # @private
       # Create a card resource
@@ -419,7 +419,7 @@ module Tacokit
       def remove_comment(card_id, comment_id)
         delete_card_resource card_id, "actions", resource_id(comment_id), "comments"
       end
-      alias_method :delete_comment, :remove_comment
+      alias delete_comment remove_comment
 
       # Remove an attachment
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -432,7 +432,7 @@ module Tacokit
       def remove_attachment(card_id, attachment_id)
         delete_card_resource card_id, "attachments", resource_id(attachment_id)
       end
-      alias_method :delete_attachement, :remove_attachment
+      alias delete_attachement remove_attachment
 
       # Remove checklist
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -444,7 +444,7 @@ module Tacokit
       def remove_checklist(card_id, checklist_id)
         delete_card_resource card_id, "checklists", checklist_id
       end
-      alias_method :delete_checklist, :remove_checklist
+      alias delete_checklist remove_checklist
 
       # Remove a member from a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -459,7 +459,7 @@ module Tacokit
       def remove_card_member(card_id, member_id)
         delete_card_resource card_id, "idMembers", resource_id(member_id)
       end
-      alias_method :delete_card_member, :remove_card_member
+      alias delete_card_member remove_card_member
 
       # Remove label from card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -470,7 +470,7 @@ module Tacokit
       def remove_label(card_id, color)
         delete_card_resource card_id, "labels", color
       end
-      alias_method :delete_label, :remove_label
+      alias delete_label remove_label
 
       # Remove a vote from a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -482,7 +482,7 @@ module Tacokit
       def remove_vote(card_id, member_id)
         delete_card_resource card_id, "membersVoted", resource_id(member_id)
       end
-      alias_method :delete_vote, :remove_vote
+      alias delete_vote remove_vote
 
       # Remove a sticker from a card
       # @param card_id [String, Tacokit::Resource<Card>] the card identifier, shortlink, or card
@@ -494,7 +494,7 @@ module Tacokit
       def remove_sticker(card_id, sticker_id)
         delete_card_resource card_id, "stickers", resource_id(sticker_id)
       end
-      alias_method :delete_sticker, :remove_sticker
+      alias delete_sticker remove_sticker
 
       private
 

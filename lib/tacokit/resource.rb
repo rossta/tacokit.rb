@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "set"
 require "time"
 require "forwardable"
@@ -10,8 +11,8 @@ module Tacokit
     SPECIAL_METHODS = Set.new(%w[fields])
     attr_reader :_fields
     attr_reader :attrs
-    alias_method :to_hash, :attrs
-    alias_method :to_h, :attrs
+    alias to_hash attrs
+    alias to_h attrs
 
     def_delegators :@_fields, :fetch, :keys, :any?
 
@@ -43,14 +44,14 @@ module Tacokit
     def key?(key)
       @_fields.include?(key)
     end
-    alias_method :has_key?, :key?
-    alias_method :include?, :key?
+    alias has_key? key?
+    alias include? key?
 
     def inspect
       (to_attrs.respond_to?(:pretty_inspect) ? to_attrs.pretty_inspect : to_attrs.inspect)
     end
 
-    alias_method :to_s, :inspect
+    alias to_s inspect
 
     def to_attrs
       hash = attrs.clone
@@ -129,7 +130,7 @@ module Tacokit
     end
 
     # rubocop:disable Metrics/LineLength
-    ISO8601 = %r{^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$}.freeze
+    ISO8601 = %r{^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$}
     # rubocop:enable Metrics/LineLength
     def cast_value_type(value)
       case value

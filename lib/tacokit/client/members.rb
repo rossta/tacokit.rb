@@ -47,7 +47,7 @@ module Tacokit
         username, options = extract_member_args(username, options)
         paginated_get member_path(username, "actions"), options
       end
-      alias_method :member_actions, :actions
+      alias member_actions actions
 
       # @overload boards(username = "me", options = {})
       #   Retrieve a member's boards

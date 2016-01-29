@@ -18,12 +18,9 @@ namespace :doc do
     begin
       require "yard"
     rescue LoadError => e
-      if e.message =~ /yard/
-        warn "Please install `gem install yard` first"
-        exit
-      else
-        raise e
-      end
+      raise e unless e.message =~ /yard/
+      warn "Please install `gem install yard` first"
+      exit
     end
 
     require "fileutils"

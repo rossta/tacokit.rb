@@ -86,7 +86,7 @@ module Tacokit
       def update_action_text(action_id, text)
         put action_path(action_id, "text"), value: text
       end
-      alias_method :edit_action_text, :update_action_text
+      alias edit_action_text update_action_text
 
       # Delete an action
       # @param action_id [String] the action identifier

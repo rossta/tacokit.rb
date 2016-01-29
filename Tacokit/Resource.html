@@ -417,17 +417,17 @@
       <pre class="lines">
 
 
-18
 19
 20
 21
 22
 23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@attrs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -465,7 +465,6 @@
       <pre class="lines">
 
 
-86
 87
 88
 89
@@ -478,10 +477,11 @@
 96
 97
 98
-99</pre>
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_attr_name'>attr_name</span><span class='comma'>,</span> <span class='id identifier rubyid_suffix'>suffix</span> <span class='op'>=</span> <span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([a-z0-9\_]+)(\?|\=)?$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -535,12 +535,12 @@
       <pre class="lines">
 
 
-11
 12
-13</pre>
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__fields'>_fields</span>
   <span class='ivar'>@_fields</span>
@@ -582,12 +582,12 @@
       <pre class="lines">
 
 
-12
 13
-14</pre>
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attrs'>attrs</span>
   <span class='ivar'>@attrs</span>
@@ -619,14 +619,14 @@
       <pre class="lines">
 
 
-31
 32
 33
 34
-35</pre>
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
@@ -653,14 +653,14 @@
       <pre class="lines">
 
 
-37
 38
 39
 40
-41</pre>
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_method'>method</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -687,12 +687,12 @@
       <pre class="lines">
 
 
-27
 28
-29</pre>
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@attrs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -721,12 +721,12 @@
       <pre class="lines">
 
 
-49
 50
-51</pre>
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='lparen'>(</span><span class='id identifier rubyid_to_attrs'>to_attrs</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:pretty_inspect</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_to_attrs'>to_attrs</span><span class='period'>.</span><span class='id identifier rubyid_pretty_inspect'>pretty_inspect</span> <span class='op'>:</span> <span class='id identifier rubyid_to_attrs'>to_attrs</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rparen'>)</span>
@@ -777,12 +777,12 @@
       <pre class="lines">
 
 
-43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@_fields</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -807,7 +807,6 @@
       <pre class="lines">
 
 
-55
 56
 57
 58
@@ -817,10 +816,11 @@
 62
 63
 64
-65</pre>
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_attrs'>to_attrs</span>
   <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_attrs'>attrs</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
@@ -853,14 +853,14 @@
       <pre class="lines">
 
 
-67
 68
 69
 70
-71</pre>
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/tacokit/resource.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
@@ -877,7 +877,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sat Dec 26 17:28:07 2015 by
+  Generated on Fri Jan 29 07:17:32 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

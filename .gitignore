@@ -13,3 +13,4 @@
 mkmf.log
 .env
 .env.development
+.env.test

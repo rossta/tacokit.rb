@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["rosskaff@gmail.com"]
   spec.summary       = "A ruby toolkit for the Trello API."
   spec.description   = "A ruby toolkit for the Trello API."
-  spec.homepage      = "http://rossta.github.io/tacokit.rb"
+  spec.homepage      = "https://rossta.net/tacokit.rb"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

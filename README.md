@@ -2,8 +2,9 @@
 
 [![Build Status](https://travis-ci.org/rossta/tacokit.rb.svg?branch=master)](https://travis-ci.org/rossta/tacokit.rb) [![Code Climate](https://codeclimate.com/github/rossta/tacokit.rb/badges/gpa.svg)](https://codeclimate.com/github/rossta/tacokit.rb) [![Dependency Status](https://gemnasium.com/rossta/tacokit.rb.svg)](https://gemnasium.com/rossta/tacokit.rb) [![Coverage Status](https://coveralls.io/repos/rossta/tacokit.rb/badge.svg)](https://coveralls.io/r/rossta/tacokit.rb)
 
-Ruby toolkit for the Trello API... a work-in-progress. Design and philosophy
-inspired by [ocktokit.rb](https://github.com/ocktokit/ocktokit.rb)
+A Ruby wrapper for the Trello API. A simpler, fully-featured alternative to [ruby-trello](https://github.com/jeremytregunna/ruby-trello). 
+
+Design and philosophy inspired by [ocktokit.rb](https://github.com/ocktokit/ocktokit.rb)
 
 This is Taco.
 

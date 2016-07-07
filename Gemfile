@@ -5,11 +5,11 @@ gemspec
 gem "awesome_print", require: "ap"
 gem "coveralls", require: false
 gem "dotenv"
-gem "guard-rspec"
+gem "guard-rspec", platforms: [:ruby_23]
 gem "launchy"
 gem "oauth"
 gem "pry"
-gem "pry-byebug", platforms: [:ruby_21, :ruby_22]
+gem "pry-byebug", platforms: [:ruby_21, :ruby_22, :ruby_23]
 gem "rake"
 gem "rb-fsevent"
 gem "rspec", "~> 3.3"

@@ -4,6 +4,8 @@
 
 A Ruby wrapper for the Trello API. A simpler, fully-featured alternative to [ruby-trello](https://github.com/jeremytregunna/ruby-trello). 
 
+[Documentation](https://rossta.net/tacokit.rb/)
+
 Design and philosophy inspired by [ocktokit.rb](https://github.com/ocktokit/ocktokit.rb)
 
 This is Taco.

@@ -104,7 +104,7 @@ module Tacokit
     end
 
     def pluralize_special_cases
-      %w[ idBoardsPinned idPremOrgsAdmin ]
+      %w[idBoardsPinned idPremOrgsAdmin]
     end
 
     def camelize_special_cases

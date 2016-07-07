@@ -34,7 +34,7 @@ describe Tacokit::Client::Members do
       member = app_client.member "tacokit",
         boards: "all",
         board_fields: "name,short_url",
-        fields: %w[ username full_name ]
+        fields: %w[username full_name]
 
       expect(member.username).to eq("tacokit")
       expect(member.full_name).to eq("Taco Kit")
